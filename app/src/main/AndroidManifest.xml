@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cmpt276.proj.finddamatch" >
+    package="cmpt276.proj.finddamatch">
 
     <application
         android:allowBackup="true"
@@ -8,8 +8,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        android:theme="@style/AppTheme">
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".HelpActivity" />
+        <activity android:name=".GameActivity" />
+        <activity android:name=".MainMenuActivity" />
+        <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
