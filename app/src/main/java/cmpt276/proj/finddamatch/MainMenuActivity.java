@@ -18,6 +18,15 @@ public class MainMenuActivity extends AppCompatActivity {
         setupStartGameBtn();
         setupHelpBtn();
         setupSettingsBtn();
+        setupBestScoresBtn();
+    }
+
+    private void setupBestScoresBtn() {
+        Button bestScoresBtn = findViewById(R.id.btnBestScores);
+        bestScoresBtn.setOnClickListener(v -> {
+            Intent settings_intent = SettingsActivity.makeIntent(MainMenuActivity.this);
+            startActivity(settings_intent);
+        });
     }
 
     private void setupSettingsBtn() {
