@@ -24,7 +24,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private void setupBestScoresBtn() {
         Button bestScoresBtn = findViewById(R.id.btnBestScores);
         bestScoresBtn.setOnClickListener(v -> {
-            Intent settings_intent = SettingsActivity.makeIntent(MainMenuActivity.this);
+            Intent settings_intent = ScoresActivity.makeIntent(MainMenuActivity.this);
             startActivity(settings_intent);
         });
     }
