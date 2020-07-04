@@ -1,56 +1,57 @@
 package cmpt276.proj.finddamatch;
 
-import android.graphics.BlendMode;
-import android.graphics.BlendModeColorFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 
 import cmpt276.proj.finddamatch.model.Image;
 
 public class ImageView {
-    private static double EPSILON = 1e-1;
-    private static double INHERENT_IMAGE_RADIUS = 0.4;
-    private double x;
-    private double y;
-    private double scale;
-    private double orientation;
-    private double width, height;
-    private double left, top, right, bottom;
+    private float x, y;
+    private float radius;
+    private float orientation;
+    private Image image;
+    private RectF bounds;
     private Drawable imageToDraw;
+    private static final float EPSILON = 1e-3f;
+    private static final double PI_TO_DEGREE = 180 / Math.PI;
 
     public ImageView(Image image, Drawable imageToDraw, CardView card) {
-        this.x = (float) (card.getX() + image.getX() * card.getRadius());
-        this.y = (float) (card.getY() + image.getY() * card.getRadius());
-        this.scale = (float) (image.getScale() * card.getRadius());
+        this.x = card.getX() + image.getX() * card.getRadius();
+        this.y = card.getY() + image.getY() * card.getRadius();
+        this.radius = image.getRadius() * card.getRadius();
         this.orientation = image.getOrientation();
+        this.image = image;
         initImage(imageToDraw);
+    }
+
+    public Image getImage() {
+        return this.image;
     }
 
     public void draw(Canvas canvas) {
         canvas.save();
-        canvas.rotate((float) (orientation * 180 / Math.PI), (float)this.x, (float)this.y);
+        canvas.rotate((float) (orientation * PI_TO_DEGREE), this.x, this.y);
         imageToDraw.draw(canvas);
         canvas.restore();
     }
 
-    public boolean isPointInside(double x, double y) {
-        double deltaX = x - this.x;
-        double deltaY = y - this.y;
-        double xPrime = Math.cos(orientation) * deltaX -
-                Math.sin(orientation) * deltaY;
-        double yPrime = Math.sin(orientation) * deltaX +
-                Math.cos(orientation) * deltaY;
-        return xPrime - width / 2.0 <= EPSILON && xPrime + width / 2.0 >= -EPSILON &&
-                yPrime + height / 2.0 >= -EPSILON && yPrime - height / 2.0 <= EPSILON;
+    public boolean contains(float x, float y) {
+        float deltaX = x - this.x;
+        float deltaY = y - this.y;
+        float xPrime = (float) (Math.cos(orientation) * deltaX +
+                        Math.sin(orientation) * deltaY);
+        float yPrime = (float) (-Math.sin(orientation) * deltaX +
+                        Math.cos(orientation) * deltaY);
+        return inBound(xPrime, yPrime);
     }
 
-    public void applyFilter() {
-        imageToDraw.setColorFilter(new LightingColorFilter(Color.LTGRAY, Color.BLACK));
+    public void applyFilter(Paint backgroundPaint) {
+        imageToDraw.setColorFilter(new LightingColorFilter(Color.LTGRAY,
+                backgroundPaint.getColor()));
     }
 
     public void clearFilter() {
@@ -61,16 +62,23 @@ public class ImageView {
         this.imageToDraw = imageToDraw.mutate();
         int width = this.imageToDraw.getIntrinsicWidth();
         int height = this.imageToDraw.getIntrinsicHeight();
-        double radius = Math.max(width, height);
-        this.width = INHERENT_IMAGE_RADIUS *
-                (width / radius) * this.scale;
-        this.height = INHERENT_IMAGE_RADIUS *
-                (height / radius) * this.scale;
-        this.left = this.x - this.width / 2.0;
-        this.right = this.x + this.width / 2.0;
-        this.top = this.y - this.height / 2.0;
-        this.bottom = this.y + this.height / 2.0;
+        float maxSide = Math.max(width, height);
+        float NewWidth = (width / maxSide) * this.radius;
+        float newHeight = (height / maxSide) * this.radius;
+        float left = this.x - NewWidth / 2.0f;
+        float right = left + NewWidth;
+        float top = this.y - newHeight / 2.0f;
+        float bottom = top + newHeight;
+        this.bounds = new RectF(left, top, right, bottom);
         this.imageToDraw.setBounds((int)left, (int)top,
                 (int)right, (int)bottom);
     }
+
+    private boolean inBound(float x, float y) {
+        float halfWidth = bounds.width() / 2.0f;
+        float halfHeight = bounds.height() / 2.0f;
+        return x <= halfWidth + EPSILON && x >= -halfWidth - EPSILON &&
+                y <= halfHeight + EPSILON && y >= -halfHeight - EPSILON;
+    }
+
 }

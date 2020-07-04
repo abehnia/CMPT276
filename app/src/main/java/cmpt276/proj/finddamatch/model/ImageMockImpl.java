@@ -29,12 +29,12 @@ public class ImageMockImpl implements Image {
     }
 
     @Override
-    public float getScale() {
-        return this.scale;
+    public float getRadius() {
+        return 0.4f;
     }
 
     @Override
-    public int getValue() {
+    public int getID() {
         return this.value;
     }
 

@@ -23,14 +23,14 @@ public interface Image {
     float getY();
 
     /**
-     * @return scale of the image
+     * @return radius of the image
      */
-    float getScale();
+    float getRadius();
 
     /**
      * @return the value of the image
      */
-    int getValue();
+    int getID();
 
     /**
      * Sets the orientation of the image

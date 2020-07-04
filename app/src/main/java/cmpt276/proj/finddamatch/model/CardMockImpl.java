@@ -22,7 +22,7 @@ public class CardMockImpl implements Card {
     @Override
     public boolean exists(Image image) {
         for (Image savedImage : images) {
-            if (savedImage.getValue() == image.getValue()) {
+            if (savedImage.getID() == image.getID()) {
                 return true;
             }
         }

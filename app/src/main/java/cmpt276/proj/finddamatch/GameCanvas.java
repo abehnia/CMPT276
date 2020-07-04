@@ -1,18 +1,16 @@
 package cmpt276.proj.finddamatch;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 
 import java.util.NoSuchElementException;
 
@@ -20,12 +18,9 @@ import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
 
 public class GameCanvas extends View {
-    private int backgroundColor, cardColor;
-    private Paint backgroundPaint, cardPaint;
-    private Canvas extraCanvas;
-    private Bitmap extraBitmap;
+    private Paint backgroundPaint;
+    private Bitmap bitmap;
     private CardView guessCard, leadCard;
-    private Card lead, guess;
 
     public GameCanvas(Context context) {
         super(context);
@@ -43,87 +38,86 @@ public class GameCanvas extends View {
         init();
     }
 
-    public boolean intersects(double x, double y) {
-        return guessCard.isPointInside(x, y);
+    public boolean contains(float x, float y) {
+        return guessCard.contains(x, y);
     }
 
-    public int getIntersection(double x, double y) {
-        if (guessCard.isPointInside(x, y)) {
-            return guessCard.getIntersectedImage(x, y);
+    public Image getIntersection(float x, float y) {
+        if (guessCard.contains(x, y)) {
+            return guessCard.getIntersection(x, y);
         }
         throw new NoSuchElementException();
     }
 
-    public void click(double x, double y) {
-        if (guessCard.isPointInside(x, y)) {
-            guessCard.applyFilter(guessCard.getIntersectedImage(x, y));
-            invalidate();
-        }
-    }
-
-    public void clearClick() {
-        guessCard.clearFilter();
+    public void setCards(Card guess, Card lead, int imageSet) {
+        guessCard.setImages(guess, imageSet);
+        leadCard.setImages(lead, imageSet);
         invalidate();
     }
 
-    public void setInitialCards(Card lead, Card guess) {
-        this.lead = lead;
-        this.guess = guess;
-    }
-    public void setCards(Card guess, Card lead) {
-        guessCard.setImages(guess, 0);
-        leadCard.setImages(lead, 0);
-    }
-
-    private void init() {
-        backgroundColor = ResourcesCompat.getColor(getResources(),
-                R.color.colorGameBackground, null);
-        backgroundPaint = new Paint();
-        backgroundPaint.setColor(backgroundColor);
-        cardColor = ResourcesCompat.getColor(getResources(),
-                R.color.colorCard, null);
-        cardPaint = new Paint();
-        cardPaint.setColor(cardColor);
-    }
-
-    @Override
-    protected void onSizeChanged(int width, int height,
-                                 int oldWidth, int oldHeight) {
-        super.onSizeChanged(width, height, oldWidth, oldHeight);
-        extraBitmap = Bitmap.createBitmap(width, height,
-                Bitmap.Config.ARGB_8888);
-        extraCanvas = new Canvas(extraBitmap);
-        extraCanvas.drawColor(backgroundColor);
-        TypedArray logos = getResources().obtainTypedArray(R.array.logos);
-        guessCard = new CardView(width / 2.0, 3 * height / 4.0, Math.min(width, height) / 4.0, logos, cardPaint);
-        leadCard = new CardView(guessCard.getX(), height / 4.0, guessCard.getRadius(), logos, cardPaint);
-        guessCard.setImages(guess, 0);
-        leadCard.setImages(lead, 0);
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        canvas.drawBitmap(extraBitmap, 0, 0, null);
-        leadCard.draw(canvas);
-        guessCard.draw(canvas);
-    }
-
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float x = event.getX();
         float y = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if (intersects(x, y)) {
-                    click(x, y);
-                }
+                actionDown(x, y);
                 break;
             case MotionEvent.ACTION_UP:
-                clearClick();
+                actionUp();
                 break;
             default:
         }
         return true;
+    }
+
+    @Override
+    protected void onSizeChanged(int width, int height,
+                                 int oldWidth, int oldHeight) {
+        super.onSizeChanged(width, height, oldWidth, oldHeight);
+        this.bitmap = Bitmap.createBitmap(
+                width, height, Bitmap.Config.ARGB_8888);
+        setupCards(width, height);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.drawBitmap(bitmap, 0, 0, backgroundPaint);
+        leadCard.draw(canvas);
+        guessCard.draw(canvas);
+    }
+
+    private void init() {
+        int backgroundColor = this.getResources().getColor(
+                R.color.colorGameBackground, null);
+        this.backgroundPaint = new Paint(backgroundColor);
+    }
+
+    private void actionDown(float x, float y) {
+        if (contains(x, y)) {
+            guessCard.applyFilter(getIntersection(x, y));
+            invalidate();
+        }
+    }
+
+    private void actionUp() {
+        guessCard.clearFilter();
+        invalidate();
+    }
+
+    private void setupCards(int width, int height) {
+        TypedArray logos = getResources().obtainTypedArray(R.array.logos);
+        float guessCardX = width / 2.0f;
+        float guessCardY = 3 * height / 4.0f;
+        float guessCardRadius = Math.min(width, height) / 4.0f;
+        guessCard = new GuessCardView(guessCardX, guessCardY, guessCardRadius,
+                logos, backgroundPaint, this.getResources());
+        float leadCardX = width / 2.0f;
+        float leadCardY = height / 4.0f;
+        float leadCardRadius = Math.min(width, height) / 4.0f;
+        leadCard = new LeadCardView(leadCardX, leadCardY, leadCardRadius,
+                logos, backgroundPaint, this.getResources());
     }
 }

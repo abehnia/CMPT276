@@ -14,72 +14,79 @@ import java.util.NoSuchElementException;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
 
-public class CardView implements Iterable<ImageView>{
-    private static int NUMBER_OF_IMAGES_PER_DECK = 7;
-    private double x, y, radius;
-    private Paint paint;
-    ArrayList<ImageView> images;
-    TypedArray logos;
+public abstract class CardView implements Iterable<ImageView>{
+    protected float x, y, radius;
+    protected Paint backgroundPaint;
+    protected ArrayList<ImageView> images;
+    protected TypedArray logos;
 
-    public CardView(double x, double y, double radius, TypedArray logos, Paint paint) {
+    public CardView(float x, float y, float radius, TypedArray logos,
+                    Paint backgroundPaint) {
         this.x = x;
         this.y = y;
         this.radius = radius;
         this.logos = logos;
         this.images = new ArrayList<>();
-        this.paint = paint;
+        this.backgroundPaint = backgroundPaint;
     }
 
     public void setImages(Card card, int imageSet) {
         images.clear();
         for (Image image : card) {
-            Drawable imageToDraw = logos.getDrawable(image.getValue()
-                    + imageSet * NUMBER_OF_IMAGES_PER_DECK);
+            Drawable imageToDraw = logos.getDrawable(image.getID()
+                    + imageSet * Card.NUMBER_OF_IMAGES_PER_DECK);
             images.add(new ImageView(image, imageToDraw, this));
         }
     }
 
-    public double getX() {
+    public float getX() {
         return this.x;
     }
 
-    public double getY() {
+    public float getY() {
         return this.y;
     }
 
-    public double getRadius() {
+    public float getRadius() {
         return this.radius;
     }
 
-    public boolean isPointInside(double x, double y) {
+    public boolean contains(float x, float y) {
         for (ImageView imageView : images) {
-            if (imageView.isPointInside(x, y)) {
+            if (imageView.contains(x, y)) {
                 return true;
             }
         }
         return false;
     }
 
-    public int getIntersectedImage(double x, double y) {
-        int index = 0;
+    /**
+     * Pre-condition: Must be called if the point is already inside
+     * (i.e. check with contains first)
+     */
+    public Image getIntersection(float x, float y) {
         for (ImageView imageView : images) {
-            if (imageView.isPointInside(x, y)) {
-                return index;
+            if (imageView.contains(x, y)) {
+                return imageView.getImage();
             }
-            index += 1;
         }
         throw new NoSuchElementException();
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawCircle((float)x, (float)y, (float)radius, paint);
+        this.drawSelf(canvas);
         for (ImageView imageView : images) {
             imageView.draw(canvas);
         }
     }
 
-    public void applyFilter(int index) {
-        images.get(index).applyFilter();
+    public void applyFilter(Image image) {
+        for (ImageView imageView : images) {
+            if (imageView.getImage() == image) {
+                imageView.applyFilter(backgroundPaint);
+                return;
+            }
+        }
     }
 
     public void clearFilter() {
@@ -93,4 +100,6 @@ public class CardView implements Iterable<ImageView>{
     public Iterator<ImageView> iterator() {
         return images.iterator();
     }
+
+    abstract protected void drawSelf(Canvas canvas);
 }
