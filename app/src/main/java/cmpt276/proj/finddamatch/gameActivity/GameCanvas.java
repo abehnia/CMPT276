@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch;
+package cmpt276.proj.finddamatch.gameActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,9 +14,14 @@ import androidx.annotation.Nullable;
 
 import java.util.NoSuchElementException;
 
+import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
 
+/**
+ * Main canvas for the game
+ * Draws the game
+ */
 public class GameCanvas extends View {
     private Paint backgroundPaint;
     private Bitmap bitmap;

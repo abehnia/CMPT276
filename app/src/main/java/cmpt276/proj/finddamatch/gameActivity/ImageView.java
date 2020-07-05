@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch;
+package cmpt276.proj.finddamatch.gameActivity;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -9,6 +9,9 @@ import android.graphics.drawable.Drawable;
 
 import cmpt276.proj.finddamatch.model.Image;
 
+/**
+ * View for a single image
+ */
 public class ImageView {
     private float x, y;
     private float radius;

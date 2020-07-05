@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity">
 
-    <cmpt276.proj.finddamatch.GameCanvas
+    <cmpt276.proj.finddamatch.gameActivity.GameCanvas
         android:id="@+id/game_activity_game_canvas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

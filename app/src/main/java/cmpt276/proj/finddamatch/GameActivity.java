@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
+import cmpt276.proj.finddamatch.gameActivity.GameCanvas;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.GameMockImpl;

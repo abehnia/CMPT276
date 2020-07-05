@@ -1,11 +1,15 @@
-package cmpt276.proj.finddamatch;
+package cmpt276.proj.finddamatch.gameActivity;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 
+import cmpt276.proj.finddamatch.R;
+
+/**
+ * View for the card that the player clicks
+ */
 public class GuessCardView extends CardView {
     public Paint foregroundPaint;
 

@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch;
+package cmpt276.proj.finddamatch.gameActivity;
 
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -14,6 +14,9 @@ import java.util.NoSuchElementException;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
 
+/**
+ * Abstract class to represent a view for a card
+ */
 public abstract class CardView implements Iterable<ImageView>{
     protected float x, y, radius;
     protected Paint backgroundPaint;
