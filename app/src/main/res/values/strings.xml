@@ -9,4 +9,7 @@
     <string name="help_activity_title">Help</string>
     <string name="settings_activity_title">Settings</string>
     <string name="game_page_title">Game Page</string>
+    <string name="time_game_activity">Time</string>
+    <string name="null_text_view">TextView</string>
+    <string name="game_activity_reset">Reset</string>
 </resources>
