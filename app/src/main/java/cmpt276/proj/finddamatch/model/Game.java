@@ -38,7 +38,7 @@ public interface Game {
      * Query the time in the game
      * Side Effects: none
      */
-    Time queryTime();
+    long queryTime();
 
     /**
      * Is the game finished yet? (i.e. is time equal to 0)

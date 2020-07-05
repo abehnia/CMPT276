@@ -41,7 +41,7 @@ public abstract class ScoreManger extends Context {
                 int x = getScoreTime(j, context);
                 int y = getScoreTime(j+1, context);
                 if (x > y) {
-                    // swap arr[j+1] and arr[i]
+                    // swap [j+1] and [j]
                     int tmp_time = getScoreTime(j, context);
                     String tmp_name = getScoreName(j, context);
                     String tmp_date = getScoreDate(j, context);

@@ -7,12 +7,14 @@
     android:layout_height="match_parent">
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.073">
 
         <TableRow
             android:layout_width="wrap_content"
@@ -21,7 +23,7 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/ScoreTablePosTitle"
+                android:id="@+id/ScoreTablePosTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -32,37 +34,37 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/ScoreTableScoreTitle"
+                android:id="@+id/ScoreTableScoreTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:textSize="18sp"
+                android:text="@string/ScoreTableScoreTitle"
                 android:textAlignment="center"
-                android:textStyle="bold"
-                android:text="@string/ScoreTableScoreTitle" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/ScoreTableTimeTitle"
+                android:id="@+id/ScoreTableTimeTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:textSize="18sp"
+                android:text="@string/ScoreTableTimeTitle"
                 android:textAlignment="center"
-                android:textStyle="bold"
-                android:text="@string/ScoreTableTimeTitle" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/ScoreTableDateTitle"
+                android:id="@+id/ScoreTableDateTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:textSize="18sp"
+                android:text="@string/ScoreTableDateTitle"
                 android:textAlignment="center"
-                android:textStyle="bold"
-                android:text="@string/ScoreTableDateTitle" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </TableRow>
 
         <TableRow
@@ -72,7 +74,7 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/Score1Pos"
+                android:id="@+id/Score1Pos2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -81,31 +83,31 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score1Name"
+                android:id="@+id/Score1Name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:textAlignment="center"
-                android:text="@string/BestScore1Name" />
+                android:text="@string/BestScore1Name"
+                android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score1Time"
+                android:id="@+id/Score1Time2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:textAlignment="center"
-                android:text="@string/BestScore1Time" />
+                android:text="@string/BestScore1Time"
+                android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score1Date"
+                android:id="@+id/Score1Date2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:textAlignment="center"
-                android:text="@string/BestScore1Date" />
+                android:text="@string/BestScore1Date"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -115,7 +117,7 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/Score2Pos"
+                android:id="@+id/Score2Pos2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -124,31 +126,31 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score2Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="5dp"
-                android:text="@string/BestScore2Name" />
-
-            <TextView
-                android:id="@+id/Score2Time"
+                android:id="@+id/Score2Name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textAlignment="center"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore2Time" />
+                android:text="@string/BestScore2Name"
+                android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score2Date"
+                android:id="@+id/Score2Time2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/BestScore2Time"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/Score2Date2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore2Date" />
+                android:text="@string/BestScore2Date"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -158,7 +160,7 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/Score3Pos"
+                android:id="@+id/Score3Pos2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -167,31 +169,31 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score3Name"
+                android:id="@+id/Score3Name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textAlignment="center"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore3Name" />
+                android:text="@string/BestScore3Name"
+                android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score3Time"
+                android:id="@+id/Score3Time2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textAlignment="center"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore3Time" />
+                android:text="@string/BestScore3Time"
+                android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score3Date"
+                android:id="@+id/Score3Date2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore3Date" />
+                android:text="@string/BestScore3Date"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -201,7 +203,7 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/Score4Pos"
+                android:id="@+id/Score4Pos2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -210,31 +212,31 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score4Name"
+                android:id="@+id/Score4Name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore4Name" />
+                android:text="@string/BestScore4Name"
+                android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score4Time"
+                android:id="@+id/Score4Time2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore4Time" />
+                android:text="@string/BestScore4Time"
+                android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score4Date"
+                android:id="@+id/Score4Date2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore4Date" />
+                android:text="@string/BestScore4Date"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -244,7 +246,7 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/Score5Pos"
+                android:id="@+id/Score5Pos2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -253,61 +255,63 @@
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score5Name"
+                android:id="@+id/Score5Name2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore5Name" />
+                android:text="@string/BestScore5Name"
+                android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score5Time"
+                android:id="@+id/Score5Time2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore5Time" />
+                android:text="@string/BestScore5Time"
+                android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/Score5Date"
+                android:id="@+id/Score5Date2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore5Date" />
+                android:text="@string/BestScore5Date"
+                android:textAlignment="center" />
         </TableRow>
     </TableLayout>
-
-    <Button
-        android:id="@+id/btnOk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginBottom="64dp"
-        android:text="Okay"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="124dp"
-        android:text="Save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/editTextNickName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="Nickname"
+        android:hint="@string/enter_nickname"
         android:inputType="textPersonName|textCapSentences"
-        tools:layout_editor_absoluteX="45dp"
-        tools:layout_editor_absoluteY="559dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    <TextView
+        android:id="@+id/txtYourScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:text="@string/YourScore"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextNickName"
+        app:layout_constraintStart_toEndOf="@+id/editTextNickName"
+        app:layout_constraintTop_toTopOf="@+id/editTextNickName" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="44dp"
+        android:text="Your Score is fixed for now, It can be changed \ndinamically later"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNickName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

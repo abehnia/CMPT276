@@ -1,6 +1,7 @@
 package cmpt276.proj.finddamatch;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,20 +18,21 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        showDialogBox();
+
+        setupDialogBoxBtn();
     }
 
-    private void showDialogBox() {
-        Button btn = findViewById(R.id.btnSave);
-        btn.setOnClickListener(v -> {
-            Context context;
-            AlertDialog.Builder dBuilder = new AlertDialog.Builder(GameActivity.this);
-            View dView = getLayoutInflater().inflate(R.layout.dialog_game_end, null);
-            EditText nickName = dView.findViewById(R.id.editTextNickName);
-
-        });
+    private void displayDialogBox() {
+        FragmentManager manager = getSupportFragmentManager();
+        DialogBoxFragment dialog = new DialogBoxFragment();
+        dialog.show(manager, "Best Scores Dialog");
     }
 
+    private void setupDialogBoxBtn() {
+        Button btn = findViewById(R.id.btnTestDialogBox);
+        btn.setOnClickListener(v -> displayDialogBox());
+
+    }
     public static Intent makeIntent(Context context) {
         return new Intent(context, GameActivity.class);
     }

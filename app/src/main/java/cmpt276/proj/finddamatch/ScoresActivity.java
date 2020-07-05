@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -20,9 +18,6 @@ public class ScoresActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scores);
 
         populateTable();
-        setUpScore15();
-        setUpScore55();
-        setUpScore130();
         setupResetBtn();
     }
 
@@ -30,28 +25,6 @@ public class ScoresActivity extends AppCompatActivity {
         Button btn = findViewById(R.id.btnReset);
         btn.setOnClickListener(v -> {
             ScoreManger.resetScores(ScoresActivity.this);
-            populateTable();
-        });
-    }
-
-    private void setUpScore15() {
-        Button btn = findViewById(R.id.btnSetScore15);
-        btn.setOnClickListener(v -> {
-            ScoreManger.saveHighScore("John", 15,ScoresActivity.this);
-            populateTable();
-        });
-    }
-    private void setUpScore55() {
-        Button btn = findViewById(R.id.btnSetScore55);
-        btn.setOnClickListener(v -> {
-            ScoreManger.saveHighScore("Sam", 55,ScoresActivity.this);
-            populateTable();
-        });
-    }
-    private void setUpScore130() {
-        Button btn = findViewById(R.id.btnSetScore130);
-        btn.setOnClickListener(v -> {
-            ScoreManger.saveHighScore("Helen", 130,ScoresActivity.this);
             populateTable();
         });
     }
@@ -65,13 +38,7 @@ public class ScoresActivity extends AppCompatActivity {
             int time = ScoreManger.getScoreTime(i, ScoresActivity.this);
             String name = ScoreManger.getScoreName(i, ScoresActivity.this);
             String date = ScoreManger.getScoreDate(i, ScoresActivity.this);
-
-            Log.i("app", "----------------------------------------------- i--> " + i + " ----------------------name --> " + name);
-//            Log.i("app", "----------------------------------------------- i--> " + i + " date --> " + date);
-            Log.i("app", "----------------------------------------------- i--> " + i + " time --> " + time);
-
-
-            if (time >= 120){
+            if (time > 120){
                 int min = (time/60);
                 int sec = (time%60);
                 time_str = getString(R.string.TimeMins, min, sec);
@@ -80,7 +47,11 @@ public class ScoresActivity extends AppCompatActivity {
                 int min = (time/60);
                 time_str = getString(R.string.TimeExact1Min, min);
 
-            }else if(time >= 60){
+            }else if((time % 60)==0){
+                int min = (time/60);
+                time_str = getString(R.string.TimeExactMins, min);
+
+            }else if(time > 60){
                 int min = (time/60);
                 int sec = (time%60);
                 time_str = getString(R.string.Time1Min, min, sec);
@@ -143,7 +114,4 @@ public class ScoresActivity extends AppCompatActivity {
     public static Intent makeIntent(Context context) {
         return new Intent(context, ScoresActivity.class);
     }
-
-
-
 }
