@@ -51,7 +51,6 @@ public class ImageMockImpl implements Image {
     @Override
     public void setY(float y) {
         this.y = y;
-
     }
 
     @Override

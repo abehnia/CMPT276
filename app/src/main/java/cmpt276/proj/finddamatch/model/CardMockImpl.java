@@ -12,6 +12,7 @@ public class CardMockImpl implements Card {
     public CardMockImpl(Image... images) {
         this.images = new ArrayList<>();
         this.images.addAll(Arrays.asList(images));
+
     }
 
     @Override
