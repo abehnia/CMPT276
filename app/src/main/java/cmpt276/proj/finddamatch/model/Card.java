@@ -6,6 +6,7 @@ package cmpt276.proj.finddamatch.model;
  */
 public interface Card extends Iterable<Image> {
     public static final int NUMBER_OF_IMAGES_PER_DECK = 7;
+    public static final int NUMBER_OF_IMAGES_PER_CARD = 3;
     /**
      * Get the index image in the card
      * Side Effects: none

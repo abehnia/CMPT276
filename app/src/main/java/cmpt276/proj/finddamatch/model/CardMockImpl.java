@@ -38,49 +38,43 @@ public class CardMockImpl implements Card {
         return images.size();
     }
 
+    public boolean isBounded() {
+        for (int i = 0; i < this.size(); ++i)
+            if (sqrt(this.get(i).getX() * this.get(i).getX() + this.get(i).getY() * this.get(i).getY()) + this.get(i).getRadius() * this.get(i).getScale() > 1f)
+                return false;
+        return true;
+    }
+
+    public boolean isNotOverlap() {
+        for (int i = 0; i < this.size() - 1; ++i)
+            for (int j = i + 1; j < this.size(); ++j)
+                if ((this.get(i).getRadius() * this.get(i).getScale() + this.get(j).getRadius() * this.get(j).getScale()) >
+                        sqrt((this.get(i).getX() - this.get(j).getX()) * (this.get(i).getX() - this.get(j).getX())) +
+                                (this.get(i).getY() - this.get(j).getY()) * (this.get(i).getY() - this.get(j).getY()))
+                    return false;
+        return true;
+    }
+
+    public void randomizeScale() {
+        Random random = new Random();
+        float leftBoundedScale = 0.5F;
+        float rightBoundedScale = 2F;
+        for (int i = 0; i < this.size(); ++i)
+            this.get(i).setScale(random.nextFloat() * (rightBoundedScale - leftBoundedScale) + leftBoundedScale);
+    }
+
     @Override
     public void randomize() {
         Random random = new Random();
         float leftBoundedPosition = -1F;
         float rightBoundedPosition = 1F;
-        float leftBoundedScale = 0.5F;
-        float rightBoundedScale = 2F;
-        float newX1 = random.nextFloat() * (rightBoundedPosition - leftBoundedPosition) + leftBoundedPosition;
-        this.get(0).setX(newX1);
-        float newX2 = random.nextFloat() * (rightBoundedPosition - leftBoundedPosition) + leftBoundedPosition;
-        this.get(1).setX(newX2);
-        float newX3 = random.nextFloat() * (rightBoundedPosition - leftBoundedPosition) + leftBoundedPosition;
-        this.get(2).setX(newX3);
-        float newY1 = random.nextFloat() * (rightBoundedPosition - leftBoundedPosition) + leftBoundedPosition;
-        this.get(0).setX(newY1);
-        float newY2 = random.nextFloat() * (rightBoundedPosition - leftBoundedPosition) + leftBoundedPosition;
-        this.get(1).setX(newY2);
-        float newY3 = random.nextFloat() * (rightBoundedPosition - leftBoundedPosition) + leftBoundedPosition;
-        this.get(2).setX(newY3);
-        float newOrientation1 = random.nextFloat();
-        this.get(0).setOrientation(newOrientation1);
-        float newOrientation2 = random.nextFloat();
-        this.get(1).setOrientation(newOrientation2);
-        float newOrientation3 = random.nextFloat();
-        this.get(2).setOrientation(newOrientation3);
-        float scale1 = random.nextFloat() * (rightBoundedScale - leftBoundedScale) + leftBoundedScale;
-        this.get(0).setScale(scale1);
-        float scale2 = random.nextFloat() * (rightBoundedScale - leftBoundedScale) + leftBoundedScale;
-        this.get(0).setScale(scale2);
-        float scale3 = random.nextFloat() * (rightBoundedScale - leftBoundedScale) + leftBoundedScale;
-        this.get(0).setScale(scale3);
-        while ((sqrt(this.get(0).getX() * this.get(0).getX() + this.get(0).getY() * this.get(0).getY()) + this.get(0).getRadius() * this.get(0).getScale() > 1F)
-                && (sqrt(this.get(1).getX() * this.get(1).getX() + this.get(1).getY() * this.get(1).getY()) + this.get(1).getRadius() * this.get(1).getScale() > 1F)
-                && (sqrt(this.get(2).getX() * this.get(2).getX() + this.get(2).getY() * this.get(2).getY()) + this.get(2).getRadius() * this.get(2).getScale() > 1F)
-                && (this.get(0).getRadius() * this.get(0).getScale() + this.get(1).getRadius() * this.get(1).getScale()) >
-                sqrt((this.get(0).getX() - this.get(1).getX()) * (this.get(0).getX() - this.get(1).getX())) + (this.get(0).getY() - this.get(1).getY()) * (this.get(0).getY() - this.get(1).getY())
-                && (this.get(0).getRadius() * this.get(0).getScale() + this.get(2).getRadius() * this.get(2).getScale()) >
-                sqrt((this.get(0).getX() - this.get(2).getX()) * (this.get(0).getX() - this.get(2).getX())) + (this.get(0).getY() - this.get(2).getY()) * (this.get(0).getY() - this.get(2).getY())
-                && (this.get(2).getRadius() * this.get(2).getScale() + this.get(1).getRadius() * this.get(1).getScale()) >
-                sqrt((this.get(2).getX() - this.get(1).getX()) * (this.get(2).getX() - this.get(1).getX())) + (this.get(2).getY() - this.get(1).getY()) * (this.get(2).getY() - this.get(1).getY())
-        ) {
-            this.randomize();
+
+        for (int i = 0; i < this.size(); ++i) {
+            this.get(i).setX(random.nextFloat() * (rightBoundedPosition - leftBoundedPosition) + leftBoundedPosition);
+            this.get(i).setY(random.nextFloat() * (rightBoundedPosition - leftBoundedPosition) + leftBoundedPosition);
+            this.get(i).setOrientation(random.nextFloat());
         }
+        while (!isBounded() && !isNotOverlap()) this.randomizeScale();
     }
 
     @NonNull

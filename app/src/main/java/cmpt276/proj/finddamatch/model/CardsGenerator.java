@@ -13,6 +13,7 @@ public class CardsGenerator {
         for (int i = 0; i < arrOfCards.size(); ++i){
             arrOfCards.get(i).randomize();
         }
+        this.cardsShuffle();
     }
 
     private static CardsGenerator instance;
