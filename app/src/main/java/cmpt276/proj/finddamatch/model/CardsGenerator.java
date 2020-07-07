@@ -10,7 +10,9 @@ public class CardsGenerator {
 
     private CardsGenerator() {
         arrOfCards = new ArrayList<>(NUMBER_OF_CARDS);
-
+        for (int i = 0; i < arrOfCards.size(); ++i){
+            arrOfCards.get(i).randomize();
+        }
     }
 
     private static CardsGenerator instance;
@@ -32,7 +34,7 @@ public class CardsGenerator {
     public Card pop() {
         Card popValue = arrOfCards.get(arrOfCards.size() - 1);
         arrOfCards.remove(arrOfCards.size() - 1);
-    //    arrOfCards.add(popValue);
+        arrOfCards.add(popValue);
         return popValue;
     }
 

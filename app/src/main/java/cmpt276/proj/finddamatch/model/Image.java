@@ -32,6 +32,8 @@ public interface Image {
      */
     int getID();
 
+    float getScale();
+
     /**
      * Sets the orientation of the image
      */

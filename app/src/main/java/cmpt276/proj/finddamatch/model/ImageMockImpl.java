@@ -39,6 +39,11 @@ public class ImageMockImpl implements Image {
     }
 
     @Override
+    public float getScale() {
+        return this.scale;
+    }
+
+    @Override
     public void setOrientation(float orientation) {
         this.orientation = orientation;
     }
