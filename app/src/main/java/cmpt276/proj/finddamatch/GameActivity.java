@@ -3,6 +3,18 @@ package cmpt276.proj.finddamatch;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import cmpt276.proj.finddamatch.model.ScoreManger;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +32,6 @@ import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.GameMockImpl;
 import cmpt276.proj.finddamatch.model.Image;
-import cmpt276.proj.finddamatch.model.ScoreManger;
 
 public class GameActivity extends AppCompatActivity {
     private GameCanvas gameCanvas;
@@ -35,7 +46,8 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        this.isTouchable = true;
+
+         this.isTouchable = true;
         setupGame();
         setupCanvas();
         setupTouch();
@@ -43,10 +55,6 @@ public class GameActivity extends AppCompatActivity {
         setupHandler();
         setupButton();
         setupDialogBoxBtn();
-    }
-
-    public static Intent makeIntent(Context context) {
-        return new Intent(context, GameActivity.class);
     }
 
     private void displayDialogBox(long longTime) {
@@ -62,7 +70,10 @@ public class GameActivity extends AppCompatActivity {
         Button btn = findViewById(R.id.btnTestDialogBox);
         btn.setOnClickListener(v -> displayDialogBox(9000));
 
+    }
 
+    public static Intent makeIntent(Context context) {
+        return new Intent(context, GameActivity.class);
     }
 
     private void setupGame() {
