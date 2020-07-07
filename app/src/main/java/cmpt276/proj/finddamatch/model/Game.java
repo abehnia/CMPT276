@@ -1,7 +1,5 @@
 package cmpt276.proj.finddamatch.model;
 
-import java.sql.Time;
-
 /**
  * Interface for the main logic of the game
  * This is the interface that should be used in the game UI
@@ -37,6 +35,7 @@ public interface Game {
     /**
      * Query the time in the game
      * Side Effects: none
+     * @return
      */
     long queryTime();
 
