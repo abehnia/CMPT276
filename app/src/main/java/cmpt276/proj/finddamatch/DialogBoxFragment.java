@@ -9,13 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import java.util.Objects;
+
 import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.ScoreManger;
+
+//Class to show dialog box. Sets up table and takes input to save high score
 
 public class DialogBoxFragment extends AppCompatDialogFragment {
     @NonNull
@@ -23,44 +28,27 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_game_end, null);
         populateTable(v);
-//        long longTime = Game.queryTime();
-//        int time = (int) (longTime/1000);
-        int time = 9;
-        String time_str_2;
-        if (time > 120){
-            int min = (time/60);
-            int sec = (time%60);
-            time_str_2 = getString(R.string.YourMinsScore, min, sec);
-
-        }else if(time == 60){
-            int min = (time/60);
-            time_str_2 = getString(R.string.Your1MinExactScore, min);
-
-        }else if((time % 60)==0){
-            int min = (time/60);
-            time_str_2 = getString(R.string.YourMinsExactScore, min);
-
-        }else if(time > 60){
-            int min = (time/60);
-            int sec = (time%60);
-            time_str_2 = getString(R.string.Your1MinScore, min, sec);
-
-        }else{
-            time_str_2 = getString(R.string.YourScore, time);
-        }
+        int time = ScoreManger.getScoreTime(6, Objects.requireNonNull(getContext()));
+        String dTime = ScoreManger.getTimeString(time,getContext());
         TextView txtYourScore = v.findViewById(R.id.txtYourScore);
-        txtYourScore.setText(time_str_2);
+        txtYourScore.setText(dTime);
 
         DialogInterface.OnClickListener listener = (dialog, which) -> {
             switch (which){
                 case DialogInterface.BUTTON_NEGATIVE:
-                    getActivity().finish();
+                    Objects.requireNonNull(getActivity()).finish();
                     break;
                 case DialogInterface.BUTTON_NEUTRAL:
                     EditText txt = v.findViewById(R.id.editTextNickName);
                     String nickName = txt.getText().toString();
-                    ScoreManger.saveHighScore(nickName, time, getContext());
-                    getActivity().finish();
+                    if (!nickName.equals("")){
+                        ScoreManger.saveHighScore(nickName, time, getContext());
+                    }else{
+                        txt.setError("Enter Nickname");
+                        Toast.makeText(getContext(), "No Nickname: Score not Saved", Toast.LENGTH_SHORT).show();
+                    }
+                    Objects.requireNonNull(getActivity()).finish();
+
             }
         };
 
@@ -78,7 +66,7 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
         TextView txtTime;
         String time_str;
         for (int i = 5; i>=1;i--){
-            int time = ScoreManger.getScoreTime(i, getContext());
+            int time = ScoreManger.getScoreTime(i, Objects.requireNonNull(getContext()));
             String name = ScoreManger.getScoreName(i, getContext());
             String date = ScoreManger.getScoreDate(i, getContext());
 

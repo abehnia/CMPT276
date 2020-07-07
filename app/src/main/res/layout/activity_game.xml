@@ -20,9 +20,9 @@
         android:id="@+id/btnTestDialogBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
-        android:layout_marginTop="99dp"
-        android:text="See Dialog Box"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="16dp"
+        android:text="See Dialog Box --> this button can be deleted...its just for you to see the dialog box"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

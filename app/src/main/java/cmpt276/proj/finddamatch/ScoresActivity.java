@@ -6,9 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import cmpt276.proj.finddamatch.model.ScoreManger;
+
+//Activity to show user the top 5 high scores and reset high scores
 
 public class ScoresActivity extends AppCompatActivity {
 
@@ -19,6 +22,12 @@ public class ScoresActivity extends AppCompatActivity {
 
         populateTable();
         setupResetBtn();
+        setupBackButton();
+    }
+
+    private void setupBackButton() {
+        ImageButton btn = findViewById(R.id.imgBtnBackArrowScores);
+        btn.setOnClickListener(v -> finish());
     }
 
     private void setupResetBtn() {
@@ -38,27 +47,7 @@ public class ScoresActivity extends AppCompatActivity {
             int time = ScoreManger.getScoreTime(i, ScoresActivity.this);
             String name = ScoreManger.getScoreName(i, ScoresActivity.this);
             String date = ScoreManger.getScoreDate(i, ScoresActivity.this);
-            if (time > 120){
-                int min = (time/60);
-                int sec = (time%60);
-                time_str = getString(R.string.TimeMins, min, sec);
-
-            }else if(time == 60){
-                int min = (time/60);
-                time_str = getString(R.string.TimeExact1Min, min);
-
-            }else if((time % 60)==0){
-                int min = (time/60);
-                time_str = getString(R.string.TimeExactMins, min);
-
-            }else if(time > 60){
-                int min = (time/60);
-                int sec = (time%60);
-                time_str = getString(R.string.Time1Min, min, sec);
-
-            }else{
-                time_str = getString(R.string.TimeSecs, time);
-            }
+            time_str = ScoreManger.getTimeString(time,ScoresActivity.this);
 
 
             switch (i){

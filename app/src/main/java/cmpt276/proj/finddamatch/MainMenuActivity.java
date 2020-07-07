@@ -2,11 +2,15 @@ package cmpt276.proj.finddamatch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+//Class for the Main Menu. Sets up various buttons
 
 public class MainMenuActivity extends AppCompatActivity {
 

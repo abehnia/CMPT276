@@ -9,3 +9,6 @@
         <item>100000000</item>
     </integer-array>
 </resources>
+
+<!--&lt;!&ndash;These are the default high scores, in order with the smallest high score on top and largest at the bottom. -->
+<!--6th value should NOT be changed-->

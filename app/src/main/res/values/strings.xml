@@ -31,12 +31,13 @@
     <string name="BestScore4Time">1 Min</string>
     <string name="BestScore5Time">1 Min 30 Secs</string>
 
-    <string name="ScoreTableDateTitle">Date</string>
     <string name="Score1Pos">1</string>
     <string name="Score2Pos">2</string>
     <string name="Score3Pos">3</string>
     <string name="Score4Pos">4</string>
     <string name="Score5Pos">5</string>
+
+    <string name="ScoreTableDateTitle">Date</string>
     <string name="ScoreTablePosTitle">Position</string>
     <string name="ScoreTableScoreTitle">Name</string>
     <string name="ScoreTableTimeTitle">Time</string>
@@ -47,14 +48,11 @@
     <string name="TimeExact1Min">"%1$d Min"</string>
     <string name="TimeExactMins">"%1$d Mins"</string>
 
-    <string name="YourScore">"Your Score: %1$d Secs"</string>
-    <string name="Your1MinExactScore">"Your Score: %1$d Min"</string>
-    <string name="YourMinsExactScore">"Your Score: %1$d Mins"</string>
-    <string name="Your1MinScore">"Your Score: %1$d Min %2$d Secs"</string>
-    <string name="YourMinsScore">"Your Score:%1$d Mins %2$d Secs"</string>
-
     <string name="SaveBtn">Save</string>
     <string name="enter_nickname">Enter Nickname</string>
     <string name="reset_score">Reset Score</string>
+    <string name="your_score">Your Score:</string>
+    <string name="nickname_msg">You Must Enter a Nickname to Save your Highscore</string>
+    <string name="back_arrow_vector_image">Back Arrow Vector Image</string>
 
 </resources>

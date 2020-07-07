@@ -13,6 +13,8 @@ import java.util.List;
 import cmpt276.proj.finddamatch.GameActivity;
 import cmpt276.proj.finddamatch.R;
 
+////Class to Manage high scores. Allows to set and get different components of a score such as the time, name, and date.
+
 public abstract class ScoreManger extends Context {
     private static final String KEY_NAME = "Name";
     private static final String KEY_DATE = "Date";
@@ -121,6 +123,32 @@ public abstract class ScoreManger extends Context {
             SharedPreferences.Editor editor = prefs.edit();
             editor.clear().apply();
         }
+    }
+
+    public static String getTimeString(int time,Context context) {
+        String time_str;
+        if (time > 120){
+            int min = (time/60);
+            int sec = (time%60);
+            time_str = context.getString(R.string.TimeMins, min, sec);
+
+        }else if(time == 60){
+            int min = (time/60);
+            time_str = context.getString(R.string.TimeExact1Min, min);
+
+        }else if((time % 60)==0){
+            int min = (time/60);
+            time_str = context.getString(R.string.TimeExactMins, min);
+
+        }else if(time > 60){
+            int min = (time/60);
+            int sec = (time%60);
+            time_str = context.getString(R.string.Time1Min, min, sec);
+
+        }else{
+            time_str = context.getString(R.string.TimeSecs, time);
+        }
+        return time_str;
     }
 
 
