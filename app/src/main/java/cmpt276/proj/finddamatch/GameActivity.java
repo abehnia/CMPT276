@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -40,6 +41,7 @@ public class GameActivity extends AppCompatActivity {
         setupTimer();
         setupHandler();
         setupButton();
+        setupBackButton();
     }
 
     public static Intent makeIntent(Context context) {
@@ -108,6 +110,16 @@ public class GameActivity extends AppCompatActivity {
                 gameCanvas.setCards(guess, lead, 0);
                 setupHandler();
                 isTouchable = true;
+            }
+        });
+    }
+
+    private void setupBackButton() {
+        ImageButton backButton = findViewById(R.id.gameActivityBackButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
