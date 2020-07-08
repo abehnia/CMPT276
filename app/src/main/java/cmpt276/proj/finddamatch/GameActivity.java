@@ -60,7 +60,8 @@ public class GameActivity extends AppCompatActivity {
             public void onLayoutChange(View v, int left, int top, int right,
                                        int bottom, int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
-                gameCanvas.setCards(guess, lead, 0);
+                gameCanvas.setCards(guess, lead,
+                        Settings.get().getImageSetValue());
             }
         });
     }
@@ -105,7 +106,8 @@ public class GameActivity extends AppCompatActivity {
                 game.reset();
                 lead = game.poll();
                 guess = game.poll();
-                gameCanvas.setCards(guess, lead, 0);
+                gameCanvas.setCards(guess, lead,
+                        Settings.get().getImageSetValue());
                 setupHandler();
                 isTouchable = true;
             }
@@ -135,9 +137,9 @@ public class GameActivity extends AppCompatActivity {
             removeHandler();
             return;
         }
-        lead = game.poll();
+        lead = guess;
         guess = game.poll();
-        gameCanvas.setCards(guess, lead, 0);
+        gameCanvas.setCards(guess, lead, Settings.get().getImageSetValue());
     }
 
     private void actionUp() {
