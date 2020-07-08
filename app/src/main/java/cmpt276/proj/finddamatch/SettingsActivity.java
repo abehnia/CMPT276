@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 
+import cmpt276.proj.finddamatch.settingsActivity.Settings;
+
 public class SettingsActivity extends AppCompatActivity {
     private int imageSetKey;
 

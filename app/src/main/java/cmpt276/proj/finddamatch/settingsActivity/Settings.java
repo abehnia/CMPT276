@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch;
+package cmpt276.proj.finddamatch.settingsActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,6 +6,10 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 
 import java.util.HashMap;
+
+import cmpt276.proj.finddamatch.BuildConfig;
+import cmpt276.proj.finddamatch.Persistable;
+import cmpt276.proj.finddamatch.R;
 
 /**
  * Contains the settings of the app

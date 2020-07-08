@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import cmpt276.proj.finddamatch.settingsActivity.Settings;
+
 public class MainMenuActivity extends AppCompatActivity {
 
     @Override

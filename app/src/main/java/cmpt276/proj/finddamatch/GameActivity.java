@@ -19,6 +19,7 @@ import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.GameMockImpl;
 import cmpt276.proj.finddamatch.model.Image;
+import cmpt276.proj.finddamatch.settingsActivity.Settings;
 
 public class GameActivity extends AppCompatActivity {
     private GameCanvas gameCanvas;
