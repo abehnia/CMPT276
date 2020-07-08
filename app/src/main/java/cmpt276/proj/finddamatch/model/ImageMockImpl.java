@@ -1,14 +1,14 @@
 package cmpt276.proj.finddamatch.model;
 
 public class ImageMockImpl implements Image {
-    private float x, y, scale, orientation;
+    private float x, y, radius, orientation;
     int value;
 
     public ImageMockImpl(float x, float y, float scale, float orientation,
                          int value) {
         this.x = x;
         this.y = y;
-        this.scale = scale;
+        this.radius = radius;
         this.orientation = orientation;
         this.value = value;
     }
@@ -38,8 +38,6 @@ public class ImageMockImpl implements Image {
         return this.value;
     }
 
-
-
     @Override
     public void setOrientation(float orientation) {
         this.orientation = orientation;
@@ -53,6 +51,11 @@ public class ImageMockImpl implements Image {
     @Override
     public void setY(float y) {
         this.y = y;
+
     }
 
+    @Override
+    public void setRadius(float radius) {
+        this.radius = radius;
+    }
 }
