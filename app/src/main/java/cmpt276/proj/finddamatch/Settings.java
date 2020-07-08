@@ -7,7 +7,10 @@ import android.content.res.TypedArray;
 
 import java.util.HashMap;
 
-public class Settings implements Persistable{
+/**
+ * Contains the settings of the app
+ */
+public class Settings implements Persistable {
     private int imageSetValue;
     private int imageSetKey;
     private boolean initialized;
