@@ -6,6 +6,7 @@ package cmpt276.proj.finddamatch.model;
  * a scale and the image value
  */
 public interface Image {
+    public static final float BASE_IMAGE_RADIUS = 0.2f;
 
     /**
      * @return orientation of the image in radians
@@ -28,11 +29,9 @@ public interface Image {
     float getRadius();
 
     /**
-     * @return the value of the image
+     * @return the ID of the image
      */
     int getID();
-
-    float getScale();
 
     /**
      * Sets the orientation of the image
@@ -50,7 +49,7 @@ public interface Image {
     void setY(float y);
 
     /**
-     * Sets the scale of the image
+     * Sets the radius of the image
      */
-    void setScale(float scale);
+    void setRadius(float radius);
 }

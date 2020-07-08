@@ -38,10 +38,7 @@ public class ImageMockImpl implements Image {
         return this.value;
     }
 
-    @Override
-    public float getScale() {
-        return this.scale;
-    }
+
 
     @Override
     public void setOrientation(float orientation) {
@@ -58,8 +55,4 @@ public class ImageMockImpl implements Image {
         this.y = y;
     }
 
-    @Override
-    public void setScale(float scale) {
-        this.scale = scale;
-    }
 }

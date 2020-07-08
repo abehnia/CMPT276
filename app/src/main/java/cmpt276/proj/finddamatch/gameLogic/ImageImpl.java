@@ -3,16 +3,20 @@ package cmpt276.proj.finddamatch.gameLogic;
 import cmpt276.proj.finddamatch.model.Image;
 
 public class ImageImpl implements Image {
-    private float x, y, scale, orientation;
+    private float x, y, radius, orientation;
     int value;
 
-    public ImageImpl(float x, float y, float scale, float orientation,
+    public ImageImpl(float x, float y, float radius, float orientation,
                          int value) {
         this.x = x;
         this.y = y;
-        this.scale = scale;
+        this.radius = radius;
         this.orientation = orientation;
         this.value = value;
+    }
+
+    public ImageImpl(int ID){
+        this(0,0,BASE_IMAGE_RADIUS,0,ID);
     }
 
     @Override
@@ -32,17 +36,12 @@ public class ImageImpl implements Image {
 
     @Override
     public float getRadius() {
-        return 0.4f;
+        return this.radius;
     }
 
     @Override
     public int getID() {
         return this.value;
-    }
-
-    @Override
-    public float getScale() {
-        return this.scale;
     }
 
     @Override
@@ -61,7 +60,7 @@ public class ImageImpl implements Image {
     }
 
     @Override
-    public void setScale(float scale) {
-        this.scale = scale;
+    public void setRadius(float radius) {
+        this.radius = radius;
     }
 }

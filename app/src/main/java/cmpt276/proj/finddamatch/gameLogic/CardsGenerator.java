@@ -7,35 +7,31 @@ import java.util.Random;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.ImageMockImpl;
 
+import static cmpt276.proj.finddamatch.gameLogic.CardImpl.CARD1;
+import static cmpt276.proj.finddamatch.gameLogic.CardImpl.PRE_GENERATED_CARDS;
+import static cmpt276.proj.finddamatch.model.Card.NUMBER_OF_CARDS;
+
 public class CardsGenerator {
-    private static int NUMBER_OF_CARDS = 7;
     private List<Card> arrOfCards;
     private List<Card> tempList; // to store the card has been removed
 
+
     private CardsGenerator() {
-        tempList = new ArrayList<>();
+        tempList = new ArrayList<>(NUMBER_OF_CARDS);
         arrOfCards = new ArrayList<>(NUMBER_OF_CARDS);
-        arrOfCards.set(0, new CardImpl(new ImageImpl(0.5f, 0, 1, 0, 0),
-                new ImageImpl(-0.5f, 0, 1, 0, 1),
-                new ImageMockImpl(0, 0.5f, 1, 0, 2)));
-        arrOfCards.set(0, new CardImpl(new ImageImpl(0.5f, 0, 1, 0, 2),
-                new ImageImpl(-0.5f, 0, 1, 0, 3),
-                new ImageMockImpl(0, 0.5f, 1, 0, 4)));
-        arrOfCards.set(0, new CardImpl(new ImageImpl(0.5f, 0, 1, 0, 0),
-                new ImageImpl(-0.5f, 0, 1, 0, 4),
-                new ImageMockImpl(0, 0.5f, 1, 0, 5)));
-        arrOfCards.set(0, new CardImpl(new ImageImpl(0.5f, 0, 1, 0, 0),
-                new ImageImpl(-0.5f, 0, 1, 0, 3),
-                new ImageMockImpl(0, 0.5f, 1, 0, 6)));
-        arrOfCards.set(0, new CardImpl(new ImageImpl(0.5f, 0, 1, 0, 1),
-                new ImageImpl(-0.5f, 0, 1, 0, 4),
-                new ImageMockImpl(0, 0.5f, 1, 0, 6)));
-        arrOfCards.set(0, new CardImpl(new ImageImpl(0.5f, 0, 1, 0, 1),
-                new ImageImpl(-0.5f, 0, 1, 0, 3),
-                new ImageMockImpl(0, 0.5f, 1, 0, 5)));
-        arrOfCards.set(0, new CardImpl(new ImageImpl(0.5f, 0, 1, 0, 2),
-                new ImageImpl(-0.5f, 0, 1, 0, 5),
-                new ImageMockImpl(0, 0.5f, 1, 0, 6)));
+
+//        for(int i=0; i < NUMBER_OF_CARDS; i++){
+//            arrOfCards.add(PRE_GENERATED_CARDS.get(i));
+//        }
+
+        //Refactored version of above
+        for(Card card : PRE_GENERATED_CARDS){
+            arrOfCards.add(card);
+        }
+
+        //Final Refactor Saiyin level 9000
+        arrOfCards.addAll(PRE_GENERATED_CARDS);
+
         for (int i = 0; i < arrOfCards.size(); ++i) {
             arrOfCards.get(i).randomize();
         }
