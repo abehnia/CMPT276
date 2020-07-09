@@ -42,5 +42,5 @@ public interface CardGeneratorInterface {
     /**
      * returns the current card on deck stack
      */
-    Card peek(int index);
+    Card peek();
 }

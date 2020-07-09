@@ -16,12 +16,14 @@ public class GameImplementation implements Game {
 
     Card card = new CardImpl();
     CardsGenerator dealer = new CardsGenerator();
-    Stack<Card> deck;
+    Stack<Card> draw_pile;
+    Stack<Card> discard_pile;
+    
     int counter = 0;
 
     public GameImplementation(){
-        this.deck = dealer.getInstance();
-
+        this.draw_pile = dealer.getInstance();
+        this.discard_pile = dealer.getInstance();
     }
     public boolean check(Image image){
       boolean outcome = image.isEquivalent(image);
@@ -34,7 +36,7 @@ public class GameImplementation implements Game {
     }
 
     public Card poll(){
-        Card card1 = deck.peek(0);
+        Card card1 = draw_pile.peek();
 
 
     }

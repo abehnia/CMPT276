@@ -14,16 +14,17 @@ public interface Game {
     /**
      * Updates the game state when image is chosen
      * Side Effects: updates the counter and puts back
-     *               drawn cards back to the deck
+     * drawn cards back to the deck
+     * update will save the game time state,
      */
     void update(Image image);
 
     /**
-     * Poll a card from the deck
-     * note that this is usually done twice each round
+     * Draw a card from the draw deck and move it to discard stack
+     * essentially pop and move to discard.
      * Side Effects: a card is "drawn" from the deck
      */
-    Card poll();
+    Card draw();
 
     /**
      * Reset the game state
@@ -50,4 +51,21 @@ public interface Game {
      * Side Effects: none
      */
     int getScore();
+
+    /**
+     * This will give us gameplay elapsed time.
+     * elapsed time - time at pause() = current gameplay time
+     * store this in pausedGametime
+     */
+    long pause();
+
+    /**
+     * This will be used to track continued gametime
+     * elapsed time - time at resume() = resumed gameplay time
+     * total gametime = resumed gameplay + pausedGametime
+     * @return
+     */
+    long resume();
+
+
 }
