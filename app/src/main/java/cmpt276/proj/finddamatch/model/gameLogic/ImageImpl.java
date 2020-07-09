@@ -2,17 +2,21 @@ package cmpt276.proj.finddamatch.model.gameLogic;
 
 import cmpt276.proj.finddamatch.model.Image;
 
+/**
+ * Typical image implementation of the image interface
+ * For more information, refer to the image interface
+ */
 public class ImageImpl implements Image {
+    int ID;
     private float x, y, radius, orientation;
-    int value;
 
     public ImageImpl(float x, float y, float radius, float orientation,
-                     int value) {
+                     int ID) {
         this.x = x;
         this.y = y;
         this.radius = radius;
         this.orientation = orientation;
-        this.value = value;
+        this.ID = ID;
     }
 
     public ImageImpl(int ID) {
@@ -25,28 +29,13 @@ public class ImageImpl implements Image {
     }
 
     @Override
-    public float getX() {
-        return this.x;
-    }
-
-    @Override
-    public float getY() {
-        return this.y;
-    }
-
-    @Override
-    public float getRadius() {
-        return this.radius;
-    }
-
-    @Override
-    public int getID() {
-        return this.value;
-    }
-
-    @Override
     public void setOrientation(float orientation) {
         this.orientation = orientation;
+    }
+
+    @Override
+    public float getX() {
+        return this.x;
     }
 
     @Override
@@ -55,13 +44,28 @@ public class ImageImpl implements Image {
     }
 
     @Override
+    public float getY() {
+        return this.y;
+    }
+
+    @Override
     public void setY(float y) {
         this.y = y;
     }
 
     @Override
+    public float getRadius() {
+        return this.radius;
+    }
+
+    @Override
     public void setRadius(float radius) {
         this.radius = radius;
+    }
+
+    @Override
+    public int getID() {
+        return this.ID;
     }
 
     @Override
