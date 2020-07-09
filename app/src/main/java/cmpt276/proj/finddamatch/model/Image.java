@@ -52,4 +52,9 @@ public interface Image {
      * Sets the radius of the image
      */
     void setRadius(float radius);
+
+    /**
+     * Compares the 2 images' IDs
+     */
+     boolean isEquivalent(Image image);
 }

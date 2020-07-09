@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch.gameLogic;
+package cmpt276.proj.finddamatch.model.gameLogic;
 
 import cmpt276.proj.finddamatch.model.Image;
 
@@ -7,7 +7,7 @@ public class ImageImpl implements Image {
     int value;
 
     public ImageImpl(float x, float y, float radius, float orientation,
-                         int value) {
+                     int value) {
         this.x = x;
         this.y = y;
         this.radius = radius;
@@ -15,8 +15,8 @@ public class ImageImpl implements Image {
         this.value = value;
     }
 
-    public ImageImpl(int ID){
-        this(0,0,BASE_IMAGE_RADIUS,0,ID);
+    public ImageImpl(int ID) {
+        this(0, 0, BASE_IMAGE_RADIUS, 0, ID);
     }
 
     @Override
@@ -62,5 +62,10 @@ public class ImageImpl implements Image {
     @Override
     public void setRadius(float radius) {
         this.radius = radius;
+    }
+
+    @Override
+    public boolean isEquivalent(Image image) {
+        return this.getID() == image.getID();
     }
 }
