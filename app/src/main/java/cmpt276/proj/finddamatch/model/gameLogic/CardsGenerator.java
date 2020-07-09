@@ -1,16 +1,11 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
-import java.util.Random;
 import java.util.Stack;
 
 import cmpt276.proj.finddamatch.model.Card;
 
 import static cmpt276.proj.finddamatch.model.gameLogic.CardImpl.PRE_GENERATED_CARDS;
-import static cmpt276.proj.finddamatch.model.Card.NUMBER_OF_CARDS;
 
 /**
  * Class for generating a stack of Cards
@@ -31,6 +26,8 @@ public class CardsGenerator {
         Collections.shuffle(ARRAY_OF_CARDS);
     }
 
+    public Stack<Card> getInstance() {return this.ARRAY_OF_CARDS;}
+
     public int size() {
         return ARRAY_OF_CARDS.size();
     }
@@ -50,8 +47,8 @@ public class CardsGenerator {
         return popValue;
     }
 
-    public Card peek() {
-        return ARRAY_OF_CARDS.get(0);
+    public Card peek(int index) {
+        return ARRAY_OF_CARDS.get(index);
     }
 }
 

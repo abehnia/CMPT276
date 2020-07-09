@@ -10,8 +10,7 @@ public class GameMockImpl implements Game {
 
     public GameMockImpl() {
         image = new ImageMockImpl(0.5f, 0, 1, 0,  0);
-        card =
-        new CardMockImpl(
+        card = new CardMockImpl(
                 image,
                 new ImageMockImpl(-0.5f, 0, 1, 0, 1),
                 new ImageMockImpl(0, 0.5f, 1, 0, 2)
