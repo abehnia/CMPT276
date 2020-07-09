@@ -35,7 +35,6 @@ public interface Game {
     /**
      * Query the time in the game
      * Side Effects: none
-     * @return
      */
     long queryTime();
 
