@@ -35,7 +35,6 @@ public class GameImplementation implements Game {
 
     public Card poll(){
         Card card1 = deck.peek(0);
-        Card card2 = deck.peek(1);
 
 
     }
