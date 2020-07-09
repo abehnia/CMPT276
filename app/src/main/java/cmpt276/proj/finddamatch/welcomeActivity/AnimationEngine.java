@@ -1,13 +1,17 @@
 package cmpt276.proj.finddamatch.welcomeActivity;
 
+import android.util.Log;
+
 public class AnimationEngine {
     private float lowerLimit;
     private float upperLimit;
-    private GravityWithDragForce force;
+    private GravityForce force;
     private PositionState state;
     private float impactCoefficient;
+    private boolean animationDone;
+    private final float THRESHOLD = 1000f / 16f;
 
-    AnimationEngine(GravityWithDragForce force, float lowerLimit,
+    AnimationEngine(GravityForce force, float lowerLimit,
                     float upperLimit, PositionState state,
                     float impactCoefficient) {
         this.force = force;
@@ -15,23 +19,32 @@ public class AnimationEngine {
         this.upperLimit = upperLimit;
         this.state = state;
         this.impactCoefficient = impactCoefficient;
+        this.animationDone = false;
     }
 
-    AnimationEngine(GravityWithDragForce force, PositionState state,
+    AnimationEngine(GravityForce force, PositionState state,
                     float impactCoefficient) {
         this(force, Float.NEGATIVE_INFINITY, Float.POSITIVE_INFINITY,
                 state, impactCoefficient);
     }
 
     PositionState update(long deltaT) {
+        if (animationDone) {
+            return state;
+        }
         state = force.updateState(state, deltaT);
         if (state.getPosition() < lowerLimit) {
             state.setPosition(lowerLimit);
             state.setVelocity(-impactCoefficient * state.getVelocity());
         }
-        if (state.getPosition() > upperLimit) {
+        else if (state.getPosition() > upperLimit) {
             state.setPosition(upperLimit);
-            state.setVelocity(-impactCoefficient * state.getVelocity());
+            if (Math.abs(state.getVelocity()) < THRESHOLD) {
+                state.setVelocity(0);
+                animationDone = true;
+            } else {
+                state.setVelocity(-impactCoefficient * state.getVelocity());
+            }
         }
         return state;
     }

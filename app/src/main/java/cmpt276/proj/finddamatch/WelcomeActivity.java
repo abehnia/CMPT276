@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class WelcomeActivity extends AppCompatActivity {
-    private static int SCREEN_TIME = 4000;
+    private static int SCREEN_TIME = 20000;
     private Handler handler;
 
     @Override

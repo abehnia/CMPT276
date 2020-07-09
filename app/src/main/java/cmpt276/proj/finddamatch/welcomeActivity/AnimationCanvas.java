@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.SystemClock;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -53,22 +54,21 @@ public class AnimationCanvas extends View {
         this.animatedView = new AnimationView(getResources().getDrawable(
                 R.drawable.ic_toronto_raptors_logo, null),
                 startX, startY, 100);
-        GravityWithDragForce force = new GravityWithDragForce(
-                height / 4f, 0.0001f);
+        GravityForce force = new GravityForce(height / 4f);
         this.engine = new AnimationEngine(force, 0,
-                height, state, 0.75f);
+                height + 100, state, 0.78f);
         this.time = SystemClock.uptimeMillis();
-        invalidate();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        long previousTime = time;
-        time = SystemClock.uptimeMillis();
         canvas.drawBitmap(bitmap, 0, 0, backgroundPaint);
         animatedView.draw(canvas);
+        long previousTime = time;
+        time = SystemClock.uptimeMillis();
         PositionState state = engine.update(time - previousTime);
+        Log.w("Whatever", String.valueOf(state.getPosition()));
         animatedView.setY(state.getPosition());
         invalidate();
     }
