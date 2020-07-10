@@ -42,6 +42,22 @@ public class GameActivity extends AppCompatActivity {
         setupButton();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (handler != null) {
+            removeHandler();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (handler != null) {
+            updateTime();
+        }
+    }
+
     public static Intent makeIntent(Context context) {
         return new Intent(context, GameActivity.class);
     }
@@ -89,7 +105,6 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupHandler() {
         this.handler = new Handler();
-        this.handler.postDelayed(this::updateTime, DELAY);
     }
 
     private void setupTimer() {

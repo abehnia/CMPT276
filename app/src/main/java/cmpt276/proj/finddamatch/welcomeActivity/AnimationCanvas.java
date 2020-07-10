@@ -23,7 +23,8 @@ public class AnimationCanvas extends View {
     private Bitmap bitmap;
     private AnimationView animatedView;
     private AnimationEngine engine;
-    private long time;
+    private long referenceTime;
+    private long elapsedTime;
 
     public AnimationCanvas(Context context) {
         super(context);
@@ -39,6 +40,10 @@ public class AnimationCanvas extends View {
                            int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
+    }
+
+    public void resume() {
+        this.referenceTime = SystemClock.elapsedRealtime();
     }
 
     @Override
@@ -57,7 +62,6 @@ public class AnimationCanvas extends View {
         GravityForce force = new GravityForce(height / 4f);
         this.engine = new AnimationEngine(force, 0,
                 height + 100, state, 0.78f);
-        this.time = SystemClock.uptimeMillis();
     }
 
     @Override
@@ -65,15 +69,18 @@ public class AnimationCanvas extends View {
         super.onDraw(canvas);
         canvas.drawBitmap(bitmap, 0, 0, backgroundPaint);
         animatedView.draw(canvas);
-        long previousTime = time;
-        time = SystemClock.uptimeMillis();
-        PositionState state = engine.update(time - previousTime);
+        long previousTime = referenceTime;
+        referenceTime = SystemClock.elapsedRealtime();
+        elapsedTime = referenceTime - previousTime;
+        PositionState state = engine.update(elapsedTime);
         Log.w("Whatever", String.valueOf(state.getPosition()));
         animatedView.setY(state.getPosition());
         invalidate();
     }
 
     private void init() {
+        this.elapsedTime = 0;
+        this.referenceTime = SystemClock.elapsedRealtime();
         int backgroundColor = this.getResources().getColor(
                 R.color.colorGameBackground, null);
         this.backgroundPaint = new Paint(backgroundColor);
