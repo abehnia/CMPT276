@@ -1,13 +1,18 @@
 package cmpt276.proj.finddamatch.welcomeActivity;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.Interpolator;
 
 import androidx.annotation.Nullable;
 
@@ -23,6 +28,8 @@ public class AnimationCanvas extends View {
     private Bitmap bitmap;
     private AnimationView animatedView;
     private AnimationEngine engine;
+    private Handler handler;
+    private PositionState state;
     private long referenceTime;
     private long elapsedTime;
 
@@ -44,6 +51,11 @@ public class AnimationCanvas extends View {
 
     public void resume() {
         this.referenceTime = SystemClock.elapsedRealtime();
+        this.handler.postDelayed(this::invalidate, 10);
+    }
+
+    public void pause() {
+        this.handler.removeCallbacksAndMessages(null);
     }
 
     @Override
@@ -55,7 +67,7 @@ public class AnimationCanvas extends View {
         float startX = width / 2f;
         float startY = height / 4f;
         float startVY = 0;
-        PositionState state = new PositionState(startY, startVY);
+        this.state = new PositionState(startY, startVY);
         this.animatedView = new AnimationView(getResources().getDrawable(
                 R.drawable.ic_toronto_raptors_logo, null),
                 startX, startY, 100);
@@ -73,9 +85,8 @@ public class AnimationCanvas extends View {
         referenceTime = SystemClock.elapsedRealtime();
         elapsedTime = referenceTime - previousTime;
         PositionState state = engine.update(elapsedTime);
-        Log.w("Whatever", String.valueOf(state.getPosition()));
         animatedView.setY(state.getPosition());
-        invalidate();
+        this.handler.postDelayed(this::invalidate, 10);
     }
 
     private void init() {
@@ -84,5 +95,6 @@ public class AnimationCanvas extends View {
         int backgroundColor = this.getResources().getColor(
                 R.color.colorGameBackground, null);
         this.backgroundPaint = new Paint(backgroundColor);
+        handler = new Handler();
     }
 }

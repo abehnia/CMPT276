@@ -38,6 +38,7 @@ public class WelcomeActivity extends AppCompatActivity {
         if (handler != null) {
             handler.removeCallbacksAndMessages(null);
         }
+        canvas.pause();
     }
 
     @Override

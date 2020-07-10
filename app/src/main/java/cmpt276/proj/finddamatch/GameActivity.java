@@ -121,7 +121,7 @@ public class GameActivity extends AppCompatActivity {
                 lead = game.poll();
                 guess = game.poll();
                 gameCanvas.setCards(guess, lead, 0);
-                setupHandler();
+                updateTime();
                 isTouchable = true;
             }
         });
