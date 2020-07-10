@@ -20,9 +20,9 @@ public interface Game {
     void update(Image image);
 
     /**
-     * precondition: check() must be called before draw(), unless its the first card drawn.
-     * Draw a card from the draw deck and move it to discard stack
-     * essentially pop and move to discard.
+     * precondition: check() must be called before draw(),
+     * unless its the first card drawn.
+     * Draw a card from the draw deck
      * Side Effects: a card is "drawn" from the deck
      */
     Card draw();
@@ -48,23 +48,16 @@ public interface Game {
     boolean isGameDone();
 
     /**
-     * Return the number of correct images chosen by the player
-     * Side Effects: none
-     */
-    int getScore();
-
-    /**
-     * Creates a reference time variable to track when game is paused
+     * Pause the game
+     * Side Effects: pauses the game timer
      */
     void pause();
 
     /**
-     * This will be used to track continued gametime
-     * elapsed time - time at resume() = resumed gameplay time
-     * total gametime = resumed gameplay + pausedGametime
-     * @return
+     * Resumes the game
+     * Side Effects: re-activates the game timer
      */
-    long resume();
+    void resume();
 
 
 }
