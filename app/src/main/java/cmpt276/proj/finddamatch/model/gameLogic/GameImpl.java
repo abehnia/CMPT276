@@ -64,6 +64,22 @@ public class GameImpl implements Game {
     }
 
     @Override
+    public Card peekDiscard() {
+        if (BuildConfig.DEBUG && discardPile.empty()) {
+            throw new AssertionError("Stack Empty");
+        }
+        return discardPile.peek();
+    }
+
+    @Override
+    public Card peekDraw() {
+        if (BuildConfig.DEBUG && discardPile.empty()) {
+            throw new AssertionError("Stack Empty");
+        }
+        return drawPile.peek();
+    }
+
+    @Override
     public boolean isGameDone() {
         return drawPile.empty();
     }

@@ -59,5 +59,16 @@ public interface Game {
      */
     void resume();
 
+    /**
+     * Returns the first card in the draw pile
+     * Side Effects: none
+     */
+    Card peekDiscard();
 
+
+    /**
+     * Returns the first card in the discard pile
+     * Side Effects: none
+     */
+    Card peekDraw();
 }
