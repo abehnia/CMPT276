@@ -28,7 +28,7 @@ public class GameMockImpl implements Game {
     }
 
     @Override
-    public Card poll() {
+    public Card draw() {
         return card;
     }
 
@@ -51,5 +51,12 @@ public class GameMockImpl implements Game {
     @Override
     public int getScore() {
         return 0;
+    }
+
+    public void pause(){};
+
+    public long resume(){
+        long time = 1;
+        return time;
     }
 }

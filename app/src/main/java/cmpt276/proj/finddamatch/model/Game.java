@@ -20,6 +20,7 @@ public interface Game {
     void update(Image image);
 
     /**
+     * precondition: check() must be called before draw(), unless its the first card drawn.
      * Draw a card from the draw deck and move it to discard stack
      * essentially pop and move to discard.
      * Side Effects: a card is "drawn" from the deck
@@ -40,7 +41,8 @@ public interface Game {
     long queryTime();
 
     /**
-     * Is the game finished yet? (i.e. is time equal to 0)
+     * Is the game finished yet? (i.e. are there cards left to play)
+     * Also ends real_time and computes the total elapsed game time.
      * Side Effects: none
      */
     boolean isGameDone();
@@ -52,11 +54,9 @@ public interface Game {
     int getScore();
 
     /**
-     * This will give us gameplay elapsed time.
-     * elapsed time - time at pause() = current gameplay time
-     * store this in pausedGametime
+     * Creates a reference time variable to track when game is paused
      */
-    long pause();
+    void pause();
 
     /**
      * This will be used to track continued gametime

@@ -58,4 +58,6 @@ public class ImageMockImpl implements Image {
     public void setRadius(float radius) {
         this.radius = radius;
     }
+
+   public boolean isEquivalent(Image image){return false;}
 }

@@ -8,4 +8,5 @@ import java.util.Stack;
  */
 public interface CardGenerator {
     Stack<Card> generate();
+
 }
