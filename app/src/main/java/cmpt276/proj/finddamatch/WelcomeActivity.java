@@ -1,19 +1,14 @@
 package cmpt276.proj.finddamatch;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.dynamicanimation.animation.FlingAnimation;
 
 import android.content.Intent;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.view.animation.Animation;
 import android.widget.Button;
 
 public class WelcomeActivity extends AppCompatActivity {
-    private static int SCREEN_TIME = 20000;
+    private static int SCREEN_TIME = 4000;
     private Handler handler;
 
     @Override
@@ -30,9 +25,6 @@ public class WelcomeActivity extends AppCompatActivity {
         Intent intent = new Intent(WelcomeActivity.this, MainMenuActivity.class);
         startActivity(intent);
         finish();
-    }
-
-    private void setupAnimation() {
     }
 
     private void setupSkipBtn() {

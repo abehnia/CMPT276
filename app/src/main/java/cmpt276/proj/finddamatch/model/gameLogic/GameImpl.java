@@ -24,6 +24,7 @@ public class GameImpl implements Game {
         this.drawPile = dealer.generate();
         this.discardPile = new Stack<>();
         this.elapsedTime = 0;
+        draw();
     }
 
     @Override
@@ -51,6 +52,7 @@ public class GameImpl implements Game {
         drawPile = dealer.generate();
         referenceTime = SystemClock.elapsedRealtime();
         elapsedTime = 0;
+        draw();
     }
 
     @Override
