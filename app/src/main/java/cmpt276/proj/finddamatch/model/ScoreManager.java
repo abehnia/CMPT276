@@ -15,9 +15,9 @@ import java.util.List;
 import cmpt276.proj.finddamatch.GameActivity;
 import cmpt276.proj.finddamatch.R;
 
-/**Class to Manage high scores. Allo/ws to set and get different components of a score such as the time, name, and date.*/
+/**Class to Manage high scores. Allows to save and load all scores, and a few other needed methods.*/
 
-public abstract class ScoreManger extends Context {
+public abstract class ScoreManager extends Context {
     private static final String KEY_NAME = "Name";
     private static final String KEY_DATE = "Date";
     private static final String KEY_TIME = "Time";

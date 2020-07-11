@@ -2,17 +2,13 @@ package cmpt276.proj.finddamatch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import cmpt276.proj.finddamatch.model.ScoreManger;
+import cmpt276.proj.finddamatch.model.ScoreManager;
 
-//Class for the Main Menu. Sets up various buttons
+/**Class for the Main Menu. Sets up various buttons*/
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -25,7 +21,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setupHelpBtn();
         setupSettingsBtn();
         setupBestScoresBtn();
-        ScoreManger.loadAllScores(MainMenuActivity.this);
+        ScoreManager.loadAllScores(MainMenuActivity.this);
     }
 
     private void setupBestScoresBtn() {
@@ -59,4 +55,12 @@ public class MainMenuActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ScoreManager.saveAllScores(MainMenuActivity.this);
+    }
+
 }

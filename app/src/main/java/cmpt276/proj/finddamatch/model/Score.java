@@ -1,5 +1,7 @@
 package cmpt276.proj.finddamatch.model;
 
+/** Comparable Class to Save Scores*/
+
 public class Score implements Comparable<Score>{
     private String name;
     private String date;

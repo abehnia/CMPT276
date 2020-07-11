@@ -1,5 +1,7 @@
 package cmpt276.proj.finddamatch.model;
 
+/** Iterable class of Scores to create and edit list of scores. Supports Singleton method*/
+
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;

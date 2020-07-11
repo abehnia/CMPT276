@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -18,11 +17,9 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import java.util.Objects;
 
-import cmpt276.proj.finddamatch.model.Game;
-import cmpt276.proj.finddamatch.model.ScoreManger;
+import cmpt276.proj.finddamatch.model.ScoreManager;
 import cmpt276.proj.finddamatch.model.ScoresIterator;
-
-//Class to show dialog box. Sets up table and takes input to save high score
+/** Class to show dialog box. Sets up table and takes input to save high score*/
 
 public class DialogBoxFragment extends AppCompatDialogFragment {
     private ScoresIterator scores;
@@ -31,10 +28,10 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_game_end, null);
-        populateTable(v);
         scores = ScoresIterator.getInstance();
+        populateTable(v);
         int time = scores.getScores().get(sixthScore).getTime();
-        String dTime = ScoreManger.getTimeString(time,getContext());
+        String dTime = ScoreManager.getTimeString(time,getContext());
         TextView txtYourScore = v.findViewById(R.id.txtYourScore);
         txtYourScore.setText(dTime);
 
@@ -47,7 +44,7 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
                     EditText txt = v.findViewById(R.id.editTextNickName);
                     String nickName = txt.getText().toString();
                     if (!nickName.equals("")){
-                        ScoreManger.saveHighScore(nickName, getContext());
+                        ScoreManager.saveHighScore(nickName, getContext());
                     }else{
                         int[] times= getResources().getIntArray(R.array.def_times);
                         scores.getScores().get(sixthScore).setTime(times[sixthScore]);
@@ -81,7 +78,7 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
             int time = scores.getScores().get(i).getTime();
             String name = scores.getScores().get(i).getName();
             String date = scores.getScores().get(i).getDate();
-            time_str = ScoreManger.getTimeString(time,getContext());
+            time_str = ScoreManager.getTimeString(time,getContext());
 
             txtName = v.findViewById(typedName2Ids.getResourceId(i,0));
             txtDate = v.findViewById(typedDate2Ids.getResourceId(i,0));
