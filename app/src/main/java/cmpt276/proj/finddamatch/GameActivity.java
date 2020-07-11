@@ -32,6 +32,7 @@ import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.GameMockImpl;
 import cmpt276.proj.finddamatch.model.Image;
+import cmpt276.proj.finddamatch.model.ScoresIterator;
 
 public class GameActivity extends AppCompatActivity {
     private GameCanvas gameCanvas;
@@ -41,12 +42,15 @@ public class GameActivity extends AppCompatActivity {
     private TextView timer;
     private boolean isTouchable;
     private static final int DELAY = 100;
+    ScoresIterator scores;
+    private final int sixthScore = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        scores = ScoresIterator.getInstance();
          this.isTouchable = true;
         setupGame();
         setupCanvas();
@@ -60,7 +64,7 @@ public class GameActivity extends AppCompatActivity {
     private void displayDialogBox(long longTime) {
 
         int time = (int)(longTime/1000);
-        ScoreManger.setScoreTime(6,time,GameActivity.this);
+        scores.getScores().get(sixthScore).setTime(time);
         FragmentManager manager = getSupportFragmentManager();
         DialogBoxFragment dialog = new DialogBoxFragment();
         dialog.show(manager, "Best Scores Dialog");

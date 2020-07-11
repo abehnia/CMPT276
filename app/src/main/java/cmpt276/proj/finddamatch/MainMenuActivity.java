@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import cmpt276.proj.finddamatch.model.ScoreManger;
+
 //Class for the Main Menu. Sets up various buttons
 
 public class MainMenuActivity extends AppCompatActivity {
@@ -23,6 +25,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setupHelpBtn();
         setupSettingsBtn();
         setupBestScoresBtn();
+        ScoreManger.loadAllScores(MainMenuActivity.this);
     }
 
     private void setupBestScoresBtn() {
