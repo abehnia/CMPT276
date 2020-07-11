@@ -14,12 +14,6 @@ public class HelpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
 
-        setupBackButton();
-    }
-
-    private void setupBackButton() {
-        ImageButton btn = findViewById(R.id.imgBtnBackArrowHelp);
-        btn.setOnClickListener(v -> finish());
     }
 
     public static Intent makeIntent(Context context) {

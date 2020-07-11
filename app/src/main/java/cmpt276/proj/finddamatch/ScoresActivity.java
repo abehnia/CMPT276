@@ -26,12 +26,6 @@ public class ScoresActivity extends AppCompatActivity {
         scores = ScoresIterator.getInstance();
         populateTable();
         setupResetBtn();
-        setupBackButton();
-    }
-
-    private void setupBackButton() {
-        ImageButton btn = findViewById(R.id.imgBtnBackArrowScores);
-        btn.setOnClickListener(v -> finish());
     }
 
     private void setupResetBtn() {

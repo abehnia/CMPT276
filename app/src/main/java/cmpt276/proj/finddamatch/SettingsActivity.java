@@ -15,13 +15,8 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        setupBackButton();
     }
 
-    private void setupBackButton() {
-        ImageButton btn = findViewById(R.id.imgBtnBackArrowSettings);
-        btn.setOnClickListener(v -> finish());
-    }
 
     public static Intent makeIntent(Context context) {
         return new Intent(context, SettingsActivity.class);
