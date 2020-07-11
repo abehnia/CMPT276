@@ -82,9 +82,7 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public boolean isGameDone() {
-        return drawPile.empty();
-    }
+    public boolean isGameDone() {return drawPile.empty();}
 
     @Override
     public long queryTime(long time) {
