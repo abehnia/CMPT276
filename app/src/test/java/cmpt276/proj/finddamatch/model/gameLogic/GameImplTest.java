@@ -39,14 +39,14 @@ class GameImplTest {
 
     @org.junit.jupiter.api.Test
     void reset() {
-        CardGeneratorImpl dealer = new CardGeneratorImpl();
+        TestCardGeneratorImpl dealer = new TestCardGeneratorImpl();
         long input = 0;
         GameImpl g = new GameImpl(dealer, input);
 
         g.discardPile.pop();
         assertTrue(g.discardPile.isEmpty());
         g.reset(0);
-        for(int i=0; i <=5; i++){
+        for(int i=0; i <= 0; i++){
             g.drawPile.pop();
         }
         assertTrue(g.drawPile.isEmpty());
@@ -55,7 +55,7 @@ class GameImplTest {
 
     @org.junit.jupiter.api.Test
     void pause() {
-        CardGeneratorImpl dealer = new CardGeneratorImpl();
+        TestCardGeneratorImpl dealer = new TestCardGeneratorImpl();
         long input1 = 2;
         long input2 = 3;
         GameImpl g = new GameImpl(dealer, input1);
@@ -68,7 +68,7 @@ class GameImplTest {
 
     @org.junit.jupiter.api.Test
     void resume() {
-        CardGeneratorImpl dealer = new CardGeneratorImpl();
+        TestCardGeneratorImpl dealer = new TestCardGeneratorImpl();
         long input1 = 11;
         long input2 = 500;
         GameImpl g = new GameImpl(dealer, input1);
@@ -113,7 +113,7 @@ class GameImplTest {
 
     @org.junit.jupiter.api.Test
     void queryTime() {
-        CardGeneratorImpl dealer = new CardGeneratorImpl();
+        TestCardGeneratorImpl dealer = new TestCardGeneratorImpl();
         long input1 = 2;
         long input2 = 3;
         GameImpl g = new GameImpl(dealer, input1);
