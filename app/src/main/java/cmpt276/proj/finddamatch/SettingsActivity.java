@@ -32,5 +32,18 @@ public class SettingsActivity extends AppCompatActivity {
         return new Intent(context, SettingsActivity.class);
     }
 
+    private void setupImageSet() {
+        RadioGroup radioGroup = findViewById(R.id.ImageSetChoice);
+        this.imageSetKey = Settings.get().getImageSetKey();
+        radioGroup.check(imageSetKey);
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> imageSetKey = checkedId);
+    }
 
+    private void setupApplyButton() {
+        Button applyButton = findViewById(R.id.activitySettingsApply);
+        applyButton.setOnClickListener(v -> {
+            Settings.get().setImageSet(imageSetKey);
+            finish();
+        });
+    }
 }

@@ -13,8 +13,6 @@ import android.view.View;
 import android.widget.Button;
 
 import android.annotation.SuppressLint;
-import android.os.Handler;
-import android.view.MotionEvent;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -25,7 +23,7 @@ import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.GameMockImpl;
 import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.settingsActivity.Settings;
-import cmpt276.proj.finddamatch.model.ScoresIterator;
+import cmpt276.proj.finddamatch.scoresActivity.ScoresIterator;
 
 public class GameActivity extends AppCompatActivity {
     private GameCanvas gameCanvas;
@@ -82,35 +80,25 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupCanvas() {
         gameCanvas = findViewById(R.id.game_activity_game_canvas);
-        gameCanvas.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v, int left, int top, int right,
-                                       int bottom, int oldLeft, int oldTop,
-                                       int oldRight, int oldBottom) {
-                gameCanvas.setCards(guess, lead,
-                        Settings.get().getImageSetValue());
-            }
-        });
+        gameCanvas.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> gameCanvas.setCards(guess, lead,
+                Settings.get().getImageSetValue()));
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private void setupTouch() {
-        gameCanvas.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (!isTouchable) {
-                    return true;
-                }
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        actionDown(event);
-                        return false;
-                    case MotionEvent.ACTION_UP:
-                        actionUp();
-                        return false;
-                    default:
-                        return false;
-                }
+        gameCanvas.setOnTouchListener((v, event) -> {
+            if (!isTouchable) {
+                return true;
+            }
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    actionDown(event);
+                    return false;
+                case MotionEvent.ACTION_UP:
+                    actionUp();
+                    return false;
+                default:
+                    return false;
             }
         });
     }
@@ -127,17 +115,14 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupButton() {
         Button resetButton = findViewById(R.id.game_activity_reset_button);
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                game.reset();
-                lead = game.poll();
-                guess = game.poll();
-                gameCanvas.setCards(guess, lead,
-                        Settings.get().getImageSetValue());
-                setupHandler();
-                isTouchable = true;
-            }
+        resetButton.setOnClickListener(v -> {
+            game.reset();
+            lead = game.poll();
+            guess = game.poll();
+            gameCanvas.setCards(guess, lead,
+                    Settings.get().getImageSetValue());
+            setupHandler();
+            isTouchable = true;
         });
     }
 

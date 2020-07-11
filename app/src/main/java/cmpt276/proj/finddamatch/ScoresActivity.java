@@ -7,11 +7,10 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
-import cmpt276.proj.finddamatch.model.ScoreManager;
-import cmpt276.proj.finddamatch.model.ScoresIterator;
+import cmpt276.proj.finddamatch.scoresActivity.ScoreManager;
+import cmpt276.proj.finddamatch.scoresActivity.ScoresIterator;
 
 /**Activity to show user the top 5 high scores and reset high scores*/
 
@@ -68,5 +67,11 @@ public class ScoresActivity extends AppCompatActivity {
 
     public static Intent makeIntent(Context context) {
         return new Intent(context, ScoresActivity.class);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ScoreManager.saveAllScores(ScoresActivity.this);
     }
 }

@@ -1,12 +1,14 @@
-package cmpt276.proj.finddamatch.model;
+package cmpt276.proj.finddamatch.scoresActivity;
 
-/** Iterable class of Scores to create and edit list of scores. Supports Singleton method*/
+/* Iterable class of Scores to create and edit list of scores. Supports Singleton method*/
 
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+
 
 public class ScoresIterator implements Iterable<Score>{
     public List<Score> scores = new ArrayList<>();

@@ -1,18 +1,13 @@
-package cmpt276.proj.finddamatch.model;
+package cmpt276.proj.finddamatch.scoresActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 
-import cmpt276.proj.finddamatch.GameActivity;
 import cmpt276.proj.finddamatch.R;
 
 /**Class to Manage high scores. Allows to save and load all scores, and a few other needed methods.*/
@@ -26,17 +21,17 @@ public abstract class ScoreManager extends Context {
 
     public static void saveHighScore(String name, Context context){
         ScoresIterator scores = ScoresIterator.getInstance();
-        /**Getting Date*/
+        /*Getting Date*/
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d");
         String date = dateFormat.format(calendar.getTime());
 
-        /**Set as 6th best score*/
+        /*Set as 6th best score*/
         scores.getScores().get(sixthScore).setName(name);
         scores.getScores().get(sixthScore).setDate(date);
 
 
-        /**Sorting Scores*/
+        /*Sorting Scores*/
         Collections.sort(scores.getScores());
     }
 

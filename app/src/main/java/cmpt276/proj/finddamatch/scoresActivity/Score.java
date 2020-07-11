@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch.model;
+package cmpt276.proj.finddamatch.scoresActivity;
 
 /** Comparable Class to Save Scores*/
 

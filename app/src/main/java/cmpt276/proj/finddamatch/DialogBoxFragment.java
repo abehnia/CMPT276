@@ -17,8 +17,8 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import java.util.Objects;
 
-import cmpt276.proj.finddamatch.model.ScoreManager;
-import cmpt276.proj.finddamatch.model.ScoresIterator;
+import cmpt276.proj.finddamatch.scoresActivity.ScoreManager;
+import cmpt276.proj.finddamatch.scoresActivity.ScoresIterator;
 /** Class to show dialog box. Sets up table and takes input to save high score*/
 
 public class DialogBoxFragment extends AppCompatDialogFragment {

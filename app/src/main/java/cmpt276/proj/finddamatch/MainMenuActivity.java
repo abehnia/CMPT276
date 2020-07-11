@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import cmpt276.proj.finddamatch.settingsActivity.Settings;
 
-import cmpt276.proj.finddamatch.model.ScoreManager;
+import cmpt276.proj.finddamatch.scoresActivity.ScoreManager;
 
 /**Class for the Main Menu. Sets up various buttons*/
 
