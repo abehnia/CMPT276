@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -22,6 +24,7 @@ import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.GameMockImpl;
 import cmpt276.proj.finddamatch.model.Image;
+import cmpt276.proj.finddamatch.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.ScoresIterator;
 
 public class GameActivity extends AppCompatActivity {
@@ -41,7 +44,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         scores = ScoresIterator.getInstance();
-         this.isTouchable = true;
+        this.isTouchable = true;
         setupGame();
         setupCanvas();
         setupTouch();
@@ -84,7 +87,8 @@ public class GameActivity extends AppCompatActivity {
             public void onLayoutChange(View v, int left, int top, int right,
                                        int bottom, int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
-                gameCanvas.setCards(guess, lead, 0);
+                gameCanvas.setCards(guess, lead,
+                        Settings.get().getImageSetValue());
             }
         });
     }
@@ -129,7 +133,8 @@ public class GameActivity extends AppCompatActivity {
                 game.reset();
                 lead = game.poll();
                 guess = game.poll();
-                gameCanvas.setCards(guess, lead, 0);
+                gameCanvas.setCards(guess, lead,
+                        Settings.get().getImageSetValue());
                 setupHandler();
                 isTouchable = true;
             }
@@ -159,9 +164,9 @@ public class GameActivity extends AppCompatActivity {
             removeHandler();
             return;
         }
-        lead = game.poll();
+        lead = guess;
         guess = game.poll();
-        gameCanvas.setCards(guess, lead, 0);
+        gameCanvas.setCards(guess, lead, Settings.get().getImageSetValue());
     }
 
     private void actionUp() {

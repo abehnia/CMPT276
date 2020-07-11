@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import cmpt276.proj.finddamatch.settingsActivity.Settings;
+
 import cmpt276.proj.finddamatch.model.ScoreManager;
 
 /**Class for the Main Menu. Sets up various buttons*/
@@ -19,7 +21,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
         setupStartGameBtn();
         setupHelpBtn();
-        setupSettingsBtn();
+        setupSettings();
         setupBestScoresBtn();
         ScoreManager.loadAllScores(MainMenuActivity.this);
     }
@@ -32,7 +34,9 @@ public class MainMenuActivity extends AppCompatActivity {
         });
     }
 
-    private void setupSettingsBtn() {
+    private void setupSettings() {
+        Settings.get().init(getResources());
+        Settings.get().load(MainMenuActivity.this);
         Button settingsBtn = findViewById(R.id.btnSettings);
         settingsBtn.setOnClickListener(v -> {
             Intent settings_intent = SettingsActivity.makeIntent(MainMenuActivity.this);
