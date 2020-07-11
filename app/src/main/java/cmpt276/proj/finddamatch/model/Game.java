@@ -32,13 +32,13 @@ public interface Game {
      * Can be used to start the game
      * Side Effects: resets the state of the game
      */
-    void reset();
+    void reset(long time);
 
     /**
      * Query the time in the game
      * Side Effects: none
      */
-    long queryTime();
+    long queryTime(long time);
 
     /**
      * Is the game finished yet? (i.e. are there cards left to play)
@@ -51,13 +51,13 @@ public interface Game {
      * Pause the game
      * Side Effects: pauses the game timer
      */
-    void pause();
+    void pause(long time);
 
     /**
      * Resumes the game
      * Side Effects: re-activates the game timer
      */
-    void resume();
+    void resume(long time);
 
     /**
      * Returns the first card in the draw pile

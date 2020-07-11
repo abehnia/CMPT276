@@ -18,8 +18,8 @@ public class GameImpl implements Game {
     Stack<Card> drawPile;
     Stack<Card> discardPile;
 
-    public GameImpl(CardGenerator dealer) {
-        this.referenceTime = SystemClock.elapsedRealtime();
+    public GameImpl(CardGenerator dealer, long time) {
+        this.referenceTime = time;
         this.dealer = dealer;
         this.drawPile = dealer.generate();
         this.discardPile = new Stack<>();
@@ -47,22 +47,22 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public void reset() {
+    public void reset(long time) {
         discardPile.clear();
         drawPile = dealer.generate();
-        referenceTime = SystemClock.elapsedRealtime();
+        referenceTime = time;
         elapsedTime = 0;
         draw();
     }
 
     @Override
-    public void pause() {
-        updateTime();
+    public void pause(long time) {
+        updateTime(time);
     }
 
     @Override
-    public void resume() {
-        referenceTime = SystemClock.elapsedRealtime();
+    public void resume(long time) {
+        referenceTime = time;
     }
 
     @Override
@@ -87,14 +87,14 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public long queryTime() {
-        updateTime();
+    public long queryTime(long time) {
+        updateTime(time);
         return elapsedTime;
     }
 
-    private void updateTime() {
+    private void updateTime(long time) {
         long previousTime = referenceTime;
-        referenceTime = SystemClock.elapsedRealtime();
+        referenceTime = time;
         elapsedTime += referenceTime - previousTime;
     }
 }

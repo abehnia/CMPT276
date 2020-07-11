@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -48,9 +49,9 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupGame() {
         game = new GameMockImpl();
-        game.reset();
-        lead = game.poll();
-        guess = game.poll();
+        game.reset(SystemClock.elapsedRealtime());
+        lead = game.draw();
+        guess = game.draw();
     }
 
     private void setupCanvas() {
@@ -94,7 +95,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupTimer() {
         this.timer = findViewById(R.id.game_activity_time_value);
-        this.timer.setText(formatTime(game.queryTime()));
+        this.timer.setText(formatTime(game.queryTime(SystemClock.elapsedRealtime())));
     }
 
     private void setupButton() {
@@ -102,9 +103,9 @@ public class GameActivity extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                game.reset();
-                lead = game.poll();
-                guess = game.poll();
+                game.reset(SystemClock.elapsedRealtime());
+                lead = game.draw();
+                guess = game.draw();
                 gameCanvas.setCards(guess, lead, 0);
                 setupHandler();
                 isTouchable = true;
@@ -113,7 +114,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateTime() {
-        this.timer.setText(formatTime(game.queryTime()));
+        this.timer.setText(formatTime(game.queryTime(SystemClock.elapsedRealtime())));
         handler.postDelayed(this::updateTime, DELAY);
     }
 
@@ -135,8 +136,8 @@ public class GameActivity extends AppCompatActivity {
             removeHandler();
             return;
         }
-        lead = game.poll();
-        guess = game.poll();
+        lead = game.draw();
+        guess = game.draw();
         gameCanvas.setCards(guess, lead, 0);
     }
 

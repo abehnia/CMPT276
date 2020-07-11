@@ -33,13 +33,13 @@ public class GameMockImpl implements Game {
     }
 
     @Override
-    public void reset() {
+    public void reset(long time) {
         time = SystemClock.elapsedRealtime();
         counter = 0;
     }
 
     @Override
-    public long queryTime() {
+    public long queryTime(long time) {
         return SystemClock.elapsedRealtime() - time;
     }
 
@@ -49,14 +49,20 @@ public class GameMockImpl implements Game {
     }
 
     @Override
-    public int getScore() {
-        return 0;
+    public void pause(long time){};
+
+    @Override
+    public void resume(long time){};
+
+    @Override
+    public Card peekDiscard(){
+        Card card = null;
+        return card;
     }
 
-    public void pause(){};
-
-    public long resume(){
-        long time = 1;
-        return time;
+    @Override
+    public Card peekDraw(){
+        Card card = null;
+        return card;
     }
 }
