@@ -20,6 +20,7 @@ import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.GameMockImpl;
 import cmpt276.proj.finddamatch.model.Image;
+import cmpt276.proj.finddamatch.settingsActivity.Settings;
 
 public class GameActivity extends AppCompatActivity {
     private GameCanvas gameCanvas;
@@ -61,7 +62,8 @@ public class GameActivity extends AppCompatActivity {
             public void onLayoutChange(View v, int left, int top, int right,
                                        int bottom, int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
-                gameCanvas.setCards(guess, lead, 0);
+                gameCanvas.setCards(guess, lead,
+                        Settings.get().getImageSetValue());
             }
         });
     }
@@ -106,7 +108,8 @@ public class GameActivity extends AppCompatActivity {
                 game.reset(SystemClock.elapsedRealtime());
                 lead = game.draw();
                 guess = game.draw();
-                gameCanvas.setCards(guess, lead, 0);
+                gameCanvas.setCards(guess, lead,
+                        Settings.get().getImageSetValue());
                 setupHandler();
                 isTouchable = true;
             }
@@ -138,7 +141,7 @@ public class GameActivity extends AppCompatActivity {
         }
         lead = game.draw();
         guess = game.draw();
-        gameCanvas.setCards(guess, lead, 0);
+        gameCanvas.setCards(guess, lead, Settings.get().getImageSetValue());
     }
 
     private void actionUp() {
