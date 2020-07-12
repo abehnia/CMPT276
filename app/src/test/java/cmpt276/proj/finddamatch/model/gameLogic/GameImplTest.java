@@ -7,7 +7,7 @@ import cmpt276.proj.finddamatch.model.Image;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * GameImpl class test, used to verify each methods input has deterministic output.
+ * GameImpl class test, used to verify each method
  */
 class GameImplTest {
 
