@@ -17,15 +17,19 @@ import java.util.Locale;
 
 import cmpt276.proj.finddamatch.gameActivity.GameCanvas;
 import cmpt276.proj.finddamatch.model.Card;
+import cmpt276.proj.finddamatch.model.CardGenerator;
+import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.Game;
-import cmpt276.proj.finddamatch.model.GameMockImpl;
 import cmpt276.proj.finddamatch.model.Image;
+import cmpt276.proj.finddamatch.model.gameLogic.CardGeneratorImpl;
+import cmpt276.proj.finddamatch.model.gameLogic.DeckGeneratorImpl;
+import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.settingsActivity.Settings;
 
 public class GameActivity extends AppCompatActivity {
     private GameCanvas gameCanvas;
     private Game game;
-    private Card lead, guess;
+    private Card discard, draw;
     private Handler handler;
     private TextView timer;
     private boolean isTouchable;
@@ -49,10 +53,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setupGame() {
-        game = new GameMockImpl();
+        CardGenerator cardGenerator = new CardGeneratorImpl();
+        DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator);
+        game = new GameImpl(deckGenerator, SystemClock.elapsedRealtime());
         game.reset(SystemClock.elapsedRealtime());
-        lead = game.draw();
-        guess = game.draw();
+        discard = game.peekDiscard();
+        draw = game.peekDraw();
     }
 
     private void setupCanvas() {
@@ -62,7 +68,7 @@ public class GameActivity extends AppCompatActivity {
             public void onLayoutChange(View v, int left, int top, int right,
                                        int bottom, int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
-                gameCanvas.setCards(guess, lead,
+                gameCanvas.setCards(discard, draw,
                         Settings.get().getImageSetValue());
             }
         });
@@ -106,9 +112,9 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 game.reset(SystemClock.elapsedRealtime());
-                lead = game.draw();
-                guess = game.draw();
-                gameCanvas.setCards(guess, lead,
+                discard = game.draw();
+                draw = game.draw();
+                gameCanvas.setCards(discard, draw,
                         Settings.get().getImageSetValue());
                 setupHandler();
                 isTouchable = true;
@@ -117,7 +123,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateTime() {
-        this.timer.setText(formatTime(game.queryTime(SystemClock.elapsedRealtime())));
+        this.timer.setText(formatTime(game.queryTime(
+                SystemClock.elapsedRealtime())));
         handler.postDelayed(this::updateTime, DELAY);
     }
 
@@ -139,9 +146,9 @@ public class GameActivity extends AppCompatActivity {
             removeHandler();
             return;
         }
-        lead = game.draw();
-        guess = game.draw();
-        gameCanvas.setCards(guess, lead, Settings.get().getImageSetValue());
+        discard = game.draw();
+        draw = game.peekDraw();
+        gameCanvas.setCards(discard, draw, Settings.get().getImageSetValue());
     }
 
     private void actionUp() {
