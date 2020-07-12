@@ -15,7 +15,7 @@ class ImageImplTest {
         assertEquals(0.0, image.getOrientation());
 
         // Test parametrized constructor
-        Image nextImage = new ImageImpl(0.5f, 0, 1, 0,  0);
+        Image nextImage = new ImageImpl(0.5f, 0, 1, 0, 0);
         assertEquals(0.0, nextImage.getOrientation());
     }
 
@@ -26,7 +26,7 @@ class ImageImplTest {
         assertEquals(0.0, image.getX());
 
         // Test parametrized constructor
-        Image nextImage = new ImageImpl(0.5f, 0, 1, 0,  0);
+        Image nextImage = new ImageImpl(0.5f, 0, 1, 0, 0);
         assertEquals(0.5f, nextImage.getX());
 
     }
@@ -38,7 +38,7 @@ class ImageImplTest {
         assertEquals(0.0, image.getY());
 
         // Test parametrized constructor
-        Image nextImage = new ImageImpl(0.5f, 0, 1, 0,  0);
+        Image nextImage = new ImageImpl(0.5f, 0, 1, 0, 0);
         assertEquals(0.0, nextImage.getY());
     }
 
@@ -49,7 +49,7 @@ class ImageImplTest {
         assertEquals(0.2f, image.getRadius());
 
         // Test parametrized constructor
-        Image nextImage = new ImageImpl(0.5f, 0, 1, 0,  0);
+        Image nextImage = new ImageImpl(0.5f, 0, 1, 0, 0);
         assertEquals(1, nextImage.getRadius());
     }
 
@@ -60,7 +60,7 @@ class ImageImplTest {
         assertEquals(0, image.getID());
 
         // Test parametrized constructor
-        Image nextImage = new ImageImpl(0.5f, 0, 1, 0,  0);
+        Image nextImage = new ImageImpl(0.5f, 0, 1, 0, 0);
         assertEquals(0, nextImage.getID());
     }
 
@@ -72,9 +72,9 @@ class ImageImplTest {
         assertEquals(1.0f, image.getOrientation());
 
         // Test parametrized constructor
-        Image nextImage = new ImageImpl(0.5f, 0, 1, 0,  0);
-        image.setOrientation(1.0f);
-        assertEquals(1.0f, image.getOrientation());
+        Image nextImage = new ImageImpl(0.5f, 0, 1, 0, 0);
+        nextImage.setOrientation(1.0f);
+        assertEquals(1.0f, nextImage.getOrientation());
     }
 
     @Test
@@ -85,9 +85,9 @@ class ImageImplTest {
         assertEquals(1.0f, image.getX());
 
         // Test parametrized constructor
-        Image nextImage = new ImageImpl(0.5f, 0, 1, 0,  0);
-        image.setX(1.0f);
-        assertEquals(1.0f, image.getX());
+        Image nextImage = new ImageImpl(0.5f, 0, 1, 0, 0);
+        nextImage.setX(1.0f);
+        assertEquals(1.0f, nextImage.getX());
     }
 
     @Test
@@ -98,9 +98,9 @@ class ImageImplTest {
         assertEquals(1.0f, image.getY());
 
         // Test parametrized constructor
-        Image nextImage = new ImageImpl(0.5f, 0, 1, 0,  0);
-        image.setY(1.0f);
-        assertEquals(1.0f, image.getY());
+        Image nextImage = new ImageImpl(0.5f, 0, 1, 0, 0);
+        nextImage.setY(1.0f);
+        assertEquals(1.0f, nextImage.getY());
     }
 
     @Test
@@ -111,20 +111,20 @@ class ImageImplTest {
         assertEquals(1.0f, image.getRadius());
 
         // Test parametrized constructor
-        Image nextImage = new ImageImpl(0.5f, 0, 1, 0,  0);
-        image.setRadius(1.0f);
-        assertEquals(1.0f, image.getRadius());
+        Image nextImage = new ImageImpl(0.5f, 0, 1, 0, 0);
+        nextImage.setRadius(1.0f);
+        assertEquals(1.0f, nextImage.getRadius());
     }
 
     @Test
     void isEquivalent() {
         Image image = new ImageImpl(0);
-        Image nextImage = new ImageImpl(0.5f, 0, 1, 0,  0);
+        Image nextImage = new ImageImpl(0.5f, 0, 1, 0, 0);
         Image falseImage = new ImageImpl(1);
 
         // Test true
-        assertEquals(true, image.isEquivalent(nextImage));
+        assertTrue(image.isEquivalent(nextImage));
         // Test false
-        assertEquals(false, image.isEquivalent(falseImage));
+        assertFalse(image.isEquivalent(falseImage));
     }
 }

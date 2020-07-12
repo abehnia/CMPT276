@@ -1,12 +1,10 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
 import cmpt276.proj.finddamatch.model.Card;
-import cmpt276.proj.finddamatch.model.CardGenerator;
-import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.Image;
 
-import static java.lang.Boolean.TRUE;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GameImplTest {
 
@@ -26,7 +24,7 @@ class GameImplTest {
         TestCardGeneratorImpl dealer = new TestCardGeneratorImpl();
         GameImpl g = new GameImpl(dealer, 0);
 
-        while(!g.drawPile.isEmpty() && !g.discardPile.isEmpty()) {
+        while (!g.drawPile.isEmpty() && !g.discardPile.isEmpty()) {
             g.drawPile.pop();
             g.discardPile.pop();
         }
@@ -35,7 +33,8 @@ class GameImplTest {
     }
 
     @org.junit.jupiter.api.Test
-    void update() {}
+    void update() {
+    }
 
     @org.junit.jupiter.api.Test
     void reset() {
@@ -46,7 +45,7 @@ class GameImplTest {
         g.discardPile.pop();
         assertTrue(g.discardPile.isEmpty());
         g.reset(0);
-        for(int i=0; i <= 0; i++){
+        for (int i = 0; i <= 0; i++) {
             g.drawPile.pop();
         }
         assertTrue(g.drawPile.isEmpty());

@@ -49,11 +49,12 @@ public class CardImpl implements Card {
             new ImageImpl(2),
             new ImageImpl(5),
             new ImageImpl(6));
-    private static final float LOWER_POSITION_BOUND = -1F;
-    private static final float UPPER_POSITION_BOUND = 1F;
-    private static final float LOWER_RADIUS_BOUND = 0.2F;
-    private static final float UPPER_RADIUS_BOUND = 1.0F;
+    private static final float LOWER_POSITION_BOUND = -1f;
+    private static final float UPPER_POSITION_BOUND = 1f;
+    private static final float LOWER_RADIUS_BOUND = 0.2f;
+    private static final float UPPER_RADIUS_BOUND = 0.4f;
     private static final float CARD_BASE_RADIUS = 1.0f;
+    private static final int MAX_COUNT = 1000;
 
     static {
         PRE_GENERATED_CARDS.add(CARD1);
@@ -71,6 +72,7 @@ public class CardImpl implements Card {
         this.images = new ArrayList<>();
         this.images.addAll(Arrays.asList(images));
     }
+
 
     public CardImpl(Card card) {
         this.images = new ArrayList<>();
@@ -99,15 +101,19 @@ public class CardImpl implements Card {
         return images.size();
     }
 
-
     @Override
     public void randomize() {
         Queue<Image> validatedImages = new LinkedList<>();
         for (Image image : images) {
             randomize(image);
+            int counter = 0;
             while (!isBounded(image) ||
                     !doesNotOverlap(image, validatedImages)) {
                 randomize(image);
+                counter++;
+                if (counter == MAX_COUNT)
+                    throw new AssertionError
+                            ("Reached Maximum Amount of Randomization");
             }
             validatedImages.add(image);
         }
