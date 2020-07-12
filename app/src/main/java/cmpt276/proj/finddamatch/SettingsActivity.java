@@ -61,22 +61,14 @@ public class SettingsActivity extends AppCompatActivity {
         RadioGroup radioGroup = findViewById(R.id.ImageSetChoice);
         this.imageSetKey = Settings.get().getImageSetKey();
         radioGroup.check(imageSetKey);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                imageSetKey = checkedId;
-            }
-        });
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> imageSetKey = checkedId);
     }
 
     private void setupApplyButton() {
         Button applyButton = findViewById(R.id.activitySettingsApply);
-        applyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Settings.get().setImageSet(imageSetKey);
-                finish();
-            }
+        applyButton.setOnClickListener(v -> {
+            Settings.get().setImageSet(imageSetKey);
+            finish();
         });
     }
 }

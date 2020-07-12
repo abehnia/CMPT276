@@ -61,6 +61,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/game_activity_time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+        android:contentDescription="@string/backBtnArrow" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,52 @@
     <string name="settings_activity_title">Settings</string>
     <string name="main_menu_activity_title">Main Menu</string>
     <string name="game_page_title">Game Page</string>
+    <string name="BtnBestScores_txt">Best Scores</string>
+
+    <string name="BestScore1Name">Bob</string>
+    <string name="BestScore2Name">Tom</string>
+    <string name="BestScore3Name">Jerry</string>
+    <string name="BestScore4Name">Batman</string>
+    <string name="BestScore5Name">Robin</string>
+    <string name="BestScore6Name">Score6</string>
+
+    <string name="BestScore1Date">Wed, July 1</string>
+    <string name="BestScore2Date">Thurs, July 2</string>
+    <string name="BestScore3Date">Fri, July 3</string>
+    <string name="BestScore4Date">Sat, July 4</string>
+    <string name="BestScore5Date">Sun, July 5</string>
+    <string name="BestScore6Date">Score 6</string>
+
+    <string name="BestScore1Time">20 Secs</string>
+    <string name="BestScore2Time">40 Secs</string>
+    <string name="BestScore3Time">50 Secs</string>
+    <string name="BestScore4Time">1 Min</string>
+    <string name="BestScore5Time">1 Min 30 Secs</string>
+
+    <string name="Score1Pos">1</string>
+    <string name="Score2Pos">2</string>
+    <string name="Score3Pos">3</string>
+    <string name="Score4Pos">4</string>
+    <string name="Score5Pos">5</string>
+
+    <string name="ScoreTableDateTitle">Date</string>
+    <string name="ScoreTablePosTitle">Position</string>
+    <string name="ScoreTableScoreTitle">Name</string>
+    <string name="ScoreTableTimeTitle">Time</string>
+
+    <string name="TimeSecs">"%1$d Secs"</string>
+    <string name="Time1Min">"%1$d Min %2$d Secs"</string>
+    <string name="TimeMins">"%1$d Mins %2$d Secs"</string>
+    <string name="TimeExact1Min">"%1$d Min"</string>
+    <string name="TimeExactMins">"%1$d Mins"</string>
+
+    <string name="SaveBtn">Save</string>
+    <string name="enter_nickname">Enter Nickname</string>
+    <string name="reset_score">Reset Score</string>
+    <string name="your_score">Your Score:</string>
+    <string name="nickname_msg">You Must Enter a Nickname to Save your Highscore</string>
+    <string name="back_arrow_vector_image">Back Arrow Vector Image</string>
+
     <string name="time_game_activity">Time</string>
     <string name="null_text_view">TextView</string>
     <string name="game_activity_reset">Reset</string>
@@ -17,4 +63,5 @@
     <string name="activity_settings_eastern_conference">Eastern Conference</string>
     <string name="activity_settings_choose_image_set">Choose your image set:</string>
     <string name="activity_settings_apply">Apply</string>
+    <string name="backBtnArrow">backBtnArrow</string>
 </resources>
