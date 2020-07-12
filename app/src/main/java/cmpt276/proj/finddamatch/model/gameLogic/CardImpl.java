@@ -27,6 +27,13 @@ public class CardImpl implements Card {
         this.images.addAll(images);
     }
 
+    public CardImpl(CardImpl card) {
+        this.images = new ArrayList<>();
+        for (Image image : card) {
+            this.images.add(image);
+        }
+    }
+
     @Override
     public Image get(int index) {
         return images.get(index);
