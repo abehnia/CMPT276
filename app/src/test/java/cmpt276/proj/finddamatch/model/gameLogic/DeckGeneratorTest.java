@@ -11,6 +11,11 @@ import cmpt276.proj.finddamatch.model.Image;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ *  Generates a Deck of Card using Stack
+ *  Tests methods of the Stack
+ *  Including both DeckGenerator and CardGenerator interfaces
+ */
 class DeckGeneratorTest {
 
     @Test

@@ -12,6 +12,9 @@ import cmpt276.proj.finddamatch.model.MutableImage;
 import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests the public methods of the CardImpl class
+ */
 public class CardImplTest {
 
     @Test

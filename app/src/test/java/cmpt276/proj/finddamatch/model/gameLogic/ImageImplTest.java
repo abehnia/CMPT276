@@ -7,6 +7,11 @@ import cmpt276.proj.finddamatch.model.MutableImage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+* Tests the public methods of ImageImpl class
+* Including both Image and MutableImage interfaces
+*/
+
 class ImageImplTest {
 
     @Test
