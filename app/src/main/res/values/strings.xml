@@ -16,4 +16,5 @@
     <string name="activity_settings_eastern_conference">Eastern Conference</string>
     <string name="activity_settings_choose_image_set">Choose your image set:</string>
     <string name="activity_settings_apply">Apply</string>
+    <string name="imgView_logowitnobball">logoWitNoBBall</string>
 </resources>

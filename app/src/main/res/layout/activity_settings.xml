@@ -9,8 +9,8 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="411dp"
+        android:layout_height="63dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -53,7 +53,9 @@
             android:id="@+id/imageSetWesternChoice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/activity_settings_western_conference" />
+            android:text="@string/activity_settings_western_conference"
+            android:textColorHighlight="#9F530F"
+            android:textColorLink="#F45C16" />
 
         <RadioButton
             android:id="@+id/imageSetEasternChoice"
