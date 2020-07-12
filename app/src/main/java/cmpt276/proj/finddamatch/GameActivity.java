@@ -55,7 +55,6 @@ public class GameActivity extends AppCompatActivity {
         setupHandler();
         setupButton();
         setupBackButton();
-        setupDialogBoxBtn();
     }
 
     private void displayDialogBox(long longTime) {
@@ -65,12 +64,6 @@ public class GameActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         DialogBoxFragment dialog = new DialogBoxFragment();
         dialog.show(manager, "Best Scores Dialog");
-    }
-
-    private void setupDialogBoxBtn() {
-        Button btn = findViewById(R.id.btnTestDialogBox);
-        btn.setOnClickListener(v -> displayDialogBox(9000));
-
     }
 
     public static Intent makeIntent(Context context) {
@@ -180,6 +173,7 @@ public class GameActivity extends AppCompatActivity {
         discard = game.draw();
         if (game.isGameDone()) {
             removeHandler();
+            onGameDone();
             return;
         }
         draw = game.peekDraw();
@@ -188,6 +182,12 @@ public class GameActivity extends AppCompatActivity {
 
     private void actionUp() {
         this.isTouchable = !game.isGameDone();
+    }
+
+    private void onGameDone(){
+        long time = game.queryTime(SystemClock.elapsedRealtime());
+        game.pause(time);
+        displayDialogBox(time);
     }
 
     private String formatTime(long time) {
