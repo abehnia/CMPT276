@@ -14,6 +14,10 @@ import cmpt276.proj.finddamatch.model.MutableImage;
 import static cmpt276.proj.finddamatch.model.Card.CARD_BASE_RADIUS;
 import static java.lang.Math.sqrt;
 
+/**
+ * Typical implementation for card generator
+ * For more information refer to the Card Generator Interface
+ */
 public class CardGeneratorImpl implements CardGenerator {
     private static final float LOWER_POSITION_BOUND = -1F;
     private static final float UPPER_POSITION_BOUND = 1F;

@@ -1,9 +1,9 @@
 package cmpt276.proj.finddamatch.model;
 
 /**
- * Interface for an image
- * Holds a position, an orientation,
- * a radius and the image value
+ * Interface for a mutable image
+ * Can set the attributes of an image
+ * This interface was created for type safety
  */
 public interface MutableImage extends Image {
 
