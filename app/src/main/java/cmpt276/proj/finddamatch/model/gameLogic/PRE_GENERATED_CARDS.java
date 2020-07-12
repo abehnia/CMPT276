@@ -9,6 +9,10 @@ import java.util.Iterator;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
 
+/**
+ * Pre Generated cards that satisfy the constraints for
+ * the game Spot-It
+ */
 public enum PRE_GENERATED_CARDS implements Card {
     CARD1(new ImageImpl(0),
             new ImageImpl(1),
