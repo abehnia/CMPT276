@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer-array name="logos">
-        <item>@drawable/ic_chicago_bulls_logo</item>
+        <item>@drawable/ic_minnesota_timberwolves_logo</item>
         <item>@drawable/ic_denver_nuggets</item>
         <item>@drawable/ic_golden_state_warriors_logo</item>
         <item>@drawable/ic_houston_rockets</item>
-        <item>@drawable/ic_toronto_raptors_logo</item>
+        <item>@drawable/ic_new_orleans_pelicans_logo</item>
         <item>@drawable/ic_los_angeles_lakers_logo</item>
         <item>@drawable/ic_san_antonio_spurs</item>
+        <item>@drawable/ic_toronto_raptors_logo</item>
+        <item>@drawable/ic_chicago_bulls_logo</item>
+        <item>@drawable/ic_milwaukee_bucks_logo</item>
+        <item>@drawable/ic_philadelphia_76ers_logo</item>
+        <item>@drawable/ic_boston_celtics</item>
+        <item>@drawable/ic_cleveland_cavaliers_logo</item>
+        <item>@drawable/ic_miami_heat_logo</item>
     </integer-array>
 </resources>

@@ -1,13 +1,12 @@
 package cmpt276.proj.finddamatch;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
+
+import cmpt276.proj.finddamatch.settingsActivity.Settings;
 
 public class MainMenuActivity extends AppCompatActivity {
 
@@ -18,25 +17,12 @@ public class MainMenuActivity extends AppCompatActivity {
 
         setupStartGameBtn();
         setupHelpBtn();
-        setupSettingsBtn();
+        setupSettings();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.default_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.backButton) {
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void setupSettingsBtn() {
+    private void setupSettings() {
+        Settings.get().init(getResources());
+        Settings.get().load(MainMenuActivity.this);
         Button settingsBtn = findViewById(R.id.btnSettings);
         settingsBtn.setOnClickListener(v -> {
             Intent settings_intent = SettingsActivity.makeIntent(MainMenuActivity.this);
