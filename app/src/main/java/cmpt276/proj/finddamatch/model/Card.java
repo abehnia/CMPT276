@@ -6,6 +6,10 @@ package cmpt276.proj.finddamatch.model;
  */
 public interface Card extends Iterable<Image> {
     public static final int NUMBER_OF_IMAGES_PER_DECK = 7;
+    public static final int NUMBER_OF_IMAGES_PER_CARD = 3;
+    public static final int NUMBER_OF_CARDS = 7;
+    public static final float CARD_BASE_RADIUS = 1.0f;
+
     /**
      * Get the index image in the card
      * Side Effects: none
@@ -23,10 +27,4 @@ public interface Card extends Iterable<Image> {
      * Side Effects: none
      */
     int size();
-
-    /**
-     * Randomize the orientation, scale and position of images
-     * Side Effects: changes the orientation, scale and position of images
-     */
-    void randomize();
 }

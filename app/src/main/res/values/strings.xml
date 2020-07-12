@@ -2,12 +2,13 @@
     <string name="app_name">Find daMatch</string>
     <string name="btnSkip_txt">skip</string>
     <string name="welcome_page_title">Welcome Page</string>
-    <string name="main_menu_title">Main Menu</string>
+    <string name="scoreboard_menu_title">Score Board</string>
     <string name="btnSettings_txt">Settings</string>
     <string name="btnStartGame_txt">Start Game</string>
     <string name="btnHelp_txt">Help</string>
     <string name="help_activity_title">Help</string>
     <string name="settings_activity_title">Settings</string>
+    <string name="main_menu_activity_title">Main Menu</string>
     <string name="game_page_title">Game Page</string>
     <string name="BtnBestScores_txt">Best Scores</string>
 
