@@ -1,12 +1,13 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
 import cmpt276.proj.finddamatch.model.Image;
+import cmpt276.proj.finddamatch.model.MutableImage;
 
 /**
  * Typical image implementation of the image interface
  * For more information, refer to the image interface
  */
-public class ImageImpl implements Image {
+public class ImageImpl implements MutableImage {
     int ID;
     private float x, y, radius, orientation;
 

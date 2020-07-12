@@ -1,12 +1,10 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
-import android.os.SystemClock;
-
 import java.util.Stack;
 
 import cmpt276.proj.finddamatch.BuildConfig;
 import cmpt276.proj.finddamatch.model.Card;
-import cmpt276.proj.finddamatch.model.CardGenerator;
+import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.Image;
 
@@ -14,11 +12,11 @@ import cmpt276.proj.finddamatch.model.Image;
 public class GameImpl implements Game {
     long referenceTime;
     long elapsedTime;
-    CardGenerator dealer;
+    DeckGenerator dealer;
     Stack<Card> drawPile;
     Stack<Card> discardPile;
 
-    public GameImpl(CardGenerator dealer, long time) {
+    public GameImpl(DeckGenerator dealer, long time) {
         this.referenceTime = time;
         this.dealer = dealer;
         this.drawPile = dealer.generate();

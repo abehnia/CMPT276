@@ -34,10 +34,6 @@ public class CardMockImpl implements Card {
         return images.size();
     }
 
-    @Override
-    public void randomize() {
-    }
-
     @NonNull
     @Override
     public Iterator<Image> iterator() {

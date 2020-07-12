@@ -27,10 +27,4 @@ public interface Card extends Iterable<Image> {
      * Side Effects: none
      */
     int size();
-
-    /**
-     * Randomize the orientation, scale and position of images
-     * Side Effects: changes the orientation, scale and position of images
-     */
-    void randomize();
 }

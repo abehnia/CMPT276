@@ -1,12 +1,7 @@
 package cmpt276.proj.finddamatch.model;
 
-import java.util.Stack;
+import java.util.List;
 
-/**
- * Interface for a card generator
- * Should generate a stack of cards
- */
 public interface CardGenerator {
-    Stack<Card> generate();
-
+    Card generate(List<MutableImage> images);
 }

@@ -38,26 +38,5 @@ public class ImageMockImpl implements Image {
         return this.value;
     }
 
-    @Override
-    public void setOrientation(float orientation) {
-        this.orientation = orientation;
-    }
-
-    @Override
-    public void setX(float x) {
-        this.x = x;
-    }
-
-    @Override
-    public void setY(float y) {
-        this.y = y;
-
-    }
-
-    @Override
-    public void setRadius(float radius) {
-        this.radius = radius;
-    }
-
    public boolean isEquivalent(Image image){return false;}
 }

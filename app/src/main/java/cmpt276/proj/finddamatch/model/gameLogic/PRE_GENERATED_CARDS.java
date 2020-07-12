@@ -5,26 +5,38 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
 
-/**
- * Typical card implementation of the card interface
- * For more information, refer to the card interface
- */
-public class CardImpl implements Card {
+public enum PRE_GENERATED_CARDS implements Card {
+    CARD1(new ImageImpl(0),
+            new ImageImpl(1),
+            new ImageImpl(2)),
+    CARD2(new ImageImpl(2),
+            new ImageImpl(3),
+            new ImageImpl(4)),
+    CARD3(new ImageImpl(0),
+            new ImageImpl(4),
+            new ImageImpl(5)),
+    CARD4(new ImageImpl(0),
+            new ImageImpl(3),
+            new ImageImpl(6)),
+    CARD5(new ImageImpl(1),
+            new ImageImpl(4),
+            new ImageImpl(6)),
+    CARD6(new ImageImpl(1),
+            new ImageImpl(3),
+            new ImageImpl(5)),
+    CARD7(new ImageImpl(2),
+            new ImageImpl(5),
+            new ImageImpl(6));
+
     private ArrayList<Image> images;
 
-    public CardImpl(Image... images) {
+    private PRE_GENERATED_CARDS(Image... images) {
         this.images = new ArrayList<>();
         this.images.addAll(Arrays.asList(images));
-    }
-
-    public CardImpl(List<Image> images) {
-        this.images = new ArrayList<>();
-        this.images.addAll(images);
     }
 
     @Override

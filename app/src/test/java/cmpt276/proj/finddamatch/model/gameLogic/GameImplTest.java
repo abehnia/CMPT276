@@ -1,19 +1,15 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
 import cmpt276.proj.finddamatch.model.Card;
-import cmpt276.proj.finddamatch.model.CardGenerator;
-import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.Image;
 
-import static java.lang.Boolean.TRUE;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GameImplTest {
 
-
     @org.junit.jupiter.api.Test
     void check() {
-        TestCardGeneratorImpl dealer = new TestCardGeneratorImpl();
+        TestDeckGeneratorImpl dealer = new TestDeckGeneratorImpl();
         GameImpl g = new GameImpl(dealer, 0);
 
         Card refDrawCard = g.peekDraw();
@@ -23,7 +19,7 @@ class GameImplTest {
 
     @org.junit.jupiter.api.Test
     void draw() {
-        TestCardGeneratorImpl dealer = new TestCardGeneratorImpl();
+        TestDeckGeneratorImpl dealer = new TestDeckGeneratorImpl();
         GameImpl g = new GameImpl(dealer, 0);
 
         while(!g.drawPile.isEmpty() && !g.discardPile.isEmpty()) {
@@ -39,7 +35,7 @@ class GameImplTest {
 
     @org.junit.jupiter.api.Test
     void reset() {
-        CardGeneratorImpl dealer = new CardGeneratorImpl();
+        DeckGeneratorImpl dealer = new DeckGeneratorImpl(new CardGeneratorImpl());
         long input = 0;
         GameImpl g = new GameImpl(dealer, input);
 
@@ -55,7 +51,7 @@ class GameImplTest {
 
     @org.junit.jupiter.api.Test
     void pause() {
-        CardGeneratorImpl dealer = new CardGeneratorImpl();
+        DeckGeneratorImpl dealer = new DeckGeneratorImpl(new CardGeneratorImpl());
         long input1 = 2;
         long input2 = 3;
         GameImpl g = new GameImpl(dealer, input1);
@@ -68,7 +64,7 @@ class GameImplTest {
 
     @org.junit.jupiter.api.Test
     void resume() {
-        CardGeneratorImpl dealer = new CardGeneratorImpl();
+        DeckGeneratorImpl dealer = new DeckGeneratorImpl(new CardGeneratorImpl());
         long input1 = 11;
         long input2 = 500;
         GameImpl g = new GameImpl(dealer, input1);
@@ -79,7 +75,7 @@ class GameImplTest {
 
     @org.junit.jupiter.api.Test
     void peekDiscard() {
-        TestCardGeneratorImpl dealer = new TestCardGeneratorImpl();
+        TestDeckGeneratorImpl dealer = new TestDeckGeneratorImpl();
         long input1 = 11;
         GameImpl g = new GameImpl(dealer, input1);
 
@@ -91,7 +87,7 @@ class GameImplTest {
 
     @org.junit.jupiter.api.Test
     void peekDraw() {
-        TestCardGeneratorImpl dealer = new TestCardGeneratorImpl();
+        TestDeckGeneratorImpl dealer = new TestDeckGeneratorImpl();
         long input1 = 11;
         GameImpl g = new GameImpl(dealer, input1);
 
@@ -103,7 +99,7 @@ class GameImplTest {
 
     @org.junit.jupiter.api.Test
     void isGameDone() {
-        TestCardGeneratorImpl dealer = new TestCardGeneratorImpl();
+        TestDeckGeneratorImpl dealer = new TestDeckGeneratorImpl();
         long input1 = 11;
         GameImpl g = new GameImpl(dealer, input1);
 
@@ -113,7 +109,7 @@ class GameImplTest {
 
     @org.junit.jupiter.api.Test
     void queryTime() {
-        CardGeneratorImpl dealer = new CardGeneratorImpl();
+        DeckGeneratorImpl dealer = new DeckGeneratorImpl(new CardGeneratorImpl());
         long input1 = 2;
         long input2 = 3;
         GameImpl g = new GameImpl(dealer, input1);
@@ -122,7 +118,5 @@ class GameImplTest {
         g.queryTime(input2);
         assertEquals(3, g.referenceTime);
         assertEquals(1, g.elapsedTime);
-
-
     }
 }

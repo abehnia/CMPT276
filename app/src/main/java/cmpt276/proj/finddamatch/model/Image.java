@@ -14,19 +14,9 @@ public interface Image {
     float getOrientation();
 
     /**
-     * Sets the orientation of the image
-     */
-    void setOrientation(float orientation);
-
-    /**
      * @return the X position of the image
      */
     float getX();
-
-    /**
-     * Sets the X position of the image
-     */
-    void setX(float x);
 
     /**
      * @return the Y position of the image
@@ -34,19 +24,9 @@ public interface Image {
     float getY();
 
     /**
-     * Sets the Y position of the image
-     */
-    void setY(float y);
-
-    /**
      * @return radius of the image
      */
     float getRadius();
-
-    /**
-     * Sets the radius of the image
-     */
-    void setRadius(float radius);
 
     /**
      * @return the ID of the image
