@@ -14,40 +14,61 @@ public interface Game {
     /**
      * Updates the game state when image is chosen
      * Side Effects: updates the counter and puts back
-     *               drawn cards back to the deck
+     * drawn cards back to the deck
+     * update will save the game time state,
      */
     void update(Image image);
 
     /**
-     * Poll a card from the deck
-     * note that this is usually done twice each round
+     * precondition: check() must be called before draw(),
+     * unless its the first card drawn.
+     * Draw a card from the draw deck
      * Side Effects: a card is "drawn" from the deck
      */
-    Card poll();
+    Card draw();
 
     /**
      * Reset the game state
      * Can be used to start the game
      * Side Effects: resets the state of the game
      */
-    void reset();
+    void reset(long time);
 
     /**
      * Query the time in the game
      * Side Effects: none
-     * @return
      */
-    long queryTime();
+    long queryTime(long time);
 
     /**
-     * Is the game finished yet? (i.e. is time equal to 0)
+     * Is the game finished yet? (i.e. are there cards left to play)
+     * Also ends real_time and computes the total elapsed game time.
      * Side Effects: none
      */
     boolean isGameDone();
 
     /**
-     * Return the number of correct images chosen by the player
+     * Pause the game
+     * Side Effects: pauses the game timer
+     */
+    void pause(long time);
+
+    /**
+     * Resumes the game
+     * Side Effects: re-activates the game timer
+     */
+    void resume(long time);
+
+    /**
+     * Returns the first card in the draw pile
      * Side Effects: none
      */
-    int getScore();
+    Card peekDiscard();
+
+
+    /**
+     * Returns the first card in the discard pile
+     * Side Effects: none
+     */
+    Card peekDraw();
 }

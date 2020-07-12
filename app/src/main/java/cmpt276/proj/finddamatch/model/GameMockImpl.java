@@ -10,8 +10,7 @@ public class GameMockImpl implements Game {
 
     public GameMockImpl() {
         image = new ImageMockImpl(0.5f, 0, 1, 0,  0);
-        card =
-        new CardMockImpl(
+        card = new CardMockImpl(
                 image,
                 new ImageMockImpl(-0.5f, 0, 1, 0, 1),
                 new ImageMockImpl(0, 0.5f, 1, 0, 2)
@@ -29,18 +28,18 @@ public class GameMockImpl implements Game {
     }
 
     @Override
-    public Card poll() {
+    public Card draw() {
         return card;
     }
 
     @Override
-    public void reset() {
+    public void reset(long time) {
         time = SystemClock.elapsedRealtime();
         counter = 0;
     }
 
     @Override
-    public long queryTime() {
+    public long queryTime(long time) {
         return SystemClock.elapsedRealtime() - time;
     }
 
@@ -50,7 +49,20 @@ public class GameMockImpl implements Game {
     }
 
     @Override
-    public int getScore() {
-        return 0;
+    public void pause(long time){};
+
+    @Override
+    public void resume(long time){};
+
+    @Override
+    public Card peekDiscard(){
+        Card card = null;
+        return card;
+    }
+
+    @Override
+    public Card peekDraw(){
+        Card card = null;
+        return card;
     }
 }

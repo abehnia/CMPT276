@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -16,15 +17,19 @@ import java.util.Locale;
 
 import cmpt276.proj.finddamatch.gameActivity.GameCanvas;
 import cmpt276.proj.finddamatch.model.Card;
+import cmpt276.proj.finddamatch.model.CardGenerator;
+import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.Game;
-import cmpt276.proj.finddamatch.model.GameMockImpl;
 import cmpt276.proj.finddamatch.model.Image;
+import cmpt276.proj.finddamatch.model.gameLogic.CardGeneratorImpl;
+import cmpt276.proj.finddamatch.model.gameLogic.DeckGeneratorImpl;
+import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.settingsActivity.Settings;
 
 public class GameActivity extends AppCompatActivity {
     private GameCanvas gameCanvas;
     private Game game;
-    private Card lead, guess;
+    private Card discard, draw;
     private Handler handler;
     private TextView timer;
     private boolean isTouchable;
@@ -48,10 +53,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setupGame() {
-        game = new GameMockImpl();
-        game.reset();
-        lead = game.poll();
-        guess = game.poll();
+        CardGenerator cardGenerator = new CardGeneratorImpl();
+        DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator);
+        game = new GameImpl(deckGenerator, SystemClock.elapsedRealtime());
+        game.reset(SystemClock.elapsedRealtime());
+        discard = game.peekDiscard();
+        draw = game.peekDraw();
     }
 
     private void setupCanvas() {
@@ -61,7 +68,7 @@ public class GameActivity extends AppCompatActivity {
             public void onLayoutChange(View v, int left, int top, int right,
                                        int bottom, int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
-                gameCanvas.setCards(guess, lead,
+                gameCanvas.setCards(discard, draw,
                         Settings.get().getImageSetValue());
             }
         });
@@ -96,7 +103,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupTimer() {
         this.timer = findViewById(R.id.game_activity_time_value);
-        this.timer.setText(formatTime(game.queryTime()));
+        this.timer.setText(formatTime(game.queryTime(SystemClock.elapsedRealtime())));
     }
 
     private void setupButton() {
@@ -104,10 +111,10 @@ public class GameActivity extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                game.reset();
-                lead = game.poll();
-                guess = game.poll();
-                gameCanvas.setCards(guess, lead,
+                game.reset(SystemClock.elapsedRealtime());
+                discard = game.peekDiscard();
+                draw = game.peekDraw();
+                gameCanvas.setCards(discard, draw,
                         Settings.get().getImageSetValue());
                 setupHandler();
                 isTouchable = true;
@@ -116,7 +123,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateTime() {
-        this.timer.setText(formatTime(game.queryTime()));
+        this.timer.setText(formatTime(game.queryTime(
+                SystemClock.elapsedRealtime())));
         handler.postDelayed(this::updateTime, DELAY);
     }
 
@@ -134,13 +142,13 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
         game.update(intersectedImage);
+        discard = game.draw();
         if (game.isGameDone()) {
             removeHandler();
             return;
         }
-        lead = guess;
-        guess = game.poll();
-        gameCanvas.setCards(guess, lead, Settings.get().getImageSetValue());
+        draw = game.peekDraw();
+        gameCanvas.setCards(discard, draw, Settings.get().getImageSetValue());
     }
 
     private void actionUp() {
