@@ -119,7 +119,7 @@ public class GameImpl implements Game {
      */
     @Override
     public Card peekDraw() {
-        if (BuildConfig.DEBUG && discardPile.empty()) {
+        if (BuildConfig.DEBUG && drawPile.empty()) {
             throw new AssertionError("Stack Empty");
         }
         return drawPile.peek();

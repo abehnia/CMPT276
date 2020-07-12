@@ -21,7 +21,7 @@ import static java.lang.Math.sqrt;
 public class CardGeneratorImpl implements CardGenerator {
     private static final float LOWER_POSITION_BOUND = -1F;
     private static final float UPPER_POSITION_BOUND = 1F;
-    private static final float LOWER_RADIUS_BOUND = 0.2F;
+    private static final float LOWER_RADIUS_BOUND = 0.4F;
     private static final float UPPER_RADIUS_BOUND = 0.6F;
     private static final int MAX_NUMBER_OF_ITERATIONS = 1000000;
     private static final int MAX_NUMBER_OF_ITERATIONS_PER_ELEMENT = 1000;
@@ -73,7 +73,7 @@ public class CardGeneratorImpl implements CardGenerator {
             double deltaY = image.getY() - validImage.getY();
             double distanceBetweenCircles =
                     sqrt(deltaX * deltaX + deltaY * deltaY);
-            if (sumOf2Radius > distanceBetweenCircles) return false;
+            if (sumOf2Radius/2F > distanceBetweenCircles) return false;
         }
         return true;
     }

@@ -112,8 +112,8 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 game.reset(SystemClock.elapsedRealtime());
-                discard = game.draw();
-                draw = game.draw();
+                discard = game.peekDiscard();
+                draw = game.peekDraw();
                 gameCanvas.setCards(discard, draw,
                         Settings.get().getImageSetValue());
                 setupHandler();
@@ -142,11 +142,11 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
         game.update(intersectedImage);
+        discard = game.draw();
         if (game.isGameDone()) {
             removeHandler();
             return;
         }
-        discard = game.draw();
         draw = game.peekDraw();
         gameCanvas.setCards(discard, draw, Settings.get().getImageSetValue());
     }
