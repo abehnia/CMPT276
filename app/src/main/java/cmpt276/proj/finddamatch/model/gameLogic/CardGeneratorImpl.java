@@ -21,8 +21,8 @@ import static java.lang.Math.sqrt;
 public class CardGeneratorImpl implements CardGenerator {
     private static final float LOWER_POSITION_BOUND = -1F;
     private static final float UPPER_POSITION_BOUND = 1F;
-    private static final float LOWER_RADIUS_BOUND = 0.4F;
-    private static final float UPPER_RADIUS_BOUND = 0.6F;
+    private static final float LOWER_RADIUS_BOUND = 0.5F;
+    private static final float UPPER_RADIUS_BOUND = 0.7F;
     private static final int MAX_NUMBER_OF_ITERATIONS = 1000000;
     private static final int MAX_NUMBER_OF_ITERATIONS_PER_ELEMENT = 1000;
 
@@ -51,11 +51,13 @@ public class CardGeneratorImpl implements CardGenerator {
                 elementIterations += 1;
                 if (elementIterations >= MAX_NUMBER_OF_ITERATIONS_PER_ELEMENT) {
                     validatedImages.clear();
-                    i = 0;
+                    i = -1;
                     break;
                 }
             }
-            validatedImages.add(image);
+            if (i != -1) {
+                validatedImages.add(image);
+            }
         }
     }
 
@@ -63,7 +65,7 @@ public class CardGeneratorImpl implements CardGenerator {
         double distanceBetweenCircles = sqrt(image.getX() * image.getX()
                 + image.getY() * image.getY());
         double imageRadius = image.getRadius();
-        return !(distanceBetweenCircles + imageRadius > CARD_BASE_RADIUS);
+        return (distanceBetweenCircles + imageRadius) <= CARD_BASE_RADIUS;
     }
 
     private boolean doesNotOverlap(Image image, Queue<MutableImage> validatedImages) {
@@ -73,7 +75,7 @@ public class CardGeneratorImpl implements CardGenerator {
             double deltaY = image.getY() - validImage.getY();
             double distanceBetweenCircles =
                     sqrt(deltaX * deltaX + deltaY * deltaY);
-            if (sumOf2Radius/2F > distanceBetweenCircles) return false;
+            if (sumOf2Radius / 2.0 > distanceBetweenCircles) return false;
         }
         return true;
     }
