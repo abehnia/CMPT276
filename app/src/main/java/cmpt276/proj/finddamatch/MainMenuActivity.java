@@ -19,7 +19,6 @@ public class MainMenuActivity extends AppCompatActivity {
         setupStartGameBtn();
         setupHelpBtn();
         setupSettingsBtn();
-        setupToolbar();
     }
 
     @Override
@@ -35,12 +34,6 @@ public class MainMenuActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void setupToolbar() {
-        Toolbar myToolbar = findViewById(R.id.mainMenuToolbar);
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle(R.string.main_menu_activity_title);
     }
 
     private void setupSettingsBtn() {
