@@ -115,12 +115,12 @@ public class GameCanvas extends View {
     private void setupCards(int width, int height) {
         TypedArray logos = getResources().obtainTypedArray(R.array.logos);
         float guessCardX = width / 2.0f;
-        float guessCardY = 3 * height / 4.0f;
-        float guessCardRadius = Math.min(width, height) / 4.0f;
+        float guessCardY = 7 * height / 10.0f;
+        float guessCardRadius = Math.min(width, height) / 3.0f;
         guessCard = new GuessCardView(guessCardX, guessCardY, guessCardRadius,
                 logos, backgroundPaint, this.getResources());
         float leadCardX = width / 2.0f;
-        float leadCardY = height / 4.0f;
+        float leadCardY = 3 * height / 10.0f;
         float leadCardRadius = Math.min(width, height) / 4.0f;
         leadCard = new LeadCardView(leadCardX, leadCardY, leadCardRadius,
                 logos, backgroundPaint, this.getResources());
