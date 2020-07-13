@@ -1,5 +1,8 @@
 package cmpt276.proj.finddamatch.welcomeActivity;
 
+/**
+ * Class to simulate the effect of gravity
+ */
 public class GravityForce {
     private float g;
     private static final float G = 9.816f;

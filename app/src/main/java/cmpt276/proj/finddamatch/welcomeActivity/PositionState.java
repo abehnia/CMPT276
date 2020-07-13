@@ -1,5 +1,8 @@
 package cmpt276.proj.finddamatch.welcomeActivity;
 
+/**
+ * Holds a position and velocity
+ */
 public class PositionState {
     private float position;
     private float velocity;

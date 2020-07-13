@@ -1,7 +1,9 @@
 package cmpt276.proj.finddamatch.welcomeActivity;
 
-import android.util.Log;
 
+/**
+ * The main engine for the animation
+ */
 public class AnimationEngine {
     private float lowerLimit;
     private float upperLimit;

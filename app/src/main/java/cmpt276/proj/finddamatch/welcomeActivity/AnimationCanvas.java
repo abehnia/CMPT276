@@ -126,7 +126,7 @@ public class AnimationCanvas extends View {
                 (int) (BACKGROUND_MIDDLE_Y_POS_PERCENTAGE *
                         height - newBackgroundHeight / 2),
                 (int) (BACKGROUND_START_X_POS_PERCENTAGE * width +
-                        BACKGROUND_WIDTH_PERCENTAGE * width),
+                        newBackgroundWidth),
                 (int) (BACKGROUND_MIDDLE_Y_POS_PERCENTAGE * height +
                         newBackgroundHeight / 2));
         return newBackgroundHeight;

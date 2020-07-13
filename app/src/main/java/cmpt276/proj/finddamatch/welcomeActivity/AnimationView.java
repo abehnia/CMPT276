@@ -3,7 +3,6 @@ package cmpt276.proj.finddamatch.welcomeActivity;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 
 /**
