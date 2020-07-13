@@ -6,8 +6,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.util.Objects;
 
 public class HelpActivity extends AppCompatActivity {
 
@@ -15,6 +19,8 @@ public class HelpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
+        TextView textView = findViewById(R.id.helpView);
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
         setupToolbar();
     }
 
@@ -36,7 +42,7 @@ public class HelpActivity extends AppCompatActivity {
     private void setupToolbar() {
         Toolbar myToolbar = findViewById(R.id.helpMenuToolbar);
         setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle(R.string.help_activity_title);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.help_activity_title);
     }
 
     public static Intent makeIntent(Context context) {
