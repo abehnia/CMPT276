@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import java.io.IOException;
+
+import cmpt276.proj.finddamatch.gameActivity.GameState;
 import cmpt276.proj.finddamatch.settingsActivity.Settings;
 
 import cmpt276.proj.finddamatch.scoresActivity.ScoreManager;
@@ -24,6 +27,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setupSettings();
         setupBestScoresBtn();
         ScoreManager.loadAllScores(MainMenuActivity.this);
+        setupGame();
     }
 
     private void setupBestScoresBtn() {
@@ -67,4 +71,19 @@ public class MainMenuActivity extends AppCompatActivity {
         ScoreManager.saveAllScores(MainMenuActivity.this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            GameState.get().save(this);
+        } catch (IOException ignored) {
+        }
+    }
+
+    private void setupGame() {
+        try {
+            GameState.get().load(this);
+        } catch (IOException | ClassNotFoundException ignored) {
+        }
+    }
 }

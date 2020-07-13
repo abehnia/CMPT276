@@ -1,10 +1,12 @@
 package cmpt276.proj.finddamatch.model;
 
+import java.io.Serializable;
+
 /**
  * Interface for a card
  * Holds n images
  */
-public interface Card extends Iterable<Image> {
+public interface Card extends Iterable<Image>, Serializable {
     public static final int NUMBER_OF_IMAGES_PER_DECK = 7;
     public static final int NUMBER_OF_IMAGES_PER_CARD = 3;
     public static final int NUMBER_OF_CARDS = 7;

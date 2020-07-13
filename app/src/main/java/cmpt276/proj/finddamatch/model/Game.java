@@ -1,10 +1,12 @@
 package cmpt276.proj.finddamatch.model;
 
+import java.io.Serializable;
+
 /**
  * Interface for the main logic of the game
  * This is the interface that should be used in the game UI
  */
-public interface Game {
+public interface Game extends Serializable {
     /**
      * Checks if image is the same in both drawn cards
      * Side effects : none

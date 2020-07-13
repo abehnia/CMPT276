@@ -1,5 +1,6 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;

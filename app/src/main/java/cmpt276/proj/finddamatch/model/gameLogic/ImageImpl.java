@@ -1,5 +1,7 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
+import java.io.Serializable;
+
 import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.MutableImage;
 

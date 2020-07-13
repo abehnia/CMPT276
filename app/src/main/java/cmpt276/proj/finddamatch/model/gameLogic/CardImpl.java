@@ -2,6 +2,7 @@ package cmpt276.proj.finddamatch.model.gameLogic;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;

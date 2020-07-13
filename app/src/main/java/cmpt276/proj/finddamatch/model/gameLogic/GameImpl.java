@@ -1,5 +1,6 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
+import java.io.Serializable;
 import java.util.Stack;
 
 import cmpt276.proj.finddamatch.BuildConfig;
@@ -12,11 +13,12 @@ import cmpt276.proj.finddamatch.model.Image;
  * Game logic to implement the Game interface
  */
 public class GameImpl implements Game {
-    long referenceTime;
-    long elapsedTime;
-    DeckGenerator dealer;
-    Stack<Card> drawPile;
-    Stack<Card> discardPile;
+    private long referenceTime;
+    private long elapsedTime;
+    private DeckGenerator dealer;
+    private Stack<Card> drawPile;
+    private Stack<Card> discardPile;
+    private boolean isPaused;
 
     /**
      * GameImpl object that holds necessary stacks and variables
@@ -30,6 +32,7 @@ public class GameImpl implements Game {
         this.drawPile = dealer.generate();
         this.discardPile = new Stack<>();
         this.elapsedTime = 0;
+        this.isPaused = false;
         draw();
     }
 
@@ -85,6 +88,10 @@ public class GameImpl implements Game {
      */
     @Override
     public void pause(long time) {
+        if (isPaused) {
+            return;
+        }
+        this.isPaused = true;
         updateTime(time);
     }
 
@@ -96,6 +103,10 @@ public class GameImpl implements Game {
      */
     @Override
     public void resume(long time) {
+        if (!isPaused) {
+            return;
+        }
+        this.isPaused = false;
         referenceTime = time;
     }
 
@@ -143,7 +154,9 @@ public class GameImpl implements Game {
      */
     @Override
     public long queryTime(long time) {
-        updateTime(time);
+        if (!isPaused) {
+            updateTime(time);
+        }
         return elapsedTime;
     }
 

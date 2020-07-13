@@ -21,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -31,31 +32,31 @@
 
         <Button
             android:id="@+id/btnSettings"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/btnSettings_txt" />
 
         <Button
             android:id="@+id/btnStartGame"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/btnStartGame_txt" />
 
         <Button
             android:id="@+id/btnHelp"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/btnHelp_txt" />
 
         <Button
             android:id="@+id/btnBestScores"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/BtnBestScores_txt" />
     </LinearLayout>
 
@@ -65,4 +66,5 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.08" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

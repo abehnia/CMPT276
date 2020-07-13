@@ -1,11 +1,13 @@
 package cmpt276.proj.finddamatch.model;
 
+import java.io.Serializable;
+
 /**
  * Interface for an image
  * Holds a position, an orientation,
  * a radius and the image value
  */
-public interface Image {
+public interface Image extends Serializable {
     public static final float BASE_IMAGE_RADIUS = 0.2f;
 
     /**

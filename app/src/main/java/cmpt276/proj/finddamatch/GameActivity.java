@@ -13,12 +13,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.annotation.SuppressLint;
 import android.widget.TextView;
 
 import java.util.Locale;
 
 import cmpt276.proj.finddamatch.gameActivity.GameCanvas;
+import cmpt276.proj.finddamatch.gameActivity.GameState;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.CardGenerator;
 import cmpt276.proj.finddamatch.model.DeckGenerator;
@@ -37,9 +37,9 @@ public class GameActivity extends AppCompatActivity {
     private Handler handler;
     private TextView timer;
     private boolean isTouchable;
+    private ScoresIterator scores;
     private static final int DELAY = 100;
-    ScoresIterator scores;
-    private final int sixthScore = 5;
+    private static final int SIXTH_SCORE = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +57,29 @@ public class GameActivity extends AppCompatActivity {
         setupBackButton();
     }
 
-    private void displayDialogBox(long longTime) {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        game.resume(SystemClock.elapsedRealtime());
+        updateTime();
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        game.pause(SystemClock.elapsedRealtime());
+        removeHandler();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cleanupGame();
+    }
+
+    private void displayDialogBox(long longTime) {
         int time = (int)(longTime/1000);
-        scores.getScores().get(sixthScore).setTime(time);
+        scores.getScores().get(SIXTH_SCORE).setTime(time);
         FragmentManager manager = getSupportFragmentManager();
         DialogBoxFragment dialog = new DialogBoxFragment();
         dialog.show(manager, "Best Scores Dialog");
@@ -71,10 +90,16 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setupGame() {
-        CardGenerator cardGenerator = new CardGeneratorImpl();
-        DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator);
-        game = new GameImpl(deckGenerator, SystemClock.elapsedRealtime());
-        game.reset(SystemClock.elapsedRealtime());
+        GameState gameState = GameState.get();
+        this.game = gameState.getGame();
+        if (game == null) {
+            CardGenerator cardGenerator = new CardGeneratorImpl();
+            DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator);
+            game = new GameImpl(deckGenerator, SystemClock.elapsedRealtime());
+            game.reset(SystemClock.elapsedRealtime());
+            gameState.setGame(game);
+        }
+        game.resume(SystemClock.elapsedRealtime());
         discard = game.peekDiscard();
         draw = game.peekDraw();
     }
@@ -116,7 +141,6 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupHandler() {
         this.handler = new Handler();
-        this.handler.postDelayed(this::updateTime, DELAY);
     }
 
     private void setupTimer() {
@@ -188,6 +212,13 @@ public class GameActivity extends AppCompatActivity {
         long time = game.queryTime(SystemClock.elapsedRealtime());
         game.pause(time);
         displayDialogBox(time);
+    }
+
+    private void cleanupGame() {
+        if (game.isGameDone()) {
+            game.reset(SystemClock.elapsedRealtime());
+        }
+        game.pause(SystemClock.elapsedRealtime());
     }
 
     private String formatTime(long time) {
