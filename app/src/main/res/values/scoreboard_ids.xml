@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="name_ids">
+        <item>@id/Score1Name</item>
+        <item>@id/Score2Name</item>
+        <item>@id/Score3Name</item>
+        <item>@id/Score4Name</item>
+        <item>@id/Score5Name</item>
+    </array>
+    <array name="date_ids">
+        <item>@id/Score1Date</item>
+        <item>@id/Score2Date</item>
+        <item>@id/Score3Date</item>
+        <item>@id/Score4Date</item>
+        <item>@id/Score5Date</item>
+    </array>
+    <array name="time_ids">
+        <item>@id/Score1Time</item>
+        <item>@id/Score2Time</item>
+        <item>@id/Score3Time</item>
+        <item>@id/Score4Time</item>
+        <item>@id/Score5Time</item>
+    </array>
+
+    <array name="name2_ids">
+        <item>@id/Score1Name2</item>
+        <item>@id/Score2Name2</item>
+        <item>@id/Score3Name2</item>
+        <item>@id/Score4Name2</item>
+        <item>@id/Score5Name2</item>
+    </array>
+    <array name="date2_ids">
+        <item>@id/Score1Date2</item>
+        <item>@id/Score2Date2</item>
+        <item>@id/Score3Date2</item>
+        <item>@id/Score4Date2</item>
+        <item>@id/Score5Date2</item>
+    </array>
+    <array name="time2_ids">
+        <item>@id/Score1Time2</item>
+        <item>@id/Score2Time2</item>
+        <item>@id/Score3Time2</item>
+        <item>@id/Score4Time2</item>
+        <item>@id/Score5Time2</item>
+    </array>
+</resources>

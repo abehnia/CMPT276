@@ -17,7 +17,7 @@ import cmpt276.proj.finddamatch.model.Image;
 /**
  * Abstract class to represent a view for a card
  */
-public abstract class CardView implements Iterable<ImageView>{
+public abstract class CardView implements Iterable<ImageView> {
     protected float x, y, radius;
     protected Paint backgroundPaint;
     protected ArrayList<ImageView> images;

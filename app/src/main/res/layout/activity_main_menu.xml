@@ -15,7 +15,7 @@
         android:layout_marginTop="312dp"
         android:layout_marginEnd="183dp"
         android:layout_marginBottom="400dp"
-        android:text="@string/main_menu_title"
+        android:text="@string/main_menu_activity_title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,26 +32,40 @@
 
         <Button
             android:id="@+id/btnSettings"
-            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/btnSettings_txt" />
 
         <Button
             android:id="@+id/btnStartGame"
-            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnStartGame_txt"
-            android:textColor="#F45C16" />
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/btnStartGame_txt" />
 
         <Button
             android:id="@+id/btnHelp"
-            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
             android:text="@string/btnHelp_txt" />
+
+        <Button
+            android:id="@+id/btnBestScores"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="@string/BtnBestScores_txt" />
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
 
     <ImageView
         android:id="@+id/imageView"
