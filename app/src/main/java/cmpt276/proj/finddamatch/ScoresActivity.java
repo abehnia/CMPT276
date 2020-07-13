@@ -1,12 +1,15 @@
 package cmpt276.proj.finddamatch;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -26,6 +29,7 @@ public class ScoresActivity extends AppCompatActivity {
         scores = ScoresIterator.getInstance();
         populateTable();
         setupResetBtn();
+        setupToolbar();
     }
 
     private void setupResetBtn() {
@@ -34,6 +38,12 @@ public class ScoresActivity extends AppCompatActivity {
             ScoreManager.resetScores(ScoresActivity.this);
             populateTable();
         });
+    }
+
+    private void setupToolbar() {
+        Toolbar myToolbar = findViewById(R.id.bestScoresToolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle(R.string.best_scores_activity_title);
     }
 
     private void populateTable() {
@@ -73,6 +83,21 @@ public class ScoresActivity extends AppCompatActivity {
 
     public static Intent makeIntent(Context context) {
         return new Intent(context, ScoresActivity.class);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.default_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.backButton) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

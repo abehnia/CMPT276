@@ -8,6 +8,7 @@
     <string name="btnHelp_txt">Help</string>
     <string name="help_activity_title">Help</string>
     <string name="settings_activity_title">Settings</string>
+    <string name="best_scores_activity_title">Best Scores</string>
     <string name="main_menu_activity_title">Main Menu</string>
     <string name="game_page_title">Game Page</string>
     <string name="BtnBestScores_txt">Best Scores</string>
