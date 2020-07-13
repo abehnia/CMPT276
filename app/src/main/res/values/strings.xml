@@ -56,7 +56,7 @@
     <string name="nickname_msg">You Must Enter a Nickname to Save your Highscore</string>
     <string name="back_arrow_vector_image">Back Arrow Vector Image</string>
 
-    <string name="time_game_activity">Time</string>
+    <string name="time_game_activity">Time:</string>
     <string name="null_text_view">TextView</string>
     <string name="game_activity_reset">Reset</string>
     <string name="activity_settings_western_conference">Western Conference</string>

@@ -10,6 +10,7 @@
         android:id="@+id/game_activity_game_canvas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/ic_background_empty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,6 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/time_game_activity"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/game_activity_time_value"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/game_activity_time_value"
@@ -32,6 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/null_text_view"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/game_activity_time"
         app:layout_constraintTop_toTopOf="parent" />
 
