@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="def_times">
+        <item>6</item>
+        <item>10</item>
+        <item>13</item>
+        <item>15</item>
+        <item>20</item>
+        <item>100000000</item>
+    </integer-array>
+
+    <string-array name="def_names">
+        <item>Bob</item>
+        <item>Tom</item>
+        <item>Jerry</item>
+        <item>Batman</item>
+        <item>Robin</item>
+        <item>Score6Name</item>
+    </string-array>
+
+    <string-array name="def_dates">
+        <item>Wed, July 1</item>
+        <item>Thurs, July 2</item>
+        <item>Fri, July 3</item>
+        <item>Sat, July 4</item>
+        <item>Sun, July 5</item>
+        <item>Score6Date</item>
+    </string-array>
+</resources>
+
+<!--&lt;!&ndash;These are the default high scores, in order with the smallest high score on top and largest at the bottom. -->
+<!--6th value should NOT be changed-->

@@ -1,38 +1,52 @@
 package cmpt276.proj.finddamatch;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.annotation.SuppressLint;
 import android.widget.TextView;
 
 import java.util.Locale;
 
 import cmpt276.proj.finddamatch.gameActivity.GameCanvas;
 import cmpt276.proj.finddamatch.model.Card;
+import cmpt276.proj.finddamatch.model.CardGenerator;
+import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.Game;
-import cmpt276.proj.finddamatch.model.GameMockImpl;
 import cmpt276.proj.finddamatch.model.Image;
+import cmpt276.proj.finddamatch.model.gameLogic.CardGeneratorImpl;
+import cmpt276.proj.finddamatch.model.gameLogic.DeckGeneratorImpl;
+import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
+import cmpt276.proj.finddamatch.settingsActivity.Settings;
+import cmpt276.proj.finddamatch.scoresActivity.ScoresIterator;
 
 public class GameActivity extends AppCompatActivity {
     private GameCanvas gameCanvas;
     private Game game;
-    private Card lead, guess;
+    private Card discard, draw;
     private Handler handler;
     private TextView timer;
     private boolean isTouchable;
     private static final int DELAY = 100;
+    ScoresIterator scores;
+    private final int sixthScore = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        scores = ScoresIterator.getInstance();
         this.isTouchable = true;
         setupGame();
         setupCanvas();
@@ -40,22 +54,16 @@ public class GameActivity extends AppCompatActivity {
         setupTimer();
         setupHandler();
         setupButton();
+        setupBackButton();
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (handler != null) {
-            removeHandler();
-        }
-    }
+    private void displayDialogBox(long longTime) {
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (handler != null) {
-            updateTime();
-        }
+        int time = (int)(longTime/1000);
+        scores.getScores().get(sixthScore).setTime(time);
+        FragmentManager manager = getSupportFragmentManager();
+        DialogBoxFragment dialog = new DialogBoxFragment();
+        dialog.show(manager, "Best Scores Dialog");
     }
 
     public static Intent makeIntent(Context context) {
@@ -63,10 +71,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setupGame() {
-        game = new GameMockImpl();
-        game.reset();
-        lead = game.poll();
-        guess = game.poll();
+        CardGenerator cardGenerator = new CardGeneratorImpl();
+        DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator);
+        game = new GameImpl(deckGenerator, SystemClock.elapsedRealtime());
+        game.reset(SystemClock.elapsedRealtime());
+        discard = game.peekDiscard();
+        draw = game.peekDraw();
     }
 
     private void setupCanvas() {
@@ -76,7 +86,8 @@ public class GameActivity extends AppCompatActivity {
             public void onLayoutChange(View v, int left, int top, int right,
                                        int bottom, int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
-                gameCanvas.setCards(guess, lead, 0);
+                gameCanvas.setCards(discard, draw,
+                        Settings.get().getImageSetValue());
             }
         });
     }
@@ -105,11 +116,12 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupHandler() {
         this.handler = new Handler();
+        this.handler.postDelayed(this::updateTime, DELAY);
     }
 
     private void setupTimer() {
         this.timer = findViewById(R.id.game_activity_time_value);
-        this.timer.setText(formatTime(game.queryTime()));
+        this.timer.setText(formatTime(game.queryTime(SystemClock.elapsedRealtime())));
     }
 
     private void setupButton() {
@@ -117,18 +129,30 @@ public class GameActivity extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                game.reset();
-                lead = game.poll();
-                guess = game.poll();
-                gameCanvas.setCards(guess, lead, 0);
-                updateTime();
+                game.reset(SystemClock.elapsedRealtime());
+                discard = game.peekDiscard();
+                draw = game.peekDraw();
+                gameCanvas.setCards(discard, draw,
+                        Settings.get().getImageSetValue());
+                setupHandler();
                 isTouchable = true;
             }
         });
     }
 
+    private void setupBackButton() {
+        ImageButton backButton = findViewById(R.id.gameActivityBackButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
     private void updateTime() {
-        this.timer.setText(formatTime(game.queryTime()));
+        this.timer.setText(formatTime(game.queryTime(
+                SystemClock.elapsedRealtime())));
         handler.postDelayed(this::updateTime, DELAY);
     }
 
@@ -146,17 +170,24 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
         game.update(intersectedImage);
+        discard = game.draw();
         if (game.isGameDone()) {
             removeHandler();
+            onGameDone();
             return;
         }
-        lead = game.poll();
-        guess = game.poll();
-        gameCanvas.setCards(guess, lead, 0);
+        draw = game.peekDraw();
+        gameCanvas.setCards(discard, draw, Settings.get().getImageSetValue());
     }
 
     private void actionUp() {
         this.isTouchable = !game.isGameDone();
+    }
+
+    private void onGameDone(){
+        long time = game.queryTime(SystemClock.elapsedRealtime());
+        game.pause(time);
+        displayDialogBox(time);
     }
 
     private String formatTime(long time) {
