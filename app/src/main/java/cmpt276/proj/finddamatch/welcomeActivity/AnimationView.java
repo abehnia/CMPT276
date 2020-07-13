@@ -3,6 +3,7 @@ package cmpt276.proj.finddamatch.welcomeActivity;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 
 /**
@@ -28,18 +29,18 @@ public class AnimationView {
     }
 
     void setX(float x) {
-        float deltaX = x - this.x;
         this.x = x;
-        bounds.left += deltaX;
-        bounds.right += deltaX;
+        float width = bounds.width();
+        bounds.left = (int) (this.x - width / 2f);
+        bounds.right = (int) (this.x + width / 2f);
         this.imageToDraw.setBounds(this.bounds);
     }
 
     void setY(float y) {
-        float deltaY = y - this.y;
         this.y = y;
-        bounds.top += deltaY;
-        bounds.bottom += deltaY;
+        float height = bounds.height();
+        bounds.top = (int) (this.y - height / 2f);
+        bounds.bottom = (int) (this.y + height / 2f);
         this.imageToDraw.setBounds(this.bounds);
     }
 
