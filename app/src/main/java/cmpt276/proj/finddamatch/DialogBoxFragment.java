@@ -61,7 +61,7 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
 
         return new AlertDialog.Builder(getActivity())
                 .setTitle("Best Scores")
-                .setView(v)
+                .setView(v).setCancelable(false)
                 .setNeutralButton("Save", listener)
                 .setNegativeButton(android.R.string.cancel, listener)
                 .create();
