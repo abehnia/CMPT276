@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import cmpt276.proj.finddamatch.scoresActivity.ScoreManager;
@@ -25,6 +27,7 @@ public class ScoresActivity extends AppCompatActivity {
         scores = ScoresIterator.getInstance();
         populateTable();
         setupResetBtn();
+        setupToolbar();
     }
 
     private void setupResetBtn() {
@@ -63,6 +66,18 @@ public class ScoresActivity extends AppCompatActivity {
         typedNameIds.recycle();
         typedDateIds.recycle();
         typedTimeIds.recycle();
+    }
+
+    private void setupToolbar() {
+        TextView title = findViewById(R.id.toolbarTitle);
+        title.setText(R.string.scoreboard_menu_title);
+        ImageButton button = findViewById(R.id.backButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public static Intent makeIntent(Context context) {

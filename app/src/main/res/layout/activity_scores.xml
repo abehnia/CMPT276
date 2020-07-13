@@ -6,6 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".ScoresActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <include
+        android:id="@+id/ScoresMenuToolbar"
+        layout="@layout/custom_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineScores"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

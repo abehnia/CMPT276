@@ -8,6 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class HelpActivity extends AppCompatActivity {
 
@@ -18,25 +21,16 @@ public class HelpActivity extends AppCompatActivity {
         setupToolbar();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.default_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.backButton) {
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private void setupToolbar() {
-        Toolbar myToolbar = findViewById(R.id.helpMenuToolbar);
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle(R.string.help_activity_title);
+        TextView title = findViewById(R.id.toolbarTitle);
+        title.setText(R.string.help_activity_title);
+        ImageButton button = findViewById(R.id.backButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     public static Intent makeIntent(Context context) {

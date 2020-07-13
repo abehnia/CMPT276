@@ -13,7 +13,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.annotation.SuppressLint;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -39,7 +38,7 @@ public class GameActivity extends AppCompatActivity {
     private boolean isTouchable;
     private static final int DELAY = 100;
     ScoresIterator scores;
-    private final int sixthScore = 5;
+    static private final int SIXTH_SCORE = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +59,7 @@ public class GameActivity extends AppCompatActivity {
     private void displayDialogBox(long longTime) {
 
         int time = (int)(longTime/1000);
-        scores.getScores().get(sixthScore).setTime(time);
+        scores.getScores().get(SIXTH_SCORE).setTime(time);
         FragmentManager manager = getSupportFragmentManager();
         DialogBoxFragment dialog = new DialogBoxFragment();
         dialog.show(manager, "Best Scores Dialog");
