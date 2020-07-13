@@ -70,9 +70,9 @@ public class ScoresActivity extends AppCompatActivity {
             txtDate.setText(date);
             txtTime.setText(time_str);
 
-            txtName.setTextColor(ContextCompat.getColor(ScoresActivity.this, R.color.colorTableText));
-            txtDate.setTextColor(ContextCompat.getColor(ScoresActivity.this, R.color.colorTableText));
-            txtTime.setTextColor(ContextCompat.getColor(ScoresActivity.this, R.color.colorTableText));
+            txtName.setTextColor(ContextCompat.getColor(ScoresActivity.this, R.color.colorText));
+            txtDate.setTextColor(ContextCompat.getColor(ScoresActivity.this, R.color.colorText));
+            txtTime.setTextColor(ContextCompat.getColor(ScoresActivity.this, R.color.colorText));
 
         }
 
