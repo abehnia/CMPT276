@@ -2,6 +2,9 @@ package cmpt276.proj.finddamatch.model.gameLogic;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
+import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.MutableImage;
 
@@ -16,11 +19,13 @@ class ImageImplTest {
 
     @Test
     void getOrientation() {
-        // Test default constructor
-        Image image = new ImageImpl(0);
+        // Test parametrized constructors
+        MutableImage image = new ImageImpl(0);
         assertEquals(0.0, image.getOrientation());
+        image.setOrientation(0.5f);
+        assertEquals(0.5f, image.getOrientation());
 
-        // Test parametrized constructor
+
         Image nextImage = new ImageImpl(0.5f, 0, 1, 0, 0);
         assertEquals(0.0, nextImage.getOrientation());
     }
@@ -132,5 +137,23 @@ class ImageImplTest {
         assertTrue(image.isEquivalent(nextImage));
         // Test false
         assertFalse(image.isEquivalent(falseImage));
+    }
+
+    @Test
+    void iterator() {
+        Image image1 = new ImageImpl(0);
+        Card card = new CardImpl(image1);
+        Iterator<Image> it = card.iterator();
+        int i = 0;
+        while (it.hasNext()) {
+            Image image = it.next();
+            it.remove();
+        }
+        while (it.hasNext()) {
+            ++i;
+            it.next();
+        }
+
+        assertEquals(0, i);
     }
 }
