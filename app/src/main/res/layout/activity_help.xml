@@ -13,18 +13,14 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.08" />
 
-    <androidx.appcompat.widget.Toolbar
+    <include
         android:id="@+id/helpMenuToolbar"
+        layout="@layout/custom_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="15dp"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline3"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView

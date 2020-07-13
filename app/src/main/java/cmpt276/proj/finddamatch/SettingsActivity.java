@@ -10,7 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import cmpt276.proj.finddamatch.settingsActivity.Settings;
 
@@ -32,29 +34,20 @@ public class SettingsActivity extends AppCompatActivity {
         Settings.get().save(SettingsActivity.this);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.default_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.backButton) {
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     public static Intent makeIntent(Context context) {
         return new Intent(context, SettingsActivity.class);
     }
 
     private void setupToolbar() {
-        Toolbar myToolbar = findViewById(R.id.settingsMenuToolbar);
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle(R.string.settings_activity_title);
+        TextView title = findViewById(R.id.toolbarTitle);
+        title.setText(R.string.settings_activity_title);
+        ImageButton button = findViewById(R.id.backButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void setupImageSet() {
