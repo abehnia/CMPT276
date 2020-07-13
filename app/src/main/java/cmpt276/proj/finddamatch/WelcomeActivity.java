@@ -12,7 +12,7 @@ import android.widget.Button;
 import cmpt276.proj.finddamatch.welcomeActivity.AnimationCanvas;
 
 public class WelcomeActivity extends AppCompatActivity {
-    private static int SCREEN_TIME = 8000;
+    private static int SCREEN_TIME = 7500;
     private Handler handler;
     private long referenceTime;
     private long elapsedTime;
@@ -35,9 +35,7 @@ public class WelcomeActivity extends AppCompatActivity {
         long previousTime = this.referenceTime;
         this.referenceTime = SystemClock.elapsedRealtime();
         this.elapsedTime += referenceTime - previousTime;
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-        }
+        handler.removeCallbacksAndMessages(null);
         canvas.pause();
     }
 
@@ -46,10 +44,8 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onResume();
         canvas.resume();
         this.referenceTime = SystemClock.elapsedRealtime();
-        if (handler != null) {
-            handler.postDelayed(this::nextActivity, SCREEN_TIME -
+        handler.postDelayed(this::nextActivity, SCREEN_TIME -
                     elapsedTime);
-        }
     }
 
     private void nextActivity() {
@@ -64,9 +60,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void skipSplash() {
-        if (handler != null){
-            handler.removeCallbacksAndMessages(null);
-        }
+        handler.removeCallbacksAndMessages(null);
         nextActivity();
     }
 
