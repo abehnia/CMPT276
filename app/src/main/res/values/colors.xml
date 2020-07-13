@@ -5,4 +5,5 @@
     <color name="colorAccent">#F45C16</color>
     <color name="colorGameBackground">#FFFFFF</color>
     <color name="colorCard">#000000</color>
+    <color name="colorTableText">#FFFFFF</color>
 </resources>

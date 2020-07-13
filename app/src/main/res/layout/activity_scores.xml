@@ -4,21 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     tools:context=".ScoresActivity">
 
     <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/tableLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/background_shape"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline16"
+        app:layout_constraintEnd_toStartOf="@+id/guideline15"
+        app:layout_constraintStart_toStartOf="@+id/guideline7"
+        app:layout_constraintTop_toTopOf="@+id/guideline6">
 
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical">
 
             <TextView
                 android:id="@+id/ScoreTablePosTitle"
@@ -26,9 +34,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_weight="1"
                 android:text="@string/ScoreTablePosTitle"
                 android:textAlignment="center"
-                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -37,10 +47,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:textSize="18sp"
+                android:layout_weight="1"
+                android:text="@string/ScoreTableScoreTitle"
                 android:textAlignment="center"
-                android:textStyle="bold"
-                android:text="@string/ScoreTableScoreTitle" />
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/ScoreTableTimeTitle"
@@ -48,10 +60,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:textSize="18sp"
+                android:layout_weight="1"
+                android:text="@string/ScoreTableTimeTitle"
                 android:textAlignment="center"
-                android:textStyle="bold"
-                android:text="@string/ScoreTableTimeTitle" />
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/ScoreTableDateTitle"
@@ -59,17 +73,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:textSize="18sp"
+                android:layout_weight="1.3"
+                android:text="@string/ScoreTableDateTitle"
                 android:textAlignment="center"
-                android:textStyle="bold"
-                android:text="@string/ScoreTableDateTitle" />
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </TableRow>
 
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical">
 
             <TextView
                 android:id="@+id/Score1Pos"
@@ -77,8 +93,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_weight="1"
                 android:text="@string/Score1Pos"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/Score1Name"
@@ -86,8 +104,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:textAlignment="center"
-                android:text="@string/BestScore1Name" />
+                android:layout_weight="1"
+                android:text="@string/BestScore1Name"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/Score1Time"
@@ -95,8 +114,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:textAlignment="center"
-                android:text="@string/BestScore1Time" />
+                android:layout_weight="1"
+                android:text="@string/BestScore1Time"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/Score1Date"
@@ -104,15 +124,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:textAlignment="center"
-                android:text="@string/BestScore1Date" />
+                android:layout_weight="1.3"
+                android:text="@string/BestScore1Date"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical">
 
             <TextView
                 android:id="@+id/Score2Pos"
@@ -120,42 +141,47 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_weight="1"
                 android:text="@string/Score2Pos"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/Score2Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore2Name" />
+                android:layout_weight="1"
+                android:text="@string/BestScore2Name"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/Score2Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textAlignment="center"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore2Time" />
+                android:layout_weight="1"
+                android:text="@string/BestScore2Time"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/Score2Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore2Date" />
+                android:layout_weight="1.3"
+                android:text="@string/BestScore2Date"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical">
 
             <TextView
                 android:id="@+id/Score3Pos"
@@ -163,42 +189,47 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_weight="1"
                 android:text="@string/Score3Pos"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/Score3Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textAlignment="center"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore3Name" />
+                android:layout_weight="1"
+                android:text="@string/BestScore3Name"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/Score3Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textAlignment="center"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore3Time" />
+                android:layout_weight="1"
+                android:text="@string/BestScore3Time"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/Score3Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore3Date" />
+                android:layout_weight="1.3"
+                android:text="@string/BestScore3Date"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical">
 
             <TextView
                 android:id="@+id/Score4Pos"
@@ -206,42 +237,47 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_weight="1"
                 android:text="@string/Score4Pos"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/Score4Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore4Name" />
+                android:layout_weight="1"
+                android:text="@string/BestScore4Name"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/Score4Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore4Time" />
+                android:layout_weight="1"
+                android:text="@string/BestScore4Time"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/Score4Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore4Date" />
+                android:layout_weight="1.3"
+                android:text="@string/BestScore4Date"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical">
 
             <TextView
                 android:id="@+id/Score5Pos"
@@ -249,35 +285,40 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_weight="1"
                 android:text="@string/Score5Pos"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/Score5Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore5Name" />
+                android:layout_weight="1"
+                android:text="@string/BestScore5Name"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/Score5Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore5Time" />
+                android:layout_weight="1"
+                android:text="@string/BestScore5Time"
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/Score5Date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
-                android:text="@string/BestScore5Date" />
+                android:layout_weight="1.3"
+                android:text="@string/BestScore5Date"
+                android:textAlignment="center" />
         </TableRow>
     </TableLayout>
 
@@ -285,10 +326,50 @@
         android:id="@+id/btnReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginTop="36dp"
         android:text="@string/reset_score"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/tableLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#00FFFFFF"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.37" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
