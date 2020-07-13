@@ -8,6 +8,10 @@ import android.widget.Button;
 
 import cmpt276.proj.finddamatch.settingsActivity.Settings;
 
+import cmpt276.proj.finddamatch.scoresActivity.ScoreManager;
+
+/**Class for the Main Menu. Sets up various buttons*/
+
 public class MainMenuActivity extends AppCompatActivity {
 
     @Override
@@ -18,6 +22,16 @@ public class MainMenuActivity extends AppCompatActivity {
         setupStartGameBtn();
         setupHelpBtn();
         setupSettings();
+        setupBestScoresBtn();
+        ScoreManager.loadAllScores(MainMenuActivity.this);
+    }
+
+    private void setupBestScoresBtn() {
+        Button bestScoresBtn = findViewById(R.id.btnBestScores);
+        bestScoresBtn.setOnClickListener(v -> {
+            Intent settings_intent = ScoresActivity.makeIntent(MainMenuActivity.this);
+            startActivity(settings_intent);
+        });
     }
 
     private void setupSettings() {
@@ -45,4 +59,12 @@ public class MainMenuActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ScoreManager.saveAllScores(MainMenuActivity.this);
+    }
+
 }

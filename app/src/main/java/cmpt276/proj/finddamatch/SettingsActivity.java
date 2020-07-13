@@ -1,10 +1,13 @@
 package cmpt276.proj.finddamatch;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
@@ -20,6 +23,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         setupImageSet();
         setupApplyButton();
+        setupToolbar();
     }
 
     @Override
@@ -28,30 +32,43 @@ public class SettingsActivity extends AppCompatActivity {
         Settings.get().save(SettingsActivity.this);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.default_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.backButton) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public static Intent makeIntent(Context context) {
         return new Intent(context, SettingsActivity.class);
+    }
+
+    private void setupToolbar() {
+        Toolbar myToolbar = findViewById(R.id.settingsMenuToolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setTitle(R.string.settings_activity_title);
     }
 
     private void setupImageSet() {
         RadioGroup radioGroup = findViewById(R.id.ImageSetChoice);
         this.imageSetKey = Settings.get().getImageSetKey();
         radioGroup.check(imageSetKey);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                imageSetKey = checkedId;
-            }
-        });
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> imageSetKey = checkedId);
     }
 
     private void setupApplyButton() {
         Button applyButton = findViewById(R.id.activitySettingsApply);
-        applyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Settings.get().setImageSet(imageSetKey);
-                finish();
-            }
+        applyButton.setOnClickListener(v -> {
+            Settings.get().setImageSet(imageSetKey);
+            finish();
         });
     }
 }
