@@ -12,7 +12,7 @@ import android.widget.Button;
 import cmpt276.proj.finddamatch.welcomeActivity.AnimationCanvas;
 
 public class WelcomeActivity extends AppCompatActivity {
-    private static int SCREEN_TIME = 20000;
+    private static int SCREEN_TIME = 8000;
     private Handler handler;
     private long referenceTime;
     private long elapsedTime;

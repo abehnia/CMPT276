@@ -52,8 +52,8 @@ public class AnimationView {
         int width = this.imageToDraw.getIntrinsicWidth();
         int height = this.imageToDraw.getIntrinsicHeight();
         float maxSide = Math.max(width, height);
-        float NewWidth = (width / maxSide) * this.radius;
-        float newHeight = (height / maxSide) * this.radius;
+        float NewWidth = (width / maxSide) * 2 * this.radius;
+        float newHeight = (height / maxSide) * 2 * this.radius;
         float left = this.x - NewWidth / 2.0f;
         float right = left + NewWidth;
         float top = this.y - newHeight / 2.0f;
