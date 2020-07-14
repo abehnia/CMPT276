@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+/**
+ * Class for Help Activity from the Main Menu
+ */
+
 public class HelpActivity extends AppCompatActivity {
 
     @Override

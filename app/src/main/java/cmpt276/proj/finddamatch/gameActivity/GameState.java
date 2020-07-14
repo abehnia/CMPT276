@@ -4,6 +4,10 @@ import android.content.Context;
 
 import cmpt276.proj.finddamatch.Persistable;
 
+/**
+ * Saves and loads the game state
+ */
+
 public class GameState implements Persistable {
 
     @Override

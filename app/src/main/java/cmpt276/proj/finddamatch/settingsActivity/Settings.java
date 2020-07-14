@@ -32,7 +32,9 @@ public class Settings implements Persistable {
         Settings.map = new HashMap<>();
     }
 
-    /** This function must be called before calling any of the other ones */
+    /**
+     * This function must be called before calling any of the other ones
+     */
     public void init(Resources resources) {
         TypedArray typedKeys = resources.obtainTypedArray(R.array.imageset_keys);
         int[] keys = new int[typedKeys.length()];
@@ -100,7 +102,8 @@ public class Settings implements Persistable {
         SharedPreferences.Editor settingsEditor = settings.edit();
         settingsEditor.putInt(IMAGE_SET_KEY_KEY, this.imageSetKey);
         settingsEditor.putInt(IMAGE_SET_VALUE_KEY, this.imageSetValue);
-        settingsEditor.apply();;
+        settingsEditor.apply();
+        ;
     }
 
     private void checkInitialized() {

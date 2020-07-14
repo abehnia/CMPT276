@@ -15,7 +15,9 @@ import android.widget.TextView;
 import cmpt276.proj.finddamatch.scoresActivity.ScoreManager;
 import cmpt276.proj.finddamatch.scoresActivity.ScoresIterator;
 
-/**Activity to show user the top 5 high scores and reset high scores*/
+/**
+ * Activity to show user the top 5 high scores and reset high scores
+ */
 
 public class ScoresActivity extends AppCompatActivity {
     private ScoresIterator scores;
@@ -49,15 +51,15 @@ public class ScoresActivity extends AppCompatActivity {
         TypedArray typedDateIds = getResources().obtainTypedArray(R.array.date_ids);
         TypedArray typedTimeIds = getResources().obtainTypedArray(R.array.time_ids);
 
-        for (int i = 0; i < 5;i++){
+        for (int i = 0; i < 5; i++) {
             int time = scores.getScores().get(i).getTime();
             String name = scores.getScores().get(i).getName();
             String date = scores.getScores().get(i).getDate();
-            time_str = ScoreManager.getTimeString(time,ScoresActivity.this);
+            time_str = ScoreManager.getTimeString(time, ScoresActivity.this);
 
-            txtName = findViewById(typedNameIds.getResourceId(i,0));
-            txtDate = findViewById(typedDateIds.getResourceId(i,0));
-            txtTime = findViewById(typedTimeIds.getResourceId(i,0));
+            txtName = findViewById(typedNameIds.getResourceId(i, 0));
+            txtDate = findViewById(typedDateIds.getResourceId(i, 0));
+            txtTime = findViewById(typedTimeIds.getResourceId(i, 0));
 
             txtName.setText(name);
             txtDate.setText(date);
