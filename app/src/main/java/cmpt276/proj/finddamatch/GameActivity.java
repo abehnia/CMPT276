@@ -62,6 +62,7 @@ public class GameActivity extends AppCompatActivity {
         scores.getScores().get(SIXTH_SCORE).setTime(time);
         FragmentManager manager = getSupportFragmentManager();
         DialogBoxFragment dialog = new DialogBoxFragment();
+        dialog.setCancelable(false);
         dialog.show(manager, "Best Scores Dialog");
     }
 

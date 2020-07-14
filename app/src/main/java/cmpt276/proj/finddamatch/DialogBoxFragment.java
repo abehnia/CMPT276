@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.core.content.ContextCompat;
 
 import java.util.Objects;
 
@@ -34,6 +35,7 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
         String dTime = ScoreManager.getTimeString(time,getContext());
         TextView txtYourScore = v.findViewById(R.id.txtYourScore);
         txtYourScore.setText(dTime);
+
 
         DialogInterface.OnClickListener listener = (dialog, which) -> {
             switch (which){
@@ -56,9 +58,10 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
             }
         };
 
+
         return new AlertDialog.Builder(getActivity())
                 .setTitle("Best Scores")
-                .setView(v)
+                .setView(v).setCancelable(false)
                 .setNeutralButton("Save", listener)
                 .setNegativeButton(android.R.string.cancel, listener)
                 .create();
@@ -87,6 +90,7 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
             txtName.setText(name);
             txtDate.setText(date);
             txtTime.setText(time_str);
+
         }
 
         typedName2Ids.recycle();
