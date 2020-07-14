@@ -1,15 +1,15 @@
-package cmpt276.proj.finddamatch;
+package cmpt276.proj.finddamatch.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ImageButton;
 
-import cmpt276.proj.finddamatch.settingsActivity.Settings;
+import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 
-import cmpt276.proj.finddamatch.scoresActivity.ScoreManager;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 
 /**
  * Class for the Main Menu. Sets up various buttons

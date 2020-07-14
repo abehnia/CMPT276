@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch;
+package cmpt276.proj.finddamatch.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.view.View;
 import android.widget.Button;
 
-import cmpt276.proj.finddamatch.welcomeActivity.AnimationCanvas;
+import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.welcomeActivity.AnimationCanvas;
 
 /**
  * Class for Splash Screen Activity

@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch.welcomeActivity;
+package cmpt276.proj.finddamatch.UI.welcomeActivity;
 
 /**
  * Holds a position and velocity

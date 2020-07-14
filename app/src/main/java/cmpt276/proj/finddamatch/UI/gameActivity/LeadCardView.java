@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch.gameActivity;
+package cmpt276.proj.finddamatch.UI.gameActivity;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 
 import cmpt276.proj.finddamatch.R;
-import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.MutableImage;
 import cmpt276.proj.finddamatch.model.gameLogic.ImageImpl;
 

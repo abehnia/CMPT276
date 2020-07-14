@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch;
+package cmpt276.proj.finddamatch.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -12,8 +12,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import cmpt276.proj.finddamatch.scoresActivity.ScoreManager;
-import cmpt276.proj.finddamatch.scoresActivity.ScoresIterator;
+import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoresIterator;
 
 /**
  * Activity to show user the top 5 high scores and reset high scores

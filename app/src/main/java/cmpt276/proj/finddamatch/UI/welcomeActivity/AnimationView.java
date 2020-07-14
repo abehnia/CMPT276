@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch.welcomeActivity;
+package cmpt276.proj.finddamatch.UI.welcomeActivity;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
