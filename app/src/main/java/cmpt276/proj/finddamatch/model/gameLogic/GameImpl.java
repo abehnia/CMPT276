@@ -12,11 +12,12 @@ import cmpt276.proj.finddamatch.model.Image;
  * Game logic to implement the Game interface
  */
 public class GameImpl implements Game {
-    long referenceTime;
-    long elapsedTime;
-    DeckGenerator dealer;
-    Stack<Card> drawPile;
-    Stack<Card> discardPile;
+    private long referenceTime;
+    private long elapsedTime;
+    private DeckGenerator dealer;
+    private Stack<Card> drawPile;
+    private Stack<Card> discardPile;
+    private boolean isPaused;
 
     /**
      * GameImpl object that holds necessary stacks and variables
@@ -30,6 +31,7 @@ public class GameImpl implements Game {
         this.drawPile = dealer.generate();
         this.discardPile = new Stack<>();
         this.elapsedTime = 0;
+        this.isPaused = false;
         draw();
     }
 
@@ -54,6 +56,9 @@ public class GameImpl implements Game {
         if (BuildConfig.DEBUG && drawPile.isEmpty()) {
             throw new AssertionError("Empty Stack");
         }
+        if (isPaused) {
+            return drawPile.peek();
+        }
         Card card = drawPile.pop();
         discardPile.push(card);
         return card;
@@ -74,6 +79,7 @@ public class GameImpl implements Game {
         drawPile = dealer.generate();
         referenceTime = time;
         elapsedTime = 0;
+        isPaused = false;
         draw();
     }
 
@@ -85,7 +91,11 @@ public class GameImpl implements Game {
      */
     @Override
     public void pause(long time) {
+        if (isPaused) {
+            return;
+        }
         updateTime(time);
+        isPaused = true;
     }
 
     /**
@@ -96,7 +106,11 @@ public class GameImpl implements Game {
      */
     @Override
     public void resume(long time) {
+        if (!isPaused) {
+            return;
+        }
         referenceTime = time;
+        isPaused = false;
     }
 
     /**
@@ -143,7 +157,9 @@ public class GameImpl implements Game {
      */
     @Override
     public long queryTime(long time) {
-        updateTime(time);
+        if (!isPaused) {
+            updateTime(time);
+        }
         return elapsedTime;
     }
 

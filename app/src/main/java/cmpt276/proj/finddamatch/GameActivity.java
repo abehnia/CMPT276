@@ -34,9 +34,11 @@ public class GameActivity extends AppCompatActivity {
     private Game game;
     private Card discard, draw;
     private Handler handler;
+    private Handler revealHandler;
     private TextView timer;
     private boolean isTouchable;
     private static final int DELAY = 100;
+    private static final int REVEAL_DELAY = 1500;
     ScoresIterator scores;
     static private final int SIXTH_SCORE = 5;
 
@@ -56,8 +58,21 @@ public class GameActivity extends AppCompatActivity {
         setupBackButton();
     }
 
-    private void displayDialogBox(long longTime) {
+    @Override
+    protected void onPause() {
+        super.onPause();
+        removeHandler();
+        game.pause(SystemClock.elapsedRealtime());
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        game.resume(SystemClock.elapsedRealtime());
+        updateTime();
+    }
+
+    private void displayDialogBox(long longTime) {
         int time = (int)(longTime/1000);
         scores.getScores().get(SIXTH_SCORE).setTime(time);
         FragmentManager manager = getSupportFragmentManager();
@@ -73,7 +88,9 @@ public class GameActivity extends AppCompatActivity {
         CardGenerator cardGenerator = new CardGeneratorImpl();
         DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator);
         game = new GameImpl(deckGenerator, SystemClock.elapsedRealtime());
-        game.reset(SystemClock.elapsedRealtime());
+        long time = SystemClock.elapsedRealtime();
+        game.reset(time);
+        game.pause(time);
         discard = game.peekDiscard();
         draw = game.peekDraw();
     }
@@ -87,6 +104,7 @@ public class GameActivity extends AppCompatActivity {
                                        int oldRight, int oldBottom) {
                 gameCanvas.setCards(discard, draw,
                         Settings.get().getImageSetValue());
+                gameCanvas.hide();;
             }
         });
     }
@@ -115,7 +133,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupHandler() {
         this.handler = new Handler();
-        this.handler.postDelayed(this::updateTime, DELAY);
+        this.revealHandler = new Handler();
     }
 
     private void setupTimer() {
@@ -128,12 +146,16 @@ public class GameActivity extends AppCompatActivity {
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                game.reset(SystemClock.elapsedRealtime());
+                removeHandler();
+                long time = SystemClock.elapsedRealtime();
+                game.reset(time);
+                game.pause(time);
+                updateTime();
                 discard = game.peekDiscard();
                 draw = game.peekDraw();
+                gameCanvas.hide();
                 gameCanvas.setCards(discard, draw,
                         Settings.get().getImageSetValue());
-                setupHandler();
                 isTouchable = true;
             }
         });
@@ -152,11 +174,19 @@ public class GameActivity extends AppCompatActivity {
     private void updateTime() {
         this.timer.setText(formatTime(game.queryTime(
                 SystemClock.elapsedRealtime())));
-        handler.postDelayed(this::updateTime, DELAY);
+        this.handler.postDelayed(this::updateTime, DELAY);
+        long elapsedTime = game.queryTime(SystemClock.elapsedRealtime());
+        if (elapsedTime < REVEAL_DELAY) {
+            this.revealHandler.postDelayed(this::revealCards,
+                    REVEAL_DELAY - elapsedTime);
+        } else {
+            revealCards();
+        }
     }
 
     private void removeHandler() {
         this.handler.removeCallbacksAndMessages(null);
+        this.revealHandler.removeCallbacksAndMessages(null);
     }
 
     private void actionDown(MotionEvent event) {
@@ -183,10 +213,15 @@ public class GameActivity extends AppCompatActivity {
         this.isTouchable = !game.isGameDone();
     }
 
-    private void onGameDone(){
+    private void onGameDone() {
         long time = game.queryTime(SystemClock.elapsedRealtime());
         game.pause(time);
         displayDialogBox(time);
+    }
+
+    private void revealCards() {
+        game.resume(SystemClock.elapsedRealtime());
+        gameCanvas.reveal();
     }
 
     private String formatTime(long time) {
