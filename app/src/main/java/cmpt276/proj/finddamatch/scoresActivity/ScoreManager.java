@@ -51,26 +51,12 @@ public abstract class ScoreManager extends Context {
 
     public static String getTimeString(int time,Context context) {
         String time_str;
-        if (time > 120){
-            int min = (time/60);
-            int sec = (time%60);
-            time_str = context.getString(R.string.TimeMins, min, sec);
-
-        }else if(time == 60){
-            int min = (time/60);
-            time_str = context.getString(R.string.TimeExact1Min, min);
-
-        }else if((time % 60)==0){
-            int min = (time/60);
-            time_str = context.getString(R.string.TimeExactMins, min);
-
-        }else if(time > 60){
-            int min = (time/60);
-            int sec = (time%60);
-            time_str = context.getString(R.string.Time1Min, min, sec);
-
+        int min = (time/60);
+        int sec = (time%60);
+        if(sec < 10){
+            time_str = context.getString(R.string.TimeSecs, min, sec);
         }else{
-            time_str = context.getString(R.string.TimeSecs, time);
+            time_str = context.getString(R.string.TimeMins, min, sec);
         }
         return time_str;
     }

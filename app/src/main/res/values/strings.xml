@@ -40,21 +40,18 @@
     <string name="Score5Pos">5</string>
 
     <string name="ScoreTableDateTitle">Date</string>
-    <string name="ScoreTablePosTitle">Position</string>
+    <string name="ScoreTablePosTitle">Pos</string>
     <string name="ScoreTableScoreTitle">Name</string>
     <string name="ScoreTableTimeTitle">Time</string>
 
-    <string name="TimeSecs">"%1$d Secs"</string>
-    <string name="Time1Min">"%1$d Min %2$d Secs"</string>
-    <string name="TimeMins">"%1$d Mins %2$d Secs"</string>
-    <string name="TimeExact1Min">"%1$d Min"</string>
-    <string name="TimeExactMins">"%1$d Mins"</string>
+    <string name="TimeMins">"%1$d:%2$d"</string>
+    <string name="TimeSecs">"%1$d:0%2$d"</string>
 
     <string name="SaveBtn">Save</string>
     <string name="enter_nickname">Enter Nickname</string>
     <string name="reset_score">Reset Score</string>
     <string name="your_score">Your Score:</string>
-    <string name="nickname_msg">You Must Enter a Nickname to Save your Highscore</string>
+    <string name="nickname_msg">You Must Enter a Nickname</string>
     <string name="back_arrow_vector_image">Back Arrow Vector Image</string>
 
     <string name="time_game_activity">Time:</string>
