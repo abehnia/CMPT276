@@ -11,6 +11,11 @@ import android.widget.Button;
 
 import cmpt276.proj.finddamatch.welcomeActivity.AnimationCanvas;
 
+/**
+ * Class for Splash Screen Activity
+ * Sets up welcome animation and skip button
+ */
+
 public class WelcomeActivity extends AppCompatActivity {
     private static int SCREEN_TIME = 7500;
     private Handler handler;
@@ -45,7 +50,7 @@ public class WelcomeActivity extends AppCompatActivity {
         canvas.resume();
         this.referenceTime = SystemClock.elapsedRealtime();
         handler.postDelayed(this::nextActivity, SCREEN_TIME -
-                    elapsedTime);
+                elapsedTime);
     }
 
     private void nextActivity() {

@@ -16,6 +16,11 @@ import android.widget.TextView;
 
 import cmpt276.proj.finddamatch.settingsActivity.Settings;
 
+/**
+ * Class for Settings Activity from Main Menu
+ * Sets up sets of logos
+ */
+
 public class SettingsActivity extends AppCompatActivity {
     private int imageSetKey;
 

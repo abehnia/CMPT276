@@ -38,8 +38,7 @@ public class AnimationEngine {
         if (state.getPosition() < lowerLimit) {
             state.setPosition(lowerLimit);
             state.setVelocity(-impactCoefficient * state.getVelocity());
-        }
-        else if (state.getPosition() > upperLimit) {
+        } else if (state.getPosition() > upperLimit) {
             state.setPosition(upperLimit);
             if (Math.abs(state.getVelocity()) < THRESHOLD) {
                 state.setVelocity(0);

@@ -36,5 +36,5 @@ public interface Image {
     /**
      * Returns true if the Id of the images are the same
      */
-     boolean isEquivalent(Image image);
+    boolean isEquivalent(Image image);
 }

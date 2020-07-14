@@ -39,7 +39,7 @@ public class WelcomeCanvas extends View {
     }
 
     public WelcomeCanvas(Context context, @Nullable AttributeSet attrs,
-                      int defStyleAttr) {
+                         int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -65,7 +65,7 @@ public class WelcomeCanvas extends View {
         updateState(time - prevTime);
         // initImage(imageToDraw);
         canvas.drawBitmap(bitmap, 0, 0, backgroundPaint);
-        this.imageToDraw.setBounds((int)x, (int)y, (int)x + 100, (int)y + 100);
+        this.imageToDraw.setBounds((int) x, (int) y, (int) x + 100, (int) y + 100);
         imageToDraw.draw(canvas);
         invalidate();
     }
@@ -91,10 +91,9 @@ public class WelcomeCanvas extends View {
                     G * (1.0f - Math.exp(-DRAG_COEFFICIENT * deltaT / 1000.0f)) / DRAG_COEFFICIENT);
             y = -velocityY / DRAG_COEFFICIENT + previousVelocity / DRAG_COEFFICIENT +
                     previousPosition + G * deltaT / (DRAG_COEFFICIENT * 1000.0f);
-        }
-        else {
+        } else {
             y = this.height - 200;
-            velocityY = - 0.8f * velocityY;
+            velocityY = -0.8f * velocityY;
         }
     }
 
@@ -108,8 +107,8 @@ public class WelcomeCanvas extends View {
         float right = left + NewWidth;
         float top = this.y - newHeight / 2.0f;
         float bottom = top + newHeight;
-        this.imageToDraw.setBounds((int)left, (int)top,
-                (int)right, (int)bottom);
+        this.imageToDraw.setBounds((int) left, (int) top,
+                (int) right, (int) bottom);
     }
 
 }

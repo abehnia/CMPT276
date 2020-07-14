@@ -29,6 +29,11 @@ import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.scoresActivity.ScoresIterator;
 
+/**
+ * Class for Game Activity
+ * Sets up game play, handler. timer and shuffle button
+ */
+
 public class GameActivity extends AppCompatActivity {
     private GameCanvas gameCanvas;
     private Game game;
@@ -58,7 +63,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void displayDialogBox(long longTime) {
 
-        int time = (int)(longTime/1000);
+        int time = (int) (longTime / 1000);
         scores.getScores().get(SIXTH_SCORE).setTime(time);
         FragmentManager manager = getSupportFragmentManager();
         DialogBoxFragment dialog = new DialogBoxFragment();
@@ -183,7 +188,7 @@ public class GameActivity extends AppCompatActivity {
         this.isTouchable = !game.isGameDone();
     }
 
-    private void onGameDone(){
+    private void onGameDone() {
         long time = game.queryTime(SystemClock.elapsedRealtime());
         game.pause(time);
         displayDialogBox(time);

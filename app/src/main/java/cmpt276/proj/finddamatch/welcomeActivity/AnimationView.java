@@ -58,7 +58,7 @@ public class AnimationView {
         float right = left + NewWidth;
         float top = this.y - newHeight / 2.0f;
         float bottom = top + newHeight;
-        this.bounds = new Rect((int)left, (int)top, (int)right, (int)bottom);
+        this.bounds = new Rect((int) left, (int) top, (int) right, (int) bottom);
         this.imageToDraw.setBounds(this.bounds);
     }
 }

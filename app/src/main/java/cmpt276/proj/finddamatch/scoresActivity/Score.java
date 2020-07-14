@@ -1,8 +1,10 @@
 package cmpt276.proj.finddamatch.scoresActivity;
 
-/** Comparable Class to Save Scores*/
+/**
+ * Comparable Class to Save Scores
+ */
 
-public class Score implements Comparable<Score>{
+public class Score implements Comparable<Score> {
     private String name;
     private String date;
     private int time;

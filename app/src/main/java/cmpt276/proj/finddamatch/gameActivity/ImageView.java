@@ -46,9 +46,9 @@ public class ImageView {
         float deltaX = x - this.x;
         float deltaY = y - this.y;
         float xPrime = (float) (Math.cos(orientation) * deltaX +
-                        Math.sin(orientation) * deltaY);
+                Math.sin(orientation) * deltaY);
         float yPrime = (float) (-Math.sin(orientation) * deltaX +
-                        Math.cos(orientation) * deltaY);
+                Math.cos(orientation) * deltaY);
         return inBound(xPrime, yPrime);
     }
 
@@ -73,8 +73,8 @@ public class ImageView {
         float top = this.y - newHeight / 2.0f;
         float bottom = top + newHeight;
         this.bounds = new RectF(left, top, right, bottom);
-        this.imageToDraw.setBounds((int)left, (int)top,
-                (int)right, (int)bottom);
+        this.imageToDraw.setBounds((int) left, (int) top,
+                (int) right, (int) bottom);
     }
 
     private boolean inBound(float x, float y) {
