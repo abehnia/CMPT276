@@ -1,6 +1,7 @@
 package cmpt276.proj.finddamatch;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
@@ -61,6 +62,11 @@ public class ScoresActivity extends AppCompatActivity {
             txtName.setText(name);
             txtDate.setText(date);
             txtTime.setText(time_str);
+
+            txtName.setTextColor(ContextCompat.getColor(ScoresActivity.this, R.color.colorText));
+            txtDate.setTextColor(ContextCompat.getColor(ScoresActivity.this, R.color.colorText));
+            txtTime.setTextColor(ContextCompat.getColor(ScoresActivity.this, R.color.colorText));
+
         }
 
         typedNameIds.recycle();

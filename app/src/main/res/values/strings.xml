@@ -8,6 +8,7 @@
     <string name="btnHelp_txt">Help</string>
     <string name="help_activity_title">Help</string>
     <string name="settings_activity_title">Settings</string>
+    <string name="best_scores_activity_title">Best Scores</string>
     <string name="main_menu_activity_title">Main Menu</string>
     <string name="game_page_title">Game Page</string>
     <string name="BtnBestScores_txt">Best Scores</string>
@@ -39,31 +40,29 @@
     <string name="Score5Pos">5</string>
 
     <string name="ScoreTableDateTitle">Date</string>
-    <string name="ScoreTablePosTitle">Position</string>
+    <string name="ScoreTablePosTitle">Pos</string>
     <string name="ScoreTableScoreTitle">Name</string>
     <string name="ScoreTableTimeTitle">Time</string>
 
-    <string name="TimeSecs">"%1$d Secs"</string>
-    <string name="Time1Min">"%1$d Min %2$d Secs"</string>
-    <string name="TimeMins">"%1$d Mins %2$d Secs"</string>
-    <string name="TimeExact1Min">"%1$d Min"</string>
-    <string name="TimeExactMins">"%1$d Mins"</string>
+    <string name="TimeMins">"%1$d:%2$d"</string>
+    <string name="TimeSecs">"%1$d:0%2$d"</string>
 
     <string name="SaveBtn">Save</string>
     <string name="enter_nickname">Enter Nickname</string>
     <string name="reset_score">Reset Score</string>
     <string name="your_score">Your Score:</string>
-    <string name="nickname_msg">You Must Enter a Nickname to Save your Highscore</string>
+    <string name="nickname_msg">You Must Enter a Nickname</string>
     <string name="back_arrow_vector_image">Back Arrow Vector Image</string>
 
     <string name="time_game_activity">Time:</string>
     <string name="null_text_view">TextView</string>
-    <string name="game_activity_reset">Reset</string>
+    <string name="game_activity_reset">Shuffle</string>
     <string name="activity_settings_western_conference">Western Conference</string>
     <string name="activity_settings_eastern_conference">Eastern Conference</string>
     <string name="activity_settings_choose_image_set">Choose your image set:</string>
     <string name="activity_settings_apply">Apply</string>
     <string name="backBtnArrow">backBtnArrow</string>
+    <string name="imgView_logowitnobball">logoWitNoBBall</string>
 
     <string name="helpView">
         <h><b>Game Objective:</b></h>\n
@@ -81,5 +80,7 @@
         <a href="https://www.freepik.com/free-vector/basketball-player-made-dots_716443.htm#page=2&amp;query=playing+basketball&amp;position=7">Image 3</a></p>\n\n\n
         <b>This game was created by Alex, Ali, Ard, and Percy.</b>
     </string>
+    <string name="names">By:\nAlex, Ali\nArd, Percy</string>
+    <string name="image_logo">logo</string>
 
 </resources>
