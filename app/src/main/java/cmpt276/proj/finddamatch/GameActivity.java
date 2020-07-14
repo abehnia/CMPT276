@@ -36,7 +36,7 @@ public class GameActivity extends AppCompatActivity {
     private Handler handler;
     private Handler revealHandler;
     private TextView timer;
-    private boolean isTouchable;
+    private boolean isTouchable, isInDelay;
     private static final int DELAY = 100;
     private static final int REVEAL_DELAY = 1500;
     ScoresIterator scores;
@@ -68,7 +68,9 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        game.resume(SystemClock.elapsedRealtime());
+        if (!isInDelay) {
+            game.resume(SystemClock.elapsedRealtime());
+        }
         updateTime();
     }
 
@@ -93,6 +95,7 @@ public class GameActivity extends AppCompatActivity {
         game.pause(time);
         discard = game.peekDiscard();
         draw = game.peekDraw();
+        this.isInDelay = true;
     }
 
     private void setupCanvas() {
@@ -150,6 +153,7 @@ public class GameActivity extends AppCompatActivity {
                 long time = SystemClock.elapsedRealtime();
                 game.reset(time);
                 game.pause(time);
+                isInDelay = true;
                 updateTime();
                 discard = game.peekDiscard();
                 draw = game.peekDraw();
@@ -190,7 +194,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void actionDown(MotionEvent event) {
-        if (!gameCanvas.contains(event.getX(), event.getY())) {
+        if (game.isPaused() ||
+                !gameCanvas.contains(event.getX(), event.getY())) {
             return;
         }
         Image intersectedImage = gameCanvas.getIntersection(
@@ -222,6 +227,7 @@ public class GameActivity extends AppCompatActivity {
     private void revealCards() {
         game.resume(SystemClock.elapsedRealtime());
         gameCanvas.reveal();
+        this.isInDelay = false;
     }
 
     private String formatTime(long time) {

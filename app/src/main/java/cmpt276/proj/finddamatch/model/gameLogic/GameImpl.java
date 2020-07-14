@@ -56,9 +56,6 @@ public class GameImpl implements Game {
         if (BuildConfig.DEBUG && drawPile.isEmpty()) {
             throw new AssertionError("Empty Stack");
         }
-        if (isPaused) {
-            return drawPile.peek();
-        }
         Card card = drawPile.pop();
         discardPile.push(card);
         return card;
@@ -66,6 +63,11 @@ public class GameImpl implements Game {
 
     @Override
     public void update(Image image) {
+    }
+
+    @Override
+    public boolean isPaused() {
+        return this.isPaused;
     }
 
     /**
