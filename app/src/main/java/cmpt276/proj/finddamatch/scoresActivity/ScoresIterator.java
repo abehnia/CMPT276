@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class ScoresIterator implements Iterable<Score>{
-    public List<Score> scores = new ArrayList<>();
+    private List<Score> scores = new ArrayList<>();
 
 
     /*
