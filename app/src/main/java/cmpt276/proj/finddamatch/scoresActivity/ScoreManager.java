@@ -3,6 +3,7 @@ package cmpt276.proj.finddamatch.scoresActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -76,6 +77,7 @@ public abstract class ScoreManager extends Context {
 
     public static void loadAllScores(Context context){
         ScoresIterator scores = ScoresIterator.getInstance();
+        scores.getScores().clear();
         int[] times= context.getResources().getIntArray(R.array.def_times);
         String[] names = context.getResources().getStringArray(R.array.def_names);
         String[] dates = context.getResources().getStringArray(R.array.def_dates);
