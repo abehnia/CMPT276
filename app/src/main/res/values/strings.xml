@@ -59,7 +59,7 @@
 
     <string name="time_game_activity">Time:</string>
     <string name="null_text_view">TextView</string>
-    <string name="game_activity_reset">Reset</string>
+    <string name="game_activity_reset">Shuffle</string>
     <string name="activity_settings_western_conference">Western Conference</string>
     <string name="activity_settings_eastern_conference">Eastern Conference</string>
     <string name="activity_settings_choose_image_set">Choose your image set:</string>
@@ -83,5 +83,7 @@
         <a href="https://www.freepik.com/free-vector/basketball-player-made-dots_716443.htm#page=2&amp;query=playing+basketball&amp;position=7">Image 3</a></p>\n\n\n
         <b>This game was created by Alex, Ali, Ard, and Percy.</b>
     </string>
+    <string name="names">By:\nAlex, Ali\nArd, Percy</string>
+    <string name="image_logo">logo</string>
 
 </resources>
