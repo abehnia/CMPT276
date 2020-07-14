@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch.scoresActivity;
+package cmpt276.proj.finddamatch.UI.scoresActivity;
 
 import androidx.annotation.NonNull;
 

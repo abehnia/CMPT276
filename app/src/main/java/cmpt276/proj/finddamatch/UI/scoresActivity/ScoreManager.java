@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch.scoresActivity;
+package cmpt276.proj.finddamatch.UI.scoresActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

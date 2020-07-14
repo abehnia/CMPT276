@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch.gameActivity;
+package cmpt276.proj.finddamatch.UI.gameActivity;
 
 import android.content.res.TypedArray;
 import android.graphics.Canvas;

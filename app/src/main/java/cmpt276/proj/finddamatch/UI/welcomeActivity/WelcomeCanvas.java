@@ -1,10 +1,9 @@
-package cmpt276.proj.finddamatch.welcomeActivity;
+package cmpt276.proj.finddamatch.UI.welcomeActivity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.util.AttributeSet;

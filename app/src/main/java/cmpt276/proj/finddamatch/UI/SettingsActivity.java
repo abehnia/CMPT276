@@ -1,20 +1,18 @@
-package cmpt276.proj.finddamatch;
+package cmpt276.proj.finddamatch.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import cmpt276.proj.finddamatch.settingsActivity.Settings;
+import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 
 /**
  * Class for Settings Activity from Main Menu

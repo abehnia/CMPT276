@@ -10,22 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".ScoresActivity"
+            android:name=".UI.ScoresActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".UI.SettingsActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".HelpActivity"
+            android:name=".UI.HelpActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".GameActivity"
+            android:name=".UI.GameActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".UI.MainMenuActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".UI.WelcomeActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

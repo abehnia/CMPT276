@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch;
+package cmpt276.proj.finddamatch.UI;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -14,12 +14,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.core.content.ContextCompat;
 
 import java.util.Objects;
 
-import cmpt276.proj.finddamatch.scoresActivity.ScoreManager;
-import cmpt276.proj.finddamatch.scoresActivity.ScoresIterator;
+import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoresIterator;
 
 /**
  * Class to show dialog box. Sets up table and takes input to save high score

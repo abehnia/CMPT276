@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch;
+package cmpt276.proj.finddamatch.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -17,7 +17,8 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
-import cmpt276.proj.finddamatch.gameActivity.GameCanvas;
+import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.gameActivity.GameCanvas;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.CardGenerator;
 import cmpt276.proj.finddamatch.model.DeckGenerator;
@@ -26,8 +27,8 @@ import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.gameLogic.CardGeneratorImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.DeckGeneratorImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
-import cmpt276.proj.finddamatch.settingsActivity.Settings;
-import cmpt276.proj.finddamatch.scoresActivity.ScoresIterator;
+import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoresIterator;
 
 /**
  * Class for Game Activity
