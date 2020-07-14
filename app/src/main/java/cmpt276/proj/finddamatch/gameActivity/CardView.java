@@ -22,6 +22,7 @@ public abstract class CardView implements Iterable<ImageView> {
     protected Paint backgroundPaint;
     protected ArrayList<ImageView> images;
     protected TypedArray logos;
+    protected boolean isHidden;
 
     public CardView(float x, float y, float radius, TypedArray logos,
                     Paint backgroundPaint) {
@@ -31,6 +32,7 @@ public abstract class CardView implements Iterable<ImageView> {
         this.logos = logos;
         this.images = new ArrayList<>();
         this.backgroundPaint = backgroundPaint;
+        this.isHidden = false;
     }
 
     public void setImages(Card card, int imageSet) {
@@ -52,6 +54,14 @@ public abstract class CardView implements Iterable<ImageView> {
 
     public float getRadius() {
         return this.radius;
+    }
+
+    public boolean getHidden() {
+        return this.isHidden;
+    }
+
+    public void setHidden(boolean isHidden) {
+        this.isHidden = isHidden;
     }
 
     public boolean contains(float x, float y) {
@@ -78,8 +88,10 @@ public abstract class CardView implements Iterable<ImageView> {
 
     public void draw(Canvas canvas) {
         this.drawSelf(canvas);
-        for (ImageView imageView : images) {
-            imageView.draw(canvas);
+        if (!isHidden) {
+            for (ImageView imageView : images) {
+                imageView.draw(canvas);
+            }
         }
     }
 

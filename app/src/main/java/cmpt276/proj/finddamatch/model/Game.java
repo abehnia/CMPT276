@@ -54,6 +54,11 @@ public interface Game {
     void pause(long time);
 
     /**
+     * Returns true if the game is paused
+     */
+    boolean isPaused();
+
+    /**
      * Resumes the game
      * Side Effects: re-activates the game timer
      */
@@ -71,4 +76,5 @@ public interface Game {
      * Side Effects: none
      */
     Card peekDraw();
+
 }
