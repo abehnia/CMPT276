@@ -60,6 +60,16 @@ public class GameCanvas extends View {
         invalidate();
     }
 
+    public void reveal() {
+        leadCard.setHidden(false);
+        invalidate();
+    }
+
+    public void hide() {
+        leadCard.setHidden(true);
+        invalidate();
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
