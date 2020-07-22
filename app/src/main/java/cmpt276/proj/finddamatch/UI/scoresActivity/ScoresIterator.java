@@ -13,7 +13,6 @@ import java.util.List;
 public class ScoresIterator implements Iterable<Score> {
     public List<Score> scores = new ArrayList<>();
 
-
     /*
     Singleton Support
      */
@@ -36,7 +35,6 @@ public class ScoresIterator implements Iterable<Score> {
     public List<Score> getScores() {
         return scores;
     }
-
 
     @NonNull
     @Override

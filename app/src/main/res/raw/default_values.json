@@ -1,0 +1,69 @@
+[
+  {
+    "mode": {
+      "order": 2,
+      "size": 7
+    },
+    "values": [
+      {
+        "name": "Bob",
+        "time": 6,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 10,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 13,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 15,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 20,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+
+  {
+    "mode": {
+      "order": 2,
+      "size": 8
+    },
+    "values": [
+      {
+        "name": "Bob",
+        "time": 6,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 10,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 13,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 15,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 20,
+        "date": "Sun, July 5"
+      }
+    ]
+  }
+]
