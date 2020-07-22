@@ -10,7 +10,10 @@ import java.util.List;
 import cmpt276.proj.finddamatch.BuildConfig;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
-
+/**
+ * Class to parse various internal java classes from a JSON file
+ * Used to get default high scores
+ */
 public class JsonParser {
 
     private static final String NAME_KEY = "name";

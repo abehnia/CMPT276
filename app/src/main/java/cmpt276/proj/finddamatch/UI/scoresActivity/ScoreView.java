@@ -4,6 +4,9 @@ import android.widget.TextView;
 
 import cmpt276.proj.finddamatch.UI.StringFormatting;
 
+/**
+ * View for a single score
+ */
 public class ScoreView {
     private TextView name;
     private TextView date;

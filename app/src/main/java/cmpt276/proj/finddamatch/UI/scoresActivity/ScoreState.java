@@ -2,8 +2,6 @@ package cmpt276.proj.finddamatch.UI.scoresActivity;
 
 import android.content.Context;
 
-import org.json.JSONException;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

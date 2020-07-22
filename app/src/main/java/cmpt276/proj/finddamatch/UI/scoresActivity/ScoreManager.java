@@ -8,6 +8,9 @@ import java.util.Map;
 import cmpt276.proj.finddamatch.model.GameMode;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
+/**
+ * Manages all the high score tables
+ */
 public class ScoreManager implements Serializable {
     private Map<GameMode, ScoreTable> scoreTables;
     private Map<GameMode, ScoreTable> defaultValues;

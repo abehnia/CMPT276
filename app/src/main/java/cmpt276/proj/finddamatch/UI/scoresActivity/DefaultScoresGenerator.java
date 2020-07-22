@@ -12,6 +12,9 @@ import java.util.List;
 
 import cmpt276.proj.finddamatch.R;
 
+/**
+ * Generates default scores from an internal JSON file
+ */
 public class DefaultScoresGenerator {
     private static String generateJsonString(Context context) {
         String json = null;

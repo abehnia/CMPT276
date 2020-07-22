@@ -11,6 +11,9 @@ import java.util.List;
 import cmpt276.proj.finddamatch.model.GameMode;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
+/**
+ * Holds one complete high score table
+ */
 public class ScoreTable implements Iterable<Score>, Serializable {
     private List<Score> scores;
     private GameMode gameMode;

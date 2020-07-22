@@ -3,8 +3,9 @@ package cmpt276.proj.finddamatch.UI.scoresActivity;
 import java.util.Iterator;
 import java.util.List;
 
-import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
-
+/**
+ * View for a high score table
+ */
 public class ScoreTableView {
     List<ScoreView> scoreViews;
 

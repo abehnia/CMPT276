@@ -8,9 +8,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import cmpt276.proj.finddamatch.UI.StringFormatting;
-import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
-
+/**
+ * General helper functions for high score UI
+ * Generates Score View Tables from their internal
+ * data files
+ */
 public class ScoreViewGenerator {
     private static List<ScoreView> populate(View v, List<TypedArray> arrays,
                                            ScoreTable scoreTable) {
