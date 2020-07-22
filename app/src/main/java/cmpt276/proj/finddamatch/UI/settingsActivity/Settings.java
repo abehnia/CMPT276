@@ -92,6 +92,7 @@ public class Settings implements Persistable {
                 IMAGE_SET_DEFAULT_KEY);
         this.imageSetValue = settings.getInt(IMAGE_SET_VALUE_KEY,
                 IMAGE_SET_DEFAULT_VALUE);
+
     }
 
     @Override
@@ -103,7 +104,6 @@ public class Settings implements Persistable {
         settingsEditor.putInt(IMAGE_SET_KEY_KEY, this.imageSetKey);
         settingsEditor.putInt(IMAGE_SET_VALUE_KEY, this.imageSetValue);
         settingsEditor.apply();
-        ;
     }
 
     private void checkInitialized() {

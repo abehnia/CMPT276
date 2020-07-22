@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import java.util.NoSuchElementException;
 
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
 
