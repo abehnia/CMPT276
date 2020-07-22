@@ -33,6 +33,9 @@ public class ScoreState implements Persistable {
             ObjectInput scoreStateReader = new
                     ObjectInputStream(scoreStateFileInputStream);
             this.scoreManager = (ScoresManager) scoreStateReader.readObject();
+            List<ScoreTable> resetValues = DefaultScoresGenerator.
+                    generateDefaultScores(context);
+            this.scoreManager.resetDefaultScores(resetValues);
             scoreStateReader.close();
             scoreStateFileInputStream.close();
         } catch (IOException | ClassNotFoundException e) {

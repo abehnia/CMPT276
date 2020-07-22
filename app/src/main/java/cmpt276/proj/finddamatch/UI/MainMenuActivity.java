@@ -6,10 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 
-import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 
 /**
  * Class for the Main Menu. Sets up various buttons
@@ -26,7 +30,11 @@ public class MainMenuActivity extends AppCompatActivity {
         setupHelpBtn();
         setupSettings();
         setupBestScoresBtn();
-        ScoreManager.loadAllScores(MainMenuActivity.this);
+        try {
+            ScoreState.get().load(MainMenuActivity.this);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setupBestScoresBtn() {
@@ -67,7 +75,11 @@ public class MainMenuActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        ScoreManager.saveAllScores(MainMenuActivity.this);
+        try {
+            ScoreState.get().save(MainMenuActivity.this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

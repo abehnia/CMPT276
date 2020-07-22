@@ -5,12 +5,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import cmpt276.proj.finddamatch.UI.GameMode;
-import cmpt276.proj.finddamatch.UI.GameModeImpl;
+import cmpt276.proj.finddamatch.BuildConfig;
+import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
+
 
 public class JsonParser {
 
@@ -24,7 +23,7 @@ public class JsonParser {
     public static ScoreTable parseScoreTable(JSONObject object)
             throws JSONException {
         ArrayList<Score> scores = new ArrayList<>();
-        GameMode gameMode = parseGameMode(object);
+        VALID_GAME_MODE gameMode = parseGameMode(object);
         JSONArray array = object.getJSONArray("values");
         for (int i = 0; i < array.length(); ++i) {
             scores.add(parseScore(array.getJSONObject(i)));
@@ -32,12 +31,22 @@ public class JsonParser {
         return new ScoreTable(scores, gameMode);
     }
 
-    public static GameMode parseGameMode(JSONObject object)
+    public static VALID_GAME_MODE parseGameMode(JSONObject object)
             throws JSONException {
         JSONObject gameMode = object.getJSONObject("mode");
         int order = gameMode.getInt("order");
         int size = gameMode.getInt("size");
-        return new GameModeImpl(order, size);
+        for (VALID_GAME_MODE validGameMode : VALID_GAME_MODE.values()) {
+            if (validGameMode.getOrder() == order &&
+                    validGameMode.getSize() == size) {
+                return validGameMode;
+            }
+        }
+        if (BuildConfig.DEBUG) {
+            throw new AssertionError(
+                    "Error in JSON file for default scores");
+        }
+        return null;
     }
 
     public static List<ScoreTable> parseDefaultScores
