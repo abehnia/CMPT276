@@ -30,19 +30,14 @@ public class ImageSetImpl {
         TypedArray logos = resources.obtainTypedArray(R.array.logos);
         String[] logos_string = resources.getStringArray(R.array.logos_string);
 
-//        imageToDraw = logos.getDrawable(id + imageSet * numOfImages);
 
-        DrawableText text = new DrawableText(logos_string[id + imageSet * numOfImages]);
+        if (textDrawable){
+            imageToDraw = new DrawableText(logos_string[id + imageSet * numOfImages]);
+        }else{
+            imageToDraw = logos.getDrawable(id + imageSet * numOfImages);
+        }
 
-        imageToDraw = text;
-
-
-//        if (textDrawable){
-//            Drawable d = resources.getDrawable(R.drawable.background_shape);
-//            imageToDraw = d;
-//        }else{
-//            imageToDraw = logos.getDrawable(id + imageSet * numOfImages);
-//        }
+        logos.recycle();
 
 
         return imageToDraw;
