@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import cmpt276.proj.finddamatch.UI.GameMode;
@@ -39,13 +40,13 @@ public class JsonParser {
         return new GameModeImpl(order, size);
     }
 
-    public static Map<GameMode, ScoreTable> parseDefaultScores
+    public static List<ScoreTable> parseDefaultScores
             (JSONArray array) throws JSONException {
-        HashMap<GameMode, ScoreTable> map = new HashMap<>();
+        List<ScoreTable> scoreTables = new ArrayList<>();
         for (int i = 0; i < array.length(); ++i) {
             ScoreTable scoreTable = parseScoreTable(array.getJSONObject(i));
-            map.put(scoreTable.getGameMode(), scoreTable);
+            scoreTables.add(scoreTable);
         }
-        return map;
+        return scoreTables;
     }
 }

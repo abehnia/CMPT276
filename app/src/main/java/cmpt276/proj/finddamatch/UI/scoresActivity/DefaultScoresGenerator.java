@@ -33,7 +33,7 @@ public class DefaultScoresGenerator {
         return json;
     }
 
-    public static Map<GameMode, ScoreTable> generateDefaultScores(
+    public static List<ScoreTable> generateDefaultScores(
             Context context) throws JSONException {
         String jsonString = generateJsonString(context);
         JSONArray array = new JSONArray(jsonString);

@@ -10,7 +10,7 @@ import java.util.Map;
 import cmpt276.proj.finddamatch.UI.GameMode;
 import cmpt276.proj.finddamatch.UI.Persistable;
 
-public class ScoresManager implements Persistable, Serializable {
+public class ScoresManager implements Serializable {
     private Map<GameMode, ScoreTable> scoreTables;
     private Map<GameMode, ScoreTable> defaultValues;
 
@@ -42,14 +42,5 @@ public class ScoresManager implements Persistable, Serializable {
             scoreTables.put(gameMode, new
                     ScoreTable(defaultValues.get(gameMode)));
         }
-    }
-
-    @Override
-    public void load(Context context) {
-    }
-
-    @Override
-    public void save(Context context) {
-
     }
 }
