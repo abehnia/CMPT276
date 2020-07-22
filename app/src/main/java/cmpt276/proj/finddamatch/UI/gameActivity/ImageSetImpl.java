@@ -12,16 +12,11 @@ import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.ImageSet;
 
-public class ImageSetImpl {
+public class ImageSetImpl implements ImageSet{
 
-//    private static Drawable imageToDraw;
-//
-//    public ImageSetImpl(Drawable imageToDraw) {
-//        this.imageToDraw = imageToDraw;
-//    }
-//
-//    @Override
-    public static Drawable getDrawables(int id, boolean textDrawable, Resources resources){
+
+    @Override
+    public Drawable getDrawables(int id, boolean textDrawable, Resources resources){
         Drawable imageToDraw;
         int numOfImages = Card.NUMBER_OF_IMAGES_PER_DECK;
 //        final int numOfImages = 31;

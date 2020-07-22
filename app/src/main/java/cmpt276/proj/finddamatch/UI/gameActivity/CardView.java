@@ -40,8 +40,9 @@ public abstract class CardView implements Iterable<ImageView> {
 
     public void setImages(Card card, Resources resources) {
         images.clear();
+        ImageSet imageset = new ImageSetImpl();
         for (Image image : card) {
-            Drawable imageToDraw = ImageSetImpl.getDrawables(image.getID(), true, resources);
+            Drawable imageToDraw = imageset.getDrawables(image.getID(), true, resources);
             images.add(new ImageView(image, imageToDraw, this));
         }
     }
