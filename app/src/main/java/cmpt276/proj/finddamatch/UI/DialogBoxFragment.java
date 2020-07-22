@@ -15,14 +15,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import java.util.Iterator;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.scoresActivity.Score;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTable;
-import cmpt276.proj.finddamatch.UI.scoresActivity.ScoresManager;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTableView;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreViewGenerator;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
 /**
@@ -30,22 +35,47 @@ import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
  */
 
 public class DialogBoxFragment extends AppCompatDialogFragment {
-    private ScoresManager scoresManager;
-    private final int sixthScore = 5;
+    private ScoreManager scoreManager;
+    private ScoreTable scoreTable;
+    private ScoreTableView scoreTableView;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        View v = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_game_end, null);
-        scoresManager = ScoreState.get().getScoreManager();
+        View v = LayoutInflater.from(getActivity()).
+                inflate(R.layout.dialog_game_end, null);
+        setupScores();
         populateTable(v);
-        int time = scoresManager.getCurrentScore().getTime();
-        String dTime = StringFormatting.getTimeString(time, getContext());
+        showScore();
+        setupTextView(v);
+        DialogInterface.OnClickListener listener = setupOnClick(v);
+        return setupDialog(v, listener);
+    }
+
+    private void setupScores() {
+        scoreManager = ScoreState.get().getScoreManager();
+        scoreTable = scoreManager.getScoreTable(VALID_GAME_MODE.GAME1);
+    }
+
+    private Dialog setupDialog(View v,
+                               DialogInterface.OnClickListener listener) {
+        return new AlertDialog.Builder(getActivity())
+                .setTitle("Best Scores")
+                .setView(v).setCancelable(false)
+                .setNeutralButton("Save", listener)
+                .setNegativeButton(android.R.string.cancel, listener)
+                .create();
+    }
+
+    private void setupTextView(View v) {
+        int time = scoreManager.getCurrentTime();
+        String dTime = StringFormatting.getTimeString(time);
         TextView txtYourScore = v.findViewById(R.id.txtYourScore);
         txtYourScore.setText(dTime);
+    }
 
-
-        DialogInterface.OnClickListener listener = (dialog, which) -> {
+    private DialogInterface.OnClickListener setupOnClick(View v) {
+        return (dialog, which) -> {
             switch (which) {
                 case DialogInterface.BUTTON_NEGATIVE:
                     Objects.requireNonNull(getActivity()).finish();
@@ -53,10 +83,9 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
                 case DialogInterface.BUTTON_NEUTRAL:
                     EditText txt = v.findViewById(R.id.editTextNickName);
                     String nickName = txt.getText().toString();
-                    if (!nickName.equals("")) {
-                        Score currentScore = scoresManager.getCurrentScore();
-                        currentScore.setName(nickName);
-                        scoresManager.addScore(VALID_GAME_MODE.GAME1,
+                    if (!nickName.isEmpty()) {
+                        Score currentScore = makeNewScore(nickName);
+                        scoreManager.addScore(VALID_GAME_MODE.GAME1,
                                 currentScore);
                     } else {
                         txt.setError("Enter Nickname");
@@ -68,47 +97,35 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
 
             }
         };
-
-
-        return new AlertDialog.Builder(getActivity())
-                .setTitle("Best Scores")
-                .setView(v).setCancelable(false)
-                .setNeutralButton("Save", listener)
-                .setNegativeButton(android.R.string.cancel, listener)
-                .create();
     }
 
+
     private void populateTable(View v) {
-        TextView txtName;
-        TextView txtDate;
-        TextView txtTime;
-        String time_str;
+        TypedArray typedNameIds = getResources().
+                obtainTypedArray(R.array.name2_ids);
+        TypedArray typedDateIds = getResources().
+                obtainTypedArray(R.array.date2_ids);
+        TypedArray typedTimeIds = getResources().
+                obtainTypedArray(R.array.time2_ids);
+        ScoreTable scoreTable = scoreManager.getScoreTable(
+                VALID_GAME_MODE.GAME1);
+        this.scoreTableView = ScoreViewGenerator.generate(v,
+                Arrays.asList(typedNameIds, typedDateIds, typedTimeIds),
+                scoreTable);
+    }
 
-        TypedArray typedName2Ids = getResources().obtainTypedArray(R.array.name2_ids);
-        TypedArray typedDate2Ids = getResources().obtainTypedArray(R.array.date2_ids);
-        TypedArray typedTime2Ids = getResources().obtainTypedArray(R.array.time2_ids);
+    private void showScore() {
+        scoreTableView.setScores(scoreTable);
+    }
 
-        ScoreTable scoreTable = scoresManager.getScoreTable(VALID_GAME_MODE
-                .GAME1);
-        int index = 0;
-        for (Score score : scoreTable) {
-            int time = score.getTime();
-            String name = score.getName();
-            String date = score.getDate();
-            time_str = StringFormatting.getTimeString(time, getContext());
-
-            txtName = v.findViewById(typedName2Ids.getResourceId(index, 0));
-            txtDate = v.findViewById(typedDate2Ids.getResourceId(index, 0));
-            txtTime = v.findViewById(typedTime2Ids.getResourceId(index, 0));
-
-            txtName.setText(name);
-            txtDate.setText(date);
-            txtTime.setText(time_str);
-            ++index;
-        }
-
-        typedName2Ids.recycle();
-        typedDate2Ids.recycle();
-        typedTime2Ids.recycle();
+    private Score makeNewScore(String nickName) {
+        int currentTime = scoreManager.getCurrentTime();
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new
+                SimpleDateFormat("EEE, MMM d",
+                Locale.getDefault());
+        String date = dateFormat.format(calendar.getTime());
+        Score score = new Score(nickName, date, currentTime);
+        return score;
     }
 }

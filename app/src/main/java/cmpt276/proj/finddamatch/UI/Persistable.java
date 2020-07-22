@@ -14,10 +14,10 @@ public interface Persistable {
     /**
      * Loads the state of the class
      */
-    void load(Context context) throws JSONException;
+    void load(Context context);
 
     /**
      * Saves the state of the class
      */
-    void save(Context context) throws IOException;
+    void save(Context context);
 }

@@ -8,13 +8,13 @@ import java.util.Map;
 import cmpt276.proj.finddamatch.model.GameMode;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
-public class ScoresManager implements Serializable {
+public class ScoreManager implements Serializable {
     private Map<GameMode, ScoreTable> scoreTables;
     private Map<GameMode, ScoreTable> defaultValues;
-    private Score currentScore;
+    private int currentTime;
 
-    public ScoresManager(List<ScoreTable> scoreTables,
-                         List<ScoreTable> defaultValues) {
+    public ScoreManager(List<ScoreTable> scoreTables,
+                        List<ScoreTable> defaultValues) {
         this.scoreTables = new HashMap<>();
         this.defaultValues = new HashMap<>();
         for (ScoreTable scoreTable : scoreTables) {
@@ -23,8 +23,7 @@ public class ScoresManager implements Serializable {
         for (ScoreTable scoreTable : defaultValues) {
             this.defaultValues.put(scoreTable.getGameMode(), scoreTable);
         }
-        this.currentScore = new Score("initial name",
-                "initial date", 0);
+        this.currentTime = 0;
     }
 
     public void addScore(VALID_GAME_MODE gameMode, Score score) {
@@ -45,13 +44,18 @@ public class ScoresManager implements Serializable {
         }
     }
 
-    public Score getCurrentScore() {
-        return currentScore;
+    public int getCurrentTime() {
+        return currentTime;
     }
 
     public void resetDefaultScores(List<ScoreTable> resetValues) {
+        this.defaultValues.clear();
         for (ScoreTable scoreTable : resetValues) {
             this.defaultValues.put(scoreTable.getGameMode(), scoreTable);
         }
+    }
+
+    public void setTime(int time) {
+        this.currentTime = time;
     }
 }

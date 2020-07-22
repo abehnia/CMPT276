@@ -43,16 +43,16 @@ public class ScoreTable implements Iterable<Score>, Serializable {
         }
     }
 
+    public int size() {
+        return scores.size();
+    }
+
     public void sort() {
         Collections.sort(scores);
     }
 
     public GameMode getGameMode() {
         return this.gameMode;
-    }
-
-    public void clear() {
-        scores.clear();
     }
 
                       @NonNull

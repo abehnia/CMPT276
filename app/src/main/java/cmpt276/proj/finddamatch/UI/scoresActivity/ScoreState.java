@@ -14,56 +14,56 @@ import java.util.List;
 
 import cmpt276.proj.finddamatch.UI.Persistable;
 
-import static cmpt276.proj.finddamatch.UI.scoresActivity.DefaultScoresGenerator.generateDefaultScores;
-
 /**
  * Handles the persistence of the Score Manager
  */
 public class ScoreState implements Persistable {
-    private ScoresManager scoreManager;
+    private static final String SCORE_STATE_FILE_NAME = "score-state";
+    private ScoreManager scoreManager;
     private static ScoreState scoreState;
 
     private ScoreState() {}
 
     @Override
-    public void load(Context context) throws JSONException {
+    public void load(Context context) {
         try {
             FileInputStream scoreStateFileInputStream =
-                    context.openFileInput("score-state");
+                    context.openFileInput(SCORE_STATE_FILE_NAME);
             ObjectInput scoreStateReader = new
                     ObjectInputStream(scoreStateFileInputStream);
-            this.scoreManager = (ScoresManager) scoreStateReader.readObject();
+            this.scoreManager = (ScoreManager) scoreStateReader.readObject();
             List<ScoreTable> resetValues = DefaultScoresGenerator.
                     generateDefaultScores(context);
+            assert resetValues != null;
             this.scoreManager.resetDefaultScores(resetValues);
             scoreStateReader.close();
             scoreStateFileInputStream.close();
         } catch (IOException | ClassNotFoundException e) {
             List<ScoreTable> currentValues = DefaultScoresGenerator.
                     generateDefaultScores(context);
+            assert currentValues != null;
             List<ScoreTable> resetValues = DefaultScoresGenerator.
                     generateDefaultScores(context);
-            scoreManager = new ScoresManager(currentValues, resetValues);
+            scoreManager = new ScoreManager(currentValues, resetValues);
         }
     }
 
     @Override
-    public void save(Context context) throws IOException {
-        FileOutputStream scoreStateFileOutputStream =
-                context.openFileOutput("score-state",
-                        Context.MODE_PRIVATE);
-        ObjectOutputStream scoreStateWriter = new
-                ObjectOutputStream(scoreStateFileOutputStream);
-        scoreStateWriter.writeObject(scoreManager);
-        scoreStateWriter.close();
-        scoreStateFileOutputStream.close();
+    public void save(Context context) {
+        try {
+            FileOutputStream scoreStateFileOutputStream = context.
+                    openFileOutput(SCORE_STATE_FILE_NAME, Context.MODE_PRIVATE);
+            ObjectOutputStream scoreStateWriter = new
+                    ObjectOutputStream(scoreStateFileOutputStream);
+            scoreStateWriter.writeObject(scoreManager);
+            scoreStateWriter.close();
+            scoreStateFileOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void setScoreManager(ScoresManager scoreManager) {
-        this.scoreManager = scoreManager;
-    }
-
-    public ScoresManager getScoreManager() {
+    public ScoreManager getScoreManager() {
         return this.scoreManager;
     }
 

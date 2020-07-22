@@ -12,13 +12,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import java.io.IOException;
+import java.util.Arrays;
 
 import cmpt276.proj.finddamatch.R;
-import cmpt276.proj.finddamatch.UI.scoresActivity.Score;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTable;
-import cmpt276.proj.finddamatch.UI.scoresActivity.ScoresManager;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTableView;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreViewGenerator;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
 /**
@@ -26,15 +27,19 @@ import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
  */
 
 public class ScoresActivity extends AppCompatActivity {
-    private ScoresManager scoresManager;
+    private ScoreManager scoreManager;
+    ScoreTableView scoreTableView;
+    ScoreTable scoreTable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scores);
 
-        scoresManager = ScoreState.get().getScoreManager();
+        scoreManager = ScoreState.get().getScoreManager();
+        scoreTable = scoreManager.getScoreTable(VALID_GAME_MODE.GAME1);
         populateTable();
+        showScore();
         setupResetBtn();
         setupToolbar();
     }
@@ -42,48 +47,28 @@ public class ScoresActivity extends AppCompatActivity {
     private void setupResetBtn() {
         Button btn = findViewById(R.id.btnReset);
         btn.setOnClickListener(v -> {
-            scoresManager.resetScoreTable(VALID_GAME_MODE.GAME1);
-            populateTable();
+            scoreManager.resetScoreTable(VALID_GAME_MODE.GAME1);
+            scoreTable = scoreManager.getScoreTable(VALID_GAME_MODE.GAME1);
+            showScore();
         });
     }
 
     private void populateTable() {
-        TextView txtName;
-        TextView txtDate;
-        TextView txtTime;
-        String time_str;
-
-        TypedArray typedNameIds = getResources().obtainTypedArray(R.array.name_ids);
-        TypedArray typedDateIds = getResources().obtainTypedArray(R.array.date_ids);
-        TypedArray typedTimeIds = getResources().obtainTypedArray(R.array.time_ids);
-
-        ScoreTable scoreTable = scoresManager.
+        TypedArray typedNameIds = getResources().
+                obtainTypedArray(R.array.name_ids);
+        TypedArray typedDateIds = getResources().
+                obtainTypedArray(R.array.date_ids);
+        TypedArray typedTimeIds = getResources().
+                obtainTypedArray(R.array.time_ids);
+        ScoreTable scoreTable = scoreManager.
                 getScoreTable(VALID_GAME_MODE.GAME1);
-        int index = 0;
-        for (Score score : scoreTable) {
-            int time = score.getTime();
-            String name = score.getName();
-            String date = score.getDate();
-            time_str = StringFormatting.getTimeString(time, ScoresActivity.this);
-
-            txtName = findViewById(typedNameIds.getResourceId(index, 0));
-            txtDate = findViewById(typedDateIds.getResourceId(index, 0));
-            txtTime = findViewById(typedTimeIds.getResourceId(index, 0));
-
-            txtName.setText(name);
-            txtDate.setText(date);
-            txtTime.setText(time_str);
-
-            txtName.setTextColor(ContextCompat.getColor(ScoresActivity.this, R.color.colorText));
-            txtDate.setTextColor(ContextCompat.getColor(ScoresActivity.this, R.color.colorText));
-            txtTime.setTextColor(ContextCompat.getColor(ScoresActivity.this, R.color.colorText));
-
-            index += 1;
-        }
-
-        typedNameIds.recycle();
-        typedDateIds.recycle();
-        typedTimeIds.recycle();
+        this.scoreTableView = ScoreViewGenerator.generate(
+                findViewById(android.R.id.content).getRootView(),
+                Arrays.asList(typedNameIds, typedDateIds, typedTimeIds),
+                scoreTable);
+        int color = ContextCompat.getColor(ScoresActivity.this,
+                R.color.colorText);
+        scoreTableView.setColor(color);
     }
 
     private void setupToolbar() {
@@ -96,6 +81,10 @@ public class ScoresActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void showScore() {
+        scoreTableView.setScores(scoreTable);
     }
 
     public static Intent makeIntent(Context context) {

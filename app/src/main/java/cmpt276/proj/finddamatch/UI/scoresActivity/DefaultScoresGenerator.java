@@ -30,11 +30,15 @@ public class DefaultScoresGenerator {
         return json;
     }
 
-    public static List<ScoreTable> generateDefaultScores(
-            Context context) throws JSONException {
+    public static List<ScoreTable> generateDefaultScores(Context context) {
         String jsonString = generateJsonString(context);
-        JSONArray array = new JSONArray(jsonString);
-        return JsonParser.parseDefaultScores(array);
+        try {
+            JSONArray array = new JSONArray(jsonString);
+            return JsonParser.parseDefaultScores(array);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

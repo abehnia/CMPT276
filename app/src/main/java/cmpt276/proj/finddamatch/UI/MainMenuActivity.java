@@ -6,10 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import org.json.JSONException;
-
-import java.io.IOException;
-
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
@@ -30,11 +26,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setupHelpBtn();
         setupSettings();
         setupBestScoresBtn();
-        try {
-            ScoreState.get().load(MainMenuActivity.this);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        ScoreState.get().load(MainMenuActivity.this);
     }
 
     private void setupBestScoresBtn() {
@@ -75,11 +67,7 @@ public class MainMenuActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        try {
-            ScoreState.get().save(MainMenuActivity.this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ScoreState.get().save(MainMenuActivity.this);
     }
 
 }

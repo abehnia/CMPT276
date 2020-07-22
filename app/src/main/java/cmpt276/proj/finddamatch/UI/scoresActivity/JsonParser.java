@@ -13,10 +13,20 @@ import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
 public class JsonParser {
 
+    private static final String NAME_KEY = "name";
+    private static final String TIME_KEY = "time";
+    private static final String DATE_KEY = "date";
+    private static final String SCORE_TABLE_KEY = "values";
+    private static final String GAME_MODE_KEY = "mode";
+    private static final String ORDER_KEY = "order";
+    private static final String SIZE_KEY = "size";
+    private static final String ERROR_MESSAGE =
+            "Error in JSON file for default scores";
+
     public static Score parseScore(JSONObject object) throws JSONException {
-        String name = object.getString("name");
-        int time = object.getInt("time");
-        String date = object.getString("date");
+        String name = object.getString(NAME_KEY);
+        int time = object.getInt(TIME_KEY);
+        String date = object.getString(DATE_KEY);
         return new Score(name, date, time);
     }
 
@@ -24,7 +34,7 @@ public class JsonParser {
             throws JSONException {
         ArrayList<Score> scores = new ArrayList<>();
         VALID_GAME_MODE gameMode = parseGameMode(object);
-        JSONArray array = object.getJSONArray("values");
+        JSONArray array = object.getJSONArray(SCORE_TABLE_KEY);
         for (int i = 0; i < array.length(); ++i) {
             scores.add(parseScore(array.getJSONObject(i)));
         }
@@ -33,9 +43,9 @@ public class JsonParser {
 
     public static VALID_GAME_MODE parseGameMode(JSONObject object)
             throws JSONException {
-        JSONObject gameMode = object.getJSONObject("mode");
-        int order = gameMode.getInt("order");
-        int size = gameMode.getInt("size");
+        JSONObject gameMode = object.getJSONObject(GAME_MODE_KEY);
+        int order = gameMode.getInt(ORDER_KEY);
+        int size = gameMode.getInt(SIZE_KEY);
         for (VALID_GAME_MODE validGameMode : VALID_GAME_MODE.values()) {
             if (validGameMode.getOrder() == order &&
                     validGameMode.getSize() == size) {
@@ -43,8 +53,7 @@ public class JsonParser {
             }
         }
         if (BuildConfig.DEBUG) {
-            throw new AssertionError(
-                    "Error in JSON file for default scores");
+            throw new AssertionError(ERROR_MESSAGE);
         }
         return null;
     }
