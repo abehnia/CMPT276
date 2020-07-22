@@ -12,10 +12,16 @@ import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.ImageSet;
 
-public abstract class ImageSetImpl implements ImageSet {
+public class ImageSetImpl {
 
-
-    public Drawable getDrawable(int id, boolean textDrawable, Resources resources){
+//    private static Drawable imageToDraw;
+//
+//    public ImageSetImpl(Drawable imageToDraw) {
+//        this.imageToDraw = imageToDraw;
+//    }
+//
+//    @Override
+    public static Drawable getDrawables(int id, boolean textDrawable, Resources resources){
         Drawable imageToDraw;
         int numOfImages = Card.NUMBER_OF_IMAGES_PER_DECK;
 //        final int numOfImages = 31;
@@ -24,7 +30,12 @@ public abstract class ImageSetImpl implements ImageSet {
         TypedArray logos = resources.obtainTypedArray(R.array.logos);
         String[] logos_string = resources.getStringArray(R.array.logos_string);
 
-        imageToDraw = logos.getDrawable(id + imageSet * numOfImages);
+//        imageToDraw = logos.getDrawable(id + imageSet * numOfImages);
+
+        DrawableText text = new DrawableText(logos_string[id + imageSet * numOfImages]);
+
+        imageToDraw = text;
+
 
 //        if (textDrawable){
 //            Drawable d = resources.getDrawable(R.drawable.background_shape);
@@ -32,6 +43,7 @@ public abstract class ImageSetImpl implements ImageSet {
 //        }else{
 //            imageToDraw = logos.getDrawable(id + imageSet * numOfImages);
 //        }
+
 
         return imageToDraw;
     }

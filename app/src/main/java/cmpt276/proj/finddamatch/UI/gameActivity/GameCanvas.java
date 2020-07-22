@@ -55,9 +55,9 @@ public class GameCanvas extends View {
         throw new NoSuchElementException();
     }
 
-    public void setCards(Card guess, Card lead, int imageSet) {
-        guessCard.setImages(guess, imageSet);
-        leadCard.setImages(lead, imageSet);
+    public void setCards(Card guess, Card lead) {
+        guessCard.setImages(guess, getResources());
+        leadCard.setImages(lead, getResources());
         invalidate();
     }
 
