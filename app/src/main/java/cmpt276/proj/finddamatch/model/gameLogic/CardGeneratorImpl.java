@@ -26,6 +26,8 @@ public class CardGeneratorImpl implements CardGenerator {
     private static final int MAX_NUMBER_OF_ITERATIONS = 1000000;
     private static final int MAX_NUMBER_OF_ITERATIONS_PER_ELEMENT = 1000;
 
+
+
     @Override
     public Card generate(List<MutableImage> images) {
         randomize(images);
