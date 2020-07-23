@@ -4,37 +4,46 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 
-import java.util.HashMap;
-
-import cmpt276.proj.finddamatch.BuildConfig;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.ImageSet;
 
 public class ImageSetImpl implements ImageSet{
+    private Drawable[] imagesList;
+    private Drawable[] imagesTextList;
 
 
-    @Override
-    public Drawable getDrawables(int id, boolean textDrawable, Resources resources){
-        Drawable imageToDraw;
-        int numOfImages = Card.NUMBER_OF_IMAGES_PER_DECK;
-//        final int numOfImages = 31;
+    public ImageSetImpl(Resources resources){
+//        final int NUM_OF_IMAGES = 31;
+        int NUM_OF_IMAGES = Card.NUMBER_OF_IMAGES_PER_DECK;
 
-        int imageSet = Settings.get().getImageSetValue();
+        int IMAGE_SET_NUM = Settings.get().getImageSetValue();
+
         TypedArray logos = resources.obtainTypedArray(R.array.logos);
         String[] logos_string = resources.getStringArray(R.array.logos_string);
 
+        this.imagesList = new Drawable[NUM_OF_IMAGES];
+        this.imagesTextList = new Drawable[NUM_OF_IMAGES];
+
+        for (int i = 0; i < NUM_OF_IMAGES; i++){
+            imagesList[i] = logos.getDrawable(i + IMAGE_SET_NUM * NUM_OF_IMAGES);
+            imagesTextList[i] = new DrawableText(logos_string[i + IMAGE_SET_NUM * NUM_OF_IMAGES]);
+        }
+        logos.recycle();
+    }
+
+
+
+    @Override
+    public Drawable getImage(int id, boolean textDrawable){
+        Drawable imageToDraw;
 
         if (textDrawable){
-            imageToDraw = new DrawableText(logos_string[id + imageSet * numOfImages]);
+            imageToDraw = imagesTextList[id];
         }else{
-            imageToDraw = logos.getDrawable(id + imageSet * numOfImages);
+            imageToDraw = imagesList[id];
         }
-
-        logos.recycle();
-
-
         return imageToDraw;
     }
 

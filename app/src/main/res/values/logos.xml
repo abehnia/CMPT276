@@ -18,19 +18,19 @@
     </integer-array>
 
     <string-array name="logos_string">
-        <item>Minnesota Timberwolves</item>
-        <item>Denver Nuggets</item>
-        <item>Golden State Warriors</item>
-        <item>Houston Rockets</item>
-        <item>New Orleans Pelicans</item>
-        <item>Los Angeles Lakers Logo</item>
-        <item>Dallas Mavericks</item>
-        <item>Toronto Raptors</item>
-        <item>Chicago Bulls</item>
-        <item>Milwaukee Bucks</item>
-        <item>Philadelphia 76ers</item>
-        <item>Boston Celtics</item>
-        <item>Cleveland Cavaliers</item>
+        <item>Timberwolves</item>
+        <item>Nuggets</item>
+        <item>Golden State</item>
+        <item>Rockets</item>
+        <item>Pelicans</item>
+        <item>Lakers</item>
+        <item>Mavericks</item>
+        <item>Raptors</item>
+        <item>Bulls</item>
+        <item>Bucks</item>
+        <item>76ers</item>
+        <item>Celtics</item>
+        <item>Cavaliers</item>
         <item>Miami Heat</item>
     </string-array>
 </resources>

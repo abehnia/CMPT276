@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.provider.ContactsContract;
 
 import androidx.annotation.NonNull;
 
@@ -40,9 +39,9 @@ public abstract class CardView implements Iterable<ImageView> {
 
     public void setImages(Card card, Resources resources) {
         images.clear();
-        ImageSet imageset = new ImageSetImpl();
+        ImageSet imageset = new ImageSetImpl(resources);
         for (Image image : card) {
-            Drawable imageToDraw = imageset.getDrawables(image.getID(), true, resources);
+            Drawable imageToDraw = imageset.getImage(image.getID(), true);
             images.add(new ImageView(image, imageToDraw, this));
         }
     }

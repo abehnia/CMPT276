@@ -3,10 +3,10 @@ package cmpt276.proj.finddamatch.model;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 
-public abstract interface ImageSet {
+public interface ImageSet {
 
     /**
-     * Returns a drawable of the given ID
+     Returns a drawable of the given ID
      */
-    Drawable getDrawables(int id, boolean textImage, Resources resources);
+    Drawable getImage(int id, boolean textImage);
 }
