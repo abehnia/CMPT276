@@ -3,9 +3,37 @@
     <array name="imageset_keys">
         <item>@id/imageSetWesternChoice</item>
         <item>@id/imageSetEasternChoice</item>
+        <item>@id/imageSetFlickChoice</item>
     </array>
-    <integer-array name="imageset_values">
+    <string-array name="imageset_values">
         <item>0</item>
         <item>1</item>
-    </integer-array>
+        <item>2</item>
+    </string-array>
+
+    <array name="gameorder_keys">
+        <item>@id/gameOrderChoice0</item>
+        <item>@id/gameOrderChoice1</item>
+        <item>@id/gameOrderChoice2</item>
+    </array>
+    <string-array name="gameorder_values">
+        <item>2</item>
+        <item>3</item>
+        <item>5</item>
+    </string-array>
+
+    <array name="gamesize_keys">
+        <item>@id/gameSizeChoice0</item>
+        <item>@id/gameSizeChoice1</item>
+        <item>@id/gameSizeChoice2</item>
+        <item>@id/gameSizeChoice3</item>
+        <item>@id/gameSizeChoice4</item>
+    </array>
+    <string-array name="gamesize_values">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>-1</item>
+    </string-array>
 </resources>

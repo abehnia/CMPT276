@@ -113,7 +113,7 @@ public class GameActivity extends AppCompatActivity {
                                        int bottom, int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
                 gameCanvas.setCards(discard, draw,
-                        Settings.get().getImageSetValue());
+                        Settings.get().getImageSet().getID());
                 gameCanvas.hide();;
             }
         });
@@ -166,7 +166,7 @@ public class GameActivity extends AppCompatActivity {
                 draw = game.peekDraw();
                 gameCanvas.hide();
                 gameCanvas.setCards(discard, draw,
-                        Settings.get().getImageSetValue());
+                        Settings.get().getImageSet().getID());
                 isTouchable = true;
             }
         });
@@ -218,7 +218,7 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
         draw = game.peekDraw();
-        gameCanvas.setCards(discard, draw, Settings.get().getImageSetValue());
+        gameCanvas.setCards(discard, draw, Settings.get().getImageSet().getID());
     }
 
     private void actionUp() {

@@ -10,6 +10,7 @@ import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
+import cmpt276.proj.finddamatch.UI.settingsActivity.SettingsSaver;
 
 /**
  * Class for the Main Menu. Sets up various buttons
@@ -38,8 +39,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     private void setupSettings() {
-        Settings.get().init(getResources());
-        Settings.get().load(MainMenuActivity.this);
+        SettingsSaver.load(MainMenuActivity.this);
         Button settingsBtn = findViewById(R.id.btnSettings);
         settingsBtn.setOnClickListener(v -> {
             Intent settings_intent = SettingsActivity.makeIntent(MainMenuActivity.this);

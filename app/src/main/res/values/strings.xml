@@ -82,5 +82,16 @@
     </string>
     <string name="names">By:\nAlex, Ali\nArd, Percy</string>
     <string name="image_logo">logo</string>
+    <string name="activity_settings_flickr">Flickr</string>
+    <string name="activity_settings_game_order">Images per Card:</string>
+    <string name="activity_settings_order_choice0">3</string>
+    <string name="activity_settings_order_choice1">4</string>
+    <string name="activity_settings_order_choice2">6</string>
+    <string name="activity_settings_game_size">Cards per Deck:</string>
+    <string name="activity_settings_size_choice0">5</string>
+    <string name="activity_settings_size_choice1">10</string>
+    <string name="activity_settings_size_choice2">15</string>
+    <string name="activity_settings_size_choice3">20</string>
+    <string name="activity_settings_size_choice4">All</string>
 
 </resources>
