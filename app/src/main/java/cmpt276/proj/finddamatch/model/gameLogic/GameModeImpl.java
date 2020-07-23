@@ -2,26 +2,14 @@ package cmpt276.proj.finddamatch.model.gameLogic;
 
 import cmpt276.proj.finddamatch.model.GameMode;
 
-public class GameModeMatcher implements GameMode {
+public class GameModeImpl implements GameMode {
     private int order;
     private int size;
     private boolean hasText;
 
-    public GameModeMatcher() {
-        this.order = 0;
-        this.size = 0;
-        this.hasText = false;
-    }
-
-    public void setOrder(int order) {
+    public GameModeImpl(int order, int size, boolean hasText) {
         this.order = order;
-    }
-
-    public void setSize(int size) {
         this.size = size;
-    }
-
-    public void setHasText(boolean hasText) {
         this.hasText = hasText;
     }
 

@@ -1,19 +1,16 @@
 package cmpt276.proj.finddamatch.UI.settingsActivity;
 
-import android.content.res.Resources;
-import android.content.res.TypedArray;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import cmpt276.proj.finddamatch.BuildConfig;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.ImageSetOption;
 import cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET;
 import cmpt276.proj.finddamatch.model.GameMode;
 import cmpt276.proj.finddamatch.model.gameLogic.GAME_MODES;
 
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
 import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.WESTERN;
 import static cmpt276.proj.finddamatch.model.gameLogic.GAME_MODES.GAME1;
 
@@ -21,7 +18,6 @@ import static cmpt276.proj.finddamatch.model.gameLogic.GAME_MODES.GAME1;
  * Contains the settings of the app
  */
 public class Settings implements Serializable {
-    private boolean initialized;
     private static Settings appSettings;
     private GameMode gameMode;
     private ImageSetOption imageSetOption;
@@ -30,7 +26,6 @@ public class Settings implements Serializable {
     private List<Integer> buttonIDs;
 
     private Settings() {
-        this.initialized = false;
         this.gameMode = GAME1;
         this.imageSetOption = WESTERN;
         this.candidateGameMode = gameMode;
@@ -39,6 +34,7 @@ public class Settings implements Serializable {
         buttonIDs.add(R.id.imageSetWesternChoice);
         buttonIDs.add(R.id.gameOrderChoice0);
         buttonIDs.add(R.id.gameSizeChoice0);
+        buttonIDs.add(R.id.textChoice1);
     }
 
     public GameMode getGameMode() {
@@ -58,6 +54,10 @@ public class Settings implements Serializable {
     }
 
     public boolean apply() {
+        if (candidateImageSetOption.isEquivalent(FLICKR) &&
+                candidateGameMode.hasText()) {
+            return false;
+        }
         if (checkGameMode() && checkImageSetOption()) {
             update();
             return true;

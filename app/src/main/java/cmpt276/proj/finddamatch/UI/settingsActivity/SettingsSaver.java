@@ -8,9 +8,6 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.List;
-
-import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 
 public class SettingsSaver {
     private static final String SETTINGS_STATE_FILE_NAME = "settings-state";

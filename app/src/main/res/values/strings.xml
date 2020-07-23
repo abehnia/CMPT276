@@ -93,5 +93,9 @@
     <string name="activity_settings_size_choice2">15</string>
     <string name="activity_settings_size_choice3">20</string>
     <string name="activity_settings_size_choice4">All</string>
+    <string name="activity_settings_text_true">Text</string>
+    <string name="activity_settings_text_false">No Text</string>
+    <string name="acticity_settings_text_or_no_text">Text</string>
+    <string name="invalid_settings">Invalid Settings</string>
 
 </resources>
