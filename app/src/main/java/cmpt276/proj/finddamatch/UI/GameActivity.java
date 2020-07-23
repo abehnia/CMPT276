@@ -19,6 +19,8 @@ import java.util.Locale;
 
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.gameActivity.GameCanvas;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
+import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.CardGenerator;
 import cmpt276.proj.finddamatch.model.DeckGenerator;
@@ -28,7 +30,6 @@ import cmpt276.proj.finddamatch.model.gameLogic.CardGeneratorImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.DeckGeneratorImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
-import cmpt276.proj.finddamatch.UI.scoresActivity.ScoresIterator;
 
 /**
  * Class for Game Activity
@@ -45,7 +46,7 @@ public class GameActivity extends AppCompatActivity {
     private boolean isTouchable, isInDelay;
     private static final int DELAY = 100;
     private static final int REVEAL_DELAY = 1500;
-    ScoresIterator scores;
+    ScoreManager scoreManager;
     static private final int SIXTH_SCORE = 5;
 
     @Override
@@ -53,7 +54,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        scores = ScoresIterator.getInstance();
+        scoreManager = ScoreState.get().getScoreManager();
         this.isTouchable = true;
         setupGame();
         setupCanvas();
@@ -82,7 +83,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void displayDialogBox(long longTime) {
         int time = (int) (longTime / 1000);
-        scores.getScores().get(SIXTH_SCORE).setTime(time);
+        scoreManager.setTime(time);
         FragmentManager manager = getSupportFragmentManager();
         DialogBoxFragment dialog = new DialogBoxFragment();
         dialog.setCancelable(false);

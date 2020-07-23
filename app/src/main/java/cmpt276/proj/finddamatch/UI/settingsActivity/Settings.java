@@ -8,11 +8,11 @@ import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.ImageSetOption;
 import cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET;
 import cmpt276.proj.finddamatch.model.GameMode;
-import cmpt276.proj.finddamatch.model.gameLogic.GAME_MODES;
+import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
 import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
 import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.WESTERN;
-import static cmpt276.proj.finddamatch.model.gameLogic.GAME_MODES.GAME1;
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
 
 /**
  * Contains the settings of the app
@@ -82,7 +82,7 @@ public class Settings implements Serializable {
     }
 
     private boolean checkGameMode() {
-        for (GameMode gameMode : GAME_MODES.values()) {
+        for (GameMode gameMode : VALID_GAME_MODE.values()) {
             if (candidateGameMode.isEquivalent(gameMode)) {
                 this.candidateGameMode = gameMode;
                 return true;
