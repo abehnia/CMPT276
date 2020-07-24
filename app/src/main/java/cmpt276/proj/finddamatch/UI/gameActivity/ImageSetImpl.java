@@ -2,6 +2,7 @@ package cmpt276.proj.finddamatch.UI.gameActivity;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 
 import cmpt276.proj.finddamatch.R;
@@ -9,13 +10,19 @@ import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.ImageSet;
 
+/**
+ * Basic implementation for Image Set
+ * Not be used for Flickr
+ * Refer to Image Set interface for more info
+ */
+
 public class ImageSetImpl implements ImageSet{
     private Drawable[] imagesList;
     private Drawable[] imagesTextList;
+//    private static final int NUM_OF_IMAGES = 31;
 
 
     public ImageSetImpl(Resources resources){
-//        final int NUM_OF_IMAGES = 31;
         int NUM_OF_IMAGES = Card.NUMBER_OF_IMAGES_PER_DECK;
 
         int IMAGE_SET_NUM = Settings.get().getImageSetValue();
