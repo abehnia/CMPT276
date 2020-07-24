@@ -1,6 +1,7 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;

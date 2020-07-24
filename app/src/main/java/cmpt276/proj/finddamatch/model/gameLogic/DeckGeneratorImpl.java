@@ -1,36 +1,56 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.Stack;
 
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.CardGenerator;
-import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.MutableImage;
 
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME2;
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME3;
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME7;
 
 /**
  * Class for generating a randomized stack of Cards
  */
 public class DeckGeneratorImpl implements DeckGenerator {
 
-    public int ORDER = GAME1.getOrder();
-    public int NUM_OF_IMAGES_PER_CARD = ORDER - 1;
-    public int ALL = ORDER * ORDER + ORDER + 1;
+    public int p = GAME3.getOrder();
+    public int ORDER = GAME3.getOrder();
+    public int SIZE = GAME3.getSize();
+
     CardGenerator cardGenerator;
 
-    Stack<Card> arrayOfCards = new Stack<>();
+    Stack<Card> arrayOfCardsInit = new Stack<>();
     ArrayList<MutableImage> images = new ArrayList<>();
+    Stack<Card> arrayOfCardsFinal = new Stack<>();
 
     public DeckGeneratorImpl(CardGenerator cardGenerator) {
         this.cardGenerator = cardGenerator;
+        for(int i=2; i< 1+(int)Math.sqrt(p); i++){
+            if(p % i==0){
+                p = i;
+                break;
+            }
+        }
     }
+
 
     @Override
     public Stack<Card> generate() {
+        //crispy clean decks
+        arrayOfCardsInit.clear();
+        arrayOfCardsFinal.clear();
+
         // Generate the first card, then adds it to the arrayOfCards stack.
         generateFirstCard();
 
@@ -40,64 +60,58 @@ public class DeckGeneratorImpl implements DeckGenerator {
         // Generate the last card, then adds it to the arrayOfCards stack.
         generateLastCard();
 
+        // Add desired unit of cards to the arrayOfCardsFinal deck.
+        appendDeck();
+
         // One last shuffle before we return.
-        Collections.shuffle(arrayOfCards);
+        Collections.shuffle(arrayOfCardsFinal);
 
-        return arrayOfCards; //end of DeckGeneratorImpl logic
-
-//        //Generate a shuffled deck of cards, using PRE_GENERATED_CARDS CLASS
-//        generateSevenPregeneratedCards(arrayOfCards);
+        return arrayOfCardsFinal; //end of DeckGeneratorImpl logic
     }
 
     private void generateFirstCard(){
-        ArrayList images = new ArrayList<Card>();
+        List<MutableImage> images = new ArrayList<>();
         for (int i= 0; i < ORDER; i++){
-            Card card = new CardImpl();
             for (int j = 0; j < ORDER; j++){
-                Image image = new ImageImpl(i * ORDER + j);
+               ImageImpl image = new ImageImpl(i * ORDER + j);
                 images.add(image);
             }
-            Image image = new ImageImpl(ORDER * ORDER);
+            ImageImpl image = new ImageImpl(ORDER * ORDER);
             images.add(image);
-            arrayOfCards.push(new CardImpl(images));
+            arrayOfCardsInit.push(cardGenerator.generate(images));
+            images.clear();
         }
     }
 
     private void generateCardsMinusFirstLast(){
-        ArrayList images = new ArrayList<Card>();
+        List<MutableImage> images = new ArrayList<>();
         for (int i = 0; i < ORDER; i++) {
             for (int j = 0; j < ORDER; j++) {
-                Card card = new CardImpl();
                 for (int k = 0; k < ORDER; k++) {
-                    Image image = new ImageImpl(k * ORDER + ((j + i * k) % ORDER));
+                    MutableImage image = new ImageImpl(k * ORDER + ((j + i * k) % ORDER));
                     images.add(image);
                 }
-                Image image = new ImageImpl(ORDER * ORDER + i + 1);
+                MutableImage image = new ImageImpl(ORDER * ORDER + i + 1);
                 images.add(image);
-                arrayOfCards.push(new CardImpl(images));
+                arrayOfCardsInit.push(cardGenerator.generate(images));
+                images.clear();
             }
         }
     }
 
     private void generateLastCard(){
-        ArrayList images = new ArrayList<Card>();
+        List<MutableImage> images = new ArrayList<>();
         for (int i = 0; i < ORDER + 1; i++){
-            Image image = new ImageImpl(ORDER * ORDER + i);
+            MutableImage image = new ImageImpl(ORDER * ORDER + i);
             images.add(image);
         }
-        arrayOfCards.push(new CardImpl(images));
+        arrayOfCardsInit.push(cardGenerator.generate(images));
     }
 
-//    private Stack<Card> generateSevenPregeneratedCards(Stack<Card> arrayOfCards){
-//        for (Card card : PRE_GENERATED_CARDS.values()) {
-//            for (Image image : card) {
-//                images.add(new ImageImpl(image.getID()));
-//            }
-//            arrayOfCards.push(cardGenerator.generate(images));
-//            images.clear();
-//        }
-//        Collections.shuffle(arrayOfCards);
-//        return arrayOfCards;
-//    }
+    private void appendDeck(){
+        for(int i = 0; i < SIZE; i++){
+            arrayOfCardsFinal.push(arrayOfCardsInit.pop());
+        }
+    }
 }
 

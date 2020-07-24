@@ -36,6 +36,7 @@ public class CardImpl implements Card {
         for (Image image : card) {
             this.images.add(image);
         }
+
     }
 
     @Override
