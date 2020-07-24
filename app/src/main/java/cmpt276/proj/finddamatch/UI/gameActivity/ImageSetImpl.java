@@ -25,7 +25,7 @@ public class ImageSetImpl implements ImageSet{
     public ImageSetImpl(Resources resources){
         int NUM_OF_IMAGES = Card.NUMBER_OF_IMAGES_PER_DECK;
 
-        int IMAGE_SET_NUM = Settings.get().getImageSetValue();
+        int IMAGE_SET_NUM = Settings.get().getImageSet().getID();
 
         TypedArray logos = resources.obtainTypedArray(R.array.logos);
         String[] logos_string = resources.getStringArray(R.array.logos_string);
