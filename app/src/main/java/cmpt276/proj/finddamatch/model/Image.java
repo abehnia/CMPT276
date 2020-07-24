@@ -37,4 +37,9 @@ public interface Image {
      * Returns true if the Id of the images are the same
      */
     boolean isEquivalent(Image image);
+
+    /**
+     * @return the status of the image in boolean
+     */
+    boolean getHasText();
 }

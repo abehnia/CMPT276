@@ -8,8 +8,10 @@ import cmpt276.proj.finddamatch.model.MutableImage;
  * For more information, refer to the mutable image interface
  */
 public class ImageImpl implements MutableImage {
+    private boolean imageMode = true;
     int ID;
     private float x, y, radius, orientation;
+    private boolean isText;
 
     public ImageImpl(float x, float y, float radius, float orientation,
                      int ID) {
@@ -72,5 +74,15 @@ public class ImageImpl implements MutableImage {
     @Override
     public boolean isEquivalent(Image image) {
         return this.getID() == image.getID();
+    }
+
+    @Override
+    public boolean getHasText() {
+        return isText;
+    }
+
+    @Override
+    public void setHasText(boolean gameMode) {
+        isText = gameMode;
     }
 }

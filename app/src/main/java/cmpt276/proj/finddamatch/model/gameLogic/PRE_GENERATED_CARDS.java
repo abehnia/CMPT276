@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Stack;
 
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;

@@ -2,13 +2,18 @@ package cmpt276.proj.finddamatch.model.gameLogic;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Stack;
 
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.CardGenerator;
+import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.MutableImage;
 
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
 import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,6 +35,22 @@ public class CardImplTest {
 
     @Test
     void exists() {
+        Image img = new ImageImpl(7);
+        for (Card card : PRE_GENERATED_CARDS.values()) {
+            assertFalse(card.exists(img));
+            assertEquals(3, card.size());
+        }
+        // Test parametrized constructor
+        ParameterTuner parameterTuner = new ParameterTuner(GAME1);
+        CardGenerator cardGenerator = new CardGeneratorImpl(parameterTuner);
+        DeckGenerator generator = new DeckGeneratorImpl(cardGenerator);
+        Stack<Card> stack = generator.generate();
+        for (Card card : stack) {
+            assertFalse(card.exists(img));
+            assertEquals(3, card.size());
+        }
+
+
         Image image1 = new ImageImpl(0);
         Image image2 = new ImageImpl(1);
         Image image3 = new ImageImpl(2);
@@ -45,21 +66,28 @@ public class CardImplTest {
         for (Image image : card)
             assertTrue(copiedCard.exists(image));
         assertFalse(copiedCard.exists(image4));
+
+        CardImpl card1 = new CardImpl(image1, image2, image3);
+        Card card2 = new CardImpl(card1);
+        for (Image image : card)
+            assertTrue(copiedCard.exists(image));
+        assertFalse(copiedCard.exists(image4));
+
     }
 
     @Test
     void size() {
-        Image image1 = new ImageImpl(0);
-        Image image2 = new ImageImpl(1);
-        Image image3 = new ImageImpl(2);
+        MutableImage image1 = new ImageImpl(7);
+        MutableImage image2 = new ImageImpl(1);
+        MutableImage image3 = new ImageImpl(2);
+
         // Test parametrized constructor
-        CardImpl card = new CardImpl(image1, image2, image3);
-        assertEquals(3, card.size());
+        ParameterTuner parameterTuner = new ParameterTuner(GAME1);
+        CardGenerator cardGenerator = new CardGeneratorImpl(parameterTuner);
+        DeckGenerator generator = new DeckGeneratorImpl(cardGenerator);
+        Stack<Card> stack = generator.generate();
+        assertEquals(7, stack.size());
 
-
-        // Test default constructor
-        Card copiedCard = new CardImpl(card);
-        assertEquals(3, copiedCard.size());
     }
 
     @Test
@@ -69,7 +97,8 @@ public class CardImplTest {
         MutableImage image3 = new ImageImpl(2);
 
         // Test parametrized constructor
-        CardGenerator cardGenerator = new CardGeneratorImpl();
+        ParameterTuner parameterTuner = new ParameterTuner(GAME1);
+        CardGenerator cardGenerator = new CardGeneratorImpl(parameterTuner);
         Card card = cardGenerator.generate(Arrays.asList(image1, image2, image3));
         boolean actual = true;
         // Test bounded
@@ -91,9 +120,27 @@ public class CardImplTest {
                 double deltaY = card.get(i).getY() - card.get(j).getY();
                 double distanceBetweenCircles =
                         sqrt(deltaX * deltaX + deltaY * deltaY);
-                if (sumOf2Radius > distanceBetweenCircles) doesNotOverlap = false;
+                if (sumOf2Radius / 2.0f > distanceBetweenCircles) doesNotOverlap = false;
             }
         }
         assertTrue(doesNotOverlap);
+    }
+
+    @Test
+    void iterator() {
+        Image image1 = new ImageImpl(0);
+        Card card = new CardImpl(image1);
+        Iterator<Image> it = card.iterator();
+        int i = 0;
+        while (it.hasNext()) {
+            Image image = it.next();
+            it.remove();
+        }
+        while (it.hasNext()) {
+            ++i;
+            it.next();
+        }
+
+        assertEquals(0, i);
     }
 }
