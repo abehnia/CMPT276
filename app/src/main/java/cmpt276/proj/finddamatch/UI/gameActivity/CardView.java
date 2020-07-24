@@ -1,5 +1,6 @@
 package cmpt276.proj.finddamatch.UI.gameActivity;
 
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -13,6 +14,7 @@ import java.util.NoSuchElementException;
 
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
+import cmpt276.proj.finddamatch.model.ImageSet;
 
 /**
  * Abstract class to represent a view for a card
@@ -21,25 +23,24 @@ public abstract class CardView implements Iterable<ImageView> {
     protected float x, y, radius;
     protected Paint backgroundPaint;
     protected ArrayList<ImageView> images;
-    protected TypedArray logos;
     protected boolean isHidden;
+    protected ImageSet imageSet;
 
-    public CardView(float x, float y, float radius, TypedArray logos,
-                    Paint backgroundPaint) {
+    public CardView(float x, float y, float radius,
+                    Paint backgroundPaint, ImageSet imageSet) {
         this.x = x;
         this.y = y;
         this.radius = radius;
-        this.logos = logos;
         this.images = new ArrayList<>();
         this.backgroundPaint = backgroundPaint;
         this.isHidden = false;
+        this.imageSet = imageSet;
     }
 
-    public void setImages(Card card, int imageSet) {
+    public void setImages(Card card) {
         images.clear();
         for (Image image : card) {
-            Drawable imageToDraw = logos.getDrawable(image.getID()
-                    + imageSet * Card.NUMBER_OF_IMAGES_PER_DECK);
+            Drawable imageToDraw = imageSet.getImage(image.getID(), false);
             images.add(new ImageView(image, imageToDraw, this));
         }
     }

@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.model.ImageSet;
 
 /**
  * View for the card that the player clicks
@@ -16,9 +17,9 @@ public class GuessCardView extends CardView {
     public Paint foregroundPaint;
     public Paint borderPaint;
 
-    public GuessCardView(float x, float y, float radius, TypedArray logos,
-                         Paint backgroundPaint, Resources resources) {
-        super(x, y, radius, logos, backgroundPaint);
+    public GuessCardView(float x, float y, float radius,
+                         Paint backgroundPaint, Resources resources, ImageSet imageSet) {
+        super(x, y, radius, backgroundPaint, imageSet);
         this.foregroundPaint = new Paint();
         this.borderPaint = new Paint();
         foregroundPaint.setColor(Color.BLACK);
