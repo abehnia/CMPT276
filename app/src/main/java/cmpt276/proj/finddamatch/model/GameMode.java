@@ -19,4 +19,15 @@ public interface GameMode {
      * Does the game contain text?
      */
     boolean hasText();
+
+//    /**
+//     * Sets the size of the game
+//     */
+//    void setSize(int userSelection);
+//
+//    /**
+//     * Sets the order(difficulty) of the game
+//     */
+//    void setOrder(int userSelection);
+
 }

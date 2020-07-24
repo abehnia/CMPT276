@@ -28,10 +28,6 @@ public interface Card extends Iterable<Image> {
      */
     int size();
 
-    /**
-     * Adds image to dynamically generated card
-     */
-    void add(Image image);
 
 
 }

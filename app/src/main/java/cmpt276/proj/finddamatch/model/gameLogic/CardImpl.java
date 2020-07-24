@@ -15,6 +15,10 @@ import cmpt276.proj.finddamatch.model.Image;
  * For more information, refer to the card interface
  */
 public class CardImpl implements Card {
+    public int NUM_OF_IMAGES_PER_CARD;
+    public int ORDER = NUM_OF_IMAGES_PER_CARD - 1;
+    public int ALL = ORDER * ORDER + ORDER + 1;
+
     private ArrayList<Image> images;
 
     public CardImpl(Image... images) {
