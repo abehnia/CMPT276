@@ -43,8 +43,7 @@ public class DeckGeneratorImpl implements DeckGenerator {
             }
         }
     }
-
-
+    
     @Override
     public Stack<Card> generate() {
         //crispy clean decks
@@ -60,11 +59,11 @@ public class DeckGeneratorImpl implements DeckGenerator {
         // Generate the last card, then adds it to the arrayOfCards stack.
         generateLastCard();
 
-        // Add desired unit of cards to the arrayOfCardsFinal deck.
-        appendDeck();
-
         // One last shuffle before we return.
         Collections.shuffle(arrayOfCardsFinal);
+
+        // Add desired unit of cards to the arrayOfCardsFinal deck.
+        appendDeck();
 
         return arrayOfCardsFinal; //end of DeckGeneratorImpl logic
     }
