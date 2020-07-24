@@ -1,78 +1,104 @@
 package cmpt276.proj.finddamatch.UI.settingsActivity;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.content.res.TypedArray;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.HashMap;
-
-import cmpt276.proj.finddamatch.BuildConfig;
-import cmpt276.proj.finddamatch.UI.Persistable;
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.ImageSetOption;
+import cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET;
+import cmpt276.proj.finddamatch.model.GameMode;
+import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
+
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.WESTERN;
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
 
 /**
  * Contains the settings of the app
  */
-public class Settings implements Persistable {
-    private int imageSetValue;
-    private int imageSetKey;
-    private boolean initialized;
-    private static HashMap<Integer, Integer> map;
-    public static Settings appSettings;
-    private static final String sharedFile = "cmpt276.proj.finddamatch.settings";
-    private static final String IMAGE_SET_KEY_KEY = "image-set-key-key";
-    private static final String IMAGE_SET_VALUE_KEY = "image-set-value-key";
-    private static final int IMAGE_SET_DEFAULT_VALUE = 0;
-    private static final int IMAGE_SET_DEFAULT_KEY = R.id.imageSetWesternChoice;
+public class Settings implements Serializable {
+    private static Settings appSettings;
+    private GameMode gameMode;
+    private ImageSetOption imageSetOption;
+    private transient GameMode candidateGameMode;
+    private transient ImageSetOption candidateImageSetOption;
+    private List<Integer> buttonIDs;
 
     private Settings() {
-        this.imageSetValue = IMAGE_SET_DEFAULT_VALUE;
-        this.imageSetKey = IMAGE_SET_DEFAULT_KEY;
-        Settings.map = new HashMap<>();
+        this.gameMode = GAME1;
+        this.imageSetOption = WESTERN;
+        this.candidateGameMode = gameMode;
+        this.candidateImageSetOption = imageSetOption;
+        this.buttonIDs = new ArrayList<>();
+        buttonIDs.add(R.id.imageSetWesternChoice);
+        buttonIDs.add(R.id.gameOrderChoice0);
+        buttonIDs.add(R.id.gameSizeChoice0);
+        buttonIDs.add(R.id.textChoice1);
+    }
+
+    public GameMode getGameMode() {
+        return gameMode;
+    }
+
+    public ImageSetOption getImageSet() {
+        return imageSetOption;
+    }
+
+    public void setGameMode(GameMode gameMode) {
+        this.candidateGameMode = gameMode;
+    }
+
+    public void setImageSetOption(ImageSetOption imageSetOption) {
+        this.candidateImageSetOption = imageSetOption;
+    }
+
+    public boolean apply() {
+        if (candidateImageSetOption.isEquivalent(FLICKR) &&
+                candidateGameMode.hasText()) {
+            return false;
+        }
+        if (checkGameMode() && checkImageSetOption()) {
+            update();
+            return true;
+        }
+        return false;
     }
 
     /**
-     * This function must be called before calling any of the other ones
+     * ImageSet, Order, Size
      */
-    public void init(Resources resources) {
-        TypedArray typedKeys = resources.obtainTypedArray(R.array.imageset_keys);
-        int[] keys = new int[typedKeys.length()];
-        for (int i = 0; i < keys.length; ++i) {
-            keys[i] = typedKeys.getResourceId(i, 0);
-        }
-        typedKeys.recycle();
-        int[] values = resources.getIntArray(R.array.imageset_values);
-        if (BuildConfig.DEBUG && !(keys.length == values.length)) {
-            throw new AssertionError("Length of keys and values" +
-                    " not equal in settings.");
-        }
-        for (int i = 0; i < keys.length; ++i) {
-            Settings.map.put(keys[i], values[i]);
-        }
-        this.initialized = true;
+    public List<Integer> getButtonIDs() {
+        return buttonIDs;
     }
 
-    public int getImageSetKey() {
-        checkInitialized();
-        return this.imageSetKey;
+    public void setButtonIDs(List<Integer> buttonIDs) {
+        this.buttonIDs = buttonIDs;
     }
 
-    public int getImageSetValue() {
-        checkInitialized();
-        return this.imageSetValue;
+    private void update() {
+        this.gameMode = candidateGameMode;
+        this.imageSetOption = candidateImageSetOption;
     }
 
-    public void setImageSet(int imageSetKey) {
-        checkInitialized();
-        Integer value = Settings.map.get(imageSetKey);
-        if (value != null) {
-            this.imageSetKey = imageSetKey;
-            this.imageSetValue = value;
-        } else {
-            this.imageSetKey = IMAGE_SET_DEFAULT_KEY;
-            this.imageSetValue = IMAGE_SET_DEFAULT_VALUE;
+    private boolean checkGameMode() {
+        for (GameMode gameMode : VALID_GAME_MODE.values()) {
+            if (candidateGameMode.isEquivalent(gameMode)) {
+                this.candidateGameMode = gameMode;
+                return true;
+            }
         }
+        return false;
+    }
+
+    private boolean checkImageSetOption() {
+        for (ImageSetOption imageSetOption : VALID_IMAGE_SET.values()) {
+            if (candidateImageSetOption.isEquivalent(imageSetOption)) {
+                this.candidateImageSetOption = imageSetOption;
+                return true;
+            }
+        }
+        return false;
     }
 
     public static Settings get() {
@@ -83,32 +109,7 @@ public class Settings implements Persistable {
         return appSettings;
     }
 
-    @Override
-    public void load(Context context) {
-        checkInitialized();
-        SharedPreferences settings = context.getSharedPreferences(sharedFile,
-                Context.MODE_PRIVATE);
-        this.imageSetKey = settings.getInt(IMAGE_SET_KEY_KEY,
-                IMAGE_SET_DEFAULT_KEY);
-        this.imageSetValue = settings.getInt(IMAGE_SET_VALUE_KEY,
-                IMAGE_SET_DEFAULT_VALUE);
-    }
-
-    @Override
-    public void save(Context context) {
-        checkInitialized();
-        SharedPreferences settings = context.getSharedPreferences(sharedFile,
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor settingsEditor = settings.edit();
-        settingsEditor.putInt(IMAGE_SET_KEY_KEY, this.imageSetKey);
-        settingsEditor.putInt(IMAGE_SET_VALUE_KEY, this.imageSetValue);
-        settingsEditor.apply();
-        ;
-    }
-
-    private void checkInitialized() {
-        if (BuildConfig.DEBUG && !this.initialized) {
-            throw new AssertionError("Assertion failed");
-        }
+    public static void set(Settings settings) {
+        Settings.appSettings = settings;
     }
 }

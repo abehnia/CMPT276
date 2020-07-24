@@ -1,9 +1,11 @@
 package cmpt276.proj.finddamatch.model;
 
+import java.io.Serializable;
+
 /**
  * Interface to represent a particular game mode
  */
-public interface GameMode {
+public interface GameMode extends Serializable {
 
     /**
      * Returns the order of the game
@@ -20,14 +22,8 @@ public interface GameMode {
      */
     boolean hasText();
 
-//    /**
-//     * Sets the size of the game
-//     */
-//    void setSize(int userSelection);
-//
-//    /**
-//     * Sets the order(difficulty) of the game
-//     */
-//    void setOrder(int userSelection);
-
+    /**
+     * Are the game modes the same?
+     */
+    boolean isEquivalent(GameMode gameMode);
 }

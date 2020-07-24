@@ -53,4 +53,11 @@ public enum VALID_GAME_MODE implements GameMode {
     public boolean hasText() {
         return hasText;
     }
+
+    @Override
+    public boolean isEquivalent(GameMode gameMode) {
+        return (gameMode.getOrder() == this.getOrder() &&
+                gameMode.getSize() == this.getSize() &&
+                gameMode.hasText() == this.hasText);
+    }
 }

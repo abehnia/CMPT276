@@ -16,4 +16,21 @@
         <item>@drawable/ic_cleveland_cavaliers_logo</item>
         <item>@drawable/ic_miami_heat_logo</item>
     </integer-array>
+
+    <string-array name="logos_string">
+        <item>Timberwolves</item>
+        <item>Nuggets</item>
+        <item>Golden State</item>
+        <item>Rockets</item>
+        <item>Pelicans</item>
+        <item>Lakers</item>
+        <item>Mavericks</item>
+        <item>Raptors</item>
+        <item>Bulls</item>
+        <item>Bucks</item>
+        <item>76ers</item>
+        <item>Celtics</item>
+        <item>Cavaliers</item>
+        <item>Miami Heat</item>
+    </string-array>
 </resources>
