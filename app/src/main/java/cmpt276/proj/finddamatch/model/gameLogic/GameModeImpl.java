@@ -2,19 +2,12 @@ package cmpt276.proj.finddamatch.model.gameLogic;
 
 import cmpt276.proj.finddamatch.model.GameMode;
 
-/**
- * Enum that contains all the different game modes
- */
-// TODO: Complete the other enums based on the game modes we're going to have
-public enum VALID_GAME_MODE implements GameMode {
-    GAME1(2, 7, false) // This is our game right now
-    ;
-
+public class GameModeImpl implements GameMode {
     private int order;
     private int size;
     private boolean hasText;
 
-    private VALID_GAME_MODE(int order, int size, boolean hasText) {
+    public GameModeImpl(int order, int size, boolean hasText) {
         this.order = order;
         this.size = size;
         this.hasText = hasText;
@@ -37,8 +30,8 @@ public enum VALID_GAME_MODE implements GameMode {
 
     @Override
     public boolean isEquivalent(GameMode gameMode) {
-        return (gameMode.getOrder() == this.getOrder() &&
-                gameMode.getSize() == this.getSize() &&
-                gameMode.hasText() == this.hasText);
+        return gameMode.getOrder() == order &&
+                gameMode.getSize() == size &&
+                gameMode.hasText() == hasText;
     }
 }
