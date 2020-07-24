@@ -11,7 +11,17 @@ import android.graphics.drawable.Drawable;
 public interface ImageSet {
 
     /**
-     Returns a drawable of the given ID
+     * @param color to be set as TextDrawables's color
+     */
+    void setColor(int color);
+
+    /**
+     * Returns a drawable of the given ID
      */
     Drawable getImage(int id, boolean textImage);
+
+    /**
+     * @return the logo set to the back of the card
+     */
+    Drawable getBackLogo();
 }

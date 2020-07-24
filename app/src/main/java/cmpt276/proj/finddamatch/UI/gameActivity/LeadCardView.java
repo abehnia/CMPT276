@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.model.ImageSet;
 import cmpt276.proj.finddamatch.model.MutableImage;
 import cmpt276.proj.finddamatch.model.gameLogic.ImageImpl;
 
@@ -22,16 +23,14 @@ public class LeadCardView extends CardView {
     private ImageView view;
 
 
-    public LeadCardView(float x, float y, float radius, TypedArray logos,
-                        Paint backgroundPaint, Resources resources) {
-        super(x, y, radius, logos, backgroundPaint);
+    public LeadCardView(float x, float y, float radius,
+                        Paint backgroundPaint, Resources resources, ImageSet imageSet) {
+        super(x, y, radius, backgroundPaint, imageSet);
         this.foregroundPaint = new Paint();
         this.borderPaint = new Paint();
         foregroundPaint.setColor(Color.BLACK);
         borderPaint.setColor(resources.getColor(R.color.orange, null));
-        Drawable backLogo = resources.getDrawable(
-                R.drawable.ic_national_basketball_association_logo,
-                null);
+        Drawable backLogo = imageSet.getBackLogo();
         MutableImage image = new ImageImpl(0);
         image.setRadius(1f);
         this.view = new ImageView(image, backLogo, this);

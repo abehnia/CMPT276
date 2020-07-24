@@ -18,6 +18,7 @@ import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
+import cmpt276.proj.finddamatch.model.ImageSet;
 
 /**
  * Main canvas for the game
@@ -56,8 +57,8 @@ public class GameCanvas extends View {
     }
 
     public void setCards(Card guess, Card lead) {
-        guessCard.setImages(guess, getResources());
-        leadCard.setImages(lead, getResources());
+        guessCard.setImages(guess);
+        leadCard.setImages(lead);
         invalidate();
     }
 
@@ -124,16 +125,16 @@ public class GameCanvas extends View {
     }
 
     private void setupCards(int width, int height) {
-        TypedArray logos = getResources().obtainTypedArray(R.array.logos);
+        ImageSet imageSet = new ImageSetImpl(getResources());
         float guessCardX = width / 2.0f;
         float guessCardY = 7 * height / 10.0f;
         float guessCardRadius = Math.min(width, height) / 3.0f;
         guessCard = new GuessCardView(guessCardX, guessCardY, guessCardRadius,
-                logos, backgroundPaint, this.getResources());
+                backgroundPaint, this.getResources(), imageSet);
         float leadCardX = width / 2.0f;
         float leadCardY = 3 * height / 10.0f;
         float leadCardRadius = Math.min(width, height) / 4.0f;
         leadCard = new LeadCardView(leadCardX, leadCardY, leadCardRadius,
-                logos, backgroundPaint, this.getResources());
+                backgroundPaint, this.getResources(), imageSet);
     }
 }

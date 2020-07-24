@@ -23,25 +23,24 @@ public abstract class CardView implements Iterable<ImageView> {
     protected float x, y, radius;
     protected Paint backgroundPaint;
     protected ArrayList<ImageView> images;
-    protected TypedArray logos;
     protected boolean isHidden;
+    protected ImageSet imageSet;
 
-    public CardView(float x, float y, float radius, TypedArray logos,
-                    Paint backgroundPaint) {
+    public CardView(float x, float y, float radius,
+                    Paint backgroundPaint, ImageSet imageSet) {
         this.x = x;
         this.y = y;
         this.radius = radius;
-        this.logos = logos;
         this.images = new ArrayList<>();
         this.backgroundPaint = backgroundPaint;
         this.isHidden = false;
+        this.imageSet = imageSet;
     }
 
-    public void setImages(Card card, Resources resources) {
+    public void setImages(Card card) {
         images.clear();
-        ImageSet imageset = new ImageSetImpl(resources);
         for (Image image : card) {
-            Drawable imageToDraw = imageset.getImage(image.getID(), false);
+            Drawable imageToDraw = imageSet.getImage(image.getID(), false);
             images.add(new ImageView(image, imageToDraw, this));
         }
     }
