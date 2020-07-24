@@ -9,6 +9,9 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * Saves the settings
+ */
 public class SettingsSaver {
     private static final String SETTINGS_STATE_FILE_NAME = "settings-state";
 

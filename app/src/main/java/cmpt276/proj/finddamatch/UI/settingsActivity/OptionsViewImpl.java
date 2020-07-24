@@ -8,6 +8,9 @@ import java.util.Map;
 
 import cmpt276.proj.finddamatch.BuildConfig;
 
+/**
+ * Implementation for a typical Options View
+ */
 public class OptionsViewImpl<T> implements OptionView<T> {
     private Map<Integer, String> buttonToValue;
     private StringMapper<T> mapper;
