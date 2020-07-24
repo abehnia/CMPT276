@@ -1,10 +1,12 @@
 package cmpt276.proj.finddamatch.UI.scoresActivity;
 
+import java.io.Serializable;
+
 /**
  * Comparable Class to Save Scores
  */
 
-public class Score implements Comparable<Score> {
+public class Score implements Comparable<Score>, Serializable {
     private String name;
     private String date;
     private int time;
@@ -13,6 +15,12 @@ public class Score implements Comparable<Score> {
         this.name = name;
         this.date = date;
         this.time = time;
+    }
+
+    public Score(Score score) {
+        this.name = score.name;
+        this.date = score.date;
+        this.time = score.time;
     }
 
     public String getName() {

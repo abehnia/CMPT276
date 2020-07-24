@@ -2,6 +2,10 @@ package cmpt276.proj.finddamatch.UI;
 
 import android.content.Context;
 
+import org.json.JSONException;
+
+import java.io.IOException;
+
 /**
  * Classes that persist through a restart of the app
  * must implement this interface
