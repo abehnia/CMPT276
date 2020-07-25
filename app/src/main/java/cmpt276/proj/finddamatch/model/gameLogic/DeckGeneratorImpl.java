@@ -10,7 +10,6 @@ import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.CardGenerator;
 import cmpt276.proj.finddamatch.model.MutableImage;
 
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME4;
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME5;
 
 /**
@@ -18,22 +17,27 @@ import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME5;
  */
 public class DeckGeneratorImpl implements DeckGenerator {
 
-    public int PLAYER_ORDER_SELECTION = GAME5.getOrder();
-    public final int ORDER = GAME5.getOrder();
-    public final int SIZE = GAME5.getSize();
+    public int playerOrderSelection;
+    public int order;
+    public int size;
 
-    CardGenerator cardGenerator;
-
+    private CardGenerator cardGenerator;
     Stack<Card> arrayOfCardsInit = new Stack<>();
-    ArrayList<MutableImage> images = new ArrayList<>();
     Stack<Card> arrayOfCardsFinal = new Stack<>();
 
     public DeckGeneratorImpl(CardGenerator cardGenerator) {
+        this.playerOrderSelection = GAME5.getOrder();
+        this.order = GAME5.getOrder();
+        this.size = GAME5.getSize();
         this.cardGenerator = cardGenerator;
-        double cardx = (int) Math.sqrt(PLAYER_ORDER_SELECTION);
-        for (int i = 2; i < 1 + cardx; i++) {
-            if (PLAYER_ORDER_SELECTION % i == 0) {
-                PLAYER_ORDER_SELECTION = i;
+        fixPlayerChoice();
+    }
+
+    private void fixPlayerChoice() {
+        double cardX = (int) Math.sqrt(playerOrderSelection);
+        for (int i = 2; i < 1 + cardX; i++) {
+            if (playerOrderSelection % i == 0) {
+                playerOrderSelection = i;
                 break;
             }
         }
@@ -41,38 +45,27 @@ public class DeckGeneratorImpl implements DeckGenerator {
 
     @Override
     public Stack<Card> generate() {
-        //TODO If logic for when a brand new game is initiated run
-        if(arrayOfCardsInit.empty() && arrayOfCardsFinal.empty()) {
-            arrayOfCardsInit.clear();
-            arrayOfCardsFinal.clear();
-
-            generateFirstCard();
-            generateCardsMinusFirstLast();
-            generateLastCard();
+        if (!arrayOfCardsInit.isEmpty()) {
+            Collections.shuffle(arrayOfCardsInit);
             appendDeck();
-            Collections.shuffle(arrayOfCardsFinal);
-
             return arrayOfCardsFinal;
         }
-        //TODO If logic for when a player initiates a new game from previous play
-        else
-        {
-             Collections.shuffle(arrayOfCardsInit);
-             arrayOfCardsFinal.clear();
-             appendDeck();
-
-             return arrayOfCardsFinal;
-        }
+        generateFirstCard();
+        generateCardsMinusFirstLast();
+        generateLastCard();
+        Collections.shuffle(arrayOfCardsInit);
+        appendDeck();
+        return arrayOfCardsFinal;
     }
 
     private void generateFirstCard() {
         List<MutableImage> images = new ArrayList<>();
-        for (int i = 0; i < ORDER; i++) {
-            for (int j = 0; j < ORDER; j++) {
-                ImageImpl image = new ImageImpl(i * ORDER + j);
+        for (int i = 0; i < order; i++) {
+            for (int j = 0; j < order; j++) {
+                ImageImpl image = new ImageImpl(i * order + j);
                 images.add(image);
             }
-            ImageImpl image = new ImageImpl(ORDER * ORDER);
+            ImageImpl image = new ImageImpl(order * order);
             images.add(image);
             arrayOfCardsInit.push(cardGenerator.generate(images));
             images.clear();
@@ -81,13 +74,13 @@ public class DeckGeneratorImpl implements DeckGenerator {
 
     private void generateCardsMinusFirstLast() {
         List<MutableImage> images = new ArrayList<>();
-        for (int i = 0; i < ORDER; i++) {
-            for (int j = 0; j < ORDER; j++) {
-                for (int k = 0; k < ORDER; k++) {
-                    MutableImage image = new ImageImpl(k * ORDER + ((j + i * k) % ORDER));
+        for (int i = 0; i < order; i++) {
+            for (int j = 0; j < order; j++) {
+                for (int k = 0; k < order; k++) {
+                    MutableImage image = new ImageImpl(k * order + ((j + i * k) % order));
                     images.add(image);
                 }
-                MutableImage image = new ImageImpl(ORDER * ORDER + i + 1);
+                MutableImage image = new ImageImpl(order * order + i + 1);
                 images.add(image);
                 arrayOfCardsInit.push(cardGenerator.generate(images));
                 images.clear();
@@ -97,21 +90,20 @@ public class DeckGeneratorImpl implements DeckGenerator {
 
     private void generateLastCard() {
         List<MutableImage> images = new ArrayList<>();
-        for (int i = 0; i < ORDER + 1; i++) {
-            MutableImage image = new ImageImpl(ORDER * ORDER + i);
+        for (int i = 0; i < order + 1; i++) {
+            MutableImage image = new ImageImpl(order * order + i);
             images.add(image);
         }
         arrayOfCardsInit.push(cardGenerator.generate(images));
     }
 
     private void appendDeck() {
-        int i = SIZE;
-        for (Card card: arrayOfCardsInit) {
-            if(i != 0){
-                arrayOfCardsFinal.push(card);
-                i--;
-            }
-            else{
+        arrayOfCardsFinal.clear();
+        int i = 0;
+        for (Card card : arrayOfCardsInit) {
+            arrayOfCardsFinal.push(card);
+            ++i;
+            if (i == size) {
                 break;
             }
         }
