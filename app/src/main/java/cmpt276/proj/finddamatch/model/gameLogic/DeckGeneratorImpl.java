@@ -15,6 +15,7 @@ import cmpt276.proj.finddamatch.model.CardGenerator;
 import cmpt276.proj.finddamatch.model.MutableImage;
 
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME11;
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME2;
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME3;
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME7;
@@ -24,9 +25,9 @@ import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME7;
  */
 public class DeckGeneratorImpl implements DeckGenerator {
 
-    public int p = GAME3.getOrder();
-    public int ORDER = GAME3.getOrder();
-    public int SIZE = GAME3.getSize();
+    public int p = GAME11.getOrder();
+    public int ORDER = GAME11.getOrder();
+    public int SIZE = GAME11.getSize();
 
     CardGenerator cardGenerator;
 
