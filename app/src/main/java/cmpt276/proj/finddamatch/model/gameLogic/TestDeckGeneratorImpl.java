@@ -17,7 +17,7 @@ import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME5;
  */
 public class TestDeckGeneratorImpl implements DeckGenerator {
     public int PLAYER_ORDER_SELECTION = GAME5.getOrder();
-    public final int ORDER = GAME5.getOrder();
+    public final int order = GAME5.getOrder();
     public final int SIZE = 2;
 
     CardGenerator cardGenerator;
@@ -40,12 +40,12 @@ public class TestDeckGeneratorImpl implements DeckGenerator {
 
     private void generateFirstCard() {
         List<MutableImage> images = new ArrayList<>();
-        for (int i = 0; i < ORDER; i++) {
-            for (int j = 0; j < ORDER; j++) {
-                ImageImpl image = new ImageImpl(i * ORDER + j);
+        for (int i = 0; i < order; i++) {
+            for (int j = 0; j < order; j++) {
+                ImageImpl image = new ImageImpl(i * order + j);
                 images.add(image);
             }
-            ImageImpl image = new ImageImpl(ORDER * ORDER);
+            ImageImpl image = new ImageImpl(order * order);
             images.add(image);
             arrayOfCardsInit.push(cardGenerator.generate(images));
             images.clear();

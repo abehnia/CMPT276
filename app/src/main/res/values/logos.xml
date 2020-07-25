@@ -35,6 +35,8 @@
         <item>@drawable/ic_washington_wizards_logo</item>
 
 
+
+
     </integer-array>
 
     <string-array name="logos_string">
@@ -70,6 +72,8 @@
         <item>Seattle Storm</item>
         <item>Jazz</item>
         <item>Wizards</item>
+
+
 
 
     </string-array>
