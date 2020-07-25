@@ -11,15 +11,16 @@ import cmpt276.proj.finddamatch.model.CardGenerator;
 import cmpt276.proj.finddamatch.model.MutableImage;
 
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME4;
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME5;
 
 /**
  * Class for generating a randomized stack of Cards
  */
 public class DeckGeneratorImpl implements DeckGenerator {
 
-    public int PLAYER_SELECTION = GAME4.getOrder();
-    public final int ORDER = GAME4.getOrder();
-    public final int SIZE = GAME4.getSize();
+    public int PLAYER_ORDER_SELECTION = GAME5.getOrder();
+    public final int ORDER = GAME5.getOrder();
+    public final int SIZE = GAME5.getSize();
 
     CardGenerator cardGenerator;
 
@@ -29,9 +30,10 @@ public class DeckGeneratorImpl implements DeckGenerator {
 
     public DeckGeneratorImpl(CardGenerator cardGenerator) {
         this.cardGenerator = cardGenerator;
-        for (int i = 2; i < 1 + (int) Math.sqrt(PLAYER_SELECTION); i++) {
-            if (PLAYER_SELECTION % i == 0) {
-                PLAYER_SELECTION = i;
+        double cardx = (int) Math.sqrt(PLAYER_ORDER_SELECTION);
+        for (int i = 2; i < 1 + cardx; i++) {
+            if (PLAYER_ORDER_SELECTION % i == 0) {
+                PLAYER_ORDER_SELECTION = i;
                 break;
             }
         }
@@ -39,26 +41,28 @@ public class DeckGeneratorImpl implements DeckGenerator {
 
     @Override
     public Stack<Card> generate() {
-        //crispy clean decks
-        arrayOfCardsInit.clear();
-        arrayOfCardsFinal.clear();
+        //TODO If logic for when a brand new game is initiated run
+        if(arrayOfCardsInit.empty() && arrayOfCardsFinal.empty()) {
+            arrayOfCardsInit.clear();
+            arrayOfCardsFinal.clear();
 
-        // Generate the first card, then adds it to the arrayOfCards stack.
-        generateFirstCard();
+            generateFirstCard();
+            generateCardsMinusFirstLast();
+            generateLastCard();
+            appendDeck();
+            Collections.shuffle(arrayOfCardsFinal);
 
-        // Generate the all cards except the first and last card(ALL - 2), then adds is to the arrayOfCards stack.
-        generateCardsMinusFirstLast();
+            return arrayOfCardsFinal;
+        }
+        //TODO If logic for when a player initiates a new game from previous play
+        else
+        {
+             Collections.shuffle(arrayOfCardsInit);
+             arrayOfCardsFinal.clear();
+             appendDeck();
 
-        // Generate the last card, then adds it to the arrayOfCards stack.
-        generateLastCard();
-
-        // Add desired unit of cards to the arrayOfCardsFinal deck.
-        appendDeck();
-
-        // One last shuffle before we return.
-        Collections.shuffle(arrayOfCardsFinal);
-
-        return arrayOfCardsFinal; //end of DeckGeneratorImpl logic
+             return arrayOfCardsFinal;
+        }
     }
 
     private void generateFirstCard() {
@@ -101,8 +105,15 @@ public class DeckGeneratorImpl implements DeckGenerator {
     }
 
     private void appendDeck() {
-        for (int i = 0; i < SIZE; i++) {
-            arrayOfCardsFinal.push(arrayOfCardsInit.pop());
+        int i = SIZE;
+        for (Card card: arrayOfCardsInit) {
+            if(i != 0){
+                arrayOfCardsFinal.push(card);
+                i--;
+            }
+            else{
+                break;
+            }
         }
     }
 }

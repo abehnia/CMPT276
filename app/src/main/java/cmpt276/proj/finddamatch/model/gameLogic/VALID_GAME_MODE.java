@@ -32,7 +32,7 @@ public enum VALID_GAME_MODE implements GameMode {
     private int size;
     private boolean hasText;
 
-    private VALID_GAME_MODE(int order, int size, boolean hasText) {
+    VALID_GAME_MODE(int order, int size, boolean hasText) {
         this.order = order;
         this.size = size;
         this.hasText = hasText;
