@@ -1,6 +1,7 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -25,6 +26,8 @@ public class CardGeneratorImpl implements CardGenerator {
     private static final float UPPER_RADIUS_BOUND = 0.7F;
     private static final int MAX_NUMBER_OF_ITERATIONS = 1000000;
     private static final int MAX_NUMBER_OF_ITERATIONS_PER_ELEMENT = 1000;
+
+
 
     @Override
     public Card generate(List<MutableImage> images) {

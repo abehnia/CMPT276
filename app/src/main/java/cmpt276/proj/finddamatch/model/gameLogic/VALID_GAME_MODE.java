@@ -5,16 +5,34 @@ import cmpt276.proj.finddamatch.model.GameMode;
 /**
  * Enum that contains all the different game modes
  */
-// TODO: Complete the other enums based on the game modes we're going to have
 public enum VALID_GAME_MODE implements GameMode {
-    GAME1(2, 7, false) // This is our game right now
+    GAME1(2, 7, false),
+    GAME2(2, 7, true),
+    GAME3(2, 5, false),
+    GAME4(2, 5, true),
+    GAME5(3, 5, false),
+    GAME6(3, 5, true),
+    GAME7(3, 10, false),
+    GAME8(3, 10, true),
+    GAME9(3, 13, false),
+    GAME10(3, 13, true),
+    GAME11(5, 5, false),
+    GAME12(5, 5, true),
+    GAME13(5, 10, false),
+    GAME14(5, 10, true),
+    GAME15(5, 15, false),
+    GAME16(5, 15, true),
+    GAME17(5, 20, false),
+    GAME18(5, 20, true),
+    GAME19(5, 31, false),
+    GAME20(5, 31, true),
     ;
 
     private int order;
     private int size;
     private boolean hasText;
 
-    private VALID_GAME_MODE(int order, int size, boolean hasText) {
+    VALID_GAME_MODE(int order, int size, boolean hasText) {
         this.order = order;
         this.size = size;
         this.hasText = hasText;

@@ -20,8 +20,7 @@ public class ImageSetImpl implements ImageSet {
     private Drawable[] imagesList;
     private DrawableText[] imagesTextList;
     private Drawable backLogo;
-    //    private static final int NUM_OF_IMAGES = 31;
-    int NUM_OF_IMAGES = Card.NUMBER_OF_IMAGES_PER_DECK;
+    private static final int NUM_OF_IMAGES = Card.MAX_NUMBER_OF_IMAGES;
 
 
     public ImageSetImpl(Resources resources) {
