@@ -1,12 +1,8 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.Stack;
 
 import cmpt276.proj.finddamatch.model.Card;
@@ -14,25 +10,16 @@ import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.CardGenerator;
 import cmpt276.proj.finddamatch.model.MutableImage;
 
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME11;
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME2;
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME3;
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME4;
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME5;
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME6;
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME7;
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME8;
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME9;
 
 /**
  * Class for generating a randomized stack of Cards
  */
 public class DeckGeneratorImpl implements DeckGenerator {
 
-    public int p = GAME4.getOrder();
-    public int ORDER = GAME4.getOrder();
-    public int SIZE = GAME4.getSize();
+    public int PLAYER_SELECTION = GAME4.getOrder();
+    public final int ORDER = GAME4.getOrder();
+    public final int SIZE = GAME4.getSize();
 
     CardGenerator cardGenerator;
 
@@ -42,14 +29,13 @@ public class DeckGeneratorImpl implements DeckGenerator {
 
     public DeckGeneratorImpl(CardGenerator cardGenerator) {
         this.cardGenerator = cardGenerator;
-        for(int i=2; i< 1+(int)Math.sqrt(p); i++){
-            if(p % i==0){
-                p = i;
+        for (int i = 2; i < 1 + (int) Math.sqrt(PLAYER_SELECTION); i++) {
+            if (PLAYER_SELECTION % i == 0) {
+                PLAYER_SELECTION = i;
                 break;
             }
         }
     }
-
 
     @Override
     public Stack<Card> generate() {
@@ -75,11 +61,11 @@ public class DeckGeneratorImpl implements DeckGenerator {
         return arrayOfCardsFinal; //end of DeckGeneratorImpl logic
     }
 
-    private void generateFirstCard(){
+    private void generateFirstCard() {
         List<MutableImage> images = new ArrayList<>();
-        for (int i= 0; i < ORDER; i++){
-            for (int j = 0; j < ORDER; j++){
-               ImageImpl image = new ImageImpl(i * ORDER + j);
+        for (int i = 0; i < ORDER; i++) {
+            for (int j = 0; j < ORDER; j++) {
+                ImageImpl image = new ImageImpl(i * ORDER + j);
                 images.add(image);
             }
             ImageImpl image = new ImageImpl(ORDER * ORDER);
@@ -89,7 +75,7 @@ public class DeckGeneratorImpl implements DeckGenerator {
         }
     }
 
-    private void generateCardsMinusFirstLast(){
+    private void generateCardsMinusFirstLast() {
         List<MutableImage> images = new ArrayList<>();
         for (int i = 0; i < ORDER; i++) {
             for (int j = 0; j < ORDER; j++) {
@@ -105,17 +91,17 @@ public class DeckGeneratorImpl implements DeckGenerator {
         }
     }
 
-    private void generateLastCard(){
+    private void generateLastCard() {
         List<MutableImage> images = new ArrayList<>();
-        for (int i = 0; i < ORDER + 1; i++){
+        for (int i = 0; i < ORDER + 1; i++) {
             MutableImage image = new ImageImpl(ORDER * ORDER + i);
             images.add(image);
         }
         arrayOfCardsInit.push(cardGenerator.generate(images));
     }
 
-    private void appendDeck(){
-        for(int i = 0; i < SIZE; i++){
+    private void appendDeck() {
+        for (int i = 0; i < SIZE; i++) {
             arrayOfCardsFinal.push(arrayOfCardsInit.pop());
         }
     }
