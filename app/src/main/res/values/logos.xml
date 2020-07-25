@@ -15,5 +15,60 @@
         <item>@drawable/ic_boston_celtics</item>
         <item>@drawable/ic_cleveland_cavaliers_logo</item>
         <item>@drawable/ic_miami_heat_logo</item>
+        <item>@drawable/ic_brooklyn_nets_logo</item>
+        <item>@drawable/ic_atlanta_hawks_logo</item>
+        <item>@drawable/ic_charlotte_hornets</item>
+        <item>@drawable/ic_indiana_fever_logo</item>
+        <item>@drawable/ic_indiana_pacers</item>
+        <item>@drawable/ic_los_angeles_clippers</item>
+        <item>@drawable/ic_los_angeles_sparks_logo</item>
+        <item>@drawable/ic_memphis_grizzlies</item>
+        <item>@drawable/ic_new_york_knicks_logo</item>
+        <item>@drawable/ic_oklahoma_city_thunder</item>
+        <item>@drawable/ic_orlando_magic_logo</item>
+        <item>@drawable/ic_phoenix_suns_logo</item>
+        <item>@drawable/ic_pistons_logo17</item>
+        <item>@drawable/ic_portland_trail_blazers_logo</item>
+        <item>@drawable/ic_sacramentokings</item>
+        <item>@drawable/ic_seattle_storm_logo</item>
+        <item>@drawable/ic_utah_jazz_logo</item>
+        <item>@drawable/ic_washington_wizards_logo</item>
+
+
     </integer-array>
+
+    <string-array name="logos_string">
+        <item>Timberwolves</item>
+        <item>Nuggets</item>
+        <item>Golden State</item>
+        <item>Rockets</item>
+        <item>Pelicans</item>
+        <item>Lakers</item>
+        <item>Mavericks</item>
+        <item>Raptors</item>
+        <item>Bulls</item>
+        <item>Bucks</item>
+        <item>76ers</item>
+        <item>Celtics</item>
+        <item>Cavaliers</item>
+        <item>Heat</item>
+        <item>Nets</item>
+        <item>Hawks</item>
+        <item>Hornets</item>
+        <item>Fever</item>
+        <item>Pacers</item>
+        <item>Clippers</item>
+        <item>LA Spark</item>
+        <item>Vancouver Grizzlies</item>
+        <item>Knicks</item>
+        <item>Thunder</item>
+        <item>Magic</item>
+        <item>Suns</item>
+        <item>Pistons</item>
+        <item>Jail Blazers</item>
+        <item>Kings</item>
+        <item>Seattle Storm</item>
+        <item>Jazz</item>
+        <item>Wizards</item>
+    </string-array>
 </resources>

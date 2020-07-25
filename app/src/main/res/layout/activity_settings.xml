@@ -87,7 +87,86 @@
             android:text="@string/activity_settings_eastern_conference"
             android:textColor="#FFFFFF"
             app:buttonTint="@color/colorAccent" />
+
+        <RadioButton
+            android:id="@+id/imageSetFlickChoice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_flickr"
+            android:textColor="#FFFFFF"
+            app:buttonTint="@color/colorAccent" />
     </RadioGroup>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activitySettingsGuideline0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <TextView
+        android:id="@+id/activitySettingsTextView0"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_shape"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/activity_settings_game_order"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@id/activitySettingsGuideline0" />
+
+    <RadioGroup
+        android:id="@+id/GameOrderChoice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/background_shape"
+        android:paddingLeft="3dp"
+        android:paddingTop="3dp"
+        android:paddingRight="3dp"
+        android:paddingBottom="3dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/activitySettingsTextView0">
+
+        <RadioButton
+            android:id="@+id/gameOrderChoice0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_order_choice0"
+            android:textColor="#FFFFFF"
+            app:buttonTint="@color/colorAccent" />
+
+        <RadioButton
+            android:id="@+id/gameOrderChoice1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_order_choice1"
+            android:textColor="#FFFFFF"
+            app:buttonTint="@color/colorAccent" />
+
+        <RadioButton
+            android:id="@+id/gameOrderChoice2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_order_choice2"
+            android:textColor="#FFFFFF"
+            app:buttonTint="@color/colorAccent" />
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activitySettingsGuideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.61" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
@@ -96,17 +175,113 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.68" />
 
+    <TextView
+        android:id="@+id/activitySettingsTextView1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_shape"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/activity_settings_game_size"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@id/activitySettingsGuideline1" />
+
+    <RadioGroup
+        android:id="@+id/GameSizeChoice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/background_shape"
+        android:paddingLeft="3dp"
+        android:paddingTop="3dp"
+        android:paddingRight="3dp"
+        android:paddingBottom="3dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/activitySettingsTextView1">
+
+        <RadioButton
+            android:id="@+id/gameSizeChoice0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_size_choice0"
+            android:textColor="#FFFFFF"
+            app:buttonTint="@color/colorAccent" />
+
+        <RadioButton
+            android:id="@+id/gameSizeChoice1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_size_choice1"
+            android:textColor="#FFFFFF"
+            app:buttonTint="@color/colorAccent" />
+
+        <RadioButton
+            android:id="@+id/gameSizeChoice2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_size_choice2"
+            android:textColor="#FFFFFF"
+            app:buttonTint="@color/colorAccent" />
+
+        <RadioButton
+            android:id="@+id/gameSizeChoice3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_size_choice3"
+            android:textColor="#FFFFFF"
+            app:buttonTint="@color/colorAccent" />
+
+        <RadioButton
+            android:id="@+id/gameSizeChoice4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_size_choice4"
+            android:textColor="#FFFFFF"
+            app:buttonTint="@color/colorAccent" />
+    </RadioGroup>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activitySettingsGuideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activitySettingsGuideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.97" />
+
     <Button
         android:id="@+id/activitySettingsApply"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/ic_commonbtn"
         android:text="@string/activity_settings_apply"
         android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline29"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/ImageSetChoice" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toBottomOf="@+id/GameSizeChoice" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/activitySettingsGuideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.90" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline29"
@@ -114,5 +289,54 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.48" />
+
+    <TextView
+        android:id="@+id/activitySettingsTextView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_shape"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/acticity_settings_text_or_no_text"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/activitySettingsGuideline4"
+        app:layout_constraintStart_toStartOf="@+id/activitySettingsGuideline3"
+        app:layout_constraintTop_toTopOf="@id/guideline2" />
+
+    <RadioGroup
+        android:id="@+id/textChoice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/background_shape"
+        android:paddingLeft="3dp"
+        android:paddingTop="3dp"
+        android:paddingRight="3dp"
+        android:paddingBottom="3dp"
+        app:layout_constraintEnd_toStartOf="@+id/activitySettingsGuideline4"
+        app:layout_constraintStart_toStartOf="@+id/activitySettingsGuideline3"
+        app:layout_constraintTop_toBottomOf="@+id/activitySettingsTextView2">
+
+        <RadioButton
+            android:id="@+id/textChoice0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_text_true"
+            android:textColor="#FFFFFF"
+            app:buttonTint="@color/colorAccent" />
+
+        <RadioButton
+            android:id="@+id/textChoice1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_text_false"
+            android:textColor="#FFFFFF"
+            app:buttonTint="@color/colorAccent" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

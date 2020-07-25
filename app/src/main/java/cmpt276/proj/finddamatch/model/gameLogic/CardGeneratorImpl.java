@@ -1,6 +1,7 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -30,6 +31,8 @@ public class CardGeneratorImpl implements CardGenerator {
         this.parameterTuner = parameterTuner;
     }
 
+
+
     @Override
     public Card generate(List<MutableImage> images) {
         randomize(images);
@@ -40,6 +43,7 @@ public class CardGeneratorImpl implements CardGenerator {
     public void randomize(List<MutableImage> images) {
         int totalIterations = 0;
         Queue<MutableImage> validatedImages = new LinkedList<>();
+
         for (int i = 0; i < images.size(); ++i) {
             MutableImage image = images.get(i);
             randomize(image);
@@ -63,6 +67,15 @@ public class CardGeneratorImpl implements CardGenerator {
                 validatedImages.add(image);
             }
         }
+
+        // Randomly set up 1 image with text feature and 1 image with image feature
+        Random random = new Random();
+        int randHasTextImg = random.nextInt(images.size());
+        images.get(randHasTextImg).setHasText(true);
+        int randNotHaveTextImg = randHasTextImg;
+        while (randNotHaveTextImg == randHasTextImg)
+            randNotHaveTextImg = random.nextInt(images.size());
+        images.get(randNotHaveTextImg).setHasText(false);
     }
 
     private boolean isBounded(Image image) {

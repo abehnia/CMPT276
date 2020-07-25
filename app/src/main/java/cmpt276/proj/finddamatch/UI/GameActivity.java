@@ -117,8 +117,7 @@ public class GameActivity extends AppCompatActivity {
             public void onLayoutChange(View v, int left, int top, int right,
                                        int bottom, int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
-                gameCanvas.setCards(discard, draw,
-                        Settings.get().getImageSetValue());
+                gameCanvas.setCards(discard, draw);
                 gameCanvas.hide();;
             }
         });
@@ -170,8 +169,7 @@ public class GameActivity extends AppCompatActivity {
                 discard = game.peekDiscard();
                 draw = game.peekDraw();
                 gameCanvas.hide();
-                gameCanvas.setCards(discard, draw,
-                        Settings.get().getImageSetValue());
+                gameCanvas.setCards(discard, draw);
                 isTouchable = true;
             }
         });
@@ -223,7 +221,7 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
         draw = game.peekDraw();
-        gameCanvas.setCards(discard, draw, Settings.get().getImageSetValue());
+        gameCanvas.setCards(discard, draw);
     }
 
     private void actionUp() {

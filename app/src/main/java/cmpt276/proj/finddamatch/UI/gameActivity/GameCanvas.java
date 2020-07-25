@@ -15,8 +15,10 @@ import androidx.annotation.Nullable;
 import java.util.NoSuchElementException;
 
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
+import cmpt276.proj.finddamatch.model.ImageSet;
 
 /**
  * Main canvas for the game
@@ -54,9 +56,9 @@ public class GameCanvas extends View {
         throw new NoSuchElementException();
     }
 
-    public void setCards(Card guess, Card lead, int imageSet) {
-        guessCard.setImages(guess, imageSet);
-        leadCard.setImages(lead, imageSet);
+    public void setCards(Card guess, Card lead) {
+        guessCard.setImages(guess);
+        leadCard.setImages(lead);
         invalidate();
     }
 
@@ -123,16 +125,17 @@ public class GameCanvas extends View {
     }
 
     private void setupCards(int width, int height) {
-        TypedArray logos = getResources().obtainTypedArray(R.array.logos);
+        ImageSet imageSet_guess = new ImageSetImpl(getResources());
+        ImageSet imageSet_lead = new ImageSetImpl(getResources());
         float guessCardX = width / 2.0f;
         float guessCardY = 7 * height / 10.0f;
         float guessCardRadius = Math.min(width, height) / 3.0f;
         guessCard = new GuessCardView(guessCardX, guessCardY, guessCardRadius,
-                logos, backgroundPaint, this.getResources());
+                backgroundPaint, this.getResources(), imageSet_guess);
         float leadCardX = width / 2.0f;
         float leadCardY = 3 * height / 10.0f;
         float leadCardRadius = Math.min(width, height) / 4.0f;
         leadCard = new LeadCardView(leadCardX, leadCardY, leadCardRadius,
-                logos, backgroundPaint, this.getResources());
+                backgroundPaint, this.getResources(), imageSet_lead);
     }
 }
