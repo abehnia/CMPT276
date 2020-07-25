@@ -20,6 +20,7 @@ import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTable;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTableView;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreViewGenerator;
+import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
 /**
@@ -30,6 +31,7 @@ public class ScoresActivity extends AppCompatActivity {
     private ScoreManager scoreManager;
     ScoreTableView scoreTableView;
     ScoreTable scoreTable;
+    Settings settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,8 @@ public class ScoresActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scores);
 
         scoreManager = ScoreState.get().getScoreManager();
-        scoreTable = scoreManager.getScoreTable(VALID_GAME_MODE.GAME1);
+        this.settings = Settings.get();
+        scoreTable = scoreManager.getScoreTable(settings.getGameMode());
         populateTable();
         showScore();
         setupResetBtn();
@@ -47,8 +50,8 @@ public class ScoresActivity extends AppCompatActivity {
     private void setupResetBtn() {
         Button btn = findViewById(R.id.btnReset);
         btn.setOnClickListener(v -> {
-            scoreManager.resetScoreTable(VALID_GAME_MODE.GAME1);
-            scoreTable = scoreManager.getScoreTable(VALID_GAME_MODE.GAME1);
+            scoreManager.resetScoreTable(settings.getGameMode());
+            scoreTable = scoreManager.getScoreTable(settings.getGameMode());
             showScore();
         });
     }
@@ -61,7 +64,7 @@ public class ScoresActivity extends AppCompatActivity {
         TypedArray typedTimeIds = getResources().
                 obtainTypedArray(R.array.time_ids);
         ScoreTable scoreTable = scoreManager.
-                getScoreTable(VALID_GAME_MODE.GAME1);
+                getScoreTable(settings.getGameMode());
         this.scoreTableView = ScoreViewGenerator.generate(
                 findViewById(android.R.id.content).getRootView(),
                 Arrays.asList(typedNameIds, typedDateIds, typedTimeIds),

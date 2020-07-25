@@ -61,4 +61,8 @@ public class ScoreManager implements Serializable {
     public void setTime(int time) {
         this.currentTime = time;
     }
+
+    public int size() {
+        return scoreTables.size();
+    }
 }
