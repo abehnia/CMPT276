@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer-array name="logos">
+        //NBA/WNBA
         <item>@drawable/ic_minnesota_timberwolves_logo</item>
         <item>@drawable/ic_denver_nuggets</item>
         <item>@drawable/ic_golden_state_warriors_logo</item>
@@ -33,7 +34,7 @@
         <item>@drawable/ic_seattle_storm_logo</item>
         <item>@drawable/ic_utah_jazz_logo</item>
         <item>@drawable/ic_washington_wizards_logo</item>
-
+        //NCAA Teams
         <item>@drawable/ic_new_mexico_lobos_logo</item>
         <item>@drawable/ic_butler_bulldogs_logo</item>
         <item>@drawable/ic_california_golden_bears_logo</item>
