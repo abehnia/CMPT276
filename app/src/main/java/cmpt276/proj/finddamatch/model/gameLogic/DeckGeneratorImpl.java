@@ -18,16 +18,21 @@ import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME11;
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME2;
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME3;
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME4;
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME5;
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME6;
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME7;
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME8;
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME9;
 
 /**
  * Class for generating a randomized stack of Cards
  */
 public class DeckGeneratorImpl implements DeckGenerator {
 
-    public int p = GAME11.getOrder();
-    public int ORDER = GAME11.getOrder();
-    public int SIZE = GAME11.getSize();
+    public int p = GAME4.getOrder();
+    public int ORDER = GAME4.getOrder();
+    public int SIZE = GAME4.getSize();
 
     CardGenerator cardGenerator;
 
