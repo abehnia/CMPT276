@@ -12,6 +12,7 @@
     <string name="main_menu_activity_title">Main Menu</string>
     <string name="game_page_title">Game Page</string>
     <string name="BtnBestScores_txt">Best Scores</string>
+    <string name="BtnFlickr_txt">Flickr</string>
 
     <string name="BestScore1Name">Bob</string>
     <string name="BestScore2Name">Tom</string>

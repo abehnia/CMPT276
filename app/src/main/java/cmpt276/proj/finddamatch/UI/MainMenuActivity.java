@@ -1,14 +1,13 @@
 package cmpt276.proj.finddamatch.UI;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
-
 import cmpt276.proj.finddamatch.UI.settingsActivity.SettingsSaver;
 
 /**
@@ -23,10 +22,19 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         setupStartGameBtn();
+        setupFlickrBtn();
         setupHelpBtn();
         setupSettings();
         setupBestScoresBtn();
         ScoreState.get().load(MainMenuActivity.this);
+    }
+
+    private void setupFlickrBtn() {
+        Button bestScoresBtn = findViewById(R.id.btnFlickr);
+        bestScoresBtn.setOnClickListener(v -> {
+            Intent settings_intent = ImageSetActivity.makeIntent(MainMenuActivity.this);
+            startActivity(settings_intent);
+        });
     }
 
     private void setupBestScoresBtn() {
