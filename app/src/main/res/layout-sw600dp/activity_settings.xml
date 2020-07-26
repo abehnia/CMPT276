@@ -277,15 +277,12 @@
         android:id="@+id/activitySettingsApply"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/ic_commonbtn"
         android:text="@string/activity_settings_apply"
         android:textColor="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/GameSizeChoice" />
+        app:layout_constraintBottom_toTopOf="@+id/activitySettingsGuideline2"
+        app:layout_constraintEnd_toStartOf="@+id/activitySettingsGuideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline29" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/activitySettingsGuideline2"
@@ -299,7 +296,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.48" />
+        app:layout_constraintGuide_percent="0.8" />
 
     <TextView
         android:id="@+id/activitySettingsTextView2"
