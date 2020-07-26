@@ -8,27 +8,26 @@ import java.util.Stack;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.CardGenerator;
+import cmpt276.proj.finddamatch.model.GameMode;
 import cmpt276.proj.finddamatch.model.MutableImage;
-
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME5;
 
 /**
  * Class for generating a randomized stack of Cards
  */
 public class DeckGeneratorImpl implements DeckGenerator {
-
-    public int playerOrderSelection;
-    public int order;
-    public int size;
-
+    private int playerOrderSelection;
+    private int order;
+    private int size;
     private CardGenerator cardGenerator;
-    Stack<Card> arrayOfCardsInit = new Stack<>();
-    Stack<Card> arrayOfCardsFinal = new Stack<>();
+    private Stack<Card> arrayOfCardsInit;
+    private Stack<Card> arrayOfCardsFinal;
 
-    public DeckGeneratorImpl(CardGenerator cardGenerator) {
-        this.playerOrderSelection = GAME5.getOrder();
-        this.order = GAME5.getOrder();
-        this.size = GAME5.getSize();
+    public DeckGeneratorImpl(CardGenerator cardGenerator, GameMode gameMode) {
+        this.arrayOfCardsInit = new Stack<>();
+        this.arrayOfCardsFinal = new Stack<>();
+        this.playerOrderSelection = gameMode.getOrder();
+        this.order = gameMode.getOrder();
+        this.size = gameMode.getSize();
         this.cardGenerator = cardGenerator;
         fixPlayerChoice();
     }
