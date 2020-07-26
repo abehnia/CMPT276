@@ -22,12 +22,14 @@ import static java.lang.Math.sqrt;
 public class CardGeneratorImpl implements CardGenerator {
     private static final float LOWER_POSITION_BOUND = -1F;
     private static final float UPPER_POSITION_BOUND = 1F;
-    private static final float LOWER_RADIUS_BOUND = 0.5F;
-    private static final float UPPER_RADIUS_BOUND = 0.7F;
     private static final int MAX_NUMBER_OF_ITERATIONS = 1000000;
     private static final int MAX_NUMBER_OF_ITERATIONS_PER_ELEMENT = 1000;
+    private static final int IS_TEXT_RAND_UPPER_BOUND = 100;
+    private ParameterTuner parameterTuner;
 
-
+    public CardGeneratorImpl(ParameterTuner parameterTuner) {
+        this.parameterTuner = parameterTuner;
+    }
 
     @Override
     public Card generate(List<MutableImage> images) {
@@ -39,6 +41,7 @@ public class CardGeneratorImpl implements CardGenerator {
     public void randomize(List<MutableImage> images) {
         int totalIterations = 0;
         Queue<MutableImage> validatedImages = new LinkedList<>();
+
         for (int i = 0; i < images.size(); ++i) {
             MutableImage image = images.get(i);
             randomize(image);
@@ -62,6 +65,7 @@ public class CardGeneratorImpl implements CardGenerator {
                 validatedImages.add(image);
             }
         }
+        setUpTextFeature(images);
     }
 
     private boolean isBounded(Image image) {
@@ -84,13 +88,27 @@ public class CardGeneratorImpl implements CardGenerator {
     }
 
     private void randomize(MutableImage image) {
+        parameterTuner.setLowerRadiusBound();
+        parameterTuner.setUpperRadiusBound();
         Random random = new Random();
         image.setX(random.nextFloat() * (UPPER_POSITION_BOUND -
                 LOWER_POSITION_BOUND) + LOWER_POSITION_BOUND);
         image.setY(random.nextFloat() * (UPPER_POSITION_BOUND -
                 LOWER_POSITION_BOUND) + LOWER_POSITION_BOUND);
         image.setOrientation((float) (random.nextFloat() * 2 * Math.PI));
-        image.setRadius(random.nextFloat() * (UPPER_RADIUS_BOUND -
-                LOWER_RADIUS_BOUND) + LOWER_RADIUS_BOUND);
+        image.setRadius(random.nextFloat() * (parameterTuner.getUpperRadiusBound() -
+                parameterTuner.getLowerRadiusBound()) + parameterTuner.getLowerRadiusBound());
+        image.setHasText((random.nextInt(IS_TEXT_RAND_UPPER_BOUND) % 2 == 0));
+    }
+
+    // Randomly set up 1 image with text feature and 1 image with image feature
+    private void setUpTextFeature(List<MutableImage> images) {
+        Random random = new Random();
+        int randHasTextImg = random.nextInt(images.size());
+        images.get(randHasTextImg).setHasText(true);
+        int randNotHaveTextImg = randHasTextImg;
+        while (randNotHaveTextImg == randHasTextImg)
+            randNotHaveTextImg = random.nextInt(images.size());
+        images.get(randNotHaveTextImg).setHasText(false);
     }
 }

@@ -12,7 +12,7 @@ import cmpt276.proj.finddamatch.model.Image;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Tests DeckGenerator and CardGenerator interfaces
+ *  Tests DeckGenerator and CardGenerator interfaces
  */
 class DeckGeneratorTest {
 
