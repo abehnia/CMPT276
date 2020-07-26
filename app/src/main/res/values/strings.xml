@@ -99,4 +99,6 @@
     <string name="acticity_settings_text_or_no_text">Text</string>
     <string name="invalid_settings">Invalid Settings</string>
 
+    <string name="search">Search</string>
+    <string name="clear_search">Clear Search</string>
 </resources>

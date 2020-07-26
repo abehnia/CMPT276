@@ -11,8 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".UI.flickrActivity.PhotoGalleryActivity" />
-        <activity android:name=".UI.ImageSetActivity" />
+        <activity
+            android:name=".UI.flickrActivity.PhotoGalleryActivity"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".UI.ImageSetActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".UI.ScoresActivity"
             android:screenOrientation="portrait" />
