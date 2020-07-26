@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cmpt276.proj.finddamatch.BuildConfig;
+import cmpt276.proj.finddamatch.model.GameMode;
+import cmpt276.proj.finddamatch.model.gameLogic.GameModeImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
 /**
@@ -23,6 +25,7 @@ public class JsonParser {
     private static final String GAME_MODE_KEY = "mode";
     private static final String ORDER_KEY = "order";
     private static final String SIZE_KEY = "size";
+    private static final String HAS_TEXT_KEY = "text";
     private static final String ERROR_MESSAGE =
             "Error in JSON file for default scores";
 
@@ -49,9 +52,10 @@ public class JsonParser {
         JSONObject gameMode = object.getJSONObject(GAME_MODE_KEY);
         int order = gameMode.getInt(ORDER_KEY);
         int size = gameMode.getInt(SIZE_KEY);
+        boolean hasText = gameMode.getBoolean(HAS_TEXT_KEY);
+        GameMode gameModeMatcher = new GameModeImpl(order, size, hasText);
         for (VALID_GAME_MODE validGameMode : VALID_GAME_MODE.values()) {
-            if (validGameMode.getOrder() == order &&
-                    validGameMode.getSize() == size) {
+            if (validGameMode.isEquivalent(gameModeMatcher)) {
                 return validGameMode;
             }
         }

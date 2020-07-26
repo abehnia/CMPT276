@@ -33,6 +33,8 @@ public class CardGeneratorImpl implements CardGenerator {
 
 
 
+
+
     @Override
     public Card generate(List<MutableImage> images) {
         randomize(images);
