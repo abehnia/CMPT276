@@ -42,7 +42,7 @@ public class FlickerAPI {
     private static String APIChainer(FlickerAPIMethod method,
                                      Pair<FlickerAPIArg, String>... args) {
         StringBuilder result = new StringBuilder(QUERY);
-        result.append(METHOD).append(method);
+        result.append(METHOD).append(IS).append(method);
         for (Pair<FlickerAPIArg, String> arg: args) {
             result.append(AND).append(arg.first).append(IS).append(arg.second);
         }

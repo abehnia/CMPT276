@@ -1,5 +1,6 @@
 package cmpt276.proj.finddamatch.model.flickrModel;
 
+
 import java.util.Locale;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Locale;
  */
 public class FlickrPhotoImpl implements FlickrPhoto {
     private static final String URL_FORMAT = "https" +
-            "://farm%s.staticflicker.com/%s/%s_%s.jpg";
+            "://farm%s.staticflickr.com/%s/%s_%s.jpg";
     private String ID;
     private String secret;
     private String serverID;
@@ -37,13 +38,13 @@ public class FlickrPhotoImpl implements FlickrPhoto {
     }
 
     @Override
-    public String getUrl(FlickrPhotoSize size) {
-        return String.format(Locale.getDefault(), URL_FORMAT, farmID,
-                serverID, ID, secret);
+    public String getFarmID() {
+        return farmID;
     }
 
     @Override
-    public String getFarmID() {
-        return farmID;
+    public String getUrl(FlickrPhotoSize size) {
+        return String.format(Locale.getDefault(), URL_FORMAT, farmID,
+                serverID, ID, secret);
     }
 }

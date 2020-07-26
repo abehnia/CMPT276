@@ -25,8 +25,9 @@ public class FlickrJSONParser implements JSONParser<List<FlickrPhoto>> {
     private List<FlickrPhoto> parseArray(String JSONUrl) {
         List<FlickrPhoto> photos = new ArrayList<>();
         try {
-            JSONObject jsonObject = new JSONObject(JSONUrl);
-            JSONArray jsonArray = jsonObject.getJSONArray("photos");
+            JSONObject jsonObject = (new JSONObject(JSONUrl)).
+                    getJSONObject("photos");
+            JSONArray jsonArray = jsonObject.getJSONArray("photo");
             for (int i = 0; i < jsonArray.length(); ++i) {
                 FlickrPhoto photo = parsePhoto(jsonArray.getJSONObject(i));
                 photos.add(photo);
