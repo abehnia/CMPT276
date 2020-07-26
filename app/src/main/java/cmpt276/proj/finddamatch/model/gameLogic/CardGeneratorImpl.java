@@ -31,10 +31,6 @@ public class CardGeneratorImpl implements CardGenerator {
         this.parameterTuner = parameterTuner;
     }
 
-
-
-
-
     @Override
     public Card generate(List<MutableImage> images) {
         randomize(images);
@@ -69,15 +65,7 @@ public class CardGeneratorImpl implements CardGenerator {
                 validatedImages.add(image);
             }
         }
-
-        // Randomly set up 1 image with text feature and 1 image with image feature
-        Random random = new Random();
-        int randHasTextImg = random.nextInt(images.size());
-        images.get(randHasTextImg).setHasText(true);
-        int randNotHaveTextImg = randHasTextImg;
-        while (randNotHaveTextImg == randHasTextImg)
-            randNotHaveTextImg = random.nextInt(images.size());
-        images.get(randNotHaveTextImg).setHasText(false);
+        setUpTextFeature(images);
     }
 
     private boolean isBounded(Image image) {
@@ -111,5 +99,16 @@ public class CardGeneratorImpl implements CardGenerator {
         image.setRadius(random.nextFloat() * (parameterTuner.getUpperRadiusBound() -
                 parameterTuner.getLowerRadiusBound()) + parameterTuner.getLowerRadiusBound());
         image.setHasText((random.nextInt(IS_TEXT_RAND_UPPER_BOUND) % 2 == 0));
+    }
+
+    // Randomly set up 1 image with text feature and 1 image with image feature
+    private void setUpTextFeature(List<MutableImage> images) {
+        Random random = new Random();
+        int randHasTextImg = random.nextInt(images.size());
+        images.get(randHasTextImg).setHasText(true);
+        int randNotHaveTextImg = randHasTextImg;
+        while (randNotHaveTextImg == randHasTextImg)
+            randNotHaveTextImg = random.nextInt(images.size());
+        images.get(randNotHaveTextImg).setHasText(false);
     }
 }
