@@ -69,8 +69,8 @@
         <p>Finish the game in the least amount of time to get a\n chance to have your name on the Score Board.</p>\n\n\n
         <h1><b>How to play:</b></h1>\n
         <p>There are 7 different cards, each card contains\n 3 different logos, each one being an NBA basketball\n team logo. There is only 1 identical logo for any pair of\n cards.\n\n There are 2
-            sets of logos: western and\n eastern conference, each of them contains 7 logos. You can\n select either one from the settings menu.\n\n Each round, 2 cards will be randomly drawn, spot the\n identical
-            logo and tap it on the bottom card as fast as possible. \n\nIn order to satisfy the game objective, you must spot 6 logos.</p>\n\n\n
+            sets of logos: Western and Eastern\n Conference, each of them contains 7 logos. You can\n select either one from the settings menu.\n\n Each round, 2 cards will be randomly drawn, spot the\n identical
+            logo and tap it on the bottom card as fast as\n possible. \n\nIn order to satisfy the game objective, you must spot 6 logos.</p>\n\n\n
         <h2><b>Images Resources:</b></h2>\n
         <p>All the logos can be found through Wikipedia.\n
         <a href="https://en.wikipedia.org/wiki/Toronto_Raptors#/media/File:Toronto_Raptors_logo.svg">For example the logo of the Toronto Raptors.</a>\n
@@ -97,5 +97,6 @@
     <string name="activity_settings_text_false">No Text</string>
     <string name="acticity_settings_text_or_no_text">Text</string>
     <string name="invalid_settings">Invalid Settings</string>
+    <string name="flickr_txt">Flickr</string>
 
 </resources>

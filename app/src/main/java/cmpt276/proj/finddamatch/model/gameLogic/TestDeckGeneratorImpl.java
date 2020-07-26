@@ -16,52 +16,19 @@ import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME5;
  * Test Class for generating a randomized stack of Cards
  */
 public class TestDeckGeneratorImpl implements DeckGenerator {
-    public int PLAYER_ORDER_SELECTION = GAME5.getOrder();
-    public final int order = GAME5.getOrder();
-    public final int SIZE = 2;
+    Stack<Card> cards;
 
-    CardGenerator cardGenerator;
-
-    Stack<Card> arrayOfCardsInit = new Stack<>();
-    ArrayList<MutableImage> images = new ArrayList<>();
-    Stack<Card> arrayOfCardsFinal = new Stack<>();
+    public TestDeckGeneratorImpl() {
+        this.cards = new Stack<>();
+    }
 
     @Override
     public Stack<Card> generate() {
-        arrayOfCardsInit.clear();
-        arrayOfCardsFinal.clear();
-
-        generateFirstCard();
-        generateFirstCard();
-        appendDeck();
-
-        return arrayOfCardsFinal;
-    }
-
-    private void generateFirstCard() {
-        List<MutableImage> images = new ArrayList<>();
-        for (int i = 0; i < order; i++) {
-            for (int j = 0; j < order; j++) {
-                ImageImpl image = new ImageImpl(i * order + j);
-                images.add(image);
-            }
-            ImageImpl image = new ImageImpl(order * order);
-            images.add(image);
-            arrayOfCardsInit.push(cardGenerator.generate(images));
-            images.clear();
-        }
-    }
-
-    private void appendDeck() {
-        int i = SIZE;
-        for (Card card: arrayOfCardsInit) {
-            if(i != 0){
-                arrayOfCardsFinal.push(card);
-                i--;
-            }
-            else{
-                break;
-            }
-        }
+        cards.clear();
+        cards.push(new CardImpl(new ImageImpl(0), new ImageImpl(1),
+                new ImageImpl(2)));
+        cards.push(new CardImpl(new ImageImpl(0), new ImageImpl(3),
+                new ImageImpl(4)));
+        return cards;
     }
 }

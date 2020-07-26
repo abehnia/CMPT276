@@ -26,4 +26,9 @@ public interface MutableImage extends Image {
      * Sets the radius of the image
      */
     void setRadius(float radius);
+
+    /**
+     * Sets the status of the image
+     */
+    void setHasText(boolean gameMode);
 }

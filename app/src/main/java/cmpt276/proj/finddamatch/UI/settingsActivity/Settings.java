@@ -7,6 +7,7 @@ import java.util.List;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.ImageSetOption;
 import cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET;
+import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.GameMode;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
@@ -19,7 +20,7 @@ import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
  */
 public class Settings implements Serializable {
     private static Settings appSettings;
-    private GameMode gameMode;
+    private VALID_GAME_MODE gameMode;
     private ImageSetOption imageSetOption;
     private transient GameMode candidateGameMode;
     private transient ImageSetOption candidateImageSetOption;
@@ -37,7 +38,7 @@ public class Settings implements Serializable {
         buttonIDs.add(R.id.textChoice1);
     }
 
-    public GameMode getGameMode() {
+    public VALID_GAME_MODE getGameMode() {
         return gameMode;
     }
 
@@ -77,12 +78,12 @@ public class Settings implements Serializable {
     }
 
     private void update() {
-        this.gameMode = candidateGameMode;
+        this.gameMode = (VALID_GAME_MODE) candidateGameMode;
         this.imageSetOption = candidateImageSetOption;
     }
 
     private boolean checkGameMode() {
-        for (GameMode gameMode : VALID_GAME_MODE.values()) {
+        for (VALID_GAME_MODE gameMode : VALID_GAME_MODE.values()) {
             if (candidateGameMode.isEquivalent(gameMode)) {
                 this.candidateGameMode = gameMode;
                 return true;
