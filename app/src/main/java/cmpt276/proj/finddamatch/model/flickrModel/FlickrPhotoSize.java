@@ -16,7 +16,8 @@ public enum FlickrPhotoSize {
         this.size = size;
     }
 
-    public String getSize() {
+    @Override
+    public String toString() {
         return this.size;
     }
 }

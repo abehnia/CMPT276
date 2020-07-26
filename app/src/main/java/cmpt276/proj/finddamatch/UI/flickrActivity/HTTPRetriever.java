@@ -7,9 +7,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HTTPRetriever {
-    public static byte[] getRequest(String request) throws IOException {
+    public static byte[] getRequest(String request, int timeout)
+            throws IOException, IllegalArgumentException {
         URL url = new URL(request);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setReadTimeout(timeout);
         try {
             ByteArrayOutputStream out = new ByteArrayOutputStream();
             InputStream in = connection.getInputStream();
@@ -30,7 +32,8 @@ public class HTTPRetriever {
     }
 
     public static <T, U extends ByteMapper<T>>
-    T getRequest(String request, U mapper) throws IOException {
-        return mapper.map(getRequest(request));
+    T getRequest(String request, U mapper, int timeout) throws IOException,
+            IllegalArgumentException {
+        return mapper.map(getRequest(request, timeout));
     }
 }

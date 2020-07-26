@@ -38,7 +38,7 @@ public class PhotoGalleryFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setupHeaderFetcher();
-        headerFetcher.execute(FlickerAPI.getRecentPhotos(200, 1));
+        headerFetcher.execute(FlickerAPI.searchPhotos("Cats", 100, 1));
     }
 
     @Override

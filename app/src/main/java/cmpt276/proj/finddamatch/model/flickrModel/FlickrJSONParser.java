@@ -29,7 +29,11 @@ public class FlickrJSONParser implements JSONParser<List<FlickrPhoto>> {
                     getJSONObject("photos");
             JSONArray jsonArray = jsonObject.getJSONArray("photo");
             for (int i = 0; i < jsonArray.length(); ++i) {
-                FlickrPhoto photo = parsePhoto(jsonArray.getJSONObject(i));
+                JSONObject JSONPhoto = jsonArray.getJSONObject(i);
+                if (!JSONPhoto.has("url_s")) {
+                    continue;
+                }
+                FlickrPhoto photo = parsePhoto(JSONPhoto);
                 photos.add(photo);
             }
             return photos;

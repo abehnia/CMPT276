@@ -32,7 +32,7 @@ public class HeaderFetcher extends AsyncTask<String, Void, List<FlickrPhoto>> {
         String request = requests[0];
         try {
             return jsonParser.parse(HTTPRetriever.getRequest(
-                    request, String::new));
+                    request, String::new, 60000));
         } catch (IOException e) {
             Log.e(TAG, "Failed to fetch URL: ", e);
         } finally {

@@ -24,7 +24,8 @@ public class FlickerAPI {
                         Pair.create(FORMAT, DEFAULT_FORMAT),
                         Pair.create(PER_PAGE, Integer.toString(photosPerPage)),
                         Pair.create(PAGE, Integer.toString(page)),
-                        Pair.create(CALLBACK, DEFAULT_CALLBACK));
+                        Pair.create(CALLBACK, DEFAULT_CALLBACK),
+                        Pair.create(EXTRAS, URL_S.toString()));
     }
 
     public static String searchPhotos(String text, int photosPerPage,
@@ -35,7 +36,8 @@ public class FlickerAPI {
                         Pair.create(TEXT, text),
                         Pair.create(PER_PAGE, Integer.toString(photosPerPage)),
                         Pair.create(PAGE, Integer.toString(page)),
-                        Pair.create(CALLBACK, DEFAULT_CALLBACK));
+                        Pair.create(CALLBACK, DEFAULT_CALLBACK),
+                        Pair.create(EXTRAS, URL_S.toString()));
     }
 
     @SafeVarargs
@@ -71,7 +73,9 @@ public class FlickerAPI {
         FORMAT("format"),
         CALLBACK("nojsoncallback"),
         API_KEY("api_key"),
-        TEXT("text");
+        TEXT("text"),
+        URL_S("url_s"),
+        EXTRAS("extras");
 
         private String string;
 

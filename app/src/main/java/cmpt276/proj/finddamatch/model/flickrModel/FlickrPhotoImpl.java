@@ -8,7 +8,7 @@ import java.util.Locale;
  */
 public class FlickrPhotoImpl implements FlickrPhoto {
     private static final String URL_FORMAT = "https" +
-            "://farm%s.staticflickr.com/%s/%s_%s.jpg";
+            "://farm%s.staticflickr.com/%s/%s_%s_%s.jpg";
     private String ID;
     private String secret;
     private String serverID;
@@ -45,6 +45,6 @@ public class FlickrPhotoImpl implements FlickrPhoto {
     @Override
     public String getUrl(FlickrPhotoSize size) {
         return String.format(Locale.getDefault(), URL_FORMAT, farmID,
-                serverID, ID, secret);
+                serverID, ID, secret, size);
     }
 }
