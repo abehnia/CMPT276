@@ -28,10 +28,10 @@ public class ParameterTuner {
                 lowerRadiusBound = 0.5f;
                 break;
             case 3:
-                lowerRadiusBound = 0.3f;
+                lowerRadiusBound = 0.45f;
                 break;
             case 5:
-                lowerRadiusBound = 0.2f;
+                lowerRadiusBound = 0.4f;
                 break;
         }
     }
@@ -43,10 +43,10 @@ public class ParameterTuner {
                 upperRadiusBound = 0.7f;
                 break;
             case 3:
-                upperRadiusBound = 0.5f;
+                upperRadiusBound = 0.6f;
                 break;
             case 5:
-                upperRadiusBound = 0.4f;
+                upperRadiusBound = 0.5f;
                 break;
         }
     }
