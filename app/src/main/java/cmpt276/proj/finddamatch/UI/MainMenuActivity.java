@@ -26,6 +26,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setupHelpBtn();
         setupSettings();
         setupBestScoresBtn();
+        setupFlickrBtn();
         ScoreState.get().load(MainMenuActivity.this);
     }
 
@@ -58,6 +59,14 @@ public class MainMenuActivity extends AppCompatActivity {
         Button startBtn = findViewById(R.id.btnStartGame);
         startBtn.setOnClickListener(v -> {
             Intent intent = GameActivity.makeIntent(MainMenuActivity.this);
+            startActivity(intent);
+        });
+    }
+
+    private void setupFlickrBtn() {
+        Button flickrBtn = findViewById(R.id.btnFlickr);
+        flickrBtn.setOnClickListener(v -> {
+            Intent intent = PhotoGalleryActivity.makeIntent(MainMenuActivity.this);
             startActivity(intent);
         });
     }
