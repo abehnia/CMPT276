@@ -28,6 +28,7 @@ import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTable;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTableView;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreViewGenerator;
+import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
 /**
@@ -38,12 +39,14 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
     private ScoreManager scoreManager;
     private ScoreTable scoreTable;
     private ScoreTableView scoreTableView;
+    private Settings settings;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         View v = LayoutInflater.from(getActivity()).
                 inflate(R.layout.dialog_game_end, null);
+        this.settings = Settings.get();
         setupScores();
         populateTable(v);
         showScore();
@@ -54,7 +57,7 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
 
     private void setupScores() {
         scoreManager = ScoreState.get().getScoreManager();
-        scoreTable = scoreManager.getScoreTable(VALID_GAME_MODE.GAME1);
+        scoreTable = scoreManager.getScoreTable(settings.getGameMode());
     }
 
     private Dialog setupDialog(View v,
@@ -85,7 +88,7 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
                     String nickName = txt.getText().toString();
                     if (!nickName.isEmpty()) {
                         Score currentScore = makeNewScore(nickName);
-                        scoreManager.addScore(VALID_GAME_MODE.GAME1,
+                        scoreManager.addScore(settings.getGameMode(),
                                 currentScore);
                     } else {
                         txt.setError("Enter Nickname");
@@ -107,8 +110,8 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
                 obtainTypedArray(R.array.date2_ids);
         TypedArray typedTimeIds = getResources().
                 obtainTypedArray(R.array.time2_ids);
-        ScoreTable scoreTable = scoreManager.getScoreTable(
-                VALID_GAME_MODE.GAME1);
+        ScoreTable scoreTable = scoreManager.getScoreTable(settings.
+                getGameMode());
         this.scoreTableView = ScoreViewGenerator.generate(v,
                 Arrays.asList(typedNameIds, typedDateIds, typedTimeIds),
                 scoreTable);

@@ -30,6 +30,9 @@ import cmpt276.proj.finddamatch.model.gameLogic.CardGeneratorImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.DeckGeneratorImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
+import cmpt276.proj.finddamatch.model.gameLogic.ParameterTuner;
+
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
 
 /**
  * Class for Game Activity
@@ -46,15 +49,13 @@ public class GameActivity extends AppCompatActivity {
     private boolean isTouchable, isInDelay;
     private static final int DELAY = 100;
     private static final int REVEAL_DELAY = 1500;
-    ScoreManager scoreManager;
-    static private final int SIXTH_SCORE = 5;
+    private ScoreManager scoreManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        scoreManager = ScoreState.get().getScoreManager();
         this.isTouchable = true;
         setupGame();
         setupCanvas();
@@ -95,8 +96,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setupGame() {
-        CardGenerator cardGenerator = new CardGeneratorImpl();
-        DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator);
+        this.scoreManager = ScoreState.get().getScoreManager();
+        Settings settings = Settings.get();
+        ParameterTuner parameterTuner = new ParameterTuner(settings.getGameMode());
+        CardGenerator cardGenerator = new CardGeneratorImpl(parameterTuner);
+        DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator,
+                settings.getGameMode());
         game = new GameImpl(deckGenerator, SystemClock.elapsedRealtime());
         long time = SystemClock.elapsedRealtime();
         game.reset(time);
