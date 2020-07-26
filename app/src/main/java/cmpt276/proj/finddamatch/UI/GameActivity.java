@@ -46,15 +46,13 @@ public class GameActivity extends AppCompatActivity {
     private boolean isTouchable, isInDelay;
     private static final int DELAY = 100;
     private static final int REVEAL_DELAY = 1500;
-    ScoreManager scoreManager;
-    static private final int SIXTH_SCORE = 5;
+    private ScoreManager scoreManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        scoreManager = ScoreState.get().getScoreManager();
         this.isTouchable = true;
         setupGame();
         setupCanvas();
@@ -95,8 +93,11 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setupGame() {
+        this.scoreManager = ScoreState.get().getScoreManager();
+        Settings settings = Settings.get();
         CardGenerator cardGenerator = new CardGeneratorImpl();
-        DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator);
+        DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator,
+                settings.getGameMode());
         game = new GameImpl(deckGenerator, SystemClock.elapsedRealtime());
         long time = SystemClock.elapsedRealtime();
         game.reset(time);
