@@ -74,12 +74,15 @@ public class PhotoAdapter extends
     class PhotoViewHolder extends RecyclerView.ViewHolder implements
             View.OnClickListener {
         private android.widget.ImageView imageView;
+        private android.widget.ImageView overlay;
         private final PhotoAdapter adapter;
 
         public PhotoViewHolder(View itemView, PhotoAdapter adapter) {
             super(itemView);
             this.imageView = (android.widget.ImageView)
                     itemView.findViewById(R.id.item_image_view);
+            this.overlay = (android.widget.ImageView)
+                    itemView.findViewById(R.id.checkbox);
             this.adapter = adapter;
             itemView.setOnClickListener(this);
         }
@@ -96,12 +99,14 @@ public class PhotoAdapter extends
         }
 
         public void applyFilter() {
-            imageView.setColorFilter(new LightingColorFilter(Color.GREEN,
-                    Color.TRANSPARENT));
+//            imageView.setColorFilter(new LightingColorFilter(Color.GREEN,
+//                    Color.TRANSPARENT));
+            overlay.setVisibility(View.VISIBLE);
         }
 
         public void clearFilter() {
-            this.imageView.setColorFilter(null);
+//            this.imageView.setColorFilter(null);
+            overlay.setVisibility(View.INVISIBLE);
         }
 
         public void processFilter() {
