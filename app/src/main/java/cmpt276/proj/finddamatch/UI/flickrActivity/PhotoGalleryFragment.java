@@ -52,19 +52,13 @@ public class PhotoGalleryFragment extends Fragment {
     private void setupToolbar(View view) {
         View toolbar = view.findViewById(R.id.searchToolbar);
         ImageButton backBtn = toolbar.findViewById(R.id.btnBack);
-        backBtn.setOnClickListener(v -> {
-            getActivity().finish();
-        });
+        backBtn.setOnClickListener(v -> getActivity().finish());
 
         FloatingActionButton addImage = view.findViewById(R.id.btnAddImages);
-        addImage.setOnClickListener(v -> {
+        addImage.setOnClickListener(v -> Log.i("App", "Add Images Button Pressed"));
 
-        });
-
-        ImageButton clearBtn = toolbar.findViewById(R.id.btnClearSearch);
-        clearBtn.setOnClickListener(v -> {
-
-        });
+        ImageButton clearSearchBtn = toolbar.findViewById(R.id.btnClearSearch);
+        clearSearchBtn.setOnClickListener(v -> Log.i("App", "Clear Search Button Pressed"));
 
         final SearchView searchView = toolbar.findViewById(R.id.menu_item_search);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -88,7 +82,7 @@ public class PhotoGalleryFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_photo_gallery,
                 container, false);
-        recyclerView = (RecyclerView) v.findViewById(R.id.photoRecyclerView);
+        recyclerView = v.findViewById(R.id.photoRecyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),
                 NUMBER_OF_COLUMNS));
         setupDownloader();

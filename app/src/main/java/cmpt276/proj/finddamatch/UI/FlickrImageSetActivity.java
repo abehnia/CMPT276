@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
 
@@ -22,9 +23,7 @@ public class FlickrImageSetActivity extends AppCompatActivity {
 
     private void setupToolbar() {
         ImageButton backBtn = findViewById(R.id.btnBack);
-        backBtn.setOnClickListener(v -> {
-            finish();
-        });
+        backBtn.setOnClickListener(v -> finish());
 
         ImageButton addImagesBtn = findViewById(R.id.btnAddImages);
         addImagesBtn.setOnClickListener(v -> {
@@ -33,14 +32,10 @@ public class FlickrImageSetActivity extends AppCompatActivity {
         });
 
         ImageButton removeBtn = findViewById(R.id.btnRemove);
-        removeBtn.setOnClickListener(v -> {
-
-        });
+        removeBtn.setOnClickListener(v -> Log.i("App", "Remove Images Button Pressed"));
 
         ImageButton clearBtn = findViewById(R.id.btnClear);
-        clearBtn.setOnClickListener(v -> {
-
-        });
+        clearBtn.setOnClickListener(v -> Log.i("App", "Clear All Images Button Pressed"));
     }
 
     public static Intent makeIntent(Context context) {
