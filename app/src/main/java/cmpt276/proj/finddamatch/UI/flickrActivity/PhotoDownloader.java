@@ -13,6 +13,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.BiConsumer;
 
+/**
+ * Downloads photos on a background thread
+ */
 public class PhotoDownloader<T> extends HandlerThread {
     private static final int MESSAGE_DOWNLOAD = 0;
     private boolean hasQuit;

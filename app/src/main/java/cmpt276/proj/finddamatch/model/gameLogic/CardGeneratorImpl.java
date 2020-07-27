@@ -1,7 +1,6 @@
 package cmpt276.proj.finddamatch.model.gameLogic;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -26,9 +25,11 @@ public class CardGeneratorImpl implements CardGenerator {
     private static final int MAX_NUMBER_OF_ITERATIONS_PER_ELEMENT = 1000;
     private static final int IS_TEXT_RAND_UPPER_BOUND = 100;
     private ParameterTuner parameterTuner;
+    private boolean hasText;
 
-    public CardGeneratorImpl(ParameterTuner parameterTuner) {
+    public CardGeneratorImpl(ParameterTuner parameterTuner, boolean hasText) {
         this.parameterTuner = parameterTuner;
+        this.hasText = hasText;
     }
 
     @Override
@@ -65,7 +66,9 @@ public class CardGeneratorImpl implements CardGenerator {
                 validatedImages.add(image);
             }
         }
-        setUpTextFeature(images);
+        if (hasText) {
+            randomizeText(images);
+        }
     }
 
     private boolean isBounded(Image image) {
@@ -82,7 +85,7 @@ public class CardGeneratorImpl implements CardGenerator {
             double deltaY = image.getY() - validImage.getY();
             double distanceBetweenCircles =
                     sqrt(deltaX * deltaX + deltaY * deltaY);
-            if (sumOf2Radius / 2.0 > distanceBetweenCircles) return false;
+            if (sumOf2Radius * 0.8 > distanceBetweenCircles) return false;
         }
         return true;
     }
@@ -98,17 +101,19 @@ public class CardGeneratorImpl implements CardGenerator {
         image.setOrientation((float) (random.nextFloat() * 2 * Math.PI));
         image.setRadius(random.nextFloat() * (parameterTuner.getUpperRadiusBound() -
                 parameterTuner.getLowerRadiusBound()) + parameterTuner.getLowerRadiusBound());
-        image.setHasText((random.nextInt(IS_TEXT_RAND_UPPER_BOUND) % 2 == 0));
+        if (hasText) {
+            image.setHasText((random.nextInt(IS_TEXT_RAND_UPPER_BOUND) % 2 == 0));
+        }
     }
 
-    // Randomly set up 1 image with text feature and 1 image with image feature
-    private void setUpTextFeature(List<MutableImage> images) {
+    private void randomizeText(List<MutableImage> images) {
         Random random = new Random();
         int randHasTextImg = random.nextInt(images.size());
         images.get(randHasTextImg).setHasText(true);
         int randNotHaveTextImg = randHasTextImg;
-        while (randNotHaveTextImg == randHasTextImg)
+        while (randNotHaveTextImg == randHasTextImg) {
             randNotHaveTextImg = random.nextInt(images.size());
+        }
         images.get(randNotHaveTextImg).setHasText(false);
     }
 }

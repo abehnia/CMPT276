@@ -11,6 +11,9 @@ import cmpt276.proj.finddamatch.BuildConfig;
 import cmpt276.proj.finddamatch.model.flickrModel.FlickrJSONParser;
 import cmpt276.proj.finddamatch.model.flickrModel.FlickrPhoto;
 
+/**
+ * Fetches the headers of a json
+ */
 public class HeaderFetcher extends AsyncTask<String, Void, List<FlickrPhoto>> {
     private static final String TAG = "PhotoGalleryFragment";
     private FlickrJSONParser jsonParser;

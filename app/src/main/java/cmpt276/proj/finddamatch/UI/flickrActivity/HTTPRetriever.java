@@ -6,6 +6,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Sets up a connection and retrieves an object based on a lambda
+ */
 public class HTTPRetriever {
     public static byte[] getRequest(String request, int timeout)
             throws IOException, IllegalArgumentException {

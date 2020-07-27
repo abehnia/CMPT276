@@ -1,8 +1,8 @@
-package cmpt276.proj.finddamatch.UI.flickrActivity;
+package cmpt276.proj.finddamatch.UI.flickrImageSetActivity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,33 +16,27 @@ import java.util.List;
 import java.util.Map;
 
 import cmpt276.proj.finddamatch.R;
-import cmpt276.proj.finddamatch.model.flickrModel.FlickerAPI;
-import cmpt276.proj.finddamatch.model.flickrModel.FlickrPhoto;
+import cmpt276.proj.finddamatch.UI.flickrActivity.FlickrCell;
+import cmpt276.proj.finddamatch.UI.flickrActivity.PhotoViewHolder;
 
-/**
- * Adapter for the recycler view in photo gallery
- */
-public class PhotoAdapter extends
+public class FlickrImageSetAdapter extends
         RecyclerView.Adapter<PhotoViewHolder> {
-    private List<FlickrPhoto> flickrPhotoList;
-    private Drawable background;
+    private List<Bitmap> bitmaps;
     private Context context;
-    private PhotoDownloader<PhotoViewHolder> downloader;
     private List<FlickrCell> flickrCells;
     private Map<Integer, Bitmap> bitmapMap;
 
-    public PhotoAdapter(List<FlickrPhoto> flickrPhotoList,
-                        Drawable background, Context context,
-                        PhotoDownloader<PhotoViewHolder> downloader,
+    public FlickrImageSetAdapter(List<Bitmap> bitmaps, Context context,
                         Map<Integer, Bitmap> bitmapMap) {
-        this.flickrPhotoList = flickrPhotoList;
-        this.background = background;
+        this.bitmaps = bitmaps;
         this.context = context;
-        this.downloader = downloader;
         this.bitmapMap = bitmapMap;
         this.flickrCells = new ArrayList<>(Arrays.asList(new
-                FlickrCell[flickrPhotoList.size()]));
+                FlickrCell[bitmaps.size()]));
         flickrCells.replaceAll((FlickrCell flickrCell) -> new FlickrCell());
+        for (int i = 0; i < flickrCells.size(); ++i) {
+            flickrCells.get(i).setBitmap(bitmaps.get(i));
+        }
     }
 
     @NonNull
@@ -58,14 +52,14 @@ public class PhotoAdapter extends
     @Override
     public void onBindViewHolder(@NonNull PhotoViewHolder holder,
                                  int position) {
-        FlickrPhoto flickrPhoto = flickrPhotoList.get(position);
-        this.downloader.queueDownload(holder, flickrPhoto.getUrl());
-        holder.bindDrawable(background);
+        Bitmap bitmap = bitmaps.get(position);
+        holder.bindDrawable(new BitmapDrawable(context.getResources(), bitmap));
+        holder.setReady();
     }
 
     @Override
     public int getItemCount() {
-        return flickrPhotoList.size();
+        return bitmaps.size();
     }
 
     @Override

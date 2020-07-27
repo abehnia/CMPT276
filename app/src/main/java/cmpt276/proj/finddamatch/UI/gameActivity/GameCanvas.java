@@ -15,10 +15,13 @@ import androidx.annotation.Nullable;
 import java.util.NoSuchElementException;
 
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.ImageSet;
+
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
 
 /**
  * Main canvas for the game
@@ -125,8 +128,17 @@ public class GameCanvas extends View {
     }
 
     private void setupCards(int width, int height) {
-        ImageSet imageSet_guess = new ImageSetImpl(getResources());
-        ImageSet imageSet_lead = new ImageSetImpl(getResources());
+        ImageSet imageSet_guess;
+        ImageSet imageSet_lead;
+        if (Settings.get().getImageSet().isEquivalent(FLICKR)) {
+            imageSet_guess = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
+                    getResources());
+            imageSet_lead = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
+                    getResources());
+        } else {
+            imageSet_guess = new ImageSetImpl(getResources());
+            imageSet_lead = new ImageSetImpl(getResources());
+        }
         float guessCardX = width / 2.0f;
         float guessCardY = 7 * height / 10.0f;
         float guessCardRadius = Math.min(width, height) / 3.0f;
