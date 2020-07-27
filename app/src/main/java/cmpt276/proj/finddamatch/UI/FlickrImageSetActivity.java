@@ -8,7 +8,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +34,13 @@ public class FlickrImageSetActivity extends AppCompatActivity {
         init();
         setupToolbar();
         setupAdapter();
+        updateImageCount();
+    }
+
+    private void updateImageCount() {
+        TextView count = findViewById(R.id.imageCount);
+        String currentSize = String.valueOf(BitmapStorer.get().getBitmaps().size());
+        count.setText(currentSize);
     }
 
     private void init() {
@@ -43,6 +52,7 @@ public class FlickrImageSetActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         updateAdapter();
+        updateImageCount();
     }
 
     private void setupToolbar() {
@@ -58,8 +68,9 @@ public class FlickrImageSetActivity extends AppCompatActivity {
         ImageButton removeBtn = findViewById(R.id.btnRemove);
         removeBtn.setOnClickListener(v -> {
             BitmapStorer.get().remove(bitmapMap.values());
-            bitmapMap.clear();;
+            bitmapMap.clear();
             updateAdapter();
+            updateImageCount();
         });
 
         ImageButton clearBtn = findViewById(R.id.btnClear);
@@ -67,6 +78,7 @@ public class FlickrImageSetActivity extends AppCompatActivity {
             BitmapStorer.get().clear();
             bitmapMap.clear();
             updateAdapter();
+            updateImageCount();
         });
     }
 
