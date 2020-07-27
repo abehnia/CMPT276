@@ -29,5 +29,5 @@ public interface FlickrPhoto {
     /**
      * @return Return the url used to download the photo
      */
-    String getUrl(FlickrPhotoSize size);
+    String getUrl();
 }

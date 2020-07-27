@@ -1,25 +1,23 @@
 package cmpt276.proj.finddamatch.model.flickrModel;
 
 
-import java.util.Locale;
-
 /**
  * Simple implementation of FlickrPhoto
  */
 public class FlickrPhotoImpl implements FlickrPhoto {
-    private static final String URL_FORMAT = "https" +
-            "://farm%s.staticflickr.com/%s/%s_%s_%s.jpg";
     private String ID;
     private String secret;
     private String serverID;
     private String farmID;
+    private String url;
 
     public FlickrPhotoImpl(String ID, String secret,
-                           String serverID, String farmID) {
+                           String serverID, String farmID, String url) {
         this.ID = ID;
         this.secret = secret;
         this.serverID = serverID;
         this.farmID = farmID;
+        this.url = url;
     }
 
     @Override
@@ -43,8 +41,7 @@ public class FlickrPhotoImpl implements FlickrPhoto {
     }
 
     @Override
-    public String getUrl(FlickrPhotoSize size) {
-        return String.format(Locale.getDefault(), URL_FORMAT, farmID,
-                serverID, ID, secret, size);
+    public String getUrl() {
+        return url;
     }
 }

@@ -47,8 +47,7 @@ public class PhotoAdapter extends
     public void onBindViewHolder(@NonNull PhotoViewHolder holder,
                                  int position) {
         FlickrPhoto flickrPhoto = flickrPhotoList.get(position);
-        this.downloader.queueDownload(holder,
-                flickrPhoto.getUrl(FlickrPhotoSize.SMALL));
+        this.downloader.queueDownload(holder, flickrPhoto.getUrl());
         holder.bindDrawable(background);
     }
 
