@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.model.flickrModel.FlickerAPI;
@@ -28,6 +30,7 @@ public class PhotoGalleryFragment extends Fragment {
     private HeaderFetcher headerFetcher;
     private PhotoDownloader<PhotoAdapter.PhotoViewHolder> downloader;
     private List<FlickrPhoto> galleryItems = new ArrayList<>();
+    private Set<Bitmap> bitmapSet;
 
     public static PhotoGalleryFragment newInstance() {
         return new PhotoGalleryFragment();
@@ -36,6 +39,7 @@ public class PhotoGalleryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.bitmapSet = new HashSet<>();
         setRetainInstance(true);
         setupHeaderFetcher();
         headerFetcher.execute(FlickerAPI.searchPhotos("Cats", 100, 1));
@@ -59,7 +63,7 @@ public class PhotoGalleryFragment extends Fragment {
                 responseHandler);
         downloader.setListener((PhotoAdapter.PhotoViewHolder holder, Bitmap bitmap) -> {
             Drawable drawable = new BitmapDrawable(getResources(), bitmap);
-            holder.bindDrawable(drawable);
+            holder.processDrawable(drawable);
         });
         downloader.start();
         downloader.getLooper();
@@ -79,7 +83,7 @@ public class PhotoGalleryFragment extends Fragment {
             recyclerView.setAdapter(new PhotoAdapter(galleryItems,
                     getResources().getDrawable(R.drawable.
                             ic_national_basketball_association_logo, null),
-                    getContext(), downloader));
+                    getContext(), downloader, bitmapSet));
         }
     }
 
