@@ -99,7 +99,8 @@ public class GameActivity extends AppCompatActivity {
         this.scoreManager = ScoreState.get().getScoreManager();
         Settings settings = Settings.get();
         ParameterTuner parameterTuner = new ParameterTuner(settings.getGameMode());
-        CardGenerator cardGenerator = new CardGeneratorImpl(parameterTuner);
+        CardGenerator cardGenerator = new CardGeneratorImpl(parameterTuner,
+                settings.getGameMode().hasText());
         DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator,
                 settings.getGameMode());
         game = new GameImpl(deckGenerator, SystemClock.elapsedRealtime());
