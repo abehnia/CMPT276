@@ -66,7 +66,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private void setupFlickrBtn() {
         Button flickrBtn = findViewById(R.id.btnFlickr);
         flickrBtn.setOnClickListener(v -> {
-            Intent intent = PhotoGalleryActivity.makeIntent(MainMenuActivity.this);
+            Intent intent = FlickrImageSetActivity.makeIntent(MainMenuActivity.this);
             startActivity(intent);
         });
     }

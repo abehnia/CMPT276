@@ -1,5 +1,7 @@
 package cmpt276.proj.finddamatch.UI.gameActivity;
 
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -38,7 +40,8 @@ public abstract class CardView implements Iterable<ImageView> {
     public void setImages(Card card) {
         images.clear();
         for (Image image : card) {
-            Drawable imageToDraw = imageSet.getImage(image.getID(), image.hasText());
+            Drawable imageToDraw = imageSet.getImage(image.getID(),
+                    image.hasText());
             images.add(new ImageView(image, imageToDraw, this));
         }
     }

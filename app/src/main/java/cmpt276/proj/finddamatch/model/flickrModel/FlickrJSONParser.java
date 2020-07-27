@@ -51,6 +51,7 @@ public class FlickrJSONParser implements JSONParser<List<FlickrPhoto>> {
         String ID = jsonObject.getString("id");
         String serverID = jsonObject.getString("server");
         String secret = jsonObject.getString("secret");
-        return new FlickrPhotoImpl(ID, secret, serverID, farmID);
+        String url = jsonObject.getString("url_s");
+        return new FlickrPhotoImpl(ID, secret, serverID, farmID, url);
     }
 }

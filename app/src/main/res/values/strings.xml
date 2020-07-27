@@ -99,4 +99,9 @@
     <string name="invalid_settings">Invalid Settings</string>
     <string name="flickr_txt">Flickr</string>
 
+    <string name="search">Search</string>
+    <string name="clear_search">Clear Search</string>
+    <string name="flickr_image_set_toolbar_title">Flickr Image Set</string>
+    <string name="back_btn">Back</string>
+
 </resources>
