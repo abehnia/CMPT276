@@ -7,7 +7,7 @@ import java.util.List;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.ImageSetOption;
 import cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET;
-import cmpt276.proj.finddamatch.model.Game;
+import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
 import cmpt276.proj.finddamatch.model.GameMode;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
@@ -59,13 +59,13 @@ public class Settings implements Serializable {
                 candidateGameMode.hasText()) {
             return false;
         }
+
         if (checkGameMode() && checkImageSetOption()) {
             update();
             return true;
         }
         return false;
     }
-
     /**
      * ImageSet, Order, Size
      */

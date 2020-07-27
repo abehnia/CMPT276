@@ -11,7 +11,10 @@ import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 
+import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.UI.settingsActivity.SettingsSaver;
+
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
 
 /**
  * Class for the Main Menu. Sets up various buttons
@@ -67,6 +70,12 @@ public class MainMenuActivity extends AppCompatActivity {
             if (!BitmapStorer.get().isReady()) {
                 Toast.makeText(this,
                         LOADING_TEXT, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (Settings.get().getImageSet().isEquivalent(FLICKR) &&
+                    !SettingsActivity.checkFlickrImageSetSize(Settings.get().getGameMode())){
+                Toast.makeText(this, R.string.not_enough_images,
+                        Toast.LENGTH_SHORT).show();
                 return;
             }
             startActivity(intent);

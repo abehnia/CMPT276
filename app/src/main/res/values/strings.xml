@@ -97,6 +97,7 @@
     <string name="activity_settings_text_false">No Text</string>
     <string name="acticity_settings_text_or_no_text">Text</string>
     <string name="invalid_settings">Invalid Settings</string>
+    <string name="not_enough_images">Not Enough Images</string>
     <string name="flickr_txt">Flickr</string>
 
     <string name="search">Search</string>
