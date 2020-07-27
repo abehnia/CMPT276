@@ -68,6 +68,7 @@ public class PhotoGalleryFragment extends Fragment {
 
         FloatingActionButton addImage = view.findViewById(R.id.btnAddImages);
         addImage.setOnClickListener(v -> {
+            BitmapStorer.get().add(bitmapMap.values());
             bitmapMap.clear();
             photoAdapter.clearSelections();
             photoAdapter.notifyDataSetChanged();
@@ -145,15 +146,17 @@ public class PhotoGalleryFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        downloader.quit();
-    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         downloader.clearQueue();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        downloader.quit();
+    }
+
 }

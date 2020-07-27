@@ -26,8 +26,9 @@ public class CardGeneratorImpl implements CardGenerator {
     private static final int MAX_NUMBER_OF_ITERATIONS_PER_ELEMENT = 1000;
     private static final int IS_TEXT_RAND_UPPER_BOUND = 100;
     private ParameterTuner parameterTuner;
+    private boolean hasText;
 
-    public CardGeneratorImpl(ParameterTuner parameterTuner) {
+    public CardGeneratorImpl(ParameterTuner parameterTuner, boolean hasText) {
         this.parameterTuner = parameterTuner;
     }
 
