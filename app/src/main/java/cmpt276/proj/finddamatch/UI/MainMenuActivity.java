@@ -73,7 +73,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 return;
             }
             if (Settings.get().getImageSet().isEquivalent(FLICKR) &&
-                    !SettingsActivity.checkFlickrImageSetSize(Settings.get().getGameMode())){
+                    !Settings.checkFlickrImageSetSize(Settings.get().getGameMode())){
                 Toast.makeText(this, R.string.not_enough_images,
                         Toast.LENGTH_SHORT).show();
                 return;

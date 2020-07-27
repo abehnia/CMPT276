@@ -86,11 +86,6 @@ public class SettingsActivity extends AppCompatActivity {
             settings.setGameMode(gameMode);
             settings.setImageSetOption(imageSet);
             if (settings.apply()) {
-                if (imageSet.isEquivalent(FLICKR) && !checkFlickrImageSetSize(gameMode)){
-                    Toast.makeText(this, R.string.not_enough_images,
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }
                 settings.setButtonIDs(Arrays.asList(
                         imageSetOption.getCurrentButtonID(),
                         gameOrderOption.getCurrentButtonID(),
@@ -103,31 +98,6 @@ public class SettingsActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.invalid_settings,
                     Toast.LENGTH_SHORT).show();
         });
-    }
-
-    public static boolean checkFlickrImageSetSize(GameMode gameMode) {
-        final int ORDER2_NUMOFIMAGES = 7;
-        final int ORDER3_NUMOFIMAGES = 13;
-        final int ORDER5_NUMOFIMAGES = 31;
-        int reqNumOfImages;
-        switch(gameMode.getOrder()) {
-            case 2:
-                reqNumOfImages = ORDER2_NUMOFIMAGES;
-                break;
-            case 3:
-                reqNumOfImages = ORDER3_NUMOFIMAGES;
-                break;
-            case 5:
-                reqNumOfImages = ORDER5_NUMOFIMAGES;
-                break;
-            default:
-                Log.e("Setting Activity","Invalid Game Order");
-                return false;
-        }
-        if (BitmapStorer.get().getBitmaps().size() >= reqNumOfImages){
-            return true;
-        }
-        return false;
     }
 
 

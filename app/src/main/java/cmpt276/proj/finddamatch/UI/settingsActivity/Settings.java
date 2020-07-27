@@ -1,5 +1,8 @@
 package cmpt276.proj.finddamatch.UI.settingsActivity;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,9 +62,37 @@ public class Settings implements Serializable {
                 candidateGameMode.hasText()) {
             return false;
         }
-
+        if (candidateImageSetOption.isEquivalent(FLICKR) &&
+                !checkFlickrImageSetSize(gameMode)){
+            return false;
+        }
         if (checkGameMode() && checkImageSetOption()) {
             update();
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkFlickrImageSetSize(GameMode gameMode) {
+        final int ORDER2_NUMOFIMAGES = 7;
+        final int ORDER3_NUMOFIMAGES = 13;
+        final int ORDER5_NUMOFIMAGES = 31;
+        int reqNumOfImages;
+        switch(gameMode.getOrder()) {
+            case 2:
+                reqNumOfImages = ORDER2_NUMOFIMAGES;
+                break;
+            case 3:
+                reqNumOfImages = ORDER3_NUMOFIMAGES;
+                break;
+            case 5:
+                reqNumOfImages = ORDER5_NUMOFIMAGES;
+                break;
+            default:
+                Log.e("Setting Activity","Invalid Game Order");
+                return false;
+        }
+        if (BitmapStorer.get().getBitmaps().size() >= reqNumOfImages){
             return true;
         }
         return false;
