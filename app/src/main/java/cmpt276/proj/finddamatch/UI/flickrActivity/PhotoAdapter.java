@@ -1,7 +1,7 @@
 package cmpt276.proj.finddamatch.UI.flickrActivity;
 
 import android.content.Context;
-import android.graphics.Color;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,26 +11,38 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.model.flickrModel.FlickerAPI;
 import cmpt276.proj.finddamatch.model.flickrModel.FlickrPhoto;
-import cmpt276.proj.finddamatch.model.flickrModel.FlickrPhotoSize;
 
+/**
+ * Adapter for the recycler view in photo gallery
+ */
 public class PhotoAdapter extends
-        RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder> {
+        RecyclerView.Adapter<PhotoViewHolder> {
     private List<FlickrPhoto> flickrPhotoList;
     private Drawable background;
     private Context context;
     private PhotoDownloader<PhotoViewHolder> downloader;
+    private List<FlickrCell> flickrCells;
+    private Map<Integer, Bitmap> bitmapMap;
 
     public PhotoAdapter(List<FlickrPhoto> flickrPhotoList,
                         Drawable background, Context context,
-                        PhotoDownloader<PhotoViewHolder> downloader) {
+                        PhotoDownloader<PhotoViewHolder> downloader,
+                        Map<Integer, Bitmap> bitmapMap) {
         this.flickrPhotoList = flickrPhotoList;
         this.background = background;
         this.context = context;
         this.downloader = downloader;
+        this.bitmapMap = bitmapMap;
+        this.flickrCells = new ArrayList<>(Arrays.asList(new
+                FlickrCell[flickrPhotoList.size()]));
+        flickrCells.replaceAll((FlickrCell flickrCell) -> new FlickrCell());
     }
 
     @NonNull
@@ -40,15 +52,14 @@ public class PhotoAdapter extends
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.list_item_gallery,
                 parent, false);
-        return new PhotoViewHolder(view, this);
+        return new PhotoViewHolder(view, flickrCells, bitmapMap);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PhotoViewHolder holder,
                                  int position) {
         FlickrPhoto flickrPhoto = flickrPhotoList.get(position);
-        this.downloader.queueDownload(holder,
-                flickrPhoto.getUrl(FlickrPhotoSize.SMALL));
+        this.downloader.queueDownload(holder, flickrPhoto.getUrl());
         holder.bindDrawable(background);
     }
 
@@ -57,25 +68,16 @@ public class PhotoAdapter extends
         return flickrPhotoList.size();
     }
 
-    static class PhotoViewHolder extends RecyclerView.ViewHolder implements
-            View.OnClickListener {
-        private android.widget.ImageView imageView;
-        private final PhotoAdapter adapter;
+    @Override
+    public void onViewRecycled(@NonNull PhotoViewHolder holder) {
+        holder.clearFilter();
+        holder.clearReady();
+    }
 
-        public PhotoViewHolder(View itemView, PhotoAdapter adapter) {
-            super(itemView);
-            this.imageView = (android.widget.ImageView)
-                    itemView.findViewById(R.id.item_image_view);
-            this.adapter = adapter;
-            itemView.setOnClickListener(this);
-        }
-
-        public void bindDrawable(Drawable drawable) {
-            imageView.setImageDrawable(drawable);
-        }
-
-        @Override
-        public void onClick(View v) {
+    public void clearSelections() {
+        for (FlickrCell flickrCell : flickrCells) {
+            flickrCell.setSelected(false);
         }
     }
+
 }
