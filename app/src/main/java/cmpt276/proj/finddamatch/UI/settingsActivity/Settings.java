@@ -63,7 +63,7 @@ public class Settings implements Serializable {
             return false;
         }
         if (candidateImageSetOption.isEquivalent(FLICKR) &&
-                !checkFlickrImageSetSize(gameMode)){
+                !checkFlickrImageSetSize(candidateGameMode)){
             return false;
         }
         if (checkGameMode() && checkImageSetOption()) {
