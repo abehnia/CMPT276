@@ -76,7 +76,7 @@ public class ImageImpl implements MutableImage {
     }
 
     @Override
-    public boolean getHasText() {
+    public boolean hasText() {
         return isText;
     }
 
