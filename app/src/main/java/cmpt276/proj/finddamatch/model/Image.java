@@ -41,5 +41,5 @@ public interface Image {
     /**
      * @return the status of the image in boolean
      */
-    boolean getHasText();
+    boolean hasText();
 }
