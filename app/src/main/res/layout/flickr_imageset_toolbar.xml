@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/helpMenuToolbar"
+    android:id="@+id/Toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/toolbar_shape"
@@ -17,10 +18,28 @@
         app:layout_constraintGuide_percent="0.08" />
 
     <ImageButton
-        android:id="@+id/backButton"
+        android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@drawable/ic_baseline_arrow_back_24"
+        android:contentDescription="@string/null_text_view" />
+
+    <ImageButton
+        android:id="@+id/btnRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/ic_baseline_remove_24"
+        android:contentDescription="@string/null_text_view" />
+
+    <ImageButton
+        android:id="@+id/btnAddImages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/ic_baseline_add_24"
         android:contentDescription="@string/null_text_view" />
 
     <TextView
@@ -28,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:text="@string/null_text_view"
+        android:text="@string/flickr_image_set_toolbar_title"
         android:textSize="24sp"
         android:textStyle="bold"
         />
