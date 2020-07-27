@@ -74,4 +74,10 @@ public class PhotoAdapter extends
         holder.clearReady();
     }
 
+    public void clearSelections() {
+        for (FlickrCell flickrCell : flickrCells) {
+            flickrCell.setSelected(false);
+        }
+    }
+
 }

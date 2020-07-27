@@ -44,4 +44,12 @@ public class FlickrPhotoImpl implements FlickrPhoto {
     public String getUrl() {
         return url;
     }
+
+    @Override
+    public boolean isEquivalent(FlickrPhoto flickrPhoto) {
+        return ID.equals(flickrPhoto.getID()) &&
+                secret.equals(flickrPhoto.getSecret()) &&
+                serverID.equals(flickrPhoto.getServerID()) &&
+                farmID.equals(flickrPhoto.getFarmID());
+    }
 }

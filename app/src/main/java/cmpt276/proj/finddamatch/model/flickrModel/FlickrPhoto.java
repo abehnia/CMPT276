@@ -27,7 +27,12 @@ public interface FlickrPhoto {
     String getServerID();
 
     /**
-     * @return Return the url used to download the photo
+     * @return Returns the url used to download the photo
      */
     String getUrl();
+
+    /**
+     * @return Returns true if the two flickPhotos are the same
+     */
+    boolean isEquivalent(FlickrPhoto flickrPhoto);
 }

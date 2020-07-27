@@ -40,6 +40,7 @@ public class PhotoGalleryFragment extends Fragment {
     private RecyclerView recyclerView;
     private HeaderFetcher headerFetcher;
     private PhotoDownloader<PhotoViewHolder> downloader;
+    private PhotoAdapter photoAdapter;
     private List<FlickrPhoto> galleryItems = new ArrayList<>();
     private Map<Integer, Bitmap> bitmapMap;
 
@@ -53,7 +54,7 @@ public class PhotoGalleryFragment extends Fragment {
         this.bitmapMap = new HashMap<>();
         setRetainInstance(true);
         setupHeaderFetcher();
-        headerFetcher.execute(FlickerAPI.searchPhotos("racoon",
+        headerFetcher.execute(FlickerAPI.searchPhotos("basketball",
                 100, 1));
     }
 
@@ -63,22 +64,27 @@ public class PhotoGalleryFragment extends Fragment {
         backBtn.setOnClickListener(v -> getActivity().finish());
 
         FloatingActionButton addImage = view.findViewById(R.id.btnAddImages);
-        addImage.setOnClickListener(v -> Log.i("App", "Add Images Button Pressed"));
+        addImage.setOnClickListener(v -> {
+            bitmapMap.clear();
+            photoAdapter.clearSelections();
+            photoAdapter.notifyDataSetChanged();
+        });
 
         ImageButton clearSearchBtn = toolbar.findViewById(R.id.btnClearSearch);
-        clearSearchBtn.setOnClickListener(v -> Log.i("App", "Clear Search Button Pressed"));
+        clearSearchBtn.setOnClickListener(v -> recyclerView.setAdapter(null));
 
         final SearchView searchView = toolbar.findViewById(R.id.menu_item_search);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Log.d(TAG, "QueryTextSubmit: " + s);
+                setupHeaderFetcher();
+                headerFetcher.execute(FlickerAPI.searchPhotos(s,
+                        100, 1));
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                Log.d(TAG, "QueryTextChange: " + s);
                 return false;
             }
         });
@@ -124,10 +130,11 @@ public class PhotoGalleryFragment extends Fragment {
 
     private void setupAdapter() {
         if (isAdded()) {
-            recyclerView.setAdapter(new PhotoAdapter(galleryItems,
+            photoAdapter = new PhotoAdapter(galleryItems,
                     getResources().getDrawable(R.drawable.
-                            ic_national_basketball_association_logo, null),
-                    getContext(), downloader, bitmapMap));
+                            ic_national_basketball_association_logo,
+                            null), getContext(), downloader, bitmapMap);
+            recyclerView.setAdapter(photoAdapter);
         }
     }
 
