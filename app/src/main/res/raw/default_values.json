@@ -42,27 +42,27 @@
     "values": [
       {
         "name": "Dio",
-        "time": 3,
+        "time": 13,
         "date": "Wed, July 1"
       },
       {
         "name": "Tom",
-        "time": 6,
+        "time": 15,
         "date": "Thurs, July 2"
       },
       {
         "name": "Jerry",
-        "time": 8,
+        "time": 17,
         "date": "Fri, July 3"
       },
       {
         "name": "Batman",
-        "time": 10,
+        "time": 25,
         "date": "Sat, July 4"
       },
       {
         "name": "Robin",
-        "time": 11,
+        "time": 27,
         "date": "Sun, July 5"
       }
     ]
@@ -110,27 +110,27 @@
     "values": [
       {
         "name": "Dio",
-        "time": 3,
+        "time": 23,
         "date": "Wed, July 1"
       },
       {
         "name": "Tom",
-        "time": 4,
+        "time": 25,
         "date": "Thurs, July 2"
       },
       {
         "name": "Jerry",
-        "time": 6,
+        "time": 29,
         "date": "Fri, July 3"
       },
       {
         "name": "Batman",
-        "time": 8,
+        "time": 31,
         "date": "Sat, July 4"
       },
       {
         "name": "Robin",
-        "time": 10,
+        "time": 40,
         "date": "Sun, July 5"
       }
     ]
@@ -178,27 +178,27 @@
     "values": [
       {
         "name": "Dio",
-        "time": 3,
+        "time": 17,
         "date": "Wed, July 1"
       },
       {
         "name": "Tom",
-        "time": 4,
+        "time": 19,
         "date": "Thurs, July 2"
       },
       {
         "name": "Jerry",
-        "time": 6,
+        "time": 23,
         "date": "Fri, July 3"
       },
       {
         "name": "Batman",
-        "time": 8,
+        "time": 27,
         "date": "Sat, July 4"
       },
       {
         "name": "Robin",
-        "time": 10,
+        "time": 30,
         "date": "Sun, July 5"
       }
     ]
@@ -246,27 +246,27 @@
     "values": [
       {
         "name": "Dio",
-        "time": 8,
+        "time": 42,
         "date": "Wed, July 1"
       },
       {
         "name": "Tom",
-        "time": 9,
+        "time": 45,
         "date": "Thurs, July 2"
       },
       {
         "name": "Jerry",
-        "time": 11,
+        "time": 50,
         "date": "Fri, July 3"
       },
       {
         "name": "Batman",
-        "time": 13,
+        "time": 55,
         "date": "Sat, July 4"
       },
       {
         "name": "Robin",
-        "time": 15,
+        "time": 59,
         "date": "Sun, July 5"
       }
     ]
@@ -314,27 +314,27 @@
     "values": [
       {
         "name": "Dio",
-        "time": 12,
+        "time": 54,
         "date": "Wed, July 1"
       },
       {
         "name": "Tom",
-        "time": 13,
+        "time": 60,
         "date": "Thurs, July 2"
       },
       {
         "name": "Jerry",
-        "time": 15,
+        "time": 70,
         "date": "Fri, July 3"
       },
       {
         "name": "Batman",
-        "time": 17,
+        "time": 80,
         "date": "Sat, July 4"
       },
       {
         "name": "Robin",
-        "time": 20,
+        "time": 90,
         "date": "Sun, July 5"
       }
     ]
@@ -382,27 +382,27 @@
     "values": [
       {
         "name": "Dio",
-        "time": 6,
+        "time": 33,
         "date": "Wed, July 1"
       },
       {
         "name": "Tom",
-        "time": 7,
+        "time": 39,
         "date": "Thurs, July 2"
       },
       {
         "name": "Jerry",
-        "time": 10,
+        "time": 45,
         "date": "Fri, July 3"
       },
       {
         "name": "Batman",
-        "time": 12,
+        "time": 49,
         "date": "Sat, July 4"
       },
       {
         "name": "Robin",
-        "time": 20,
+        "time": 55,
         "date": "Sun, July 5"
       }
     ]
@@ -450,27 +450,27 @@
     "values": [
       {
         "name": "Dio",
-        "time": 15,
+        "time": 63,
         "date": "Wed, July 1"
       },
       {
         "name": "Tom",
-        "time": 17,
+        "time": 75,
         "date": "Thurs, July 2"
       },
       {
         "name": "Jerry",
-        "time": 20,
+        "time": 85,
         "date": "Fri, July 3"
       },
       {
         "name": "Batman",
-        "time": 23,
+        "time": 92,
         "date": "Sat, July 4"
       },
       {
         "name": "Robin",
-        "time": 30,
+        "time": 101,
         "date": "Sun, July 5"
       }
     ]
@@ -518,27 +518,27 @@
     "values": [
       {
         "name": "Dio",
-        "time": 25,
+        "time": 81,
         "date": "Wed, July 1"
       },
       {
         "name": "Tom",
-        "time": 27,
+        "time": 93,
         "date": "Thurs, July 2"
       },
       {
         "name": "Jerry",
-        "time": 30,
+        "time": 110,
         "date": "Fri, July 3"
       },
       {
         "name": "Batman",
-        "time": 33,
+        "time": 150,
         "date": "Sat, July 4"
       },
       {
         "name": "Robin",
-        "time": 40,
+        "time": 165,
         "date": "Sun, July 5"
       }
     ]
@@ -586,27 +586,27 @@
     "values": [
       {
         "name": "Dio",
-        "time": 26,
+        "time": 99,
         "date": "Wed, July 1"
       },
       {
         "name": "Tom",
-        "time": 29,
+        "time": 112,
         "date": "Thurs, July 2"
       },
       {
         "name": "Jerry",
-        "time": 35,
+        "time": 129,
         "date": "Fri, July 3"
       },
       {
         "name": "Batman",
-        "time": 39,
+        "time": 140,
         "date": "Sat, July 4"
       },
       {
         "name": "Robin",
-        "time": 45,
+        "time": 190,
         "date": "Sun, July 5"
       }
     ]
@@ -654,27 +654,27 @@
     "values": [
       {
         "name": "Dio",
-        "time": 37,
+        "time": 115,
         "date": "Wed, July 1"
       },
       {
         "name": "Tom",
-        "time": 43,
+        "time": 137,
         "date": "Thurs, July 2"
       },
       {
         "name": "Jerry",
-        "time": 50,
+        "time": 160,
         "date": "Fri, July 3"
       },
       {
         "name": "Batman",
-        "time": 60,
+        "time": 175,
         "date": "Sat, July 4"
       },
       {
         "name": "Robin",
-        "time": 70,
+        "time": 200,
         "date": "Sun, July 5"
       }
     ]
