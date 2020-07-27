@@ -8,6 +8,10 @@ import androidx.fragment.app.Fragment;
 import cmpt276.proj.finddamatch.UI.flickrActivity.PhotoGalleryFragment;
 import cmpt276.proj.finddamatch.UI.flickrActivity.SingleFragmentActivity;
 
+/**
+ * Activity that set's up fragment for Flickr Search
+ */
+
 
 public class PhotoGalleryActivity extends SingleFragmentActivity {
 

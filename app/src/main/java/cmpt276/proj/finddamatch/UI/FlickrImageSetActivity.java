@@ -20,6 +20,10 @@ import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
 import cmpt276.proj.finddamatch.UI.flickrImageSetActivity.FlickrImageSetAdapter;
 
+/**
+ * Activity that Displays currently chosen image set
+ */
+
 public class FlickrImageSetActivity extends AppCompatActivity {
     private static final int NUMBER_OF_COLUMNS = 3;
     private FlickrImageSetAdapter photoAdapter;

@@ -31,7 +31,6 @@ import cmpt276.proj.finddamatch.model.flickrModel.FlickrPhoto;
 /**
  * Fragment for the photo gallery
  */
-import static android.content.ContentValues.TAG;
 
 public class PhotoGalleryFragment extends Fragment {
     private static final int NUMBER_OF_COLUMNS = 3;

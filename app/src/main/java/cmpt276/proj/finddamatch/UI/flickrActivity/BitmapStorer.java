@@ -27,7 +27,12 @@ import cmpt276.proj.finddamatch.UI.scoresActivity.DefaultScoresGenerator;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTable;
 
-public class BitmapStorer extends HandlerThread{
+/**
+ * Class to store Bitmaps added to Image Set by User
+ * Also has methods to save and load Image set when user starts or closes the app.
+ */
+
+public class BitmapStorer extends HandlerThread {
     private static final String TAG = "BitmapStorer";
     private static final int MESSAGE_LOAD = 0;
     private static final int MESSAGE_SAVE = 1;
@@ -124,7 +129,7 @@ public class BitmapStorer extends HandlerThread{
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt(BITMAP_SIZE_KEY, bitmaps.size());
             editor.apply();
-            for (int i = 0; i < bitmaps.size() ; ++i) {
+            for (int i = 0; i < bitmaps.size(); ++i) {
                 String fileName = FILE_NAME + i;
                 FileOutputStream bitmapStateFileOutputStream =
                         context.openFileOutput(fileName, Context.MODE_PRIVATE);

@@ -4,6 +4,10 @@ import android.graphics.Bitmap;
 
 import cmpt276.proj.finddamatch.model.flickrModel.FlickrPhoto;
 
+/**
+ * Class for every Image shown on Recycler View
+ */
+
 public class FlickrCell {
     private boolean ready;
     private boolean selected;

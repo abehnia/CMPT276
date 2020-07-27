@@ -19,6 +19,10 @@ import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.FlickrCell;
 import cmpt276.proj.finddamatch.UI.flickrActivity.PhotoViewHolder;
 
+/**
+ * Adapter for the recycler view in Image Set Activity
+ */
+
 public class FlickrImageSetAdapter extends
         RecyclerView.Adapter<PhotoViewHolder> {
     private List<Bitmap> bitmaps;
