@@ -3,6 +3,7 @@ package cmpt276.proj.finddamatch.UI.flickrActivity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.LightingColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,7 +58,7 @@ public class PhotoAdapter extends
                                  int position) {
         FlickrPhoto flickrPhoto = flickrPhotoList.get(position);
         this.downloader.queueDownload(holder, flickrPhoto.getUrl());
-        holder.processDrawable(background);
+        holder.bindDrawable(background);
     }
 
     @Override
@@ -83,9 +84,8 @@ public class PhotoAdapter extends
             itemView.setOnClickListener(this);
         }
 
-        public void processDrawable(Drawable drawable) {
+        public void bindDrawable(Drawable drawable) {
             imageView.setImageDrawable(drawable);
-            processFilter();
         }
 
         @Override
@@ -96,7 +96,8 @@ public class PhotoAdapter extends
         }
 
         public void applyFilter() {
-            this.imageView.setColorFilter(Color.GREEN);
+            imageView.setColorFilter(new LightingColorFilter(Color.GREEN,
+                    Color.TRANSPARENT));
         }
 
         public void clearFilter() {

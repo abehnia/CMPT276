@@ -63,7 +63,8 @@ public class PhotoGalleryFragment extends Fragment {
                 responseHandler);
         downloader.setListener((PhotoAdapter.PhotoViewHolder holder, Bitmap bitmap) -> {
             Drawable drawable = new BitmapDrawable(getResources(), bitmap);
-            holder.processDrawable(drawable);
+            holder.bindDrawable(drawable);
+            holder.processFilter();
         });
         downloader.start();
         downloader.getLooper();
