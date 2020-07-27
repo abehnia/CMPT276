@@ -43,7 +43,7 @@ public abstract class CardView implements Iterable<ImageView> {
         images.clear();
         for (Image image : card) {
             Drawable imageToDraw = imageSet.getImage(image.getID(),
-                    image.getHasText());
+                    image.hasText());
             images.add(new ImageView(image, imageToDraw, this));
         }
     }
