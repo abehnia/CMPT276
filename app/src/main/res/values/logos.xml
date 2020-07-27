@@ -34,6 +34,37 @@
         <item>@drawable/ic_utah_jazz_logo</item>
         <item>@drawable/ic_washington_wizards_logo</item>
 
+        <item>@drawable/ic_new_mexico_lobos_logo</item>
+        <item>@drawable/ic_butler_bulldogs_logo</item>
+        <item>@drawable/ic_california_golden_bears_logo</item>
+        <item>@drawable/ic_kentucky_wildcats_logo</item>
+        <item>@drawable/ic_connecticut_huskies_wordmark</item>
+        <item>@drawable/ic_duke_athletics_logo</item>
+        <item>@drawable/ic_florida_gators_mens_basketball_logo</item>
+        <item>@drawable/ic_georgetown_hoyas_logo</item>
+        <item>@drawable/ic_holy_cross_athletics_logo</item>
+        <item>@drawable/ic_indiana_hoosiers_logo</item>
+        <item>@drawable/ic_kansas_jayhawks_logo</item>
+        <item>@drawable/ic_marquette_golden_eagles_logo</item>
+        <item>@drawable/ic_michigan_state_spartans_script</item>
+        <item>@drawable/ic_michigan_wolverines_logo</item>
+        <item>@drawable/ic_north_carolina_state_university_athletic_logo</item>
+        <item>@drawable/ic_north_carolina_tar_heels_logo</item>
+        <item>@drawable/ic_ohio_state_buckeyes_logo</item>
+        <item>@drawable/ic_oklahoma_state_university_system_logo</item>
+        <item>@drawable/ic_oregon_ducks_logo</item>
+        <item>@drawable/ic_stanford_cardinal_logo</item>
+        <item>@drawable/ic_syracuse_orange_logo</item>
+        <item>@drawable/ic_texas_longhorns_logo</item>
+        <item>@drawable/ic_ucla_bruins_script</item>
+        <item>@drawable/ic_unlv_rebels_wordmark</item>
+        <item>@drawable/ic_usc_trojans_logo</item>
+        <item>@drawable/ic_utah_utes_logo</item>
+        <item>@drawable/ic_utep_miners_wordmark</item>
+        <item>@drawable/ic_villanova_wildcats_logo</item>
+        <item>@drawable/ic_washington_huskies_logo</item>
+        <item>@drawable/ic_byu_cougars_logo</item>
+        <item>@drawable/ic_gonzaga_bulldogs_logo</item>
 
     </integer-array>
 
@@ -70,5 +101,41 @@
         <item>Seattle Storm</item>
         <item>Jazz</item>
         <item>Wizards</item>
+
+        <item>Lobos</item>
+        <item>Bulldogs</item>
+        <item>Golden Bears</item>
+        <item>Wildcats</item>
+        <item>Huskies</item>
+        <item>Blue Devils</item>
+        <item>Gators</item>
+        <item>Hoyas</item>
+        <item>Holy Cross</item>
+        <item>Hoosiers</item>
+        <item>Jayhawks</item>
+        <item>Golden Eagles</item>
+        <item>Spartans</item>
+        <item>Wolverines</item>
+        <item>Carolina State</item>
+        <item>Tar Heels</item>
+        <item>Buckeyes</item>
+        <item>Okhlahoma St</item>
+        <item>Ducks</item>
+        <item>Stanford</item>
+        <item>Orange men</item>
+        <item>Longhorns</item>
+        <item>Bruins</item>
+        <item>Rebels</item>
+        <item>Trojans</item>
+        <item>Utes</item>
+        <item>Miners</item>
+        <item>Villanova</item>
+        <item>Washington</item>
+        <item>Cougars</item>
+        <item>Bulldogs</item>
+
+
+
+
     </string-array>
 </resources>
