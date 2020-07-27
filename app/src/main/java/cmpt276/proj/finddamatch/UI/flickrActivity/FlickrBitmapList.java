@@ -1,6 +1,6 @@
 package cmpt276.proj.finddamatch.UI.flickrActivity;
 
-import android.content.res.Resources;
+
 import android.graphics.Bitmap;
 
 import androidx.annotation.NonNull;
@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 
 public class FlickrBitmapList implements Iterable<Bitmap>{
     private static FlickrBitmapList imageSet;
