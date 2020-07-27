@@ -1,24 +1,48 @@
 package cmpt276.proj.finddamatch.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
 import android.widget.ImageButton;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
+import cmpt276.proj.finddamatch.UI.flickrImageSetActivity.FlickrImageSetAdapter;
 
 public class FlickrImageSetActivity extends AppCompatActivity {
+    private static final int NUMBER_OF_COLUMNS = 3;
+    private FlickrImageSetAdapter photoAdapter;
+    private List<Bitmap> galleryItems;
+    private Map<Integer, Bitmap> bitmapMap;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flickr_image_set);
-
+        init();
         setupToolbar();
+        setupAdapter();
+    }
+
+    private void init() {
+        this.galleryItems = BitmapStorer.get().getBitmaps();
+        this.bitmapMap = new HashMap<>();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateAdapter();
     }
 
     private void setupToolbar() {
@@ -32,10 +56,41 @@ public class FlickrImageSetActivity extends AppCompatActivity {
         });
 
         ImageButton removeBtn = findViewById(R.id.btnRemove);
-        removeBtn.setOnClickListener(v -> Log.i("App", "Remove Images Button Pressed"));
+        removeBtn.setOnClickListener(v -> {
+            BitmapStorer.get().remove(bitmapMap.values());
+            bitmapMap.clear();;
+            updateAdapter();
+        });
 
         ImageButton clearBtn = findViewById(R.id.btnClear);
-        clearBtn.setOnClickListener(v -> Log.i("App", "Clear All Images Button Pressed"));
+        clearBtn.setOnClickListener(v -> {
+            BitmapStorer.get().clear();
+            bitmapMap.clear();
+            updateAdapter();
+        });
+    }
+
+    private void setupAdapter() {
+            recyclerView = findViewById(R.id.imageSetRecyclerView);
+            photoAdapter = new FlickrImageSetAdapter(galleryItems,
+                    this, bitmapMap);
+            recyclerView.setAdapter(photoAdapter);
+            recyclerView.setLayoutManager(new GridLayoutManager(this,
+                NUMBER_OF_COLUMNS));
+    }
+
+    private void updateAdapter() {
+        this.galleryItems = BitmapStorer.get().getBitmaps();
+        photoAdapter = new FlickrImageSetAdapter(galleryItems,
+                this, bitmapMap);
+        recyclerView.setAdapter(photoAdapter);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        BitmapStorer bitmapStorer = BitmapStorer.get();
+        bitmapStorer.save(this);
     }
 
     public static Intent makeIntent(Context context) {
