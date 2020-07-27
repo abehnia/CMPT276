@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,10 +19,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Spliterator;
 
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
@@ -30,7 +28,6 @@ import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTableView;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreViewGenerator;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
-import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.GameMode;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
@@ -45,50 +42,58 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
     Settings settings;
     List<GameMode> gameModeList;
     VALID_GAME_MODE gameMode;
-    Map<Integer, GameMode> integerGameModeMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scores);
 
-        integerGameModeMap = new HashMap<>();
-        gameModeList = new ArrayList<>();
-        gameModeList.addAll(Arrays.asList(VALID_GAME_MODE.values()));
-        for (int i = 0; i < gameModeList.size(); ++i) {
-            integerGameModeMap.put(i, gameModeList.get(i));
-        }
+        setUpSpinner();
 
-        Spinner spinnerGameModes = findViewById(R.id.gameMode_spinner);
-        ArrayAdapter<GameMode> spinnerAdapter = new ArrayAdapter<>
-                (this, android.R.layout.simple_spinner_item, gameModeList);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerGameModes.setAdapter(spinnerAdapter);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource
-//                (this, R.array.gameModes_array, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinnerGameModes.setAdapter(adapter);
-
-        spinnerGameModes.setOnItemSelectedListener(this);
         scoreManager = ScoreState.get().getScoreManager();
         this.settings = Settings.get();
-        scoreTable = scoreManager.getScoreTable(gameMode);
-        populateTable();
-        showScore();
-        setupResetBtn();
+        gameMode = settings.getGameMode();
+        populateTable(gameMode);
+        showScore(gameMode);
+        setupResetBtn(gameMode);
         setupToolbar();
     }
 
-    private void setupResetBtn() {
+    private void setUpSpinner() {
+        gameModeList = new ArrayList<>();
+        gameModeList.addAll(Arrays.asList(VALID_GAME_MODE.values()));
+        Spinner spinnerGameModes = findViewById(R.id.gameMode_spinner);
+        ArrayAdapter<GameMode> spinnerAdapter = new ArrayAdapter<GameMode>
+                (this, android.R.layout.simple_spinner_item, gameModeList){
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+
+                ((TextView) v).setTextSize(18);
+                ((TextView) v).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                ((TextView) v).setTextColor(
+                        getResources().getColorStateList(R.color.colorAccent)
+                );
+
+                return v;
+            }
+
+        };
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGameModes.setAdapter(spinnerAdapter);
+        spinnerGameModes.setPrompt("Select Game Mode:");
+        spinnerGameModes.setOnItemSelectedListener(this);
+    }
+
+    private void setupResetBtn(VALID_GAME_MODE gameMode) {
         Button btn = findViewById(R.id.btnReset);
         btn.setOnClickListener(v -> {
             scoreManager.resetScoreTable(gameMode);
             scoreTable = scoreManager.getScoreTable(gameMode);
-            showScore();
+            showScore(gameMode);
         });
     }
 
-    private void populateTable() {
+    private void populateTable(VALID_GAME_MODE gameMode) {
         TypedArray typedNameIds = getResources().
                 obtainTypedArray(R.array.name_ids);
         TypedArray typedDateIds = getResources().
@@ -118,7 +123,8 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         });
     }
 
-    private void showScore() {
+    private void showScore(VALID_GAME_MODE gameMode) {
+        scoreTable = scoreManager.getScoreTable(gameMode);
         scoreTableView.setScores(scoreTable);
     }
 
@@ -131,11 +137,12 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         VALID_GAME_MODE gameMode = (VALID_GAME_MODE) parent.getItemAtPosition(position);
         int spinner_pos = parent.getSelectedItemPosition();
         Toast.makeText(parent.getContext(), "Game " +
-                        Integer.toString(spinner_pos + 1) +
-                        " is selected", Toast.LENGTH_SHORT).show();
+                (spinner_pos + 1) +
+                " is selected", Toast.LENGTH_SHORT).show();
         this.gameMode = gameMode;
-//        String text = parent.getItemAtPosition(position).toString();
-//        Toast.makeText(parent.getContext(), text + " is selected", Toast.LENGTH_SHORT).show();
+        populateTable(gameMode);
+        showScore(gameMode);
+        setupResetBtn(gameMode);
     }
 
     @Override
