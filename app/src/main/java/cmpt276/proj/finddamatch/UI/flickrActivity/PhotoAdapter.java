@@ -2,8 +2,6 @@ package cmpt276.proj.finddamatch.UI.flickrActivity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.LightingColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,32 +13,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.model.flickrModel.FlickerAPI;
 import cmpt276.proj.finddamatch.model.flickrModel.FlickrPhoto;
 
+/**
+ * Adapter for the recycler view in photo gallery
+ */
 public class PhotoAdapter extends
-        RecyclerView.Adapter<PhotoAdapter.PhotoViewHolder> {
+        RecyclerView.Adapter<PhotoViewHolder> {
     private List<FlickrPhoto> flickrPhotoList;
     private Drawable background;
     private Context context;
     private PhotoDownloader<PhotoViewHolder> downloader;
-    private List<Boolean> selected;
-    private Set<Bitmap> bitmapSet;
+    private List<FlickrCell> flickrCells;
+    private Map<Integer, Bitmap> bitmapMap;
 
     public PhotoAdapter(List<FlickrPhoto> flickrPhotoList,
                         Drawable background, Context context,
                         PhotoDownloader<PhotoViewHolder> downloader,
-                        Set<Bitmap> bitmapSet) {
+                        Map<Integer, Bitmap> bitmapMap) {
         this.flickrPhotoList = flickrPhotoList;
         this.background = background;
         this.context = context;
         this.downloader = downloader;
-        this.bitmapSet = bitmapSet;
-        this.selected = new ArrayList<>(Arrays.asList(new
-                Boolean[flickrPhotoList.size()]));
-        selected.replaceAll((Boolean condition) -> false);
+        this.bitmapMap = bitmapMap;
+        this.flickrCells = new ArrayList<>(Arrays.asList(new
+                FlickrCell[flickrPhotoList.size()]));
+        flickrCells.replaceAll((FlickrCell flickrCell) -> new FlickrCell());
     }
 
     @NonNull
@@ -50,7 +52,7 @@ public class PhotoAdapter extends
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.list_item_gallery,
                 parent, false);
-        return new PhotoViewHolder(view, this);
+        return new PhotoViewHolder(view, flickrCells, bitmapMap);
     }
 
     @Override
@@ -69,56 +71,7 @@ public class PhotoAdapter extends
     @Override
     public void onViewRecycled(@NonNull PhotoViewHolder holder) {
         holder.clearFilter();
+        holder.clearReady();
     }
 
-    class PhotoViewHolder extends RecyclerView.ViewHolder implements
-            View.OnClickListener {
-        private android.widget.ImageView imageView;
-        private android.widget.ImageView overlay;
-        private final PhotoAdapter adapter;
-
-        public PhotoViewHolder(View itemView, PhotoAdapter adapter) {
-            super(itemView);
-            this.imageView = (android.widget.ImageView)
-                    itemView.findViewById(R.id.item_image_view);
-            this.overlay = (android.widget.ImageView)
-                    itemView.findViewById(R.id.checkbox);
-            this.adapter = adapter;
-            itemView.setOnClickListener(this);
-        }
-
-        public void bindDrawable(Drawable drawable) {
-            imageView.setImageDrawable(drawable);
-        }
-
-        @Override
-        public void onClick(View v) {
-            int position = getLayoutPosition();
-            selected.set(position, !selected.get(position));
-            processFilter();
-        }
-
-        public void applyFilter() {
-//            imageView.setColorFilter(new LightingColorFilter(Color.GREEN,
-//                    Color.TRANSPARENT));
-            overlay.setVisibility(View.VISIBLE);
-        }
-
-        public void clearFilter() {
-//            this.imageView.setColorFilter(null);
-            overlay.setVisibility(View.INVISIBLE);
-        }
-
-        public void processFilter() {
-            int position = getLayoutPosition();
-            if (position == -1) {
-                return;
-            }
-            if (selected.get(position)) {
-                applyFilter();
-            } else {
-                clearFilter();
-            }
-        }
-    }
 }

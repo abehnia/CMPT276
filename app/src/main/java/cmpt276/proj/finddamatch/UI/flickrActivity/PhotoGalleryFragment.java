@@ -14,23 +14,26 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.model.flickrModel.FlickerAPI;
 import cmpt276.proj.finddamatch.model.flickrModel.FlickrJSONParser;
 import cmpt276.proj.finddamatch.model.flickrModel.FlickrPhoto;
 
+/**
+ * Fragment for the photo gallery
+ */
 public class PhotoGalleryFragment extends Fragment {
     public static final int NUMBER_OF_COLUMNS = 3;
     public static final String FLICKER_PHOTO_DOWNLOADER = "Flicker Photo Downloader";
     private RecyclerView recyclerView;
     private HeaderFetcher headerFetcher;
-    private PhotoDownloader<PhotoAdapter.PhotoViewHolder> downloader;
+    private PhotoDownloader<PhotoViewHolder> downloader;
     private List<FlickrPhoto> galleryItems = new ArrayList<>();
-    private Set<Bitmap> bitmapSet;
+    private Map<Integer, Bitmap> bitmapMap;
 
     public static PhotoGalleryFragment newInstance() {
         return new PhotoGalleryFragment();
@@ -39,10 +42,11 @@ public class PhotoGalleryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.bitmapSet = new HashSet<>();
+        this.bitmapMap = new HashMap<>();
         setRetainInstance(true);
         setupHeaderFetcher();
-        headerFetcher.execute(FlickerAPI.searchPhotos("Cats", 100, 1));
+        headerFetcher.execute(FlickerAPI.searchPhotos("racoon",
+                100, 1));
     }
 
     @Override
@@ -61,10 +65,12 @@ public class PhotoGalleryFragment extends Fragment {
         Handler responseHandler= new Handler();
         this.downloader = new PhotoDownloader<>(FLICKER_PHOTO_DOWNLOADER,
                 responseHandler);
-        downloader.setListener((PhotoAdapter.PhotoViewHolder holder, Bitmap bitmap) -> {
+        downloader.setListener((PhotoViewHolder holder, Bitmap bitmap) -> {
             Drawable drawable = new BitmapDrawable(getResources(), bitmap);
             holder.bindDrawable(drawable);
             holder.processFilter();
+            holder.setReady();
+            holder.addBitmap(bitmap);
         });
         downloader.start();
         downloader.getLooper();
@@ -84,7 +90,7 @@ public class PhotoGalleryFragment extends Fragment {
             recyclerView.setAdapter(new PhotoAdapter(galleryItems,
                     getResources().getDrawable(R.drawable.
                             ic_national_basketball_association_logo, null),
-                    getContext(), downloader, bitmapSet));
+                    getContext(), downloader, bitmapMap));
         }
     }
 
