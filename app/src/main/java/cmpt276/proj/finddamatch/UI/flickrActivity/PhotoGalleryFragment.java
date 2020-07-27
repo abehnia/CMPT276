@@ -5,7 +5,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +34,12 @@ import cmpt276.proj.finddamatch.model.flickrModel.FlickrPhoto;
 import static android.content.ContentValues.TAG;
 
 public class PhotoGalleryFragment extends Fragment {
-    public static final int NUMBER_OF_COLUMNS = 3;
-    public static final String FLICKER_PHOTO_DOWNLOADER = "Flicker Photo Downloader";
+    private static final int NUMBER_OF_COLUMNS = 3;
+    private static final String FLICKER_PHOTO_DOWNLOADER =
+            "Flicker Photo Downloader";
+    private static final String RACOON_SEARCH = "racoon";
+    private static final int PHOTOS_PER_PAGE = 100;
+    private static final int PAGE_NUMBER = 1;
     private RecyclerView recyclerView;
     private HeaderFetcher headerFetcher;
     private PhotoDownloader<PhotoViewHolder> downloader;
@@ -54,8 +57,8 @@ public class PhotoGalleryFragment extends Fragment {
         this.bitmapMap = new HashMap<>();
         setRetainInstance(true);
         setupHeaderFetcher();
-        headerFetcher.execute(FlickerAPI.searchPhotos("basketball",
-                100, 1));
+        headerFetcher.execute(FlickerAPI.searchPhotos(RACOON_SEARCH,
+                PHOTOS_PER_PAGE, PAGE_NUMBER));
     }
 
     private void setupToolbar(View view) {
@@ -71,7 +74,11 @@ public class PhotoGalleryFragment extends Fragment {
         });
 
         ImageButton clearSearchBtn = toolbar.findViewById(R.id.btnClearSearch);
-        clearSearchBtn.setOnClickListener(v -> recyclerView.setAdapter(null));
+        clearSearchBtn.setOnClickListener(v -> {
+            setupHeaderFetcher();
+            headerFetcher.execute(FlickerAPI.searchPhotos(RACOON_SEARCH,
+                    PHOTOS_PER_PAGE, PAGE_NUMBER));
+        });
 
         final SearchView searchView = toolbar.findViewById(R.id.menu_item_search);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -79,13 +86,13 @@ public class PhotoGalleryFragment extends Fragment {
             public boolean onQueryTextSubmit(String s) {
                 setupHeaderFetcher();
                 headerFetcher.execute(FlickerAPI.searchPhotos(s,
-                        100, 1));
+                        PHOTOS_PER_PAGE, PAGE_NUMBER));
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                return false;
+                return true;
             }
         });
 
