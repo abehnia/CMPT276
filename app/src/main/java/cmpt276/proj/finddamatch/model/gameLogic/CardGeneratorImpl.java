@@ -85,7 +85,7 @@ public class CardGeneratorImpl implements CardGenerator {
             double deltaY = image.getY() - validImage.getY();
             double distanceBetweenCircles =
                     sqrt(deltaX * deltaX + deltaY * deltaY);
-            if (sumOf2Radius / 2.0 > distanceBetweenCircles) return false;
+            if (sumOf2Radius * 0.8 > distanceBetweenCircles) return false;
         }
         return true;
     }

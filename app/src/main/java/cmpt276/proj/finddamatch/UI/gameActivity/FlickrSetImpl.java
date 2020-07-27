@@ -49,20 +49,26 @@ public class FlickrSetImpl implements ImageSet {
      * Stack overflow helped quite a bit with this one
      */
     private Bitmap getCroppedBitmap(Bitmap bitmap) {
-        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
-                bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        int minSide = Math.min(bitmap.getWidth(), bitmap.getHeight());
+        Bitmap output = Bitmap.createBitmap(minSide, minSide, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
         final int color = 0xff424242;
         final Paint paint = new Paint();
-        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
         paint.setAntiAlias(true);
         canvas.drawARGB(0, 0, 0, 0);
         paint.setColor(color);
-        int minSide = Math.min(bitmap.getWidth(), bitmap.getHeight());
-        canvas.drawCircle(bitmap.getWidth() / 2, bitmap.getHeight() / 2,
+        final Rect dest = new Rect(0, 0, minSide, minSide);
+        float delta = Math.max(bitmap.getWidth() - minSide, bitmap.getHeight() - minSide);
+        Rect src = new Rect(0, 0, minSide, minSide);
+        if (bitmap.getWidth() > bitmap.getHeight()) {
+            src.offset((int)(delta / 2.0f), 0);
+        } else {
+            src.offset(0, (int)(delta / 2.0f));
+        }
+        canvas.drawCircle(minSide / 2, minSide / 2,
                 minSide/2, paint);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, rect, rect, paint);
+        canvas.drawBitmap(bitmap, src, dest, paint);
         return output;
     }
 }

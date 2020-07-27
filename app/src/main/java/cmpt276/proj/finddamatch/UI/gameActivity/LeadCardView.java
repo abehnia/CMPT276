@@ -32,7 +32,7 @@ public class LeadCardView extends CardView {
         borderPaint.setColor(resources.getColor(R.color.orange, null));
         Drawable backLogo = imageSet.getBackLogo();
         MutableImage image = new ImageImpl(0);
-        image.setRadius(1f);
+        image.setRadius(0.5f);
         this.view = new ImageView(image, backLogo, this);
     }
 

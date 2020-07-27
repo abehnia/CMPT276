@@ -25,13 +25,13 @@ public class ParameterTuner {
         int order = gameMode.getOrder();
         switch (order) {
             case 2:
-                lowerRadiusBound = 0.5f;
-                break;
-            case 3:
                 lowerRadiusBound = 0.45f;
                 break;
+            case 3:
+                lowerRadiusBound = 0.375f;
+                break;
             case 5:
-                lowerRadiusBound = 0.4f;
+                lowerRadiusBound = 0.275f;
                 break;
         }
     }
@@ -40,13 +40,13 @@ public class ParameterTuner {
         int order = gameMode.getOrder();
         switch (order) {
             case 2:
-                upperRadiusBound = 0.7f;
+                upperRadiusBound = 0.70f;
                 break;
             case 3:
-                upperRadiusBound = 0.6f;
+                upperRadiusBound = 0.625f;
                 break;
             case 5:
-                upperRadiusBound = 0.5f;
+                upperRadiusBound = 0.525f;
                 break;
         }
     }
