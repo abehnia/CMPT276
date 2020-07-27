@@ -97,5 +97,8 @@
     <string name="activity_settings_text_false">No Text</string>
     <string name="acticity_settings_text_or_no_text">Text</string>
     <string name="invalid_settings">Invalid Settings</string>
+    <string-array name="gameModes_array">
+
+    </string-array>
 
 </resources>
