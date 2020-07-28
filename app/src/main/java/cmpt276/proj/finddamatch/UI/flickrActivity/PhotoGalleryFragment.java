@@ -71,7 +71,6 @@ public class PhotoGalleryFragment extends Fragment {
             bitmapMap.clear();
             photoAdapter.clearSelections();
             photoAdapter.notifyDataSetChanged();
-            getActivity().finish();
         });
 
         ImageButton clearSearchBtn = toolbar.findViewById(R.id.btnClearSearch);
