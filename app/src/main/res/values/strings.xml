@@ -105,6 +105,12 @@
     <string name="flickr_image_set_toolbar_title">Flickr Image Set</string>
     <string name="back_btn">Back</string>
     <string name="game_mode">Game Mode: </string>
-    <string name="selected_game_mode"> # of Images: %d --> # of Cards: %d --> Has Text = %s</string>
+    <string name="selected_game_mode"> Num of Images: %d | Num of Cards: %d | %s</string>
+    <string name="true_value">true</string>
+    <string name="flickr_ImageSet_can_not_have_Text">Flickr ImageSet can not have Text</string>
+    <string name="invalid_game_mode_selected">Invalid Game Mode Selected</string>
+    <string name="spinner_prompt_title">Select Game Mode:</string>
+    <string name="with_text">With Text</string>
+    <string name="without_text">Without Text</string>
 
 </resources>

@@ -65,9 +65,9 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         boolean hasText = gameMode.hasText();
         String txt;
         if(hasText){
-            txt = "true";
+            txt = getString(R.string.with_text);
         }else{
-            txt = "false";
+            txt = getString(R.string.without_text);
         }
         TextView gameModeTxt = findViewById(R.id.txt_gameModeStr);
         gameModeTxt.setText(getString(R.string.selected_game_mode, numOfImgs, numOfCards, txt));
@@ -82,7 +82,7 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
             public View getView(int position, View convertView, ViewGroup parent) {
                 View v = super.getView(position, convertView, parent);
                 int color = ContextCompat.getColor(ScoresActivity.this,
-                        R.color.colorAccent);
+                        R.color.colorText);
                 ((TextView) v).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 ((TextView) v).setTextColor(color);
                 return v;
@@ -90,7 +90,7 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         };
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGameModes.setAdapter(spinnerAdapter);
-        spinnerGameModes.setPrompt("Select Game Mode:");
+        spinnerGameModes.setPrompt(getString(R.string.spinner_prompt_title));
         spinnerGameModes.setOnItemSelectedListener(this);
         spinnerGameModes.setSelection(gameMode.ordinal());
     }
@@ -126,12 +126,7 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         TextView title = findViewById(R.id.toolbarTitle);
         title.setText(R.string.scoreboard_menu_title);
         ImageButton button = findViewById(R.id.backButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        button.setOnClickListener(v -> finish());
     }
 
     private void showScore(VALID_GAME_MODE gameMode) {
