@@ -57,6 +57,21 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         showScore(gameMode);
         setupResetBtn(gameMode);
         setupToolbar();
+        updateGameModeTxt(gameMode);
+    }
+
+    private void updateGameModeTxt(VALID_GAME_MODE gameMode) {
+        int numOfImgs = gameMode.getOrder()+1;
+        int numOfCards = gameMode.getSize();
+        boolean hasText = gameMode.hasText();
+        String txt;
+        if(hasText){
+            txt = "true";
+        }else{
+            txt = "false";
+        }
+        TextView gameModeTxt = findViewById(R.id.txt_gameModeStr);
+        gameModeTxt.setText(getString(R.string.selected_game_mode, numOfImgs, numOfCards, txt));
     }
 
     private void setUpSpinner() {
@@ -67,13 +82,11 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
                 (this, android.R.layout.simple_spinner_item, gameModeList){
             public View getView(int position, View convertView, ViewGroup parent) {
                 View v = super.getView(position, convertView, parent);
-
-                ((TextView) v).setTextSize(18);
+                int color = ContextCompat.getColor(ScoresActivity.this,
+                        R.color.colorAccent);
+//                ((TextView) v).setTextSize(18);
                 ((TextView) v).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                ((TextView) v).setTextColor(
-                        getResources().getColorStateList(R.color.colorAccent)
-                );
-
+                ((TextView) v).setTextColor(color);
                 return v;
             }
 
@@ -143,6 +156,7 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         populateTable(gameMode);
         showScore(gameMode);
         setupResetBtn(gameMode);
+        updateGameModeTxt(gameMode);
     }
 
     @Override

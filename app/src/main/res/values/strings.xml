@@ -104,5 +104,7 @@
     <string name="clear_search">Clear Search</string>
     <string name="flickr_image_set_toolbar_title">Flickr Image Set</string>
     <string name="back_btn">Back</string>
+    <string name="game_mode">Game Mode: </string>
+    <string name="selected_game_mode"> # of Images: %d --> # of Cards: %d --> Has Text = %s</string>
 
 </resources>
