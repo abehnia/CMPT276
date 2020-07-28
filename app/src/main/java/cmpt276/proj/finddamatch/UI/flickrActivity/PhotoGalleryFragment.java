@@ -139,7 +139,7 @@ public class PhotoGalleryFragment extends Fragment {
         if (isAdded()) {
             photoAdapter = new PhotoAdapter(galleryItems,
                     getResources().getDrawable(R.drawable.
-                            ic_national_basketball_association_logo,
+                                    ic_national_basketball_association_logo,
                             null), getContext(), downloader, bitmapMap);
             recyclerView.setAdapter(photoAdapter);
         }

@@ -67,15 +67,11 @@ public class SettingsActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.toolbarTitle);
         title.setText(R.string.settings_activity_title);
         ImageButton button = findViewById(R.id.backButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        button.setOnClickListener(v -> finish());
     }
 
     private void setupApplyButton() {
+        int flickrImageSetSize = BitmapStorer.get().getBitmaps().size();
         Button applyButton = findViewById(R.id.activitySettingsApply);
         applyButton.setOnClickListener(v -> {
             GameMode gameMode = new GameModeImpl(gameOrderOption.getValue(),
@@ -85,7 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
                     VALID_IMAGE_SET.values()[imageSetOption.getValue()];
             settings.setGameMode(gameMode);
             settings.setImageSetOption(imageSet);
-            if (settings.apply()) {
+            if (settings.apply(flickrImageSetSize)) {
                 settings.setButtonIDs(Arrays.asList(
                         imageSetOption.getCurrentButtonID(),
                         gameOrderOption.getCurrentButtonID(),

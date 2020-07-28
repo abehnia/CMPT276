@@ -57,13 +57,13 @@ public class Settings implements Serializable {
         this.candidateImageSetOption = imageSetOption;
     }
 
-    public boolean apply() {
+    public boolean apply(int flickrImageSetSize) {
         if (candidateImageSetOption.isEquivalent(FLICKR) &&
                 candidateGameMode.hasText()) {
             return false;
         }
         if (candidateImageSetOption.isEquivalent(FLICKR) &&
-                !checkFlickrImageSetSize(candidateGameMode)){
+                !checkFlickrImageSetSize(candidateGameMode, flickrImageSetSize)) {
             return false;
         }
         if (checkGameMode() && checkImageSetOption()) {
@@ -73,12 +73,12 @@ public class Settings implements Serializable {
         return false;
     }
 
-    public static boolean checkFlickrImageSetSize(GameMode gameMode) {
+    public static boolean checkFlickrImageSetSize(GameMode gameMode, int flickrImageSetSize) {
         final int ORDER2_NUMOFIMAGES = 7;
         final int ORDER3_NUMOFIMAGES = 13;
         final int ORDER5_NUMOFIMAGES = 31;
         int reqNumOfImages;
-        switch(gameMode.getOrder()) {
+        switch (gameMode.getOrder()) {
             case 2:
                 reqNumOfImages = ORDER2_NUMOFIMAGES;
                 break;
@@ -89,14 +89,12 @@ public class Settings implements Serializable {
                 reqNumOfImages = ORDER5_NUMOFIMAGES;
                 break;
             default:
-                Log.e("Setting Activity","Invalid Game Order");
+                Log.e("Setting Activity", "Invalid Game Order");
                 return false;
         }
-        if (BitmapStorer.get().getBitmaps().size() >= reqNumOfImages){
-            return true;
-        }
-        return false;
+        return flickrImageSetSize >= reqNumOfImages;
     }
+
     /**
      * ImageSet, Order, Size
      */
