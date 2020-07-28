@@ -31,7 +31,6 @@ import cmpt276.proj.finddamatch.model.flickrModel.FlickrPhoto;
 /**
  * Fragment for the photo gallery
  */
-import static android.content.ContentValues.TAG;
 
 public class PhotoGalleryFragment extends Fragment {
     private static final int NUMBER_OF_COLUMNS = 3;
@@ -140,7 +139,7 @@ public class PhotoGalleryFragment extends Fragment {
         if (isAdded()) {
             photoAdapter = new PhotoAdapter(galleryItems,
                     getResources().getDrawable(R.drawable.
-                            ic_national_basketball_association_logo,
+                                    ic_national_basketball_association_logo,
                             null), getContext(), downloader, bitmapMap);
             recyclerView.setAdapter(photoAdapter);
         }

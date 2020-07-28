@@ -9,6 +9,10 @@ import androidx.fragment.app.FragmentManager;
 
 import cmpt276.proj.finddamatch.R;
 
+/**
+ * Abstract to create fragments
+ */
+
 public abstract class SingleFragmentActivity extends AppCompatActivity {
 
     protected abstract Fragment createFragment();

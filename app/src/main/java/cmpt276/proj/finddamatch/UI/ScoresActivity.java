@@ -48,8 +48,6 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scores);
 
-        setUpSpinner();
-
         scoreManager = ScoreState.get().getScoreManager();
         this.settings = Settings.get();
         gameMode = settings.getGameMode();
@@ -57,6 +55,22 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         showScore(gameMode);
         setupResetBtn(gameMode);
         setupToolbar();
+        updateGameModeTxt(gameMode);
+        setUpSpinner();
+    }
+
+    private void updateGameModeTxt(VALID_GAME_MODE gameMode) {
+        int numOfImgs = gameMode.getOrder()+1;
+        int numOfCards = gameMode.getSize();
+        boolean hasText = gameMode.hasText();
+        String txt;
+        if(hasText){
+            txt = "true";
+        }else{
+            txt = "false";
+        }
+        TextView gameModeTxt = findViewById(R.id.txt_gameModeStr);
+        gameModeTxt.setText(getString(R.string.selected_game_mode, numOfImgs, numOfCards, txt));
     }
 
     private void setUpSpinner() {
@@ -67,21 +81,18 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
                 (this, android.R.layout.simple_spinner_item, gameModeList){
             public View getView(int position, View convertView, ViewGroup parent) {
                 View v = super.getView(position, convertView, parent);
-
-                ((TextView) v).setTextSize(18);
+                int color = ContextCompat.getColor(ScoresActivity.this,
+                        R.color.colorAccent);
                 ((TextView) v).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                ((TextView) v).setTextColor(
-                        getResources().getColorStateList(R.color.colorAccent)
-                );
-
+                ((TextView) v).setTextColor(color);
                 return v;
             }
-
         };
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGameModes.setAdapter(spinnerAdapter);
         spinnerGameModes.setPrompt("Select Game Mode:");
         spinnerGameModes.setOnItemSelectedListener(this);
+        spinnerGameModes.setSelection(gameMode.ordinal());
     }
 
     private void setupResetBtn(VALID_GAME_MODE gameMode) {
@@ -143,6 +154,7 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         populateTable(gameMode);
         showScore(gameMode);
         setupResetBtn(gameMode);
+        updateGameModeTxt(gameMode);
     }
 
     @Override
