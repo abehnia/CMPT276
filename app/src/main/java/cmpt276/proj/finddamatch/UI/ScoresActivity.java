@@ -48,8 +48,6 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scores);
 
-        setUpSpinner();
-
         scoreManager = ScoreState.get().getScoreManager();
         this.settings = Settings.get();
         gameMode = settings.getGameMode();
@@ -58,6 +56,7 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         setupResetBtn(gameMode);
         setupToolbar();
         updateGameModeTxt(gameMode);
+        setUpSpinner();
     }
 
     private void updateGameModeTxt(VALID_GAME_MODE gameMode) {
@@ -84,17 +83,16 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
                 View v = super.getView(position, convertView, parent);
                 int color = ContextCompat.getColor(ScoresActivity.this,
                         R.color.colorAccent);
-//                ((TextView) v).setTextSize(18);
                 ((TextView) v).setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 ((TextView) v).setTextColor(color);
                 return v;
             }
-
         };
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerGameModes.setAdapter(spinnerAdapter);
         spinnerGameModes.setPrompt("Select Game Mode:");
         spinnerGameModes.setOnItemSelectedListener(this);
+        spinnerGameModes.setSelection(gameMode.ordinal());
     }
 
     private void setupResetBtn(VALID_GAME_MODE gameMode) {
