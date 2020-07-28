@@ -8,4 +8,4 @@ Team Member: Ali Nanji -- amnanji@sfu.ca
 
 Notes:
 
-we used custom phyiscs based equation for the basketball animation.
+we used custom physics based equation for the basketball animation.
