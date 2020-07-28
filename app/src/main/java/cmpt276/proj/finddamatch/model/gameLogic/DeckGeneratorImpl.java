@@ -57,6 +57,9 @@ public class DeckGeneratorImpl implements DeckGenerator {
         return arrayOfCardsFinal;
     }
 
+    // The algorithm was based on a python solution on StackOverflow
+    // Resource: https://stackoverflow.com/questions/6240113/what-are-the-mathematical-computational-principles-behind-this-game
+
     private void generateFirstCard() {
         List<MutableImage> images = new ArrayList<>();
         for (int i = 0; i < order; i++) {

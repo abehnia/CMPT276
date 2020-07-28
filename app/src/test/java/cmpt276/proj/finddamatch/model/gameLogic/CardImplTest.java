@@ -155,7 +155,6 @@ public class CardImplTest {
 //        DeckGenerator generator = new DeckGeneratorImpl(cardGenerator);
 //        Stack<Card> stack = generator.generate();
 //        assertEquals(7, stack.size());
-
     }
 
 //    @Test
