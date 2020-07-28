@@ -55,8 +55,7 @@
         android:id="@+id/btnStartGame"
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="32dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/ic_startbtn"
         android:text="@string/btnStartGame_txt"
         android:textColor="#FFFFFF"
@@ -73,7 +72,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/ic_settingsbtn"
+        android:background="@drawable/ic_btn_left"
         android:text="@string/btnSettings_txt"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
@@ -88,7 +87,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/ic_bestscoresbtn"
+        android:background="@drawable/ic_btn_middle"
         android:text="@string/BtnBestScores_txt"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
@@ -104,7 +103,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/ic_helpbtn"
+        android:background="@drawable/ic_btn_middle"
         android:text="@string/btnHelp_txt"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
@@ -140,14 +139,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.38" />
+        app:layout_constraintGuide_percent="0.35" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.43" />
+        app:layout_constraintGuide_percent="0.39" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline32"
@@ -169,5 +168,25 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.875" />
+
+    <Button
+        android:id="@+id/btnFlickr"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_btn_right"
+        android:text="@string/flickr_txt"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline24"
+        app:layout_constraintEnd_toStartOf="@+id/guideline36"
+        app:layout_constraintStart_toEndOf="@+id/btnHelp"
+        app:layout_constraintTop_toTopOf="@+id/guideline23" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.69" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -62,12 +62,13 @@ public class ImageView {
     }
 
     private void initImage(Drawable imageToDraw) {
+        final double sqrt2 = Math.sqrt(2);
         this.imageToDraw = imageToDraw.mutate();
         int width = this.imageToDraw.getIntrinsicWidth();
         int height = this.imageToDraw.getIntrinsicHeight();
-        float maxSide = Math.max(width, height);
-        float NewWidth = (width / maxSide) * this.radius;
-        float newHeight = (height / maxSide) * this.radius;
+        float maxSide = Math.max(width, height) * (float) sqrt2;
+        float NewWidth = (width / maxSide) * 2 * this.radius;
+        float newHeight = (height / maxSide) * 2 * this.radius;
         float left = this.x - NewWidth / 2.0f;
         float right = left + NewWidth;
         float top = this.y - newHeight / 2.0f;

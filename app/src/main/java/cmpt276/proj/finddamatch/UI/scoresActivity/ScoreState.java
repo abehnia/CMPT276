@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 
 import cmpt276.proj.finddamatch.UI.Persistable;
+import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
 /**
  * Handles the persistence of the Score Manager
@@ -36,14 +37,21 @@ public class ScoreState implements Persistable {
             this.scoreManager.resetDefaultScores(resetValues);
             scoreStateReader.close();
             scoreStateFileInputStream.close();
+            if (scoreManager.size() != VALID_GAME_MODE.values().length) {
+                loadScoreFromJSON(context);
+            }
         } catch (IOException | ClassNotFoundException e) {
-            List<ScoreTable> currentValues = DefaultScoresGenerator.
-                    generateDefaultScores(context);
-            assert currentValues != null;
-            List<ScoreTable> resetValues = DefaultScoresGenerator.
-                    generateDefaultScores(context);
-            scoreManager = new ScoreManager(currentValues, resetValues);
+            loadScoreFromJSON(context);
         }
+    }
+
+    private void loadScoreFromJSON(Context context) {
+        List<ScoreTable> currentValues = DefaultScoresGenerator.
+                generateDefaultScores(context);
+        assert currentValues != null;
+        List<ScoreTable> resetValues = DefaultScoresGenerator.
+                generateDefaultScores(context);
+        scoreManager = new ScoreManager(currentValues, resetValues);
     }
 
     @Override

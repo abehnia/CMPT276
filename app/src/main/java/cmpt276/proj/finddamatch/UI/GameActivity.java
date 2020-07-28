@@ -30,6 +30,9 @@ import cmpt276.proj.finddamatch.model.gameLogic.CardGeneratorImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.DeckGeneratorImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
+import cmpt276.proj.finddamatch.model.gameLogic.ParameterTuner;
+
+import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
 
 /**
  * Class for Game Activity
@@ -46,15 +49,13 @@ public class GameActivity extends AppCompatActivity {
     private boolean isTouchable, isInDelay;
     private static final int DELAY = 100;
     private static final int REVEAL_DELAY = 1500;
-    ScoreManager scoreManager;
-    static private final int SIXTH_SCORE = 5;
+    private ScoreManager scoreManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        scoreManager = ScoreState.get().getScoreManager();
         this.isTouchable = true;
         setupGame();
         setupCanvas();
@@ -95,8 +96,13 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setupGame() {
-        CardGenerator cardGenerator = new CardGeneratorImpl();
-        DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator);
+        this.scoreManager = ScoreState.get().getScoreManager();
+        Settings settings = Settings.get();
+        ParameterTuner parameterTuner = new ParameterTuner(settings.getGameMode());
+        CardGenerator cardGenerator = new CardGeneratorImpl(parameterTuner,
+                settings.getGameMode().hasText());
+        DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator,
+                settings.getGameMode());
         game = new GameImpl(deckGenerator, SystemClock.elapsedRealtime());
         long time = SystemClock.elapsedRealtime();
         game.reset(time);
@@ -113,7 +119,7 @@ public class GameActivity extends AppCompatActivity {
             public void onLayoutChange(View v, int left, int top, int right,
                                        int bottom, int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
-                gameCanvas.setCards(discard, draw);
+                gameCanvas.setCards(draw, discard);
                 gameCanvas.hide();;
             }
         });
@@ -165,7 +171,7 @@ public class GameActivity extends AppCompatActivity {
                 discard = game.peekDiscard();
                 draw = game.peekDraw();
                 gameCanvas.hide();
-                gameCanvas.setCards(discard, draw);
+                gameCanvas.setCards(draw, discard);
                 isTouchable = true;
             }
         });
@@ -217,7 +223,7 @@ public class GameActivity extends AppCompatActivity {
             return;
         }
         draw = game.peekDraw();
-        gameCanvas.setCards(discard, draw);
+        gameCanvas.setCards(draw, discard);
     }
 
     private void actionUp() {

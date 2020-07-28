@@ -59,4 +59,12 @@ public enum VALID_GAME_MODE implements GameMode {
                 gameMode.getSize() == this.getSize() &&
                 gameMode.hasText() == this.hasText);
     }
+
+    @Override
+    public String toString() {
+        String contains = hasText ? "with text" : "without text";
+        return "images per card: " + (order + 1) +
+                " size: " + size +
+                " " + contains;
+    }
 }

@@ -5,17 +5,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 
+import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.UI.settingsActivity.SettingsSaver;
+import cmpt276.proj.finddamatch.model.GameMode;
+
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
 
 /**
  * Class for the Main Menu. Sets up various buttons
  */
 
 public class MainMenuActivity extends AppCompatActivity {
+
+    public static final String LOADING_TEXT = "Loading bitmaps, please wait a moment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +34,8 @@ public class MainMenuActivity extends AppCompatActivity {
         setupHelpBtn();
         setupSettings();
         setupBestScoresBtn();
+        setupFlickrBtn();
+        setupFlickrStorage();
         ScoreState.get().load(MainMenuActivity.this);
     }
 
@@ -55,18 +65,58 @@ public class MainMenuActivity extends AppCompatActivity {
     }
 
     private void setupStartGameBtn() {
+        int flickrImageSetSize = BitmapStorer.get().getBitmaps().size();
+        GameMode gameMode = Settings.get().getGameMode();
         Button startBtn = findViewById(R.id.btnStartGame);
         startBtn.setOnClickListener(v -> {
             Intent intent = GameActivity.makeIntent(MainMenuActivity.this);
+            if (!BitmapStorer.get().isReady()) {
+                Toast.makeText(this,
+                        LOADING_TEXT, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (Settings.get().getImageSet().isEquivalent(FLICKR) &&
+                    !Settings.checkFlickrImageSetSize(gameMode, flickrImageSetSize)) {
+                Toast.makeText(this, R.string.not_enough_images,
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
             startActivity(intent);
         });
     }
 
+    private void setupFlickrBtn() {
+        Button flickrBtn = findViewById(R.id.btnFlickr);
+        flickrBtn.setOnClickListener(v -> {
+            Intent intent = FlickrImageSetActivity.makeIntent(MainMenuActivity.this);
+            if (!BitmapStorer.get().isReady()) {
+                Toast.makeText(this,
+                        LOADING_TEXT, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            startActivity(intent);
+        });
+    }
+
+    private void setupFlickrStorage() {
+        BitmapStorer bitmapStorer = BitmapStorer.get();
+        while (!bitmapStorer.isReady()) {
+        }
+        bitmapStorer.load(this);
+    }
 
     @Override
     protected void onPause() {
         super.onPause();
         ScoreState.get().save(MainMenuActivity.this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BitmapStorer bitmapStorer = BitmapStorer.get();
+        bitmapStorer.clearQueue();
+        bitmapStorer.quitSafely();
     }
 
 }

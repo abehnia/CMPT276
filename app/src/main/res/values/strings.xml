@@ -57,8 +57,8 @@
     <string name="time_game_activity">Time:</string>
     <string name="null_text_view">TextView</string>
     <string name="game_activity_reset">Shuffle</string>
-    <string name="activity_settings_western_conference">Western Conference</string>
-    <string name="activity_settings_eastern_conference">Eastern Conference</string>
+    <string name="activity_settings_western_conference">NBA and WNBA Pros</string>
+    <string name="activity_settings_eastern_conference">NCAA Collegiate</string>
     <string name="activity_settings_choose_image_set">Choose your image set:</string>
     <string name="activity_settings_apply">Apply</string>
     <string name="backBtnArrow">backBtnArrow</string>
@@ -66,11 +66,11 @@
 
     <string name="helpView">
         <h><b>Game Objective:</b></h>\n
-        <p>Finish the game in the least amount of time to get a\n chance to have your name on the Score Board.</p>\n\n\n
+        <p>Finish the game in the least amount of time to get a\n chance to be enshrined in the score hall of fame.</p>\n\n\n
         <h1><b>How to play:</b></h1>\n
-        <p>There are 7 different cards, each card contains\n 3 different logos, each one being an NBA basketball\n team logo. There is only 1 identical logo for any pair of\n cards.\n\n There are 2
-            sets of logos: western and\n eastern conference, each of them contains 7 logos. You can\n select either one from the settings menu.\n\n Each round, 2 cards will be randomly drawn, spot the\n identical
-            logo and tap it on the bottom card as fast as possible. \n\nIn order to satisfy the game objective, you must spot 6 logos.</p>\n\n\n
+        <p>There is only 1 identical logo for any pair of\n cards.\n\n There are 2
+            sets of logos: NBA and WNBA\n or NCAA, each of them contains a user selected amount of logos. You can\n select either one from the settings menu.\n\n Each round, 2 cards will be randomly drawn, spot the\n identical
+            logo and tap it on the bottom card as fast as\n possible. \n\nIn order to satisfy the game objective, you must spot all logos in the deck.</p>\n\n\n
         <h2><b>Images Resources:</b></h2>\n
         <p>All the logos can be found through Wikipedia.\n
         <a href="https://en.wikipedia.org/wiki/Toronto_Raptors#/media/File:Toronto_Raptors_logo.svg">For example the logo of the Toronto Raptors.</a>\n
@@ -97,5 +97,14 @@
     <string name="activity_settings_text_false">No Text</string>
     <string name="acticity_settings_text_or_no_text">Text</string>
     <string name="invalid_settings">Invalid Settings</string>
+    <string name="not_enough_images">Not Enough Images</string>
+    <string name="flickr_txt">Flickr</string>
+
+    <string name="search">Search</string>
+    <string name="clear_search">Clear Search</string>
+    <string name="flickr_image_set_toolbar_title">Flickr Image Set</string>
+    <string name="back_btn">Back</string>
+    <string name="game_mode">Game Mode: </string>
+    <string name="selected_game_mode"> # of Images: %d --> # of Cards: %d --> Has Text = %s</string>
 
 </resources>

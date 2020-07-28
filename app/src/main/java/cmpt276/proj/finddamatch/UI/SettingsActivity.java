@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
 import cmpt276.proj.finddamatch.UI.settingsActivity.OptionView;
 import cmpt276.proj.finddamatch.UI.settingsActivity.OptionsViewImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
@@ -26,6 +28,7 @@ import cmpt276.proj.finddamatch.model.GameMode;
 import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.GameModeImpl;
 
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
 import static cmpt276.proj.finddamatch.UI.settingsActivity.SettingsHelper.getMaxSize;
 
 /**
@@ -64,15 +67,11 @@ public class SettingsActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.toolbarTitle);
         title.setText(R.string.settings_activity_title);
         ImageButton button = findViewById(R.id.backButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        button.setOnClickListener(v -> finish());
     }
 
     private void setupApplyButton() {
+        int flickrImageSetSize = BitmapStorer.get().getBitmaps().size();
         Button applyButton = findViewById(R.id.activitySettingsApply);
         applyButton.setOnClickListener(v -> {
             GameMode gameMode = new GameModeImpl(gameOrderOption.getValue(),
@@ -82,7 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
                     VALID_IMAGE_SET.values()[imageSetOption.getValue()];
             settings.setGameMode(gameMode);
             settings.setImageSetOption(imageSet);
-            if (settings.apply()) {
+            if (settings.apply(flickrImageSetSize)) {
                 settings.setButtonIDs(Arrays.asList(
                         imageSetOption.getCurrentButtonID(),
                         gameOrderOption.getCurrentButtonID(),
@@ -96,6 +95,7 @@ public class SettingsActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         });
     }
+
 
     private void setupOptionsView() {
         List<Integer> buttonIDs = settings.getButtonIDs();

@@ -2,7 +2,620 @@
   {
     "mode": {
       "order": 2,
-      "size": 7
+      "size": 5,
+      "text": false
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 3,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 6,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 8,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 10,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 11,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 2,
+      "size": 5,
+      "text": true
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 13,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 15,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 17,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 25,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 27,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 2,
+      "size": 7,
+      "text": false
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 3,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 4,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 6,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 8,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 10,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 2,
+      "size": 7,
+      "text": true
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 23,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 25,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 29,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 31,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 40,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 3,
+      "size": 5,
+      "text": false
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 3,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 4,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 6,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 8,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 10,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 3,
+      "size": 5,
+      "text": true
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 17,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 19,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 23,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 27,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 30,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 3,
+      "size": 10,
+      "text": false
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 8,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 9,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 11,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 13,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 15,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 3,
+      "size": 10,
+      "text": true
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 42,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 45,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 50,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 55,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 59,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 3,
+      "size": 13,
+      "text": false
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 12,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 13,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 15,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 17,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 20,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 3,
+      "size": 13,
+      "text": true
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 54,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 60,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 70,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 80,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 90,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 5,
+      "size": 5,
+      "text": false
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 6,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 7,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 10,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 12,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 20,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 5,
+      "size": 5,
+      "text": true
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 33,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 39,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 45,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 49,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 55,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 5,
+      "size": 10,
+      "text": false
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 15,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 17,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 20,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 23,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 30,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 5,
+      "size": 10,
+      "text": true
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 63,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 75,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 85,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 92,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 101,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 5,
+      "size": 15,
+      "text": false
+    },
+    "values": [
+      {
+        "name": "Alex",
+        "time": 25,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 27,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 30,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 33,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 40,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 5,
+      "size": 15,
+      "text": true
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 81,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 93,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 110,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 150,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 165,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 5,
+      "size": 20,
+      "text": false
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 26,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 29,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 35,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 39,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 45,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 5,
+      "size": 20,
+      "text": true
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 99,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 112,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 129,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 140,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 190,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 5,
+      "size": 31,
+      "text": false
     },
     "values": [
       {
@@ -28,6 +641,40 @@
       {
         "name": "Robin",
         "time": 20,
+        "date": "Sun, July 5"
+      }
+    ]
+  },
+  {
+    "mode": {
+      "order": 5,
+      "size": 31,
+      "text": true
+    },
+    "values": [
+      {
+        "name": "Dio",
+        "time": 115,
+        "date": "Wed, July 1"
+      },
+      {
+        "name": "Tom",
+        "time": 137,
+        "date": "Thurs, July 2"
+      },
+      {
+        "name": "Jerry",
+        "time": 160,
+        "date": "Fri, July 3"
+      },
+      {
+        "name": "Batman",
+        "time": 175,
+        "date": "Sat, July 4"
+      },
+      {
+        "name": "Robin",
+        "time": 200,
         "date": "Sun, July 5"
       }
     ]
