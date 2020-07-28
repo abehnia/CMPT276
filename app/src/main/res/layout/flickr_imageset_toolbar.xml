@@ -57,7 +57,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="end|center_vertical"
         android:text=""
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="10dp"
         android:textSize="24sp"
         android:textStyle="bold"
         />
