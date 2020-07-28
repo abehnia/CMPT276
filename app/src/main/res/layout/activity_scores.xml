@@ -391,25 +391,22 @@
 
     <Spinner
         android:id="@+id/gameMode_spinner"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="104dp"
-        android:background="@drawable/ic_commonbtn"
+        android:background="@drawable/background_shape"
         android:spinnerMode="dialog"
-        app:layout_constraintEnd_toStartOf="@+id/guideline14"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
         tools:ignore="MissingConstraints" />
 
     <LinearLayout
+        android:id="@+id/padd"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/background_shape"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:paddingLeft="5dp"
+        android:orientation="vertical"
         android:paddingTop="5dp"
-        android:paddingRight="5dp"
         android:paddingBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toStartOf="@+id/guideline15"
@@ -419,9 +416,9 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:text="@string/game_mode"
-            android:textAlignment="viewEnd"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
@@ -429,6 +426,7 @@
             android:id="@+id/txt_gameModeStr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_weight="1"
             android:textColor="#FFFFFF" />
 

@@ -81,7 +81,8 @@ public class SettingsActivity extends AppCompatActivity {
                     VALID_IMAGE_SET.values()[imageSetOption.getValue()];
             settings.setGameMode(gameMode);
             settings.setImageSetOption(imageSet);
-            if (settings.apply(flickrImageSetSize)) {
+            String checkOptions = settings.apply(flickrImageSetSize, getResources());
+            if (checkOptions.equals(getString(R.string.true_value))) {
                 settings.setButtonIDs(Arrays.asList(
                         imageSetOption.getCurrentButtonID(),
                         gameOrderOption.getCurrentButtonID(),
@@ -91,7 +92,7 @@ public class SettingsActivity extends AppCompatActivity {
                 finish();
                 return;
             }
-            Toast.makeText(this, R.string.invalid_settings,
+            Toast.makeText(this, checkOptions,
                     Toast.LENGTH_SHORT).show();
         });
     }

@@ -63,7 +63,7 @@ public enum VALID_GAME_MODE implements GameMode {
     @Override
     public String toString() {
         String contains = hasText ? "with text" : "without text";
-        return "images per card: " + (order + 1) +
+        return "Images per card: " + (order + 1) +
                 " size: " + size +
                 " " + contains;
     }

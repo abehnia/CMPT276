@@ -1,5 +1,6 @@
 package cmpt276.proj.finddamatch.UI.settingsActivity;
 
+import android.content.res.Resources;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -57,20 +58,20 @@ public class Settings implements Serializable {
         this.candidateImageSetOption = imageSetOption;
     }
 
-    public boolean apply(int flickrImageSetSize) {
+    public String apply(int flickrImageSetSize, Resources resources) {
         if (candidateImageSetOption.isEquivalent(FLICKR) &&
                 candidateGameMode.hasText()) {
-            return false;
+            return resources.getString(R.string.flickr_ImageSet_can_not_have_Text);
         }
         if (candidateImageSetOption.isEquivalent(FLICKR) &&
                 !checkFlickrImageSetSize(candidateGameMode, flickrImageSetSize)) {
-            return false;
+            return resources.getString(R.string.not_enough_images);
         }
         if (checkGameMode() && checkImageSetOption()) {
             update();
-            return true;
+            return resources.getString(R.string.true_value);
         }
-        return false;
+        return resources.getString(R.string.invalid_game_mode_selected);
     }
 
     public static boolean checkFlickrImageSetSize(GameMode gameMode, int flickrImageSetSize) {
@@ -92,7 +93,10 @@ public class Settings implements Serializable {
                 Log.e("Setting Activity", "Invalid Game Order");
                 return false;
         }
-        return flickrImageSetSize >= reqNumOfImages;
+        if(flickrImageSetSize >= reqNumOfImages){
+            return true;
+        }
+        return false;
     }
 
     /**
