@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 import cmpt276.proj.finddamatch.R;
-import cmpt276.proj.finddamatch.model.flickrModel.FlickerAPI;
 import cmpt276.proj.finddamatch.model.flickrModel.FlickrPhoto;
 
 /**
@@ -28,7 +27,7 @@ public class PhotoAdapter extends
     private Drawable background;
     private Context context;
     private PhotoDownloader<PhotoViewHolder> downloader;
-    private List<FlickrCell> flickrCells;
+    private List<RecyclerViewCell> recyclerViewCells;
     private Map<Integer, Bitmap> bitmapMap;
 
     public PhotoAdapter(List<FlickrPhoto> flickrPhotoList,
@@ -40,9 +39,9 @@ public class PhotoAdapter extends
         this.context = context;
         this.downloader = downloader;
         this.bitmapMap = bitmapMap;
-        this.flickrCells = new ArrayList<>(Arrays.asList(new
-                FlickrCell[flickrPhotoList.size()]));
-        flickrCells.replaceAll((FlickrCell flickrCell) -> new FlickrCell());
+        this.recyclerViewCells = new ArrayList<>(Arrays.asList(new
+                RecyclerViewCell[flickrPhotoList.size()]));
+        recyclerViewCells.replaceAll((RecyclerViewCell recyclerViewCell) -> new RecyclerViewCell());
     }
 
     @NonNull
@@ -52,7 +51,7 @@ public class PhotoAdapter extends
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.list_item_gallery,
                 parent, false);
-        return new PhotoViewHolder(view, flickrCells, bitmapMap);
+        return new PhotoViewHolder(view, recyclerViewCells, bitmapMap);
     }
 
     @Override
@@ -75,8 +74,8 @@ public class PhotoAdapter extends
     }
 
     public void clearSelections() {
-        for (FlickrCell flickrCell : flickrCells) {
-            flickrCell.setSelected(false);
+        for (RecyclerViewCell recyclerViewCell : recyclerViewCells) {
+            recyclerViewCell.setSelected(false);
         }
     }
 

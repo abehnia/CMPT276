@@ -16,7 +16,7 @@
 
     <include
         android:id="@+id/settingsMenuToolbar"
-        layout="@layout/custom_toolbar"
+        layout="@layout/toolbar_all_screens"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@id/guideline5"

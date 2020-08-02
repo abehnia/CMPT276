@@ -18,15 +18,15 @@ import java.util.Map;
 
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
-import cmpt276.proj.finddamatch.UI.flickrImageSetActivity.FlickrImageSetAdapter;
+import cmpt276.proj.finddamatch.UI.customImageSetActivity.CustomImageSetAdapter;
 
 /**
  * Activity that Displays currently chosen image set
  */
 
-public class FlickrImageSetActivity extends AppCompatActivity {
+public class CustomImageSetActivity extends AppCompatActivity {
     private static final int NUMBER_OF_COLUMNS = 3;
-    private FlickrImageSetAdapter photoAdapter;
+    private CustomImageSetAdapter photoAdapter;
     private List<Bitmap> galleryItems;
     private Map<Integer, Bitmap> bitmapMap;
     private RecyclerView recyclerView;
@@ -34,7 +34,7 @@ public class FlickrImageSetActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flickr_image_set);
+        setContentView(R.layout.activity_custom_image_set);
         init();
         setupButtons();
         setupAdapter();
@@ -92,7 +92,7 @@ public class FlickrImageSetActivity extends AppCompatActivity {
 
     private void setupAdapter() {
             recyclerView = findViewById(R.id.imageSetRecyclerView);
-            photoAdapter = new FlickrImageSetAdapter(galleryItems,
+            photoAdapter = new CustomImageSetAdapter(galleryItems,
                     this, bitmapMap);
             recyclerView.setAdapter(photoAdapter);
             recyclerView.setLayoutManager(new GridLayoutManager(this,
@@ -101,7 +101,7 @@ public class FlickrImageSetActivity extends AppCompatActivity {
 
     private void updateAdapter() {
         this.galleryItems = BitmapStorer.get().getBitmaps();
-        photoAdapter = new FlickrImageSetAdapter(galleryItems,
+        photoAdapter = new CustomImageSetAdapter(galleryItems,
                 this, bitmapMap);
         recyclerView.setAdapter(photoAdapter);
     }
@@ -114,6 +114,6 @@ public class FlickrImageSetActivity extends AppCompatActivity {
     }
 
     public static Intent makeIntent(Context context) {
-        return new Intent(context, FlickrImageSetActivity.class);
+        return new Intent(context, CustomImageSetActivity.class);
     }
 }
