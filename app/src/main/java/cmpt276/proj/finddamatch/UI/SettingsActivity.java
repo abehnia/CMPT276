@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
@@ -25,10 +23,8 @@ import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.UI.settingsActivity.SettingsSaver;
 import cmpt276.proj.finddamatch.UI.settingsActivity.StringMapper;
 import cmpt276.proj.finddamatch.model.GameMode;
-import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.GameModeImpl;
 
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
 import static cmpt276.proj.finddamatch.UI.settingsActivity.SettingsHelper.getMaxSize;
 
 /**

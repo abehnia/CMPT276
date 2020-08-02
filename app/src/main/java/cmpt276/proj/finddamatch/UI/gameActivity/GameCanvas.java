@@ -2,7 +2,6 @@ package cmpt276.proj.finddamatch.UI.gameActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -21,7 +20,7 @@ import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.ImageSet;
 
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
 
 /**
  * Main canvas for the game
@@ -130,7 +129,7 @@ public class GameCanvas extends View {
     private void setupCards(int width, int height) {
         ImageSet imageSet_guess;
         ImageSet imageSet_lead;
-        if (Settings.get().getImageSet().isEquivalent(FLICKR)) {
+        if (Settings.get().getImageSet().isEquivalent(Custom)) {
             imageSet_guess = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
                     getResources());
             imageSet_lead = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),

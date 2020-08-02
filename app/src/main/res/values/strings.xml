@@ -82,7 +82,7 @@
     </string>
     <string name="names">By:\nAlex, Ali\nArd, Percy</string>
     <string name="image_logo">logo</string>
-    <string name="activity_settings_flickr">Flickr</string>
+    <string name="activity_settings_custom">Custom</string>
     <string name="activity_settings_game_order">Images per Card:</string>
     <string name="activity_settings_order_choice0">3</string>
     <string name="activity_settings_order_choice1">4</string>
@@ -98,11 +98,11 @@
     <string name="acticity_settings_text_or_no_text">Text</string>
     <string name="invalid_settings">Invalid Settings</string>
     <string name="not_enough_images">Not Enough Images</string>
-    <string name="flickr_txt">Flickr</string>
+    <string name="custom_images_btn_txt">Customize</string>
 
     <string name="search">Search</string>
     <string name="clear_search">Clear Search</string>
-    <string name="flickr_image_set_toolbar_title">Flickr Image Set</string>
+    <string name="custom_image_set_toolbar_title">Custom Image Set</string>
     <string name="back_btn">Back</string>
     <string name="game_mode">Game Mode: </string>
     <string name="selected_game_mode"> Num of Images: %d | Num of Cards: %d | %s</string>
@@ -112,5 +112,10 @@
     <string name="spinner_prompt_title">Select Game Mode:</string>
     <string name="with_text">With Text</string>
     <string name="without_text">Without Text</string>
+    <string name="btn_add_flickr_images">Add Flickr Images</string>
+    <string name="btn_add_custom_images">Add Custom Images</string>
+    <string name="dialog_box_title">Best Scores</string>
+    <string name="save">Save</string>
+    <string name="no_nickname_toast">No Nickname: Score not Saved</string>
 
 </resources>

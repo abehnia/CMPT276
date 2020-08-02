@@ -15,7 +15,7 @@ import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.UI.settingsActivity.SettingsSaver;
 import cmpt276.proj.finddamatch.model.GameMode;
 
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
 
 /**
  * Class for the Main Menu. Sets up various buttons
@@ -75,7 +75,7 @@ public class MainMenuActivity extends AppCompatActivity {
             }
             int flickrImageSetSize = BitmapStorer.get().getBitmaps().size();
             GameMode gameMode = Settings.get().getGameMode();
-            if (Settings.get().getImageSet().isEquivalent(FLICKR) &&
+            if (Settings.get().getImageSet().isEquivalent(Custom) &&
                     !Settings.checkFlickrImageSetSize(gameMode, flickrImageSetSize)) {
                 Toast.makeText(this, R.string.not_enough_images,
                         Toast.LENGTH_SHORT).show();
