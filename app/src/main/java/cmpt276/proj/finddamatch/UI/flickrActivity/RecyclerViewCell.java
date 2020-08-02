@@ -8,12 +8,12 @@ import cmpt276.proj.finddamatch.model.flickrModel.FlickrPhoto;
  * Class for every Image shown on Recycler View
  */
 
-public class FlickrCell {
+public class RecyclerViewCell {
     private boolean ready;
     private boolean selected;
     private Bitmap bitmap;
 
-    public FlickrCell() {
+    public RecyclerViewCell() {
         this.ready = false;
         this.selected = false;
         this.bitmap = null;

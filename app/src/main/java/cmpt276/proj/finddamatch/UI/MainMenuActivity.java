@@ -88,7 +88,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private void setupFlickrBtn() {
         Button flickrBtn = findViewById(R.id.btnFlickr);
         flickrBtn.setOnClickListener(v -> {
-            Intent intent = FlickrImageSetActivity.makeIntent(MainMenuActivity.this);
+            Intent intent = CustomImageSetActivity.makeIntent(MainMenuActivity.this);
             if (!BitmapStorer.get().isReady()) {
                 Toast.makeText(this,
                         LOADING_TEXT, Toast.LENGTH_SHORT).show();

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.FlickrImageSetActivity">
+    tools:context=".UI.CustomImageSetActivity">
 
     <include
         android:id="@+id/flickr_image_set_toolbar"
-        layout="@layout/flickr_imageset_toolbar"
+        layout="@layout/toolbar_custom_imageset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="ResourceCycle">
