@@ -11,6 +11,8 @@ public class ParameterTuner {
         this.gameMode = gameMode;
         lowerRadiusBound = 0f;
         upperRadiusBound = 0f;
+        setLowerRadiusBound();
+        setUpperRadiusBound();
     }
 
     public float getLowerRadiusBound() {
@@ -21,7 +23,7 @@ public class ParameterTuner {
         return upperRadiusBound;
     }
 
-    public void setLowerRadiusBound() {
+    private void setLowerRadiusBound() {
         int order = gameMode.getOrder();
         switch (order) {
             case 2:
@@ -36,7 +38,7 @@ public class ParameterTuner {
         }
     }
 
-    public void setUpperRadiusBound() {
+    private void setUpperRadiusBound() {
         int order = gameMode.getOrder();
         switch (order) {
             case 2:

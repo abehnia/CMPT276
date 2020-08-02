@@ -26,10 +26,10 @@ import cmpt276.proj.finddamatch.model.CardGenerator;
 import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.Image;
-import cmpt276.proj.finddamatch.model.gameLogic.CardGeneratorImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.DeckGeneratorImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
+import cmpt276.proj.finddamatch.model.gameLogic.HardCardGenerator;
 import cmpt276.proj.finddamatch.model.gameLogic.ParameterTuner;
 
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
@@ -99,7 +99,7 @@ public class GameActivity extends AppCompatActivity {
         this.scoreManager = ScoreState.get().getScoreManager();
         Settings settings = Settings.get();
         ParameterTuner parameterTuner = new ParameterTuner(settings.getGameMode());
-        CardGenerator cardGenerator = new CardGeneratorImpl(parameterTuner,
+        CardGenerator cardGenerator = new HardCardGenerator(parameterTuner,
                 settings.getGameMode().hasText());
         DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator,
                 settings.getGameMode());

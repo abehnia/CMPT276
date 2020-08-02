@@ -15,19 +15,20 @@ import static cmpt276.proj.finddamatch.model.Card.CARD_BASE_RADIUS;
 import static java.lang.Math.sqrt;
 
 /**
- * Typical implementation for card generator
- * For more information refer to the Card Generator Interface
+ * Abstract Implementation for the Card Generator interface
+ * All Easy/Medium/Hard generators extend this class
  */
-public class CardGeneratorImpl implements CardGenerator {
-    private static final float LOWER_POSITION_BOUND = -1F;
-    private static final float UPPER_POSITION_BOUND = 1F;
-    private static final int MAX_NUMBER_OF_ITERATIONS = 1000000;
-    private static final int MAX_NUMBER_OF_ITERATIONS_PER_ELEMENT = 1000;
-    private static final int IS_TEXT_RAND_UPPER_BOUND = 100;
-    private ParameterTuner parameterTuner;
-    private boolean hasText;
+public abstract class AbstractCardGenerator implements CardGenerator {
+    protected static final float LOWER_POSITION_BOUND = -1F;
+    protected static final float UPPER_POSITION_BOUND = 1F;
+    protected static final int MAX_NUMBER_OF_ITERATIONS = 1000000;
+    protected static final int MAX_NUMBER_OF_ITERATIONS_PER_ELEMENT = 1000;
+    protected static final int IS_TEXT_RAND_UPPER_BOUND = 100;
+    protected ParameterTuner parameterTuner;
+    protected boolean hasText;
 
-    public CardGeneratorImpl(ParameterTuner parameterTuner, boolean hasText) {
+    public AbstractCardGenerator(ParameterTuner parameterTuner,
+                                 boolean hasText) {
         this.parameterTuner = parameterTuner;
         this.hasText = hasText;
     }
@@ -39,7 +40,7 @@ public class CardGeneratorImpl implements CardGenerator {
         return new CardImpl(returnImages);
     }
 
-    public void randomize(List<MutableImage> images) {
+    private void randomize(List<MutableImage> images) {
         int totalIterations = 0;
         Queue<MutableImage> validatedImages = new LinkedList<>();
 
@@ -91,16 +92,13 @@ public class CardGeneratorImpl implements CardGenerator {
     }
 
     private void randomize(MutableImage image) {
-        parameterTuner.setLowerRadiusBound();
-        parameterTuner.setUpperRadiusBound();
         Random random = new Random();
         image.setX(random.nextFloat() * (UPPER_POSITION_BOUND -
                 LOWER_POSITION_BOUND) + LOWER_POSITION_BOUND);
         image.setY(random.nextFloat() * (UPPER_POSITION_BOUND -
                 LOWER_POSITION_BOUND) + LOWER_POSITION_BOUND);
-        image.setOrientation((float) (random.nextFloat() * 2 * Math.PI));
-        image.setRadius(random.nextFloat() * (parameterTuner.getUpperRadiusBound() -
-                parameterTuner.getLowerRadiusBound()) + parameterTuner.getLowerRadiusBound());
+        randomizeOrientation(image, random);
+        randomizeRadius(image, random);
         if (hasText) {
             image.setHasText((random.nextInt(IS_TEXT_RAND_UPPER_BOUND) % 2 == 0));
         }
@@ -116,4 +114,7 @@ public class CardGeneratorImpl implements CardGenerator {
         }
         images.get(randNotHaveTextImg).setHasText(false);
     }
+
+    protected abstract void randomizeOrientation(MutableImage image, Random random);
+    protected abstract void randomizeRadius(MutableImage image, Random random);
 }
