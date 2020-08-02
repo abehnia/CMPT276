@@ -2,7 +2,6 @@ package cmpt276.proj.finddamatch.UI.settingsActivity;
 
 import android.content.res.Resources;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,12 +10,11 @@ import java.util.List;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.ImageSetOption;
 import cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET;
-import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
 import cmpt276.proj.finddamatch.model.GameMode;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.WESTERN;
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.NBA;
 import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
 
 /**
@@ -32,7 +30,7 @@ public class Settings implements Serializable {
 
     private Settings() {
         this.gameMode = GAME1;
-        this.imageSetOption = WESTERN;
+        this.imageSetOption = NBA;
         this.candidateGameMode = gameMode;
         this.candidateImageSetOption = imageSetOption;
         this.buttonIDs = new ArrayList<>();
@@ -59,11 +57,11 @@ public class Settings implements Serializable {
     }
 
     public String apply(int flickrImageSetSize, Resources resources) {
-        if (candidateImageSetOption.isEquivalent(FLICKR) &&
+        if (candidateImageSetOption.isEquivalent(Custom) &&
                 candidateGameMode.hasText()) {
             return resources.getString(R.string.flickr_ImageSet_can_not_have_Text);
         }
-        if (candidateImageSetOption.isEquivalent(FLICKR) &&
+        if (candidateImageSetOption.isEquivalent(Custom) &&
                 !checkFlickrImageSetSize(candidateGameMode, flickrImageSetSize)) {
             return resources.getString(R.string.not_enough_images);
         }
