@@ -73,11 +73,17 @@
             logo and tap it on the bottom card as fast as\n possible. \n\nIn order to satisfy the game objective, you must spot all logos in the deck.</p>\n\n\n
         <h2><b>Images Resources:</b></h2>\n
         <p>All the logos can be found through Wikipedia.\n
-        <a href="https://en.wikipedia.org/wiki/Toronto_Raptors#/media/File:Toronto_Raptors_logo.svg">For example the logo of the Toronto Raptors.</a>\n
+        <a href="https://en.wikipedia.org/wiki/Toronto_Raptors#/media/File:Toronto_Raptors_logo.svg">For example the logo of the Toronto Raptors.</a>\n\n
         Other images used in making the application:\n
         <a href="https://www.freepik.com/free-vector/basket-ball-background_715720.htm#page=1&amp;query=basketball&amp;position=12">Image 1</a>\n
         <a href="https://www.freepik.com/free-vector/abstract-background-basketball-player_1075929.htm#page=2&amp;query=background+abstract+sport&amp;position=36">Image 2</a>\n
-        <a href="https://www.freepik.com/free-vector/basketball-player-made-dots_716443.htm#page=2&amp;query=playing+basketball&amp;position=7">Image 3</a></p>\n\n\n
+        <a href="https://www.freepik.com/free-vector/basketball-player-made-dots_716443.htm#page=2&amp;query=playing+basketball&amp;position=7">Image 3</a></p>\n\n
+        Sounds used in making the application:\n
+        <a href="https://freesound.org/people/Kastenfrosch/sounds/521973/">Sound 1</a>\n
+        <a href="https://www.fesliyanstudios.com/sound-effects-search.php?q=game">Sound 2</a>\n
+        <a href="https://www.freesfx.co.uk/sfx/referee-whistle">Sound 3</a>\n
+        <a href="https://www.freesfx.co.uk/sfx/clapping">Sound 4</a>\n
+        \n\n
         <b>This game was created by Alex, Ali, Ard, and Percy.</b>
     </string>
     <string name="names">By:\nAlex, Ali\nArd, Percy</string>
