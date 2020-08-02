@@ -19,7 +19,7 @@
 
     <include
         android:id="@+id/searchToolbar"
-        layout="@layout/search_gallery_toolbar"
+        layout="@layout/toolbar_search_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
