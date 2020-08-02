@@ -102,7 +102,7 @@
 
     <string name="search">Search</string>
     <string name="clear_search">Clear Search</string>
-    <string name="flickr_image_set_toolbar_title">Flickr Image Set</string>
+    <string name="custom_image_set_toolbar_title">Custom Image Set</string>
     <string name="back_btn">Back</string>
     <string name="game_mode">Game Mode: </string>
     <string name="selected_game_mode"> Num of Images: %d | Num of Cards: %d | %s</string>
@@ -112,5 +112,10 @@
     <string name="spinner_prompt_title">Select Game Mode:</string>
     <string name="with_text">With Text</string>
     <string name="without_text">Without Text</string>
+    <string name="btn_add_flickr_images">Add Flickr Images</string>
+    <string name="btn_add_custom_images">Add Custom Images</string>
+    <string name="dialog_box_title">Best Scores</string>
+    <string name="save">Save</string>
+    <string name="no_nickname_toast">No Nickname: Score not Saved</string>
 
 </resources>

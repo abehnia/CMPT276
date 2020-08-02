@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -36,7 +36,7 @@ public class FlickrImageSetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flickr_image_set);
         init();
-        setupToolbar();
+        setupButtons();
         setupAdapter();
         updateImageCount();
     }
@@ -59,12 +59,16 @@ public class FlickrImageSetActivity extends AppCompatActivity {
         updateImageCount();
     }
 
-    private void setupToolbar() {
+    private void setupButtons() {
         ImageButton backBtn = findViewById(R.id.btnBack);
         backBtn.setOnClickListener(v -> finish());
 
-        ImageButton addImagesBtn = findViewById(R.id.btnAddImages);
-        addImagesBtn.setOnClickListener(v -> {
+        Button addCustomImagesBtn = findViewById(R.id.btnAddCustomImages);
+        addCustomImagesBtn.setOnClickListener(v -> {
+        });
+
+        Button addFlickrImagesBtn = findViewById(R.id.btnAddFlickrImages);
+        addFlickrImagesBtn.setOnClickListener(v -> {
             Intent intent = PhotoGalleryActivity.makeIntent(FlickrImageSetActivity.this);
             startActivity(intent);
         });

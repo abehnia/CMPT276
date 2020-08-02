@@ -63,9 +63,9 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
     private Dialog setupDialog(View v,
                                DialogInterface.OnClickListener listener) {
         return new AlertDialog.Builder(getActivity())
-                .setTitle("Best Scores")
+                .setTitle(R.string.dialog_box_title)
                 .setView(v).setCancelable(false)
-                .setNeutralButton("Save", listener)
+                .setNeutralButton(R.string.save, listener)
                 .setNegativeButton(android.R.string.cancel, listener)
                 .create();
     }
@@ -91,9 +91,8 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
                         scoreManager.addScore(settings.getGameMode(),
                                 currentScore);
                     } else {
-                        txt.setError("Enter Nickname");
                         Toast.makeText(getContext(),
-                                "No Nickname: Score not Saved",
+                                R.string.no_nickname_toast,
                                 Toast.LENGTH_SHORT).show();
                     }
                     Objects.requireNonNull(getActivity()).finish();
@@ -128,7 +127,6 @@ public class DialogBoxFragment extends AppCompatDialogFragment {
                 SimpleDateFormat("EEE, MMM d",
                 Locale.getDefault());
         String date = dateFormat.format(calendar.getTime());
-        Score score = new Score(nickName, date, currentTime);
-        return score;
+        return new Score(nickName, date, currentTime);
     }
 }
