@@ -69,7 +69,7 @@ public class CustomImageSetActivity extends AppCompatActivity {
 
         Button addFlickrImagesBtn = findViewById(R.id.btnAddFlickrImages);
         addFlickrImagesBtn.setOnClickListener(v -> {
-            Intent intent = PhotoGalleryActivity.makeIntent(FlickrImageSetActivity.this);
+            Intent intent = PhotoGalleryActivity.makeIntent(CustomImageSetActivity.this);
             startActivity(intent);
         });
 

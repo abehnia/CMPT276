@@ -94,7 +94,7 @@
             android:id="@+id/imageSetFlickChoice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/activity_settings_flickr"
+            android:text="@string/activity_settings_custom"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             app:buttonTint="@color/colorAccent" />

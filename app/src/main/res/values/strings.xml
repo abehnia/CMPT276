@@ -82,7 +82,7 @@
     </string>
     <string name="names">By:\nAlex, Ali\nArd, Percy</string>
     <string name="image_logo">logo</string>
-    <string name="activity_settings_flickr">Flickr</string>
+    <string name="activity_settings_custom">Custom</string>
     <string name="activity_settings_game_order">Images per Card:</string>
     <string name="activity_settings_order_choice0">3</string>
     <string name="activity_settings_order_choice1">4</string>
@@ -98,7 +98,7 @@
     <string name="acticity_settings_text_or_no_text">Text</string>
     <string name="invalid_settings">Invalid Settings</string>
     <string name="not_enough_images">Not Enough Images</string>
-    <string name="flickr_txt">Flickr</string>
+    <string name="custom_images_btn_txt">Customize</string>
 
     <string name="search">Search</string>
     <string name="clear_search">Clear Search</string>
