@@ -25,8 +25,11 @@ import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.CardGenerator;
 import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.Game;
+import cmpt276.proj.finddamatch.model.GameGenerator;
 import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.gameLogic.DeckGeneratorImpl;
+import cmpt276.proj.finddamatch.model.gameLogic.GameDifficulty;
+import cmpt276.proj.finddamatch.model.gameLogic.GameGeneratorImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.gameLogic.HardCardGenerator;
@@ -98,12 +101,9 @@ public class GameActivity extends AppCompatActivity {
     private void setupGame() {
         this.scoreManager = ScoreState.get().getScoreManager();
         Settings settings = Settings.get();
-        ParameterTuner parameterTuner = new ParameterTuner(settings.getGameMode());
-        CardGenerator cardGenerator = new HardCardGenerator(parameterTuner,
-                settings.getGameMode().hasText());
-        DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator,
-                settings.getGameMode());
-        game = new GameImpl(deckGenerator, SystemClock.elapsedRealtime());
+        GameGenerator gameGenerator = new GameGeneratorImpl(settings.getGameMode(),
+                GameDifficulty.HARD);
+        game = gameGenerator.generate(SystemClock.elapsedRealtime());
         long time = SystemClock.elapsedRealtime();
         game.reset(time);
         game.pause(time);
