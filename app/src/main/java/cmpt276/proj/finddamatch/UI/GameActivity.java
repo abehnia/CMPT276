@@ -22,6 +22,7 @@ import java.util.Locale;
 
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.gameActivity.GameCanvas;
+import cmpt276.proj.finddamatch.UI.gameActivity.SoundEffects;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 import cmpt276.proj.finddamatch.model.Card;
@@ -54,19 +55,16 @@ public class GameActivity extends AppCompatActivity {
     private static final int DELAY = 100;
     private static final int REVEAL_DELAY = 1500;
     private ScoreManager scoreManager;
-    private SoundPool soundPool;
-    private int endGameSound;
-    private int startGameSound;
-    private int wrongClickSound;
-    private int correctClickSound;
+    private SoundEffects soundEffects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        this.soundEffects = SoundEffects.getSoundEffects(GameActivity.this);
+        this.isPlayed = false;
         this.isTouchable = true;
-        setupSound();
         setupGame();
         setupCanvas();
         setupTouch();
@@ -74,22 +72,6 @@ public class GameActivity extends AppCompatActivity {
         setupHandler();
         setupButton();
         setupBackButton();
-    }
-
-    private void setupSound() {
-        this.soundPool = new SoundPool.Builder().build();
-        this.endGameSound = soundPool.load(this, R.raw.sound_game_end,1);
-        this.startGameSound = soundPool.load(this, R.raw.sound_game_start,1);
-        this.wrongClickSound = soundPool.load(this, R.raw.sound_wrong_click,1);
-        this.correctClickSound = soundPool.load(this, R.raw.sound_correct_click,1);
-        this.isPlayed = false;
-    }
-
-    private void playStartSound(){
-        if(!isPlayed){
-            soundPool.play(startGameSound,1,1,0,0,1);
-            isPlayed = true;
-        }
     }
 
     @Override
@@ -147,7 +129,6 @@ public class GameActivity extends AppCompatActivity {
                                        int oldRight, int oldBottom) {
                 gameCanvas.setCards(draw, discard);
                 gameCanvas.hide();
-                ;
             }
         });
     }
@@ -221,6 +202,13 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    private void playStartSound(){
+        if(!isPlayed){
+            soundEffects.playStartGameSound();
+            isPlayed = true;
+        }
+    }
+
     private void removeHandler() {
         this.handler.removeCallbacksAndMessages(null);
         this.revealHandler.removeCallbacksAndMessages(null);
@@ -234,7 +222,7 @@ public class GameActivity extends AppCompatActivity {
         Image intersectedImage = gameCanvas.getIntersection(
                 event.getX(), event.getY());
         if (!game.check(intersectedImage)) {
-            soundPool.play(wrongClickSound,1,1,0,0,1);
+            soundEffects.playWrongClickSound();
             return;
         }
         game.update(intersectedImage);
@@ -244,7 +232,7 @@ public class GameActivity extends AppCompatActivity {
             onGameDone();
             return;
         }
-        soundPool.play(correctClickSound,1,1,0,0,1);
+        soundEffects.playCorrectClickSound();
         draw = game.peekDraw();
         gameCanvas.setCards(draw, discard);
     }
@@ -256,7 +244,7 @@ public class GameActivity extends AppCompatActivity {
     private void onGameDone() {
         long time = game.queryTime(SystemClock.elapsedRealtime());
         game.pause(time);
-        soundPool.play(endGameSound,1,1,0,0,1);
+        soundEffects.playEndGameSound();
         displayDialogBox(time);
     }
 

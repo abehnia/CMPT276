@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
+import cmpt276.proj.finddamatch.UI.gameActivity.SoundEffects;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
