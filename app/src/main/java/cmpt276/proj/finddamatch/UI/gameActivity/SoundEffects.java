@@ -6,7 +6,6 @@ import android.media.SoundPool;
 import cmpt276.proj.finddamatch.R;
 
 public class SoundEffects {
-    private static SoundEffects soundEffects;
     private SoundPool soundPool;
     private int endGameSound;
     private int startGameSound;
@@ -19,14 +18,6 @@ public class SoundEffects {
         this.startGameSound = soundPool.load(context, R.raw.sound_game_start,1);
         this.wrongClickSound = soundPool.load(context, R.raw.sound_wrong_click,1);
         this.correctClickSound = soundPool.load(context, R.raw.sound_correct_click,1);
-    }
-
-    public static SoundEffects getSoundEffects(Context context){
-        if (soundEffects == null){
-            soundEffects = new SoundEffects(context);
-            return soundEffects;
-        }
-        return soundEffects;
     }
 
     public void playStartGameSound(){
