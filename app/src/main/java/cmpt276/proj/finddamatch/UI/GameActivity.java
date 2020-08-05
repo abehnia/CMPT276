@@ -6,6 +6,9 @@ import androidx.fragment.app.FragmentManager;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
+import android.media.SoundPool.Builder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -19,6 +22,7 @@ import java.util.Locale;
 
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.gameActivity.GameCanvas;
+import cmpt276.proj.finddamatch.UI.gameActivity.SoundEffects;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 import cmpt276.proj.finddamatch.model.Card;
@@ -50,15 +54,19 @@ public class GameActivity extends AppCompatActivity {
     private Handler revealHandler;
     private TextView timer;
     private boolean isTouchable, isInDelay;
+    private boolean isPlayed;
     private static final int DELAY = 100;
     private static final int REVEAL_DELAY = 1500;
     private ScoreManager scoreManager;
+    private SoundEffects soundEffects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        this.soundEffects = new SoundEffects(GameActivity.this);
+        this.isPlayed = false;
         this.isTouchable = true;
         setupGame();
         setupCanvas();
@@ -120,7 +128,7 @@ public class GameActivity extends AppCompatActivity {
                                        int bottom, int oldLeft, int oldTop,
                                        int oldRight, int oldBottom) {
                 gameCanvas.setCards(draw, discard);
-                gameCanvas.hide();;
+                gameCanvas.hide();
             }
         });
     }
@@ -159,32 +167,24 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupButton() {
         Button resetButton = findViewById(R.id.game_activity_reset_button);
-        resetButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeHandler();
-                long time = SystemClock.elapsedRealtime();
-                game.reset(time);
-                game.pause(time);
-                isInDelay = true;
-                updateTime();
-                discard = game.peekDiscard();
-                draw = game.peekDraw();
-                gameCanvas.hide();
-                gameCanvas.setCards(draw, discard);
-                isTouchable = true;
-            }
+        resetButton.setOnClickListener(v -> {
+            removeHandler();
+            long time = SystemClock.elapsedRealtime();
+            game.reset(time);
+            game.pause(time);
+            isInDelay = true;
+            updateTime();
+            discard = game.peekDiscard();
+            draw = game.peekDraw();
+            gameCanvas.hide();
+            gameCanvas.setCards(draw, discard);
+            isTouchable = true;
         });
     }
 
     private void setupBackButton() {
         ImageButton backButton = findViewById(R.id.gameActivityBackButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
     }
 
     private void updateTime() {
@@ -195,8 +195,17 @@ public class GameActivity extends AppCompatActivity {
         if (elapsedTime < REVEAL_DELAY) {
             this.revealHandler.postDelayed(this::revealCards,
                     REVEAL_DELAY - elapsedTime);
+            this.revealHandler.postDelayed(this::playStartSound,
+                    REVEAL_DELAY - elapsedTime);
         } else {
             revealCards();
+        }
+    }
+
+    private void playStartSound(){
+        if(!isPlayed){
+            soundEffects.playStartGameSound();
+            isPlayed = true;
         }
     }
 
@@ -213,6 +222,7 @@ public class GameActivity extends AppCompatActivity {
         Image intersectedImage = gameCanvas.getIntersection(
                 event.getX(), event.getY());
         if (!game.check(intersectedImage)) {
+            soundEffects.playWrongClickSound();
             return;
         }
         game.update(intersectedImage);
@@ -222,6 +232,7 @@ public class GameActivity extends AppCompatActivity {
             onGameDone();
             return;
         }
+        soundEffects.playCorrectClickSound();
         draw = game.peekDraw();
         gameCanvas.setCards(draw, discard);
     }
@@ -233,6 +244,7 @@ public class GameActivity extends AppCompatActivity {
     private void onGameDone() {
         long time = game.queryTime(SystemClock.elapsedRealtime());
         game.pause(time);
+        soundEffects.playEndGameSound();
         displayDialogBox(time);
     }
 
