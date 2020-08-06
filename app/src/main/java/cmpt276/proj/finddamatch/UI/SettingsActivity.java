@@ -23,6 +23,7 @@ import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.UI.settingsActivity.SettingsSaver;
 import cmpt276.proj.finddamatch.UI.settingsActivity.StringMapper;
 import cmpt276.proj.finddamatch.model.GameMode;
+import cmpt276.proj.finddamatch.model.gameLogic.GameDifficulty;
 import cmpt276.proj.finddamatch.model.gameLogic.GameModeImpl;
 
 import static cmpt276.proj.finddamatch.UI.settingsActivity.SettingsHelper.getMaxSize;
@@ -38,6 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
     private OptionView<Integer> gameOrderOption;
     private OptionView<Integer> gameSizeOption;
     private OptionView<Boolean> hasTextOption;
+    private OptionView<Integer> gameDifficultyOption;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,15 +77,19 @@ public class SettingsActivity extends AppCompatActivity {
                     hasTextOption.getValue());
             ImageSetOption imageSet =
                     VALID_IMAGE_SET.values()[imageSetOption.getValue()];
+            GameDifficulty difficulty = GameDifficulty.values()
+                    [gameDifficultyOption.getValue()];
             settings.setGameMode(gameMode);
             settings.setImageSetOption(imageSet);
+            settings.setDifficulty(difficulty);
             String checkOptions = settings.apply(flickrImageSetSize, getResources());
             if (checkOptions.equals(getString(R.string.true_value))) {
                 settings.setButtonIDs(Arrays.asList(
                         imageSetOption.getCurrentButtonID(),
                         gameOrderOption.getCurrentButtonID(),
                         gameSizeOption.getCurrentButtonID(),
-                        hasTextOption.getCurrentButtonID()
+                        hasTextOption.getCurrentButtonID(),
+                        gameDifficultyOption.getCurrentButtonID()
                 ));
                 finish();
                 return;
@@ -106,6 +112,9 @@ public class SettingsActivity extends AppCompatActivity {
         hasTextOption = setupOptionView(R.array.text_keys,
                 R.array.text_values, R.id.textChoice, buttonIDs.get(3),
                 Boolean::parseBoolean);
+        gameDifficultyOption = setupOptionView(R.array.difficulty_keys,
+                R.array.difficulty_values, R.id.difficultyChoice, buttonIDs.get(4),
+                Integer::parseInt);
     }
 
     private <T, U extends StringMapper<T>>

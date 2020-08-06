@@ -19,9 +19,9 @@ public class EasyCardGenerator extends AbstractCardGenerator {
 
     @Override
     protected void randomizeRadius(MutableImage image, Random random) {
+        float lower = parameterTuner.getLowerRadiusBound();
         float upper = parameterTuner.getUpperRadiusBound();
-        float lower = parameterTuner.getUpperRadiusBound();
-        float middle = (upper + lower) / 2.f;
-        image.setRadius(middle);
+        float radius = 3 / 4f * lower + 1 / 4f * upper;
+        image.setRadius(radius);
     }
 }

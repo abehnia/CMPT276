@@ -19,9 +19,9 @@ public class MediumCardGenerator extends AbstractCardGenerator {
 
     @Override
     protected void randomizeRadius(MutableImage image, Random random) {
-        float upper = parameterTuner.getUpperRadiusBound();
         float lower = parameterTuner.getLowerRadiusBound();
-        float middle = (upper + lower) / 2.f;
-        image.setRadius(middle);
+        float upper = parameterTuner.getUpperRadiusBound();
+        float radius = 3 / 4f * lower + 1 / 4f * upper;
+        image.setRadius(radius);
     }
 }
