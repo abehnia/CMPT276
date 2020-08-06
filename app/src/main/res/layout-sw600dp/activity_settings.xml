@@ -179,7 +179,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.68" />
+        app:layout_constraintGuide_percent="0.63" />
 
     <TextView
         android:id="@+id/activitySettingsTextView1"
@@ -264,7 +264,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.70" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/activitySettingsGuideline4"
@@ -344,6 +344,66 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/activity_settings_text_false"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:buttonTint="@color/colorAccent" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/activitySettingsTextView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_shape"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/activity_settings_difficulty"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/activitySettingsGuideline4"
+        app:layout_constraintStart_toStartOf="@+id/activitySettingsGuideline3"
+        app:layout_constraintTop_toTopOf="@id/activitySettingsGuideline0" />
+
+    <RadioGroup
+        android:id="@+id/difficultyChoice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/background_shape"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/activitySettingsGuideline4"
+        app:layout_constraintStart_toStartOf="@+id/activitySettingsGuideline3"
+        app:layout_constraintTop_toBottomOf="@+id/activitySettingsTextView3">
+
+        <RadioButton
+            android:id="@+id/difficultyChoice0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_easy"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:buttonTint="@color/colorAccent" />
+
+        <RadioButton
+            android:id="@+id/difficultyChoice1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_medium"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:buttonTint="@color/colorAccent" />
+
+        <RadioButton
+            android:id="@+id/difficultyChoice2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/activity_settings_hard"
             android:textColor="#FFFFFF"
             android:textSize="24sp"
             app:buttonTint="@color/colorAccent" />
