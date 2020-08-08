@@ -27,7 +27,7 @@ public class ParameterTuner {
         int order = gameMode.getOrder();
         switch (order) {
             case 2:
-                lowerRadiusBound = 0.45f;
+                lowerRadiusBound = 0.425f;
                 break;
             case 3:
                 lowerRadiusBound = 0.375f;
