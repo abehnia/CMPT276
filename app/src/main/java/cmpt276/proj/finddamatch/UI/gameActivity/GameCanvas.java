@@ -128,26 +128,26 @@ public class GameCanvas extends View {
     }
 
     private void setupCards(int width, int height) {
-        ImageSet imageSet_guess;
-        ImageSet imageSet_lead;
+        ImageSet imageSetGuess;
+        ImageSet imageSetLead;
         if (Settings.get().getImageSet().isEquivalent(FLICKR)) {
-            imageSet_guess = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
+            imageSetGuess = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
                     getResources());
-            imageSet_lead = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
+            imageSetLead = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
                     getResources());
         } else {
-            imageSet_guess = new ImageSetImpl(getResources());
-            imageSet_lead = new ImageSetImpl(getResources());
+            imageSetGuess = new ImageSetImpl(getResources());
+            imageSetLead = new ImageSetImpl(getResources());
         }
         float guessCardX = width / 2.0f;
         float guessCardY = 7 * height / 10.0f;
         float guessCardRadius = Math.min(width, height) / 3.0f;
         guessCard = new GuessCardView(guessCardX, guessCardY, guessCardRadius,
-                backgroundPaint, this.getResources(), imageSet_guess);
+                backgroundPaint, this.getResources(), imageSetGuess);
         float leadCardX = width / 2.0f;
         float leadCardY = 3 * height / 10.0f;
         float leadCardRadius = Math.min(width, height) / 4.0f;
         leadCard = new LeadCardView(leadCardX, leadCardY, leadCardRadius,
-                backgroundPaint, this.getResources(), imageSet_lead);
+                backgroundPaint, this.getResources(), imageSetLead);
     }
 }

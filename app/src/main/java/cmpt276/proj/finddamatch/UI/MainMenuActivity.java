@@ -3,10 +3,15 @@ package cmpt276.proj.finddamatch.UI;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.List;
+
+import cmpt276.proj.finddamatch.ExportCanvas;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
@@ -25,6 +30,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public static final String LOADING_TEXT = "Loading bitmaps, please wait a moment";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +43,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setupFlickrBtn();
         setupFlickrStorage();
         ScoreState.get().load(MainMenuActivity.this);
+
     }
 
     private void setupBestScoresBtn() {

@@ -11,11 +11,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/ic_background_empty"
+        android:contentDescription="@string/game_activity_export"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/app_name" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline47"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.37" />
+
+    <Button
+        android:id="@+id/game_activity_reset_button2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/ic_commonbtn"
+        android:text="@string/game_activity_reset"
+        android:textColor="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="@+id/game_activity_game_canvas"
+        app:layout_constraintEnd_toStartOf="@+id/guideline26"
+        app:layout_constraintStart_toStartOf="@+id/guideline13" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.04" />
 
     <TextView
         android:id="@+id/game_activity_time"
@@ -50,16 +76,17 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <Button
-        android:id="@+id/game_activity_reset_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/game_activity_export_button"
+        android:layout_width="133dp"
+        android:layout_height="47dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/ic_commonbtn"
-        android:text="@string/game_activity_reset"
+        android:text="@string/game_activity_export"
         android:textColor="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@+id/game_activity_game_canvas"
-        app:layout_constraintEnd_toStartOf="@+id/guideline26"
-        app:layout_constraintStart_toStartOf="@+id/guideline13" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline47"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline46" />
 
     <ImageButton
         android:id="@+id/gameActivityBackButton"

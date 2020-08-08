@@ -60,6 +60,8 @@ public abstract class CardView implements Iterable<ImageView> {
         return this.radius;
     }
 
+    public Paint getBackgroundPaint() {return this.backgroundPaint;}
+
     public boolean getHidden() {
         return this.isHidden;
     }

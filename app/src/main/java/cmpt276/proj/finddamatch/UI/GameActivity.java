@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -15,9 +16,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.List;
 import java.util.Locale;
 
+import cmpt276.proj.finddamatch.ExportCanvas;
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
 import cmpt276.proj.finddamatch.UI.gameActivity.GameCanvas;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
@@ -31,8 +35,6 @@ import cmpt276.proj.finddamatch.model.gameLogic.DeckGeneratorImpl;
 import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.gameLogic.ParameterTuner;
-
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
 
 /**
  * Class for Game Activity
@@ -50,6 +52,8 @@ public class GameActivity extends AppCompatActivity {
     private static final int DELAY = 100;
     private static final int REVEAL_DELAY = 1500;
     private ScoreManager scoreManager;
+    private ExportCanvas exportCanvas;
+    private DeckGenerator deckGenerator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,7 @@ public class GameActivity extends AppCompatActivity {
         setupHandler();
         setupButton();
         setupBackButton();
+        setupExportButton();
     }
 
     @Override
@@ -103,6 +108,7 @@ public class GameActivity extends AppCompatActivity {
                 settings.getGameMode().hasText());
         DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator,
                 settings.getGameMode());
+        this.deckGenerator = deckGenerator;
         game = new GameImpl(deckGenerator, SystemClock.elapsedRealtime());
         long time = SystemClock.elapsedRealtime();
         game.reset(time);
@@ -121,6 +127,7 @@ public class GameActivity extends AppCompatActivity {
                                        int oldRight, int oldBottom) {
                 gameCanvas.setCards(draw, discard);
                 gameCanvas.hide();;
+                exportCanvas = new ExportCanvas(getResources(), deckGenerator);
             }
         });
     }
@@ -157,8 +164,20 @@ public class GameActivity extends AppCompatActivity {
         this.timer.setText(formatTime(game.queryTime(SystemClock.elapsedRealtime())));
     }
 
+    private void setupExportButton() {
+        Button exportButton = findViewById(R.id.game_activity_export_button);
+        exportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<Bitmap> exportBitmaps = exportCanvas.export();
+                BitmapStorer.get().addExport(exportBitmaps);
+                BitmapStorer.get().export(GameActivity.this);
+            }
+        });
+    }
+
     private void setupButton() {
-        Button resetButton = findViewById(R.id.game_activity_reset_button);
+        Button resetButton = findViewById(R.id.game_activity_export_button);
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -57,6 +57,8 @@
     <string name="time_game_activity">Time:</string>
     <string name="null_text_view">TextView</string>
     <string name="game_activity_reset">Shuffle</string>
+    <string name="game_activity_export">Export</string>
+    <string name="activity_main_export">Export</string>
     <string name="activity_settings_western_conference">NBA and WNBA Pros</string>
     <string name="activity_settings_eastern_conference">NCAA Collegiate</string>
     <string name="activity_settings_choose_image_set">Choose your image set:</string>
