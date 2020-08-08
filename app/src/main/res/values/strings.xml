@@ -59,7 +59,7 @@
     <string name="game_activity_reset">Shuffle</string>
     <string name="activity_settings_western_conference">NBA and WNBA Pros</string>
     <string name="activity_settings_eastern_conference">NCAA Collegiate</string>
-    <string name="activity_settings_choose_image_set">Choose your image set:</string>
+    <string name="activity_settings_choose_image_set">Image set:</string>
     <string name="activity_settings_apply">Apply</string>
     <string name="backBtnArrow">backBtnArrow</string>
     <string name="imgView_logowitnobball">logoWitNoBBall</string>
@@ -123,5 +123,9 @@
     <string name="dialog_box_title">Best Scores</string>
     <string name="save">Save</string>
     <string name="no_nickname_toast">No Nickname: Score not Saved</string>
+    <string name="activity_settings_difficulty">Difficulty:</string>
+    <string name="activity_settings_easy">Easy</string>
+    <string name="activity_settings_medium">Medium</string>
+    <string name="activity_settings_hard">Hard</string>
 
 </resources>

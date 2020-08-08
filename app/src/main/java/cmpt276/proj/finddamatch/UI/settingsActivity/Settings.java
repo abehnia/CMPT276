@@ -11,6 +11,7 @@ import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.ImageSetOption;
 import cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET;
 import cmpt276.proj.finddamatch.model.GameMode;
+import cmpt276.proj.finddamatch.model.gameLogic.GameDifficulty;
 import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
 import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
@@ -24,8 +25,10 @@ public class Settings implements Serializable {
     private static Settings appSettings;
     private VALID_GAME_MODE gameMode;
     private ImageSetOption imageSetOption;
+    private GameDifficulty gameDifficulty;
     private transient GameMode candidateGameMode;
     private transient ImageSetOption candidateImageSetOption;
+    private transient GameDifficulty candidateGameDifficulty;
     private List<Integer> buttonIDs;
 
     private Settings() {
@@ -33,11 +36,13 @@ public class Settings implements Serializable {
         this.imageSetOption = NBA;
         this.candidateGameMode = gameMode;
         this.candidateImageSetOption = imageSetOption;
+        this.candidateGameDifficulty = GameDifficulty.EASY;
         this.buttonIDs = new ArrayList<>();
         buttonIDs.add(R.id.imageSetWesternChoice);
         buttonIDs.add(R.id.gameOrderChoice0);
         buttonIDs.add(R.id.gameSizeChoice0);
         buttonIDs.add(R.id.textChoice1);
+        buttonIDs.add(R.id.difficultyChoice0);
     }
 
     public VALID_GAME_MODE getGameMode() {
@@ -48,12 +53,18 @@ public class Settings implements Serializable {
         return imageSetOption;
     }
 
+    public GameDifficulty getDifficulty() { return gameDifficulty;}
+
     public void setGameMode(GameMode gameMode) {
         this.candidateGameMode = gameMode;
     }
 
     public void setImageSetOption(ImageSetOption imageSetOption) {
         this.candidateImageSetOption = imageSetOption;
+    }
+
+    public void setDifficulty(GameDifficulty difficulty) {
+        this.candidateGameDifficulty = difficulty;
     }
 
     public String apply(int flickrImageSetSize, Resources resources) {
@@ -111,6 +122,7 @@ public class Settings implements Serializable {
     private void update() {
         this.gameMode = (VALID_GAME_MODE) candidateGameMode;
         this.imageSetOption = candidateImageSetOption;
+        this.gameDifficulty = candidateGameDifficulty;
     }
 
     private boolean checkGameMode() {
@@ -144,4 +156,5 @@ public class Settings implements Serializable {
     public static void set(Settings settings) {
         Settings.appSettings = settings;
     }
+
 }

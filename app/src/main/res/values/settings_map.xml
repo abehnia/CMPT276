@@ -45,4 +45,15 @@
         <item>true</item>
         <item>false</item>
     </string-array>
+
+    <array name="difficulty_keys">
+        <item>@id/difficultyChoice0</item>
+        <item>@id/difficultyChoice1</item>
+        <item>@id/difficultyChoice2</item>
+    </array>
+    <string-array name="difficulty_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 </resources>

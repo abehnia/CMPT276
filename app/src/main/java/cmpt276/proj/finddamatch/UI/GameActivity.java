@@ -110,7 +110,7 @@ public class GameActivity extends AppCompatActivity {
         this.scoreManager = ScoreState.get().getScoreManager();
         Settings settings = Settings.get();
         GameGenerator gameGenerator = new GameGeneratorImpl(settings.getGameMode(),
-                GameDifficulty.HARD);
+                settings.getDifficulty());
         game = gameGenerator.generate(SystemClock.elapsedRealtime());
         long time = SystemClock.elapsedRealtime();
         game.reset(time);

@@ -19,7 +19,11 @@ public class HardCardGenerator extends AbstractCardGenerator {
 
     @Override
     protected void randomizeRadius(MutableImage image, Random random) {
-        image.setRadius(random.nextFloat() * (parameterTuner.getUpperRadiusBound() -
-                parameterTuner.getLowerRadiusBound()) + parameterTuner.getLowerRadiusBound());
+        float lower = parameterTuner.getLowerRadiusBound();
+        float upper = parameterTuner.getUpperRadiusBound();
+        float randomLowerBound = 1 * lower / 2f +
+                (lower * random.nextFloat() * 1 / 2f);
+        image.setRadius(random.nextFloat() * (upper -
+                randomLowerBound) + randomLowerBound);
     }
 }
