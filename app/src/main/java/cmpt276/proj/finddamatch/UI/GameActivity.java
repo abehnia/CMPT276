@@ -199,7 +199,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void requestStoragePermission(){
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-            new AlertDialog.Builder(this).setTitle("Permission needed").setMessage("This permission is needed to export card images to filesystem")
+            new AlertDialog.Builder(this).setTitle("Permission needed").setMessage("Permission to write to EXTERNAL STORAGE is needed to export card image to filesystem")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
