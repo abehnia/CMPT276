@@ -199,6 +199,10 @@ public class BitmapStorer extends HandlerThread {
         bitmaps.addAll(bitmapCollection);
     }
 
+    public void add(Bitmap bitmap) {
+        bitmaps.add(bitmap);
+    }
+
     public void remove(Collection<Bitmap> bitmapCollection) {
         bitmaps.removeAll(bitmapCollection);
     }
