@@ -20,7 +20,7 @@ import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.ImageSet;
 
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
 
 public class ExportCanvas {
     private DeckGenerator deckGenerator;
@@ -43,7 +43,7 @@ public class ExportCanvas {
         int backgroundColor = resources.getColor(
                 R.color.colorGameBackground, null);
         Paint backgroundPaint = new Paint(backgroundColor);
-        if (Settings.get().getImageSet().isEquivalent(FLICKR)) {
+        if (Settings.get().getImageSet().isEquivalent(Custom)) {
             imageSet = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
                     resources);
         } else {
