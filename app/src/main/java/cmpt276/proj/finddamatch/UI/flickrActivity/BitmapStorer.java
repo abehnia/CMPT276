@@ -174,7 +174,7 @@ public class BitmapStorer extends HandlerThread {
                 File file = new File(path, fileName);
                 file.createNewFile();
                 Log.i(TAG, "Exporting Bitmap in " + file);
-                OutputStream bitmapStateFileOutputStream = new FileOutputStream(file, false);
+                OutputStream bitmapStateFileOutputStream = new FileOutputStream(file, true);
                 Bitmap bitmap = exportBitmaps.get(i);
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100,
                         bitmapStateFileOutputStream);

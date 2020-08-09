@@ -177,7 +177,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void setupButton() {
-        Button resetButton = findViewById(R.id.game_activity_export_button);
+        Button resetButton = findViewById(R.id.game_activity_reset_button);
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
