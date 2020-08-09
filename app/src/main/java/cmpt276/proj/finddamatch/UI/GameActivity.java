@@ -136,6 +136,7 @@ public class GameActivity extends AppCompatActivity {
         discard = game.peekDiscard();
         draw = game.peekDraw();
         this.isInDelay = true;
+        this.deckGenerator = game.getDeckGenerator();
     }
 
     private void setupCanvas() {
