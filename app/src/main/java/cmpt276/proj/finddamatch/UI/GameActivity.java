@@ -1,11 +1,18 @@
 package cmpt276.proj.finddamatch.UI;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import java.util.Locale;
@@ -54,6 +62,9 @@ public class GameActivity extends AppCompatActivity {
     private ScoreManager scoreManager;
     private ExportCanvas exportCanvas;
     private DeckGenerator deckGenerator;
+
+    private int STORAGE_PERMISSION_CODE = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,16 +175,60 @@ public class GameActivity extends AppCompatActivity {
         this.timer.setText(formatTime(game.queryTime(SystemClock.elapsedRealtime())));
     }
 
+    /**
+    * Request permission WRITE_EXTERNAL_STORAGE permission prior to export
+    */
     private void setupExportButton() {
         Button exportButton = findViewById(R.id.game_activity_export_button);
         exportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(ContextCompat.checkSelfPermission(GameActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(GameActivity.this, "Permission previously granted", Toast.LENGTH_SHORT).show();
+
+                    List<Bitmap> exportBitmaps = exportCanvas.export();
+                    BitmapStorer.get().addExport(exportBitmaps);
+                    BitmapStorer.get().export(GameActivity.this);
+                }else {
+                    requestStoragePermission();
+                }
+
+            }
+        });
+    }
+
+    private void requestStoragePermission(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+            new AlertDialog.Builder(this).setTitle("Permission needed").setMessage("This permission is needed to export card images to filesystem")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(GameActivity.this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+                        }
+                    })
+                    .setNegativeButton("NOPE", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create().show();
+        }else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == STORAGE_PERMISSION_CODE){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+
                 List<Bitmap> exportBitmaps = exportCanvas.export();
                 BitmapStorer.get().addExport(exportBitmaps);
                 BitmapStorer.get().export(GameActivity.this);
-            }
-        });
+
+            }else{Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show();}
+        }
     }
 
     private void setupButton() {
