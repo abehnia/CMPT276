@@ -37,7 +37,7 @@ import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
  */
 
 public class CustomImageSetActivity extends AppCompatActivity {
-    private static final int WANTED_SIZE = 150;
+    private static final int WANTED_SIZE = 240;
     private static final int REQUEST_CODE = 100;
     private static final int ACTIVITY_REQUEST_CODE = 1;
     private static final int NUMBER_OF_COLUMNS = 3;
@@ -84,7 +84,9 @@ public class CustomImageSetActivity extends AppCompatActivity {
                     Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(CustomImageSetActivity.this,
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE);
-                return;
+                if (ActivityCompat.checkSelfPermission(CustomImageSetActivity.this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+                    return;
             }
             newIntent();
         });
@@ -156,10 +158,19 @@ public class CustomImageSetActivity extends AppCompatActivity {
         InputStream inputStream = getContentResolver().openInputStream(imageUri);
         Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
         double tempHeight = bitmap.getHeight();
-        double scalingFactor = WANTED_SIZE / tempHeight;
-        double tempWidth = bitmap.getWidth() * scalingFactor;
-        int width = (int)tempWidth;
-        int height = WANTED_SIZE;
+        double tempWidth = bitmap.getWidth();
+        boolean isHeightTheLongestSide = tempHeight > tempWidth;
+        double longestSide = Math.max(tempHeight, tempWidth);
+        double scalingFactor = WANTED_SIZE / longestSide;
+        if (isHeightTheLongestSide) {
+            tempWidth *= scalingFactor;
+            tempHeight = WANTED_SIZE;
+        } else {
+            tempHeight *= scalingFactor;
+            tempWidth = WANTED_SIZE;
+        }
+        int height = (int) tempHeight;
+        int width = (int) tempWidth;
         bitmap = CustomImageSetActivity.scaleBitmap(bitmap, width, height);
         BitmapStorer.get().add(bitmap);
     }
@@ -191,12 +202,13 @@ public class CustomImageSetActivity extends AppCompatActivity {
         return new Intent(context, CustomImageSetActivity.class);
     }
 
+    // Inspired by StackOverflow
     private static Bitmap scaleBitmap(Bitmap bitmap, int width, int height) {
         Bitmap outputBitMap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(outputBitMap);
         Matrix matrix = new Matrix();
-        matrix.setScale((float)width / bitmap.getWidth(),
-                (float)WANTED_SIZE / bitmap.getHeight());
+        matrix.setScale((float) width / bitmap.getWidth(),
+                (float) WANTED_SIZE / bitmap.getHeight());
         canvas.drawBitmap(bitmap, matrix, new Paint());
         return outputBitMap;
     }
