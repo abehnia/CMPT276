@@ -14,13 +14,14 @@ import java.util.List;
 import cmpt276.proj.finddamatch.ExportCanvas;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
+import cmpt276.proj.finddamatch.UI.gameActivity.SoundEffects;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.UI.settingsActivity.SettingsSaver;
 import cmpt276.proj.finddamatch.model.GameMode;
 
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.FLICKR;
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
 
 /**
  * Class for the Main Menu. Sets up various buttons
@@ -82,7 +83,7 @@ public class MainMenuActivity extends AppCompatActivity {
             }
             int flickrImageSetSize = BitmapStorer.get().getBitmaps().size();
             GameMode gameMode = Settings.get().getGameMode();
-            if (Settings.get().getImageSet().isEquivalent(FLICKR) &&
+            if (Settings.get().getImageSet().isEquivalent(Custom) &&
                     !Settings.checkFlickrImageSetSize(gameMode, flickrImageSetSize)) {
                 Toast.makeText(this, R.string.not_enough_images,
                         Toast.LENGTH_SHORT).show();
@@ -95,7 +96,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private void setupFlickrBtn() {
         Button flickrBtn = findViewById(R.id.btnFlickr);
         flickrBtn.setOnClickListener(v -> {
-            Intent intent = FlickrImageSetActivity.makeIntent(MainMenuActivity.this);
+            Intent intent = CustomImageSetActivity.makeIntent(MainMenuActivity.this);
             if (!BitmapStorer.get().isReady()) {
                 Toast.makeText(this,
                         LOADING_TEXT, Toast.LENGTH_SHORT).show();

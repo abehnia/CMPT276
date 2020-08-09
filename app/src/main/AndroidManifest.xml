@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".UI.FlickrImageSetActivity"
+            android:name=".UI.CustomImageSetActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".UI.PhotoGalleryActivity"

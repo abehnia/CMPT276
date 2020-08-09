@@ -1,9 +1,9 @@
 package cmpt276.proj.finddamatch.UI;
 
 public enum VALID_IMAGE_SET implements ImageSetOption {
-    WESTERN(0),
-    EASTERN(1),
-    FLICKR(2);
+    NBA(0),
+    College(1),
+    Custom(2);
 
     private int ID;
 

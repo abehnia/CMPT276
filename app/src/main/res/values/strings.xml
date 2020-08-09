@@ -61,7 +61,7 @@
     <string name="activity_main_export">Export</string>
     <string name="activity_settings_western_conference">NBA and WNBA Pros</string>
     <string name="activity_settings_eastern_conference">NCAA Collegiate</string>
-    <string name="activity_settings_choose_image_set">Choose your image set:</string>
+    <string name="activity_settings_choose_image_set">Image set:</string>
     <string name="activity_settings_apply">Apply</string>
     <string name="backBtnArrow">backBtnArrow</string>
     <string name="imgView_logowitnobball">logoWitNoBBall</string>
@@ -75,16 +75,22 @@
             logo and tap it on the bottom card as fast as\n possible. \n\nIn order to satisfy the game objective, you must spot all logos in the deck.</p>\n\n\n
         <h2><b>Images Resources:</b></h2>\n
         <p>All the logos can be found through Wikipedia.\n
-        <a href="https://en.wikipedia.org/wiki/Toronto_Raptors#/media/File:Toronto_Raptors_logo.svg">For example the logo of the Toronto Raptors.</a>\n
+        <a href="https://en.wikipedia.org/wiki/Toronto_Raptors#/media/File:Toronto_Raptors_logo.svg">For example the logo of the Toronto Raptors.</a>\n\n
         Other images used in making the application:\n
         <a href="https://www.freepik.com/free-vector/basket-ball-background_715720.htm#page=1&amp;query=basketball&amp;position=12">Image 1</a>\n
         <a href="https://www.freepik.com/free-vector/abstract-background-basketball-player_1075929.htm#page=2&amp;query=background+abstract+sport&amp;position=36">Image 2</a>\n
-        <a href="https://www.freepik.com/free-vector/basketball-player-made-dots_716443.htm#page=2&amp;query=playing+basketball&amp;position=7">Image 3</a></p>\n\n\n
-        <b>This game was created by Alex, Ali, Ard, and Percy.</b>
+        <a href="https://www.freepik.com/free-vector/basketball-player-made-dots_716443.htm#page=2&amp;query=playing+basketball&amp;position=7">Image 3</a></p>\n\n
+        Sounds used in making the application:\n
+        <a href="https://freesound.org/people/Kastenfrosch/sounds/521973/">Sound 1</a>\n
+        <a href="https://www.fesliyanstudios.com/sound-effects-search.php?q=game">Sound 2</a>\n
+        <a href="https://www.freesfx.co.uk/sfx/referee-whistle">Sound 3</a>\n
+        <a href="https://www.freesfx.co.uk/sfx/clapping">Sound 4</a>\n
+        \n\n
+        <b>This game was created by Alex, Ard, Ali, and Percy.</b>
     </string>
     <string name="names">By:\nAlex, Ali\nArd, Percy</string>
     <string name="image_logo">logo</string>
-    <string name="activity_settings_flickr">Flickr</string>
+    <string name="activity_settings_custom">Custom</string>
     <string name="activity_settings_game_order">Images per Card:</string>
     <string name="activity_settings_order_choice0">3</string>
     <string name="activity_settings_order_choice1">4</string>
@@ -100,11 +106,11 @@
     <string name="acticity_settings_text_or_no_text">Text</string>
     <string name="invalid_settings">Invalid Settings</string>
     <string name="not_enough_images">Not Enough Images</string>
-    <string name="flickr_txt">Flickr</string>
+    <string name="custom_images_btn_txt">Customize</string>
 
     <string name="search">Search</string>
     <string name="clear_search">Clear Search</string>
-    <string name="flickr_image_set_toolbar_title">Flickr Image Set</string>
+    <string name="custom_image_set_toolbar_title">Custom Image Set</string>
     <string name="back_btn">Back</string>
     <string name="game_mode">Game Mode: </string>
     <string name="selected_game_mode"> Num of Images: %d | Num of Cards: %d | %s</string>
@@ -114,5 +120,14 @@
     <string name="spinner_prompt_title">Select Game Mode:</string>
     <string name="with_text">With Text</string>
     <string name="without_text">Without Text</string>
+    <string name="btn_add_flickr_images">Add Flickr Images</string>
+    <string name="btn_add_custom_images">Add Custom Images</string>
+    <string name="dialog_box_title">Best Scores</string>
+    <string name="save">Save</string>
+    <string name="no_nickname_toast">No Nickname: Score not Saved</string>
+    <string name="activity_settings_difficulty">Difficulty:</string>
+    <string name="activity_settings_easy">Easy</string>
+    <string name="activity_settings_medium">Medium</string>
+    <string name="activity_settings_hard">Hard</string>
 
 </resources>

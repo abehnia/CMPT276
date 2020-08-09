@@ -18,18 +18,16 @@ public class PhotoViewHolder extends RecyclerView.ViewHolder implements
         View.OnClickListener {
     private android.widget.ImageView imageView;
     private android.widget.ImageView overlay;
-    private final List<FlickrCell> flickrCells;
+    private final List<RecyclerViewCell> recyclerViewCells;
     private final Map<Integer, Bitmap> bitmapMap;
 
-    public PhotoViewHolder(View itemView, List<FlickrCell> flickerCells,
+    public PhotoViewHolder(View itemView, List<RecyclerViewCell> flickerCells,
                            Map<Integer, Bitmap> bitmapMap) {
         super(itemView);
-        this.imageView = (android.widget.ImageView)
-                itemView.findViewById(R.id.item_image_view);
-        this.overlay = (android.widget.ImageView)
-                itemView.findViewById(R.id.checkbox);
+        this.imageView = itemView.findViewById(R.id.item_image_view);
+        this.overlay = itemView.findViewById(R.id.checkbox);
         this.bitmapMap = bitmapMap;
-        this.flickrCells = flickerCells;
+        this.recyclerViewCells = flickerCells;
         itemView.setOnClickListener(this);
     }
 
@@ -42,18 +40,18 @@ public class PhotoViewHolder extends RecyclerView.ViewHolder implements
         if (!hasValidPosition() || !isReady()) {
             return;
         }
-        FlickrCell flickrCell = flickrCells.get(getLayoutPosition());
-        flickrCell.setSelected(!flickrCell.isSelected());
+        RecyclerViewCell recyclerViewCell = recyclerViewCells.get(getLayoutPosition());
+        recyclerViewCell.setSelected(!recyclerViewCell.isSelected());
         processFilter();
         AppendToSet();
     }
 
     private void AppendToSet() {
         int position = getLayoutPosition();
-        FlickrCell flickrCell = flickrCells.get(position);
-        boolean select = flickrCell.isSelected();
+        RecyclerViewCell recyclerViewCell = recyclerViewCells.get(position);
+        boolean select = recyclerViewCell.isSelected();
         if (select) {
-            bitmapMap.put(position, flickrCell.getBitmap());
+            bitmapMap.put(position, recyclerViewCell.getBitmap());
         } else {
             bitmapMap.remove(position);
         }
@@ -64,8 +62,8 @@ public class PhotoViewHolder extends RecyclerView.ViewHolder implements
         if (!hasValidPosition()) {
             return;
         }
-        FlickrCell flickrCell = flickrCells.get(position);
-        flickrCell.setReady(true);
+        RecyclerViewCell recyclerViewCell = recyclerViewCells.get(position);
+        recyclerViewCell.setReady(true);
     }
 
     public void clearReady() {
@@ -73,8 +71,8 @@ public class PhotoViewHolder extends RecyclerView.ViewHolder implements
             return;
         }
         int position = getLayoutPosition();
-        FlickrCell flickrCell = flickrCells.get(position);
-        flickrCell.setReady(false);
+        RecyclerViewCell recyclerViewCell = recyclerViewCells.get(position);
+        recyclerViewCell.setReady(false);
     }
 
     public void applyFilter() {
@@ -90,8 +88,8 @@ public class PhotoViewHolder extends RecyclerView.ViewHolder implements
             return;
         }
         int position = getLayoutPosition();
-        FlickrCell flickrCell = flickrCells.get(position);
-        if (flickrCell.isSelected()) {
+        RecyclerViewCell recyclerViewCell = recyclerViewCells.get(position);
+        if (recyclerViewCell.isSelected()) {
             applyFilter();
         } else {
             clearFilter();
@@ -102,8 +100,8 @@ public class PhotoViewHolder extends RecyclerView.ViewHolder implements
         if (!hasValidPosition()) {
             return;
         }
-        FlickrCell flickrCell = flickrCells.get(getLayoutPosition());
-        flickrCell.setBitmap(bitmap);
+        RecyclerViewCell recyclerViewCell = recyclerViewCells.get(getLayoutPosition());
+        recyclerViewCell.setBitmap(bitmap);
     }
 
     private boolean hasValidPosition() {
@@ -111,6 +109,6 @@ public class PhotoViewHolder extends RecyclerView.ViewHolder implements
     }
 
     private boolean isReady() {
-        return flickrCells.get(getLayoutPosition()).isReady();
+        return recyclerViewCells.get(getLayoutPosition()).isReady();
     }
 }

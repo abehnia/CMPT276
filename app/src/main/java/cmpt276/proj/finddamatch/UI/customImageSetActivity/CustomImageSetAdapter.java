@@ -1,4 +1,4 @@
-package cmpt276.proj.finddamatch.UI.flickrImageSetActivity;
+package cmpt276.proj.finddamatch.UI.customImageSetActivity;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,30 +16,30 @@ import java.util.List;
 import java.util.Map;
 
 import cmpt276.proj.finddamatch.R;
-import cmpt276.proj.finddamatch.UI.flickrActivity.FlickrCell;
+import cmpt276.proj.finddamatch.UI.flickrActivity.RecyclerViewCell;
 import cmpt276.proj.finddamatch.UI.flickrActivity.PhotoViewHolder;
 
 /**
  * Adapter for the recycler view in Image Set Activity
  */
 
-public class FlickrImageSetAdapter extends
+public class CustomImageSetAdapter extends
         RecyclerView.Adapter<PhotoViewHolder> {
     private List<Bitmap> bitmaps;
     private Context context;
-    private List<FlickrCell> flickrCells;
+    private List<RecyclerViewCell> recyclerViewCells;
     private Map<Integer, Bitmap> bitmapMap;
 
-    public FlickrImageSetAdapter(List<Bitmap> bitmaps, Context context,
-                        Map<Integer, Bitmap> bitmapMap) {
+    public CustomImageSetAdapter(List<Bitmap> bitmaps, Context context,
+                                 Map<Integer, Bitmap> bitmapMap) {
         this.bitmaps = bitmaps;
         this.context = context;
         this.bitmapMap = bitmapMap;
-        this.flickrCells = new ArrayList<>(Arrays.asList(new
-                FlickrCell[bitmaps.size()]));
-        flickrCells.replaceAll((FlickrCell flickrCell) -> new FlickrCell());
-        for (int i = 0; i < flickrCells.size(); ++i) {
-            flickrCells.get(i).setBitmap(bitmaps.get(i));
+        this.recyclerViewCells = new ArrayList<>(Arrays.asList(new
+                RecyclerViewCell[bitmaps.size()]));
+        recyclerViewCells.replaceAll((RecyclerViewCell recyclerViewCell) -> new RecyclerViewCell());
+        for (int i = 0; i < recyclerViewCells.size(); ++i) {
+            recyclerViewCells.get(i).setBitmap(bitmaps.get(i));
         }
     }
 
@@ -50,7 +50,7 @@ public class FlickrImageSetAdapter extends
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.list_item_gallery,
                 parent, false);
-        return new PhotoViewHolder(view, flickrCells, bitmapMap);
+        return new PhotoViewHolder(view, recyclerViewCells, bitmapMap);
     }
 
     @Override
@@ -73,8 +73,8 @@ public class FlickrImageSetAdapter extends
     }
 
     public void clearSelections() {
-        for (FlickrCell flickrCell : flickrCells) {
-            flickrCell.setSelected(false);
+        for (RecyclerViewCell recyclerViewCell : recyclerViewCells) {
+            recyclerViewCell.setSelected(false);
         }
     }
 
