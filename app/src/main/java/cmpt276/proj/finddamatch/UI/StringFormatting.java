@@ -2,7 +2,9 @@ package cmpt276.proj.finddamatch.UI;
 
 import java.util.Locale;
 
-
+/**
+ * Formats the strings
+ */
 public class StringFormatting {
     private static final String SEC_FORMAT = "%1$d:0%2$d";
     private static final String MIN_FORMAT = "%1$d:%2$d";
