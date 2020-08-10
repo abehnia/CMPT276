@@ -48,7 +48,7 @@ public class BitmapStorer extends HandlerThread {
     private static final int MESSAGE_SAVE = 1;
     private static final int MESSAGE_EXPORT = 2;
     private static final String FILE_NAME = "bitmap-storage-";
-    private static final String EXPORT_NAME = "MM-dd--HH:mm:ss'.png'";
+    private static final String EXPORT_NAME = "_MM-dd--HH:mm:ss'.png'";
     private static final String BITMAP_SIZE = "bitmap-size";
     public static final String BITMAP_SIZE_KEY = "BITMAP-SIZE";
 
@@ -171,7 +171,7 @@ public class BitmapStorer extends HandlerThread {
         try {
             for (int i = 0; i < exportBitmaps.size(); ++i) {
                 String fileName =
-                        new SimpleDateFormat(EXPORT_NAME + i).format(new Date());
+                        new SimpleDateFormat(i + EXPORT_NAME).format(new Date());
                 File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
                 path.mkdirs();
                 File file = new File(path, fileName);
@@ -182,6 +182,12 @@ public class BitmapStorer extends HandlerThread {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100,
                         bitmapStateFileOutputStream);
                 bitmapStateFileOutputStream.close();
+                MediaScannerConnection.scanFile(context,
+                        new String[]{file.toString()}, null,
+                        new MediaScannerConnection.OnScanCompletedListener() {
+                            public void onScanCompleted(String path, Uri uri) {
+                            }
+                        });
             }
         } catch (IOException e) {
             Log.e(TAG, "Error in Internal Export");
