@@ -22,6 +22,11 @@ import cmpt276.proj.finddamatch.model.ImageSet;
 
 import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
 
+/**
+ * Class to facilitate the export of deck of cards, created by
+ * DeckGenerator class and exports to android filesystem.
+ */
+
 public class ExportCanvas {
     private DeckGenerator deckGenerator;
     private CardView cardView;
@@ -32,10 +37,11 @@ public class ExportCanvas {
     private static final float DIAMETER = 2 * RADIUS * 1.05f;
 
 
-    public ExportCanvas(Resources resources, DeckGenerator deckGenerator) {
+    public ExportCanvas(Resources resources, DeckGenerator deckGenerator, ImageSet imageSet) {
         this.resources = resources;
         this.deckGenerator = deckGenerator;
         this.canvas = new Canvas();
+        this.imageSet = imageSet;
         init();
     }
 
@@ -61,14 +67,14 @@ public class ExportCanvas {
         paint.setAntiAlias(true);
         paint.setColor(color);
         for (Card card : cards) {
-            Bitmap bitmap = Bitmap.createBitmap((int)DIAMETER, (int)DIAMETER,
+            Bitmap bitmap = Bitmap.createBitmap((int) DIAMETER, (int) DIAMETER,
                     Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmap);
             canvas.drawARGB(0, 0, 0, 0);
             cardView.setImages(card);
             cardView.draw(canvas);
-            Rect rect = new Rect(0, 0, (int)DIAMETER, (int)DIAMETER);
-            canvas.drawBitmap(bitmap, rect, rect, paint );
+            Rect rect = new Rect(0, 0, (int) DIAMETER, (int) DIAMETER);
+            canvas.drawBitmap(bitmap, rect, rect, paint);
             bitmaps.add(bitmap);
         }
         return bitmaps;

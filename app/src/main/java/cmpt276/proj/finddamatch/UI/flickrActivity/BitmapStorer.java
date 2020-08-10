@@ -22,10 +22,12 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import cmpt276.proj.finddamatch.UI.scoresActivity.DefaultScoresGenerator;
@@ -46,7 +48,7 @@ public class BitmapStorer extends HandlerThread {
     private static final int MESSAGE_SAVE = 1;
     private static final int MESSAGE_EXPORT = 2;
     private static final String FILE_NAME = "bitmap-storage-";
-    private static final String EXPORT_NAME = "bitmap-export-";
+    private static final String EXPORT_NAME = "MM-dd--HH:mm:ss'.png'";
     private static final String BITMAP_SIZE = "bitmap-size";
     public static final String BITMAP_SIZE_KEY = "BITMAP-SIZE";
 
@@ -168,7 +170,7 @@ public class BitmapStorer extends HandlerThread {
     private void internalExport(Context context) {
         try {
             for (int i = 0; i < exportBitmaps.size(); ++i) {
-                String fileName = EXPORT_NAME + i + ".png";
+                String fileName = new SimpleDateFormat(EXPORT_NAME).format(new Date());
                 File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
                 path.mkdirs();
                 File file = new File(path, fileName);
@@ -179,14 +181,6 @@ public class BitmapStorer extends HandlerThread {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100,
                         bitmapStateFileOutputStream);
                 bitmapStateFileOutputStream.close();
-                MediaScannerConnection.scanFile(context,
-                        new String[] { file.toString() }, null,
-                        new MediaScannerConnection.OnScanCompletedListener() {
-                            public void onScanCompleted(String path, Uri uri) {
-                                Log.i("ExternalStorage", "Scanned " + path + ":");
-                                Log.i("ExternalStorage", "-> uri=" + uri);
-                            }
-                        });
             }
         } catch (IOException e) {
             Log.e(TAG, "Error in Internal Export");
@@ -207,7 +201,9 @@ public class BitmapStorer extends HandlerThread {
         bitmaps.removeAll(bitmapCollection);
     }
 
-    public void addExport(Collection<Bitmap> bitmapCollection) {exportBitmaps.addAll(bitmapCollection);}
+    public void addExport(Collection<Bitmap> bitmapCollection) {
+        exportBitmaps.addAll(bitmapCollection);
+    }
 
     public void clear() {
         bitmaps.clear();

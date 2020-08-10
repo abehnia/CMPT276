@@ -25,7 +25,7 @@
         app:layout_constraintGuide_percent="0.37" />
 
     <Button
-        android:id="@+id/game_activity_reset_button"
+        android:id="@+id/game_activity_shuffle_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -77,8 +77,8 @@
 
     <Button
         android:id="@+id/game_activity_export_button"
-        android:layout_width="133dp"
-        android:layout_height="47dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:background="@drawable/ic_commonbtn"
         android:text="@string/game_activity_export"
