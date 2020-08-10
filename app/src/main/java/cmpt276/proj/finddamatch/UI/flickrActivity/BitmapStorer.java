@@ -104,8 +104,7 @@ public class BitmapStorer extends HandlerThread {
         };
         this.isReady = true;
     }
-
-
+    
     public void load(Context context) {
         this.isReady = false;
         requestHandler.obtainMessage(MESSAGE_LOAD, context).sendToTarget();

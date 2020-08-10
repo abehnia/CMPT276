@@ -196,8 +196,8 @@ public class GameActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                     bitmapExport();
                 } else {
-                    ActivityCompat.requestPermissions( GameActivity.this,
-                            new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    ActivityCompat.requestPermissions(GameActivity.this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                             STORAGE_PERMISSION_CODE);
                 }
             }
@@ -208,15 +208,12 @@ public class GameActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[]
             permissions, @NonNull int[] grantResults) {
         if (requestCode == STORAGE_PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, R.string.request_permission_granted,
-                        Toast.LENGTH_SHORT).show();
-                bitmapExport();
-            } else {
-                Toast.makeText(this, R.string.request_permission_denied,
-                        Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(this, R.string.request_permission_granted,
+                    Toast.LENGTH_SHORT).show();
+            bitmapExport();
+        } else {
+            Toast.makeText(this, R.string.request_permission_denied,
+                    Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -321,7 +318,7 @@ public class GameActivity extends AppCompatActivity {
                 timeInSeconds / 60, timeInSeconds % 60);
     }
 
-    private void setupImageSet(){
+    private void setupImageSet() {
         if (Settings.get().getImageSet().isEquivalent(Custom)) {
             imageSet = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
                     getResources());
