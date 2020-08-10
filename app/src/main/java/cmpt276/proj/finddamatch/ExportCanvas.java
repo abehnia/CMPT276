@@ -49,12 +49,7 @@ public class ExportCanvas {
         int backgroundColor = resources.getColor(
                 R.color.colorGameBackground, null);
         Paint backgroundPaint = new Paint(backgroundColor);
-        if (Settings.get().getImageSet().isEquivalent(Custom)) {
-            imageSet = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
-                    resources);
-        } else {
-            imageSet = new ImageSetImpl(resources);
-        }
+
         cardView = new GuessCardView(DIAMETER / 2f, DIAMETER / 2f, RADIUS,
                 backgroundPaint, resources, imageSet);
     }

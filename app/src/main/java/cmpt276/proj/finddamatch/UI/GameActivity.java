@@ -13,7 +13,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -30,6 +32,7 @@ import java.util.Locale;
 import cmpt276.proj.finddamatch.ExportCanvas;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
+import cmpt276.proj.finddamatch.UI.gameActivity.FlickrSetImpl;
 import cmpt276.proj.finddamatch.UI.gameActivity.GameCanvas;
 import cmpt276.proj.finddamatch.UI.gameActivity.ImageSetImpl;
 import cmpt276.proj.finddamatch.UI.gameActivity.SoundEffects;
@@ -43,6 +46,8 @@ import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.ImageSet;
 import cmpt276.proj.finddamatch.model.gameLogic.GameGeneratorImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
+
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
 
 /**
  * Class for Game Activity
@@ -63,7 +68,9 @@ public class GameActivity extends AppCompatActivity {
     private ScoreManager scoreManager;
     private ExportCanvas exportCanvas;
     private DeckGenerator deckGenerator;
+    private Resources resource;
     private ImageSet imageSet;
+
 
 
     private int STORAGE_PERMISSION_CODE = 1;
@@ -85,7 +92,9 @@ public class GameActivity extends AppCompatActivity {
         setupHandler();
         setupButton();
         setupBackButton();
+        init();
         setupExportButton();
+
     }
 
     @Override
@@ -187,8 +196,10 @@ public class GameActivity extends AppCompatActivity {
         exportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(GameActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(GameActivity.this, R.string.previous_permission_check, Toast.LENGTH_SHORT).show();
+                if (ContextCompat.checkSelfPermission(GameActivity.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(GameActivity.this, R.string.previous_permission_check,
+                            Toast.LENGTH_SHORT).show();
                     bitmapExport();
                 } else {
                     requestStoragePermission();
@@ -198,12 +209,16 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void requestStoragePermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            new AlertDialog.Builder(this).setTitle(R.string.permission_needed).setMessage(R.string.external_storage_request_message)
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            new AlertDialog.Builder(this).setTitle(R.string.permission_needed)
+                    .setMessage(R.string.external_storage_request_message)
                     .setPositiveButton(R.string.request_permission_ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(GameActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+                            ActivityCompat.requestPermissions(GameActivity.this,
+                                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                    STORAGE_PERMISSION_CODE);
                         }
                     })
                     .setNegativeButton(R.string.request_permission_nope, new DialogInterface.OnClickListener() {
@@ -214,12 +229,14 @@ public class GameActivity extends AppCompatActivity {
                     })
                     .create().show();
         } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    STORAGE_PERMISSION_CODE);
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         if (requestCode == STORAGE_PERMISSION_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, R.string.request_permission_granted, Toast.LENGTH_SHORT).show();
@@ -329,5 +346,17 @@ public class GameActivity extends AppCompatActivity {
         long timeInSeconds = time / 1000;
         return String.format(Locale.getDefault(), " %02d:%02d",
                 timeInSeconds / 60, timeInSeconds % 60);
+    }
+
+    private void init(){
+        int backgroundColor = resource.getColor(
+                R.color.colorGameBackground, null);
+        Paint backgroundPaint = new Paint(backgroundColor);
+        if (Settings.get().getImageSet().isEquivalent(Custom)) {
+            imageSet = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
+                    resource);
+        } else {
+            imageSet = new ImageSetImpl(resource);
+        }
     }
 }
