@@ -25,6 +25,7 @@ public class MainMenuActivity extends AppCompatActivity {
 
     public static final String LOADING_TEXT = "Loading bitmaps, please wait a moment";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +38,7 @@ public class MainMenuActivity extends AppCompatActivity {
         setupFlickrBtn();
         setupFlickrStorage();
         ScoreState.get().load(MainMenuActivity.this);
+
     }
 
     private void setupBestScoresBtn() {
