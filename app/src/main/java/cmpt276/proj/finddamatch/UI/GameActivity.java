@@ -68,7 +68,6 @@ public class GameActivity extends AppCompatActivity {
     private ScoreManager scoreManager;
     private ExportCanvas exportCanvas;
     private DeckGenerator deckGenerator;
-    private Resources resource;
     private ImageSet imageSet;
 
 
@@ -85,6 +84,7 @@ public class GameActivity extends AppCompatActivity {
         this.soundEffects = new SoundEffects(GameActivity.this);
         this.isPlayed = false;
         this.isTouchable = true;
+        setupImageSet();
         setupGame();
         setupCanvas();
         setupTouch();
@@ -92,9 +92,7 @@ public class GameActivity extends AppCompatActivity {
         setupHandler();
         setupButton();
         setupBackButton();
-        init();
         setupExportButton();
-
     }
 
     @Override
@@ -348,15 +346,12 @@ public class GameActivity extends AppCompatActivity {
                 timeInSeconds / 60, timeInSeconds % 60);
     }
 
-    private void init(){
-        int backgroundColor = resource.getColor(
-                R.color.colorGameBackground, null);
-        Paint backgroundPaint = new Paint(backgroundColor);
+    private void setupImageSet(){
         if (Settings.get().getImageSet().isEquivalent(Custom)) {
             imageSet = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
-                    resource);
+                    getResources());
         } else {
-            imageSet = new ImageSetImpl(resource);
+            imageSet = new ImageSetImpl(getResources());
         }
     }
 }

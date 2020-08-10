@@ -49,7 +49,6 @@ public class ExportCanvas {
         int backgroundColor = resources.getColor(
                 R.color.colorGameBackground, null);
         Paint backgroundPaint = new Paint(backgroundColor);
-
         cardView = new GuessCardView(DIAMETER / 2f, DIAMETER / 2f, RADIUS,
                 backgroundPaint, resources, imageSet);
     }
