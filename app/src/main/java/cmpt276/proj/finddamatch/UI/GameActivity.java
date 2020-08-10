@@ -130,7 +130,6 @@ public class GameActivity extends AppCompatActivity {
         draw = game.peekDraw();
         this.isInDelay = true;
         this.deckGenerator = game.getDeckGenerator();
-//        this.imageSet = new ImageSetImpl(getResources());
     }
 
     private void setupCanvas() {
@@ -206,12 +205,15 @@ public class GameActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[]
             permissions, @NonNull int[] grantResults) {
         if (requestCode == STORAGE_PERMISSION_CODE) {
-            Toast.makeText(this, R.string.request_permission_granted,
-                    Toast.LENGTH_SHORT).show();
-            bitmapExport();
-        } else {
-            Toast.makeText(this, R.string.request_permission_denied,
-                    Toast.LENGTH_SHORT).show();
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, R.string.request_permission_granted,
+                        Toast.LENGTH_SHORT).show();
+                bitmapExport();
+            } else {
+                Toast.makeText(this, R.string.request_permission_denied,
+                        Toast.LENGTH_SHORT).show();
+            }
+            return;
         }
     }
 

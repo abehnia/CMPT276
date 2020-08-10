@@ -135,7 +135,8 @@
     <string name="external_storage_request_message">Permission to write to EXTERNAL STORAGE is needed to export card image to filesystem</string>
     <string name="request_permission_ok">OK</string>
     <string name="request_permission_nope">NOPE</string>
-    <string name="request_permission_granted">Permission Granted</string>
+    <string name="request_permission_granted">Images stored in
+        /Images/Pictures</string>
     <string name="request_permission_denied">Permission Denied</string>
 
 </resources>
