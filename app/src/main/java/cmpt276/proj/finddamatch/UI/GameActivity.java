@@ -44,7 +44,6 @@ import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.ImageSet;
 import cmpt276.proj.finddamatch.model.gameLogic.GameGeneratorImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
-
 import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
 
 /**
@@ -131,7 +130,7 @@ public class GameActivity extends AppCompatActivity {
         draw = game.peekDraw();
         this.isInDelay = true;
         this.deckGenerator = game.getDeckGenerator();
-        this.imageSet = new ImageSetImpl(getResources());
+//        this.imageSet = new ImageSetImpl(getResources());
     }
 
     private void setupCanvas() {
@@ -191,8 +190,7 @@ public class GameActivity extends AppCompatActivity {
                 if (ContextCompat.checkSelfPermission(GameActivity.this,
                         Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
                         PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(GameActivity.this,
-                            R.string.previous_permission_check,
+                    Toast.makeText(GameActivity.this, R.string.previous_permission_check,
                             Toast.LENGTH_SHORT).show();
                     bitmapExport();
                 } else {
