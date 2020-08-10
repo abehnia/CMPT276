@@ -1,14 +1,19 @@
 package cmpt276.proj.finddamatch.UI;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentManager;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.AudioAttributes;
-import android.media.SoundPool;
-import android.media.SoundPool.Builder;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -17,29 +22,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.List;
 import java.util.Locale;
 
+import cmpt276.proj.finddamatch.UI.gameActivity.ExportCanvas;
 import cmpt276.proj.finddamatch.R;
+import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
+import cmpt276.proj.finddamatch.UI.gameActivity.FlickrSetImpl;
 import cmpt276.proj.finddamatch.UI.gameActivity.GameCanvas;
+import cmpt276.proj.finddamatch.UI.gameActivity.ImageSetImpl;
 import cmpt276.proj.finddamatch.UI.gameActivity.SoundEffects;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 import cmpt276.proj.finddamatch.model.Card;
-import cmpt276.proj.finddamatch.model.CardGenerator;
 import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.GameGenerator;
 import cmpt276.proj.finddamatch.model.Image;
-import cmpt276.proj.finddamatch.model.gameLogic.DeckGeneratorImpl;
-import cmpt276.proj.finddamatch.model.gameLogic.GameDifficulty;
+import cmpt276.proj.finddamatch.model.ImageSet;
 import cmpt276.proj.finddamatch.model.gameLogic.GameGeneratorImpl;
-import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
-import cmpt276.proj.finddamatch.model.gameLogic.HardCardGenerator;
-import cmpt276.proj.finddamatch.model.gameLogic.ParameterTuner;
-
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
+import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
 
 /**
  * Class for Game Activity
@@ -58,6 +63,10 @@ public class GameActivity extends AppCompatActivity {
     private static final int DELAY = 100;
     private static final int REVEAL_DELAY = 1500;
     private ScoreManager scoreManager;
+    private ExportCanvas exportCanvas;
+    private DeckGenerator deckGenerator;
+    private ImageSet imageSet;
+    private int STORAGE_PERMISSION_CODE = 1;
     private SoundEffects soundEffects;
 
     @Override
@@ -68,6 +77,7 @@ public class GameActivity extends AppCompatActivity {
         this.soundEffects = new SoundEffects(GameActivity.this);
         this.isPlayed = false;
         this.isTouchable = true;
+        setupImageSet();
         setupGame();
         setupCanvas();
         setupTouch();
@@ -75,6 +85,7 @@ public class GameActivity extends AppCompatActivity {
         setupHandler();
         setupButton();
         setupBackButton();
+        setupExportButton();
     }
 
     @Override
@@ -118,6 +129,7 @@ public class GameActivity extends AppCompatActivity {
         discard = game.peekDiscard();
         draw = game.peekDraw();
         this.isInDelay = true;
+        this.deckGenerator = game.getDeckGenerator();
     }
 
     private void setupCanvas() {
@@ -129,6 +141,7 @@ public class GameActivity extends AppCompatActivity {
                                        int oldRight, int oldBottom) {
                 gameCanvas.setCards(draw, discard);
                 gameCanvas.hide();
+                exportCanvas = new ExportCanvas(getResources(), deckGenerator, imageSet);
             }
         });
     }
@@ -165,8 +178,53 @@ public class GameActivity extends AppCompatActivity {
         this.timer.setText(formatTime(game.queryTime(SystemClock.elapsedRealtime())));
     }
 
+    /**
+     * Request permission WRITE_EXTERNAL_STORAGE permission prior to export
+     */
+    private void setupExportButton() {
+        Button exportButton = findViewById(R.id.game_activity_export_button);
+        exportButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(GameActivity.this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                        PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(GameActivity.this, R.string.previous_permission_check,
+                            Toast.LENGTH_SHORT).show();
+                    bitmapExport();
+                } else {
+                    ActivityCompat.requestPermissions(GameActivity.this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            STORAGE_PERMISSION_CODE);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[]
+            permissions, @NonNull int[] grantResults) {
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, R.string.request_permission_granted,
+                        Toast.LENGTH_SHORT).show();
+                bitmapExport();
+            } else {
+                Toast.makeText(this, R.string.request_permission_denied,
+                        Toast.LENGTH_SHORT).show();
+            }
+            return;
+        }
+    }
+
+    private void bitmapExport() {
+        List<Bitmap> exportBitmaps = exportCanvas.export();
+        BitmapStorer.get().addExport(exportBitmaps);
+        BitmapStorer.get().export(GameActivity.this);
+    }
+
     private void setupButton() {
-        Button resetButton = findViewById(R.id.game_activity_reset_button);
+        Button resetButton = findViewById(R.id.game_activity_shuffle_button);
         resetButton.setOnClickListener(v -> {
             removeHandler();
             long time = SystemClock.elapsedRealtime();
@@ -202,8 +260,8 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void playStartSound(){
-        if(!isPlayed){
+    private void playStartSound() {
+        if (!isPlayed) {
             soundEffects.playStartGameSound();
             isPlayed = true;
         }
@@ -258,5 +316,14 @@ public class GameActivity extends AppCompatActivity {
         long timeInSeconds = time / 1000;
         return String.format(Locale.getDefault(), " %02d:%02d",
                 timeInSeconds / 60, timeInSeconds % 60);
+    }
+
+    private void setupImageSet() {
+        if (Settings.get().getImageSet().isEquivalent(Custom)) {
+            imageSet = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
+                    getResources());
+        } else {
+            imageSet = new ImageSetImpl(getResources());
+        }
     }
 }
