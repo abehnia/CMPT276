@@ -170,7 +170,8 @@ public class BitmapStorer extends HandlerThread {
     private void internalExport(Context context) {
         try {
             for (int i = 0; i < exportBitmaps.size(); ++i) {
-                String fileName = new SimpleDateFormat(EXPORT_NAME).format(new Date());
+                String fileName =
+                        new SimpleDateFormat(EXPORT_NAME + i).format(new Date());
                 File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
                 path.mkdirs();
                 File file = new File(path, fileName);

@@ -13,9 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -29,7 +27,7 @@ import android.widget.Toast;
 import java.util.List;
 import java.util.Locale;
 
-import cmpt276.proj.finddamatch.ExportCanvas;
+import cmpt276.proj.finddamatch.UI.gameActivity.ExportCanvas;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
 import cmpt276.proj.finddamatch.UI.gameActivity.FlickrSetImpl;
@@ -69,11 +67,7 @@ public class GameActivity extends AppCompatActivity {
     private ExportCanvas exportCanvas;
     private DeckGenerator deckGenerator;
     private ImageSet imageSet;
-
-
-
     private int STORAGE_PERMISSION_CODE = 1;
-
     private SoundEffects soundEffects;
 
     @Override
@@ -202,42 +196,12 @@ public class GameActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                     bitmapExport();
                 } else {
-                    requestStoragePermission();
+                    ActivityCompat.requestPermissions( GameActivity.this,
+                            new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            STORAGE_PERMISSION_CODE);
                 }
             }
         });
-    }
-
-    private void requestStoragePermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            new AlertDialog.Builder(this)
-                    .setTitle(R.string.permission_needed)
-                    .setMessage(R.string.external_storage_request_message)
-                    .setPositiveButton(R.string.request_permission_ok,
-                            new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(
-                                    GameActivity.this,
-                                    new String[]{
-                                        Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                        STORAGE_PERMISSION_CODE);
-                        }
-                    })
-                    .setNegativeButton(R.string.request_permission_nope,
-                            new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    })
-                    .create().show();
-        } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    STORAGE_PERMISSION_CODE);
-        }
     }
 
     @Override
@@ -256,7 +220,7 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    public void bitmapExport() {
+    private void bitmapExport() {
         List<Bitmap> exportBitmaps = exportCanvas.export();
         BitmapStorer.get().addExport(exportBitmaps);
         BitmapStorer.get().export(GameActivity.this);

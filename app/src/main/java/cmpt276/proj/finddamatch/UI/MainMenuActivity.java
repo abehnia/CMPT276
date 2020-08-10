@@ -3,18 +3,12 @@ package cmpt276.proj.finddamatch.UI;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.util.List;
-
-import cmpt276.proj.finddamatch.ExportCanvas;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
-import cmpt276.proj.finddamatch.UI.gameActivity.SoundEffects;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
