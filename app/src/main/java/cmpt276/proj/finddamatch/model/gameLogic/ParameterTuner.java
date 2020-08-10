@@ -3,7 +3,7 @@ package cmpt276.proj.finddamatch.model.gameLogic;
 import cmpt276.proj.finddamatch.model.GameMode;
 
 /**
- * creates boundaries for each GameMode
+ * Tunes parameters for CardGeneration
  */
 
 public class ParameterTuner {

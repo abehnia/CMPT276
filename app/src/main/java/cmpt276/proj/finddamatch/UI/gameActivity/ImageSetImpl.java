@@ -24,14 +24,14 @@ public class ImageSetImpl implements ImageSet {
 
 
     public ImageSetImpl(Resources resources) {
-        int IMAGE_SET_NUM = Settings.get().getImageSet().getID();
+        int imageSetNum = Settings.get().getImageSet().getID();
         TypedArray logos = resources.obtainTypedArray(R.array.logos);
-        String[] logos_string = resources.getStringArray(R.array.logos_string);
+        String[] logosString = resources.getStringArray(R.array.logos_string);
         this.imagesList = new Drawable[NUM_OF_IMAGES];
         this.imagesTextList = new DrawableText[NUM_OF_IMAGES];
         for (int i = 0; i < NUM_OF_IMAGES; i++) {
-            imagesList[i] = logos.getDrawable(i + IMAGE_SET_NUM * NUM_OF_IMAGES);
-            imagesTextList[i] = new DrawableText(logos_string[i + IMAGE_SET_NUM * NUM_OF_IMAGES]);
+            imagesList[i] = logos.getDrawable(i + imageSetNum * NUM_OF_IMAGES);
+            imagesTextList[i] = new DrawableText(logosString[i + imageSetNum * NUM_OF_IMAGES]);
         }
         logos.recycle();
         this.backLogo = resources.getDrawable(

@@ -9,13 +9,13 @@ import cmpt276.proj.finddamatch.model.gameLogic.ValidGameMode;
 public class SettingsHelper {
 
     public static int getMaxSize(int order) {
-        int max_size = 0;
+        int maxSize = 0;
         for (GameMode gameMode : ValidGameMode.values()) {
             if (gameMode.getOrder() == order) {
-                max_size = Math.max(max_size, gameMode.getSize());
+                maxSize = Math.max(maxSize, gameMode.getSize());
             }
         }
-        return max_size;
+        return maxSize;
     }
 
 }

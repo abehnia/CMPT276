@@ -18,7 +18,7 @@ import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.model.ImageSet;
 
 /**
- * Implements the bitmap for the ImageSet
+ * Implements the Custom ImageSet
  */
 
 public class CustomImageImpl implements ImageSet {
