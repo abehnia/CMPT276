@@ -195,8 +195,10 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (ContextCompat.checkSelfPermission(GameActivity.this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(GameActivity.this, R.string.previous_permission_check,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                        PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(GameActivity.this,
+                            R.string.previous_permission_check,
                             Toast.LENGTH_SHORT).show();
                     bitmapExport();
                 } else {
@@ -209,17 +211,22 @@ public class GameActivity extends AppCompatActivity {
     private void requestStoragePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            new AlertDialog.Builder(this).setTitle(R.string.permission_needed)
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.permission_needed)
                     .setMessage(R.string.external_storage_request_message)
-                    .setPositiveButton(R.string.request_permission_ok, new DialogInterface.OnClickListener() {
+                    .setPositiveButton(R.string.request_permission_ok,
+                            new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(GameActivity.this,
-                                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                    STORAGE_PERMISSION_CODE);
+                            ActivityCompat.requestPermissions(
+                                    GameActivity.this,
+                                    new String[]{
+                                        Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                        STORAGE_PERMISSION_CODE);
                         }
                     })
-                    .setNegativeButton(R.string.request_permission_nope, new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.request_permission_nope,
+                            new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -227,20 +234,24 @@ public class GameActivity extends AppCompatActivity {
                     })
                     .create().show();
         } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     STORAGE_PERMISSION_CODE);
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[]
+            permissions, @NonNull int[] grantResults) {
         if (requestCode == STORAGE_PERMISSION_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, R.string.request_permission_granted, Toast.LENGTH_SHORT).show();
+            if (grantResults.length > 0 && grantResults[0] ==
+                    PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, R.string.request_permission_granted,
+                        Toast.LENGTH_SHORT).show();
                 bitmapExport();
             } else {
-                Toast.makeText(this, R.string.request_permission_denied, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.request_permission_denied,
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }

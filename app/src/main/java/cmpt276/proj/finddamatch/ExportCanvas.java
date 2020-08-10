@@ -32,7 +32,6 @@ public class ExportCanvas {
     private CardView cardView;
     private Resources resources;
     private ImageSet imageSet;
-    private Canvas canvas;
     private static final float RADIUS = 400;
     private static final float DIAMETER = 2 * RADIUS * 1.05f;
 
@@ -40,7 +39,6 @@ public class ExportCanvas {
     public ExportCanvas(Resources resources, DeckGenerator deckGenerator, ImageSet imageSet) {
         this.resources = resources;
         this.deckGenerator = deckGenerator;
-        this.canvas = new Canvas();
         this.imageSet = imageSet;
         init();
     }
