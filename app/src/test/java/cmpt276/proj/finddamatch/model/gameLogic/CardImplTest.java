@@ -3,17 +3,12 @@ package cmpt276.proj.finddamatch.model.gameLogic;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import cmpt276.proj.finddamatch.model.Card;
-import cmpt276.proj.finddamatch.model.CardGenerator;
 import cmpt276.proj.finddamatch.model.Image;
-import cmpt276.proj.finddamatch.model.MutableImage;
 
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
-import static java.lang.Math.sqrt;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import cmpt276.proj.finddamatch.model.GameMode;
-import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
+import cmpt276.proj.finddamatch.model.gameLogic.ValidGameMode;
 
 /**
  * Manages all the high score tables
@@ -29,18 +29,18 @@ public class ScoreManager implements Serializable {
         this.currentTime = 0;
     }
 
-    public void addScore(VALID_GAME_MODE gameMode, Score score) {
+    public void addScore(ValidGameMode gameMode, Score score) {
         ScoreTable scoreTable = scoreTables.get(gameMode);
         if (scoreTable != null) {
             scoreTable.add(score);
         }
     }
 
-    public ScoreTable getScoreTable(VALID_GAME_MODE gameMode) {
+    public ScoreTable getScoreTable(ValidGameMode gameMode) {
         return scoreTables.get(gameMode);
     }
 
-    public void resetScoreTable(VALID_GAME_MODE gameMode) {
+    public void resetScoreTable(ValidGameMode gameMode) {
         if (scoreTables.containsKey(gameMode)) {
             scoreTables.put(gameMode, new
                     ScoreTable(defaultValues.get(gameMode)));

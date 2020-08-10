@@ -20,7 +20,7 @@ import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.ImageSet;
 
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
+import static cmpt276.proj.finddamatch.UI.ValidImageSet.Custom;
 
 /**
  * Main canvas for the game
@@ -130,9 +130,9 @@ public class GameCanvas extends View {
         ImageSet imageSetGuess;
         ImageSet imageSetLead;
         if (Settings.get().getImageSet().isEquivalent(Custom)) {
-            imageSetGuess = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
+            imageSetGuess = new CustomImageImpl(BitmapStorer.get().getBitmaps(),
                     getResources());
-            imageSetLead = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
+            imageSetLead = new CustomImageImpl(BitmapStorer.get().getBitmaps(),
                     getResources());
         } else {
             imageSetGuess = new ImageSetImpl(getResources());

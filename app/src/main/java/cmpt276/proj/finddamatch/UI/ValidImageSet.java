@@ -1,13 +1,16 @@
 package cmpt276.proj.finddamatch.UI;
 
-public enum VALID_IMAGE_SET implements ImageSetOption {
+/**
+ * Enum that contains the valid image set
+ */
+public enum ValidImageSet implements ImageSetOption {
     NBA(0),
     College(1),
     Custom(2);
 
     private int ID;
 
-    private VALID_IMAGE_SET(int ID) {
+    private ValidImageSet(int ID) {
         this.ID = ID;
     }
 

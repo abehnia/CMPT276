@@ -13,7 +13,7 @@ import java.util.Stack;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
 import cmpt276.proj.finddamatch.UI.gameActivity.CardView;
-import cmpt276.proj.finddamatch.UI.gameActivity.FlickrSetImpl;
+import cmpt276.proj.finddamatch.UI.gameActivity.CustomImageImpl;
 import cmpt276.proj.finddamatch.UI.gameActivity.GuessCardView;
 import cmpt276.proj.finddamatch.UI.gameActivity.ImageSetImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
@@ -21,7 +21,7 @@ import cmpt276.proj.finddamatch.model.Card;
 import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.ImageSet;
 
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
+import static cmpt276.proj.finddamatch.UI.ValidImageSet.Custom;
 
 /**
  * Class to facilitate the export of deck of cards, created by

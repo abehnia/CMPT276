@@ -5,6 +5,9 @@ import android.media.SoundPool;
 
 import cmpt276.proj.finddamatch.R;
 
+/**
+ * Loads and plays sound
+ */
 public class SoundEffects {
     private SoundPool soundPool;
     private int endGameSound;

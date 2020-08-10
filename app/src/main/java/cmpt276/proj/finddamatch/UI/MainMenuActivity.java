@@ -15,7 +15,7 @@ import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.UI.settingsActivity.SettingsSaver;
 import cmpt276.proj.finddamatch.model.GameMode;
 
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
+import static cmpt276.proj.finddamatch.UI.ValidImageSet.Custom;
 
 /**
  * Class for the Main Menu. Sets up various buttons
@@ -44,8 +44,8 @@ public class MainMenuActivity extends AppCompatActivity {
     private void setupBestScoresBtn() {
         Button bestScoresBtn = findViewById(R.id.btnBestScores);
         bestScoresBtn.setOnClickListener(v -> {
-            Intent settings_intent = ScoresActivity.makeIntent(MainMenuActivity.this);
-            startActivity(settings_intent);
+            Intent settingsIntent = ScoresActivity.makeIntent(MainMenuActivity.this);
+            startActivity(settingsIntent);
         });
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 import cmpt276.proj.finddamatch.BuildConfig;
 import cmpt276.proj.finddamatch.model.GameMode;
 import cmpt276.proj.finddamatch.model.gameLogic.GameModeImpl;
-import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
+import cmpt276.proj.finddamatch.model.gameLogic.ValidGameMode;
 
 /**
  * Class to parse various internal java classes from a JSON file
@@ -39,7 +39,7 @@ public class JsonParser {
     public static ScoreTable parseScoreTable(JSONObject object)
             throws JSONException {
         ArrayList<Score> scores = new ArrayList<>();
-        VALID_GAME_MODE gameMode = parseGameMode(object);
+        ValidGameMode gameMode = parseGameMode(object);
         JSONArray array = object.getJSONArray(SCORE_TABLE_KEY);
         for (int i = 0; i < array.length(); ++i) {
             scores.add(parseScore(array.getJSONObject(i)));
@@ -47,14 +47,14 @@ public class JsonParser {
         return new ScoreTable(scores, gameMode);
     }
 
-    public static VALID_GAME_MODE parseGameMode(JSONObject object)
+    public static ValidGameMode parseGameMode(JSONObject object)
             throws JSONException {
         JSONObject gameMode = object.getJSONObject(GAME_MODE_KEY);
         int order = gameMode.getInt(ORDER_KEY);
         int size = gameMode.getInt(SIZE_KEY);
         boolean hasText = gameMode.getBoolean(HAS_TEXT_KEY);
         GameMode gameModeMatcher = new GameModeImpl(order, size, hasText);
-        for (VALID_GAME_MODE validGameMode : VALID_GAME_MODE.values()) {
+        for (ValidGameMode validGameMode : ValidGameMode.values()) {
             if (validGameMode.isEquivalent(gameModeMatcher)) {
                 return validGameMode;
             }

@@ -5,7 +5,7 @@ import cmpt276.proj.finddamatch.model.GameMode;
 /**
  * Enum that contains all the different game modes
  */
-public enum VALID_GAME_MODE implements GameMode {
+public enum ValidGameMode implements GameMode {
     GAME1(2, 7, false),
     GAME2(2, 7, true),
     GAME3(2, 5, false),
@@ -32,7 +32,7 @@ public enum VALID_GAME_MODE implements GameMode {
     private int size;
     private boolean hasText;
 
-    VALID_GAME_MODE(int order, int size, boolean hasText) {
+    ValidGameMode(int order, int size, boolean hasText) {
         this.order = order;
         this.size = size;
         this.hasText = hasText;

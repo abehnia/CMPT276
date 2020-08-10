@@ -30,7 +30,7 @@ import java.util.Locale;
 import cmpt276.proj.finddamatch.UI.gameActivity.ExportCanvas;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
-import cmpt276.proj.finddamatch.UI.gameActivity.FlickrSetImpl;
+import cmpt276.proj.finddamatch.UI.gameActivity.CustomImageImpl;
 import cmpt276.proj.finddamatch.UI.gameActivity.GameCanvas;
 import cmpt276.proj.finddamatch.UI.gameActivity.ImageSetImpl;
 import cmpt276.proj.finddamatch.UI.gameActivity.SoundEffects;
@@ -44,7 +44,7 @@ import cmpt276.proj.finddamatch.model.Image;
 import cmpt276.proj.finddamatch.model.ImageSet;
 import cmpt276.proj.finddamatch.model.gameLogic.GameGeneratorImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
+import static cmpt276.proj.finddamatch.UI.ValidImageSet.Custom;
 
 /**
  * Class for Game Activity
@@ -320,7 +320,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void setupImageSet() {
         if (Settings.get().getImageSet().isEquivalent(Custom)) {
-            imageSet = new FlickrSetImpl(BitmapStorer.get().getBitmaps(),
+            imageSet = new CustomImageImpl(BitmapStorer.get().getBitmaps(),
                     getResources());
         } else {
             imageSet = new ImageSetImpl(getResources());

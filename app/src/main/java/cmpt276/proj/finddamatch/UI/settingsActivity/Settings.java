@@ -9,21 +9,21 @@ import java.util.List;
 
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.ImageSetOption;
-import cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET;
+import cmpt276.proj.finddamatch.UI.ValidImageSet;
 import cmpt276.proj.finddamatch.model.GameMode;
 import cmpt276.proj.finddamatch.model.gameLogic.GameDifficulty;
-import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
+import cmpt276.proj.finddamatch.model.gameLogic.ValidGameMode;
 
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.NBA;
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
+import static cmpt276.proj.finddamatch.UI.ValidImageSet.Custom;
+import static cmpt276.proj.finddamatch.UI.ValidImageSet.NBA;
+import static cmpt276.proj.finddamatch.model.gameLogic.ValidGameMode.GAME1;
 
 /**
  * Contains the settings of the app
  */
 public class Settings implements Serializable {
     private static Settings appSettings;
-    private VALID_GAME_MODE gameMode;
+    private ValidGameMode gameMode;
     private ImageSetOption imageSetOption;
     private GameDifficulty gameDifficulty;
     private transient GameMode candidateGameMode;
@@ -45,7 +45,7 @@ public class Settings implements Serializable {
         buttonIDs.add(R.id.difficultyChoice0);
     }
 
-    public VALID_GAME_MODE getGameMode() {
+    public ValidGameMode getGameMode() {
         return gameMode;
     }
 
@@ -53,7 +53,9 @@ public class Settings implements Serializable {
         return imageSetOption;
     }
 
-    public GameDifficulty getDifficulty() { return gameDifficulty;}
+    public GameDifficulty getDifficulty() {
+        return gameDifficulty;
+    }
 
     public void setGameMode(GameMode gameMode) {
         this.candidateGameMode = gameMode;
@@ -102,7 +104,7 @@ public class Settings implements Serializable {
                 Log.e("Setting Activity", "Invalid Game Order");
                 return false;
         }
-        if(flickrImageSetSize >= reqNumOfImages){
+        if (flickrImageSetSize >= reqNumOfImages) {
             return true;
         }
         return false;
@@ -120,13 +122,13 @@ public class Settings implements Serializable {
     }
 
     private void update() {
-        this.gameMode = (VALID_GAME_MODE) candidateGameMode;
+        this.gameMode = (ValidGameMode) candidateGameMode;
         this.imageSetOption = candidateImageSetOption;
         this.gameDifficulty = candidateGameDifficulty;
     }
 
     private boolean checkGameMode() {
-        for (VALID_GAME_MODE gameMode : VALID_GAME_MODE.values()) {
+        for (ValidGameMode gameMode : ValidGameMode.values()) {
             if (candidateGameMode.isEquivalent(gameMode)) {
                 this.candidateGameMode = gameMode;
                 return true;
@@ -136,7 +138,7 @@ public class Settings implements Serializable {
     }
 
     private boolean checkImageSetOption() {
-        for (ImageSetOption imageSetOption : VALID_IMAGE_SET.values()) {
+        for (ImageSetOption imageSetOption : ValidImageSet.values()) {
             if (candidateImageSetOption.isEquivalent(imageSetOption)) {
                 this.candidateImageSetOption = imageSetOption;
                 return true;

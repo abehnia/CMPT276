@@ -77,7 +77,7 @@ public class PhotoDownloader<T> extends HandlerThread {
                 return;
             }
             Bitmap bitmap = HTTPRetriever.getRequest(url, (byte[] bytes) ->
-                    BitmapFactory.decodeByteArray(bytes, 0, bytes.length),
+                            BitmapFactory.decodeByteArray(bytes, 0, bytes.length),
                     1000);
             responseHandler.post(() -> {
                 if (!(requestMap.get(target) == url) ||

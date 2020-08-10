@@ -29,7 +29,6 @@ import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTable;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTableView;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreViewGenerator;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
-import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
 
 /**
  * Class to show dialog box. Sets up table and takes input to save high score

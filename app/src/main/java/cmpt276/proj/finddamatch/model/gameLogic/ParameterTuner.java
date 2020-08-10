@@ -2,6 +2,10 @@ package cmpt276.proj.finddamatch.model.gameLogic;
 
 import cmpt276.proj.finddamatch.model.GameMode;
 
+/**
+ * Tunes parameters for CardGeneration
+ */
+
 public class ParameterTuner {
     private GameMode gameMode;
     private float lowerRadiusBound;
