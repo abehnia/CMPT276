@@ -17,11 +17,15 @@ import java.util.List;
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.model.ImageSet;
 
-public class FlickrSetImpl implements ImageSet {
+/**
+ * Implements the bitmap for the ImageSet
+ */
+
+public class CustomImageImpl implements ImageSet {
     List<Drawable> drawables;
     Drawable backLogo;
 
-    public FlickrSetImpl(Collection<Bitmap> bitmaps, Resources resources) {
+    public CustomImageImpl(Collection<Bitmap> bitmaps, Resources resources) {
         this.drawables = new ArrayList<>();
         for (Bitmap bitmap: bitmaps) {
             this.backLogo = resources.getDrawable(R.drawable.

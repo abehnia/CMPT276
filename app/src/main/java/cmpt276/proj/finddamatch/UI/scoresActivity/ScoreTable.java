@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import cmpt276.proj.finddamatch.model.GameMode;
-import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
+import cmpt276.proj.finddamatch.model.gameLogic.ValidGameMode;
 
 /**
  * Holds one complete high score table
@@ -18,7 +18,7 @@ public class ScoreTable implements Iterable<Score>, Serializable {
     private List<Score> scores;
     private GameMode gameMode;
 
-    public ScoreTable(VALID_GAME_MODE gameMode) {
+    public ScoreTable(ValidGameMode gameMode) {
         this.scores = new ArrayList<>();
         this.gameMode = gameMode;
     }
@@ -32,7 +32,7 @@ public class ScoreTable implements Iterable<Score>, Serializable {
         sort();
     }
 
-    public ScoreTable(List<Score> scores, VALID_GAME_MODE gameMode) {
+    public ScoreTable(List<Score> scores, ValidGameMode gameMode) {
         this.scores = scores;
         this.gameMode = gameMode;
     }
@@ -58,8 +58,8 @@ public class ScoreTable implements Iterable<Score>, Serializable {
         return this.gameMode;
     }
 
-                      @NonNull
-                      @Override
+    @NonNull
+    @Override
     public Iterator<Score> iterator() {
         return scores.iterator();
     }

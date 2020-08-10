@@ -2,6 +2,10 @@ package cmpt276.proj.finddamatch.model.gameLogic;
 
 import cmpt276.proj.finddamatch.model.GameMode;
 
+/**
+ * creates boundaries for each GameMode
+ */
+
 public class ParameterTuner {
     private GameMode gameMode;
     private float lowerRadiusBound;

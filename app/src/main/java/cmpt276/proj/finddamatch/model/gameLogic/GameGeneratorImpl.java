@@ -36,7 +36,7 @@ public class GameGeneratorImpl implements GameGenerator {
                     gameMode.hasText());
         }
         DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator,
-               gameMode);
+                gameMode);
         return new GameImpl(deckGenerator, time);
     }
 }

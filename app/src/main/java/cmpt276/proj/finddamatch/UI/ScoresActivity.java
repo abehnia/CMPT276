@@ -29,7 +29,7 @@ import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreTableView;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreViewGenerator;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.model.GameMode;
-import cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE;
+import cmpt276.proj.finddamatch.model.gameLogic.ValidGameMode;
 
 /**
  * Activity to show user the top 5 high scores and reset high scores
@@ -41,7 +41,7 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
     ScoreTable scoreTable;
     Settings settings;
     List<GameMode> gameModeList;
-    VALID_GAME_MODE gameMode;
+    ValidGameMode gameMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +59,14 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         setUpSpinner();
     }
 
-    private void updateGameModeTxt(VALID_GAME_MODE gameMode) {
-        int numOfImgs = gameMode.getOrder()+1;
+    private void updateGameModeTxt(ValidGameMode gameMode) {
+        int numOfImgs = gameMode.getOrder() + 1;
         int numOfCards = gameMode.getSize();
         boolean hasText = gameMode.hasText();
         String txt;
-        if(hasText){
+        if (hasText) {
             txt = getString(R.string.with_text);
-        }else{
+        } else {
             txt = getString(R.string.without_text);
         }
         TextView gameModeTxt = findViewById(R.id.txt_gameModeStr);
@@ -75,10 +75,10 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
 
     private void setUpSpinner() {
         gameModeList = new ArrayList<>();
-        gameModeList.addAll(Arrays.asList(VALID_GAME_MODE.values()));
+        gameModeList.addAll(Arrays.asList(ValidGameMode.values()));
         Spinner spinnerGameModes = findViewById(R.id.gameMode_spinner);
         ArrayAdapter<GameMode> spinnerAdapter = new ArrayAdapter<GameMode>
-                (this, android.R.layout.simple_spinner_item, gameModeList){
+                (this, android.R.layout.simple_spinner_item, gameModeList) {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View v = super.getView(position, convertView, parent);
                 int color = ContextCompat.getColor(ScoresActivity.this,
@@ -95,7 +95,7 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         spinnerGameModes.setSelection(gameMode.ordinal());
     }
 
-    private void setupResetBtn(VALID_GAME_MODE gameMode) {
+    private void setupResetBtn(ValidGameMode gameMode) {
         Button btn = findViewById(R.id.btnReset);
         btn.setOnClickListener(v -> {
             scoreManager.resetScoreTable(gameMode);
@@ -104,7 +104,7 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         });
     }
 
-    private void populateTable(VALID_GAME_MODE gameMode) {
+    private void populateTable(ValidGameMode gameMode) {
         TypedArray typedNameIds = getResources().
                 obtainTypedArray(R.array.name_ids);
         TypedArray typedDateIds = getResources().
@@ -129,7 +129,7 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
         button.setOnClickListener(v -> finish());
     }
 
-    private void showScore(VALID_GAME_MODE gameMode) {
+    private void showScore(ValidGameMode gameMode) {
         scoreTable = scoreManager.getScoreTable(gameMode);
         scoreTableView.setScores(scoreTable);
     }
@@ -140,7 +140,7 @@ public class ScoresActivity extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        VALID_GAME_MODE gameMode = (VALID_GAME_MODE) parent.getItemAtPosition(position);
+        ValidGameMode gameMode = (ValidGameMode) parent.getItemAtPosition(position);
         int spinner_pos = parent.getSelectedItemPosition();
         Toast.makeText(parent.getContext(), "Game " +
                 (spinner_pos + 1) +

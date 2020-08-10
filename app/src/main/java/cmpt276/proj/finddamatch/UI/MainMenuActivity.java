@@ -9,14 +9,13 @@ import android.widget.Toast;
 
 import cmpt276.proj.finddamatch.R;
 import cmpt276.proj.finddamatch.UI.flickrActivity.BitmapStorer;
-import cmpt276.proj.finddamatch.UI.gameActivity.SoundEffects;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
 import cmpt276.proj.finddamatch.UI.settingsActivity.SettingsSaver;
 import cmpt276.proj.finddamatch.model.GameMode;
 
-import static cmpt276.proj.finddamatch.UI.VALID_IMAGE_SET.Custom;
+import static cmpt276.proj.finddamatch.UI.ValidImageSet.Custom;
 
 /**
  * Class for the Main Menu. Sets up various buttons

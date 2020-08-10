@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.GameMode;
 
 import static org.junit.jupiter.api.Assertions.*;
+/**
+ * Test for GameModeImpl
+ * */
 
 class GameModeImplTest {
 
@@ -20,8 +22,8 @@ class GameModeImplTest {
         assertEquals(2, gameMode.getOrder());
 
         // Test VALID_GAME_MODE enum
-        List<VALID_GAME_MODE> valid_game_modes = new ArrayList<>(Arrays.asList(VALID_GAME_MODE.values()));
-        assertEquals(2, valid_game_modes.get(0).getOrder());
+        List<ValidGameMode> validGameModes = new ArrayList<>(Arrays.asList(ValidGameMode.values()));
+        assertEquals(2, validGameModes.get(0).getOrder());
     }
 
     @Test
@@ -31,8 +33,8 @@ class GameModeImplTest {
         assertEquals(7, gameMode.getSize());
 
         // Test VALID_GAME_MODE enum
-        List<VALID_GAME_MODE> valid_game_modes = new ArrayList<>(Arrays.asList(VALID_GAME_MODE.values()));
-        assertEquals(7, valid_game_modes.get(0).getSize());
+        List<ValidGameMode> validGameModes = new ArrayList<>(Arrays.asList(ValidGameMode.values()));
+        assertEquals(7, validGameModes.get(0).getSize());
     }
 
     @Test
@@ -42,8 +44,8 @@ class GameModeImplTest {
         assertTrue(gameMode.hasText());
 
         // Test VALID_GAME_MODE enum
-        List<VALID_GAME_MODE> valid_game_modes = new ArrayList<>(Arrays.asList(VALID_GAME_MODE.values()));
-        assertFalse(valid_game_modes.get(0).hasText());
+        List<ValidGameMode> validGameModes = new ArrayList<>(Arrays.asList(ValidGameMode.values()));
+        assertFalse(validGameModes.get(0).hasText());
     }
 
     @Test
@@ -52,14 +54,14 @@ class GameModeImplTest {
         GameMode gameMode = new GameModeImpl(2, 7, true);
 
         // Test VALID_GAME_MODE enum
-        List<VALID_GAME_MODE> valid_game_modes = new ArrayList<>(Arrays.asList(VALID_GAME_MODE.values()));
+        List<ValidGameMode> validGameModes = new ArrayList<>(Arrays.asList(ValidGameMode.values()));
 
         // Test true
-        assertTrue(gameMode.isEquivalent(valid_game_modes.get(1)));
-        assertTrue(valid_game_modes.get(1).isEquivalent(gameMode));
+        assertTrue(gameMode.isEquivalent(validGameModes.get(1)));
+        assertTrue(validGameModes.get(1).isEquivalent(gameMode));
 
         // Test false
-        assertFalse(gameMode.isEquivalent(valid_game_modes.get(0)));
-        assertFalse(valid_game_modes.get(0).isEquivalent(gameMode));
+        assertFalse(gameMode.isEquivalent(validGameModes.get(0)));
+        assertFalse(validGameModes.get(0).isEquivalent(gameMode));
     }
 }

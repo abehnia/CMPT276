@@ -6,9 +6,6 @@ import androidx.fragment.app.FragmentManager;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioAttributes;
-import android.media.SoundPool;
-import android.media.SoundPool.Builder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -26,20 +23,11 @@ import cmpt276.proj.finddamatch.UI.gameActivity.SoundEffects;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreState;
 import cmpt276.proj.finddamatch.UI.scoresActivity.ScoreManager;
 import cmpt276.proj.finddamatch.model.Card;
-import cmpt276.proj.finddamatch.model.CardGenerator;
-import cmpt276.proj.finddamatch.model.DeckGenerator;
 import cmpt276.proj.finddamatch.model.Game;
 import cmpt276.proj.finddamatch.model.GameGenerator;
 import cmpt276.proj.finddamatch.model.Image;
-import cmpt276.proj.finddamatch.model.gameLogic.DeckGeneratorImpl;
-import cmpt276.proj.finddamatch.model.gameLogic.GameDifficulty;
 import cmpt276.proj.finddamatch.model.gameLogic.GameGeneratorImpl;
-import cmpt276.proj.finddamatch.model.gameLogic.GameImpl;
 import cmpt276.proj.finddamatch.UI.settingsActivity.Settings;
-import cmpt276.proj.finddamatch.model.gameLogic.HardCardGenerator;
-import cmpt276.proj.finddamatch.model.gameLogic.ParameterTuner;
-
-import static cmpt276.proj.finddamatch.model.gameLogic.VALID_GAME_MODE.GAME1;
 
 /**
  * Class for Game Activity
@@ -202,8 +190,8 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void playStartSound(){
-        if(!isPlayed){
+    private void playStartSound() {
+        if (!isPlayed) {
             soundEffects.playStartGameSound();
             isPlayed = true;
         }

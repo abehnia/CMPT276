@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class ScoreViewGenerator {
     private static List<ScoreView> populate(View v, List<TypedArray> arrays,
-                                           ScoreTable scoreTable) {
+                                            ScoreTable scoreTable) {
         ArrayList<ScoreView> scoreViews = new ArrayList<>();
         TextView txtName;
         TextView txtDate;
@@ -33,7 +33,7 @@ public class ScoreViewGenerator {
                     getResourceId(index, 0));
             txtTime = v.findViewById(typedTimeIds.
                     getResourceId(index, 0));
-            scoreViews.add(new ScoreView(txtName, txtDate,txtTime));
+            scoreViews.add(new ScoreView(txtName, txtDate, txtTime));
             ++index;
         }
         typedNameIds.recycle();

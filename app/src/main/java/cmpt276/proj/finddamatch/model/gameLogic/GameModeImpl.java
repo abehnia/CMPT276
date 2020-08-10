@@ -2,6 +2,10 @@ package cmpt276.proj.finddamatch.model.gameLogic;
 
 import cmpt276.proj.finddamatch.model.GameMode;
 
+/**
+ * GameMode logic to implement the GameMode interface
+ */
+
 public class GameModeImpl implements GameMode {
     private int order;
     private int size;

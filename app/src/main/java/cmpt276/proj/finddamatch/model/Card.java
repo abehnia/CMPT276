@@ -27,5 +27,4 @@ public interface Card extends Iterable<Image> {
     int size();
 
 
-
 }

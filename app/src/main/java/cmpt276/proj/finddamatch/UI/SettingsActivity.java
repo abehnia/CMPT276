@@ -76,7 +76,7 @@ public class SettingsActivity extends AppCompatActivity {
                     gameSizeOption.getValue(),
                     hasTextOption.getValue());
             ImageSetOption imageSet =
-                    VALID_IMAGE_SET.values()[imageSetOption.getValue()];
+                    ValidImageSet.values()[imageSetOption.getValue()];
             GameDifficulty difficulty = GameDifficulty.values()
                     [gameDifficultyOption.getValue()];
             settings.setGameMode(gameMode);

@@ -4,5 +4,6 @@ import java.io.Serializable;
 
 public interface ImageSetOption extends Serializable {
     int getID();
+
     boolean isEquivalent(ImageSetOption imageSetOption);
 }

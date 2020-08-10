@@ -116,5 +116,6 @@ public abstract class AbstractCardGenerator implements CardGenerator {
     }
 
     protected abstract void randomizeOrientation(MutableImage image, Random random);
+
     protected abstract void randomizeRadius(MutableImage image, Random random);
 }

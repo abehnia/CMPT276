@@ -45,7 +45,7 @@ public class FlickerAPI {
                                      Pair<FlickerAPIArg, String>... args) {
         StringBuilder result = new StringBuilder(QUERY);
         result.append(METHOD).append(IS).append(method);
-        for (Pair<FlickerAPIArg, String> arg: args) {
+        for (Pair<FlickerAPIArg, String> arg : args) {
             result.append(AND).append(arg.first).append(IS).append(arg.second);
         }
         return result.toString();
