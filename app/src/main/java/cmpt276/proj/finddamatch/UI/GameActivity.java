@@ -64,7 +64,6 @@ public class GameActivity extends AppCompatActivity {
     private static final int REVEAL_DELAY = 1500;
     private ScoreManager scoreManager;
     private ExportCanvas exportCanvas;
-    private DeckGenerator deckGenerator;
     private ImageSet imageSet;
     private int STORAGE_PERMISSION_CODE = 1;
     private SoundEffects soundEffects;
@@ -129,7 +128,8 @@ public class GameActivity extends AppCompatActivity {
         discard = game.peekDiscard();
         draw = game.peekDraw();
         this.isInDelay = true;
-        this.deckGenerator = game.getDeckGenerator();
+        exportCanvas = new ExportCanvas(getResources(), gameGenerator.generateDeck()
+                , imageSet);
     }
 
     private void setupCanvas() {
@@ -141,7 +141,6 @@ public class GameActivity extends AppCompatActivity {
                                        int oldRight, int oldBottom) {
                 gameCanvas.setCards(draw, discard);
                 gameCanvas.hide();
-                exportCanvas = new ExportCanvas(getResources(), deckGenerator, imageSet);
             }
         });
     }

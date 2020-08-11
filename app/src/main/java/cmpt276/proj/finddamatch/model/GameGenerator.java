@@ -6,4 +6,5 @@ package cmpt276.proj.finddamatch.model;
  */
 public interface GameGenerator {
     Game generate(long time);
+    DeckGenerator generateDeck();
 }

@@ -176,13 +176,4 @@ public class GameImpl implements Game {
         referenceTime = time;
         elapsedTime += referenceTime - previousTime;
     }
-
-    /**
-     * returns the game's deck generator, so that GameActivity has access to DeckGenerator, useful
-     * for when exporting cards.
-     * @return dealer
-     */
-    public DeckGenerator getDeckGenerator(){
-        return this.dealer;
-    }
 }

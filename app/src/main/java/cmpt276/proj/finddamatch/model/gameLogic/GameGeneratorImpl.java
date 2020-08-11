@@ -23,6 +23,12 @@ public class GameGeneratorImpl implements GameGenerator {
 
     @Override
     public Game generate(long time) {
+        DeckGenerator deckGenerator = generateDeck();
+        return new GameImpl(deckGenerator, time);
+    }
+
+    @Override
+    public DeckGenerator generateDeck() {
         ParameterTuner parameterTuner = new ParameterTuner(gameMode);
         CardGenerator cardGenerator;
         if (gameDifficulty == EASY) {
@@ -35,8 +41,7 @@ public class GameGeneratorImpl implements GameGenerator {
             cardGenerator = new HardCardGenerator(parameterTuner,
                     gameMode.hasText());
         }
-        DeckGenerator deckGenerator = new DeckGeneratorImpl(cardGenerator,
+        return new DeckGeneratorImpl(cardGenerator,
                 gameMode);
-        return new GameImpl(deckGenerator, time);
     }
 }

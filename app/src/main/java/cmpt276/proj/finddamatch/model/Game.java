@@ -76,12 +76,4 @@ public interface Game {
      * Side Effects: none
      */
     Card peekDraw();
-
-    /**
-     * returns the game's deck generator, so that GameActivity has access to DeckGenerator, useful
-     * for when exporting cards.
-     * @return dealer
-     */
-    DeckGenerator getDeckGenerator();
-
 }
